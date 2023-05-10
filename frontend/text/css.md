@@ -68,7 +68,8 @@ display(htm)
   </body>
 </html>
 
-![](https://imgur.com/Y2lRC3V)
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/6d1b0264-78bf-4c91-a0aa-2812de7faee2)
+
 
 
 
@@ -116,7 +117,8 @@ display(htm)
       <p>カメの平均寿命は30年ほどです</p>
   </body>
 </html>
-![](https://imgur.com/SIYsVhQ.png)
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/9d8d82ba-ca6e-4f99-9c9c-3102202768ef)
+
 
 
 3つ目は、インラインスタイル属性を使用する方法です。  
@@ -147,7 +149,8 @@ display(htm)
          背景色を薄い緑色にする -->
     <p style="background-color: #DDFFDD">カメの平均寿命は30年ほどです</p>
 </body>
-![](https://imgur.com/8bzeutV)
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/eb656ef1-60db-483a-ae58-b5d11180597f)
+
 
 
 一番ベストな方法は、1番目の方法である、外部CSSファイルを使用する方法です。  
@@ -203,7 +206,8 @@ p {
       <p>カメの平均寿命は30年ほどです</p>
   </body>
 </html>
-![](https://imgur.com/CAQDOKB)
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/9bbc3a6e-3b5c-42ea-8646-f798cbbcb8f8)
+
 
 
 
@@ -328,8 +332,6 @@ span {
   background-color: #fff3b8
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -367,48 +369,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-div {
-  background-color: #F2F2F2;
-}
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/f1944a7e-8637-4156-aaed-0bb089321d8c)
 
-span {
-  background-color: #DDFFDD
-}
-
-/* "kotyo"クラス内の要素の背景色を薄い青色にする */
-.kotyo {
-  background-color: #D3DEF1
-}
-
-/* "jumyo"クラス内の要素の背景色を薄い黄色にする */
-.jumyo {
-  background-color: #fff3b8
-}
-</style>
-  </head>
-  <body>
-      <!-- "kotyo"クラスの要素の背景色は"薄い青" -->
-      <!-- "jumyo"クラスの要素の背景色は"薄い黄" -->
-      <div>
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong class="kotyo">最大甲長</strong>は20cm程度です</p>
-          <p><strong class="jumyo">野生での平均寿命</strong>は45年程度です</p>
-      </div>
-      <div>
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong class="kotyo">最大甲長</strong>は30cm程度です</p>
-          <p><strong class="jumyo">野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div>
-          <h3><span>クサガメ</span></h3>
-          <p><strong class="kotyo">最大甲長</strong>は40cm程度です</p>
-          <p><strong class="jumyo">野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
 
 
 
@@ -454,8 +416,6 @@ span {
   background-color: #FADBDA
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -491,58 +451,10 @@ htm = HTML(f'''\
 ''')
 display(htm)
 ```
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/7171c8c6-8397-46cc-8f84-01329e283258)
 
 
-<html>
-  <head>
-      <style>
-div {
-  background-color: #F2F2F2;
-}
 
-span {
-  background-color: #DDFFDD
-}
-
-.kotyo {
-  background-color: #D3DEF1
-}
-
-.jumyo {
-  background-color: #fff3b8
-}
-
-/* id"kotyo_max"の要素の背景色を薄い赤色にする */
-#kotyo_max {
-  background-color: #FADBDA
-}
-
-/* id"jumyo_max"の要素の背景色を薄い赤色にする */
-#jumyo_max {
-  background-color: #FADBDA
-}
-</style>
-  </head>
-  <body>
-      <!-- id"kotyo_max"の要素の背景色は"薄い赤" -->
-      <!-- id"jumyo_max"の要素の背景色は"薄い赤" -->
-      <div>
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong class="kotyo">最大甲長</strong>は20cm程度です</p>
-          <p><strong class="jumyo">野生での平均寿命</strong>は<span id="jumyo_max">45年</span>程度です</p>
-      </div>
-      <div>
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong class="kotyo">最大甲長</strong>は30cm程度です</p>
-          <p><strong class="jumyo">野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div>
-          <h3><span>クサガメ</span></h3>
-          <p><strong class="kotyo">最大甲長</strong>は<span id="kotyo_max">40cm</span>程度です</p>
-          <p><strong class="jumyo">野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
 
 
 
@@ -585,9 +497,6 @@ span {
 }
 ```
 
-    Overwriting style.css
-    
-
 
 ```python
 with open('/content/style.css', 'r') as f:
@@ -622,43 +531,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-/* ミドリガメの項目のフォントを明朝系にする */
-#midori {
-  font-family: serif;
-}
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/4b60e12a-d6e4-495d-a775-2f584bd7c0a2)
 
-/* ヤマトイシガメの項目のフォントを等幅にする */
-#yamato {
-  font-family: monospace;
-}
-
-/* クサガメの項目のフォントを筆記体にする */
-#kusa {
-  font-family: cursive;
-}
-</style>
-  </head>
-  <body>
-      <div id="midori">
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong>最大甲長</strong>は20cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は45年程度です</p>
-      </div>
-      <div id="yamato">
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong>最大甲長</strong>は30cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div id="kusa">
-          <h3><span>クサガメ</span></h3>
-          <p><strong>最大甲長</strong>は40cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
 
 
 
@@ -696,8 +570,6 @@ display(htm)
   font-size: large;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -733,44 +605,8 @@ htm = HTML(f'''\
 display(htm)
 ```
 
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/f009e54d-7174-4a29-a597-5357c839ebbf)
 
-<html>
-  <head>
-      <style>
-/* ミドリガメの項目のサイズをsmallにする */
-#midori {
-  font-size: small;
-}
-
-/* ヤマトイシガメの項目のサイズをmediumにする */
-#yamato {
-  font-size: medium;
-}
-
-/* クサガメの項目のサイズをlargeにする */
-#kusa {
-  font-size: large;
-}
-</style>
-  </head>
-  <body>
-      <div id="midori">
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong>最大甲長</strong>は20cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は45年程度です</p>
-      </div>
-      <div id="yamato">
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong>最大甲長</strong>は30cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div id="kusa">
-          <h3><span>クサガメ</span></h3>
-          <p><strong>最大甲長</strong>は40cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
 
 
 
@@ -809,8 +645,6 @@ display(htm)
   font-weight: bolder;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -847,43 +681,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-/* ミドリガメの項目の太さはそのままにする */
-#midori {
-  font-weight: normal;
-}
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/087c840f-d604-4a68-9569-bfe3d2da454b)
 
-/* ヤマトイシガメの項目の太さをlighterにする */
-#yamato {
-  font-weight: lighter;
-}
-
-/* クサガメの項目の太さをbolderにする */
-#kusa {
-  font-weight: bolder;
-}
-</style>
-  </head>
-  <body>
-      <div id="midori">
-          <h3><span>ミドリガメ</span></h3>
-          <p>最大甲長は20cm程度です</p>
-          <p>野生での平均寿命は45年程度です</p>
-      </div>
-      <div id="yamato">
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p>最大甲長は30cm程度です</p>
-          <p>野生での平均寿命は15年程度です</p>
-      </div>
-      <div id="kusa">
-          <h3><span>クサガメ</span></h3>
-          <p>最大甲長は40cm程度です</p>
-          <p>野生での平均寿命は35年程度です</p>
-      </div>
-  </body>
-</html>
 
 
 
@@ -918,8 +717,6 @@ display(htm)
   text-align: right;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -954,45 +751,10 @@ htm = HTML(f'''\
 
 display(htm)
 ```
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/fe736346-01fe-4e54-affa-b0d719df35fd)
 
 
-<html>
-  <head>
-      <style>
-/* ミドリガメの項目は左揃えにする */
-#midori {
-  text-align: left;
-}
 
-/* ヤマトイシガメの項目は中央揃えにする */
-#yamato {
-  text-align: center;
-}
-
-/* クサガメの項目は右揃えにする */
-#kusa {
-  text-align: right;
-}
-</style>
-  </head>
-  <body>
-      <div id="midori">
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong>最大甲長</strong>は20cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は45年程度です</p>
-      </div>
-      <div id="yamato">
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong>最大甲長</strong>は30cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div id="kusa">
-          <h3><span>クサガメ</span></h3>
-          <p><strong>最大甲長</strong>は40cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
 
 
 
@@ -1027,8 +789,6 @@ display(htm)
   text-decoration: overline;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -1064,44 +824,9 @@ htm = HTML(f'''\
 display(htm)
 ```
 
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/ab2d7442-99f8-40bc-acd8-ee38c3635784)
 
-<html>
-  <head>
-      <style>
-/* ミドリガメの項目は赤い下線を引く */
-#midori {
-  text-decoration: underline red;
-}
 
-/* ヤマトイシガメの項目は青い打ち消し線を引く */
-#yamato {
-  text-decoration: line-through blue;
-}
-
-/* クサガメの項目は強調する（上線を引く） */
-#kusa {
-  text-decoration: overline;
-}
-</style>
-  </head>
-  <body>
-      <div id="midori">
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong>最大甲長</strong>は20cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は45年程度です</p>
-      </div>
-      <div id="yamato">
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong>最大甲長</strong>は30cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div id="kusa">
-          <h3><span>クサガメ</span></h3>
-          <p><strong>最大甲長</strong>は40cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
 
 
 
@@ -1136,8 +861,6 @@ display(htm)
   background-color: #fff3b8;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -1174,46 +897,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-/* ミドリガメの項目は行の高さはそのまま */
-#midori {
-  line-height: normal;
-  background-color: #DDFFDD;
-}
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/7f25a618-97b2-4fe3-8c1c-d0bb253205d0)
 
-/* ヤマトイシガメの項目は行の高さを"1.7"にする */
-#yamato {
-  line-height: 1.7;
-  background-color: #D3DEF1;
-}
-
-/* クサガメの項目は行の高さを"2.5"にする */
-#kusa {
-  line-height: 2.5;
-  background-color: #fff3b8;
-}
-</style>
-  </head>
-  <body>
-      <div id="midori">
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong>最大甲長</strong>は20cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は45年程度です</p>
-      </div>
-      <div id="yamato">
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong>最大甲長</strong>は30cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div id="kusa">
-          <h3><span>クサガメ</span></h3>
-          <p><strong>最大甲長</strong>は40cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
 
 
 
@@ -1253,8 +938,6 @@ RGB各値は0から255まで、透明度は0から1までの間で記述しま�
   color: rgb(0, 0, 255, 0.2);
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -1291,44 +974,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-/* ミドリガメの項目はキーワードを使って文字色を赤色にする */
-#midori {
-  color: red;
-}
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/e6960402-a4e7-49a4-a744-765cbe6ac7cf)
 
-/* ヤマトイシガメの項目はRGB値を使って文字色を緑色にする */
-#yamato {
-  color: rgb(0, 255, 0);
-}
-
-/* クサガメの項目はRGBA値を使って文字色を緑色にする */
-/* 透明度はかなり高めに設定する */
-#kusa {
-  color: rgb(0, 0, 255, 0.2);
-}
-</style>
-  </head>
-  <body>
-      <div id="midori">
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong>最大甲長</strong>は20cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は45年程度です</p>
-      </div>
-      <div id="yamato">
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong>最大甲長</strong>は30cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div id="kusa">
-          <h3><span>クサガメ</span></h3>
-          <p><strong>最大甲長</strong>は40cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
 
 
 
@@ -1356,8 +1003,6 @@ span {
   background-color: #DDFFDD
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -1394,38 +1039,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-/* bodyタグ内の要素の背景色を薄い灰色にする */
-body {
-  background-color: #F2F2F2;
-}
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/47202b34-312c-4991-ab34-34012fae0834)
 
-/* spanタグ内の要素の背景色を薄い緑色にする */
-span {
-  background-color: #DDFFDD
-}
-</style>
-  </head>
-  <body>
-      <div id="midori">
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong>最大甲長</strong>は20cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は45年程度です</p>
-      </div>
-      <div id="yamato">
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong>最大甲長</strong>は30cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div id="kusa">
-          <h3><span>クサガメ</span></h3>
-          <p><strong>最大甲長</strong>は40cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
 
 
 
@@ -1456,8 +1071,6 @@ body {
   background-image: url(https://imgur.com/VctMf95.png);
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -1494,33 +1107,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-/* 背景画像を設定する */
-body {
-  background-image: url(https://imgur.com/VctMf95.png);
-}
-</style>
-  </head>
-  <body>
-      <div id="midori">
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong>最大甲長</strong>は20cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は45年程度です</p>
-      </div>
-      <div id="yamato">
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong>最大甲長</strong>は30cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div id="kusa">
-          <h3><span>クサガメ</span></h3>
-          <p><strong>最大甲長</strong>は40cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/d4b9cbd6-351e-4bac-a992-525430198e58)
+
 
 
 
@@ -1550,8 +1138,6 @@ body {
   background-repeat: repeat-y;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -1588,34 +1174,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-/* 画像を縦方向に繰り返す */
-body {
-  background-image: url(https://imgur.com/VctMf95.png);
-  background-repeat: repeat-y;
-}
-</style>
-  </head>
-  <body>
-      <div id="midori">
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong>最大甲長</strong>は20cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は45年程度です</p>
-      </div>
-      <div id="yamato">
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong>最大甲長</strong>は30cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div id="kusa">
-          <h3><span>クサガメ</span></h3>
-          <p><strong>最大甲長</strong>は40cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/cfd2580d-b878-4264-8d25-e6a60e89f8cc)
+
 
 
 
@@ -1630,7 +1190,6 @@ body {
 }
 ```
 
-    Overwriting style.css
     
 
 
@@ -1667,34 +1226,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-/* 画像を横方向に繰り返す */
-body {
-  background-image: url(https://imgur.com/VctMf95.png);
-  background-repeat: repeat-x;
-}
-</style>
-  </head>
-  <body>
-      <div id="midori">
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong>最大甲長</strong>は20cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は45年程度です</p>
-      </div>
-      <div id="yamato">
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong>最大甲長</strong>は30cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div id="kusa">
-          <h3><span>クサガメ</span></h3>
-          <p><strong>最大甲長</strong>は40cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/d06fd61a-258d-4db5-aa1f-20be07014390)
+
 
 
 
@@ -1730,7 +1263,6 @@ body {
 }
 ```
 
-    Overwriting style.css
     
 
 
@@ -1767,35 +1299,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-/* 背景画像を設定する */
-body {
-  background-image: url(https://imgur.com/VctMf95.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-</style>
-  </head>
-  <body>
-      <div id="midori">
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong>最大甲長</strong>は20cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は45年程度です</p>
-      </div>
-      <div id="yamato">
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong>最大甲長</strong>は30cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div id="kusa">
-          <h3><span>クサガメ</span></h3>
-          <p><strong>最大甲長</strong>は40cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/fe056c2c-9d9f-4402-80b9-f819b5c8fb5b)
+
 
 
 
@@ -1818,7 +1323,6 @@ body {
 }
 ```
 
-    Overwriting style.css
     
 
 
@@ -1855,35 +1359,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-/* 背景画像を設定する */
-body {
-  background-image: url(https://imgur.com/VctMf95.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-</style>
-  </head>
-  <body>
-      <div id="midori">
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong>最大甲長</strong>は20cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は45年程度です</p>
-      </div>
-      <div id="yamato">
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong>最大甲長</strong>は30cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div id="kusa">
-          <h3><span>クサガメ</span></h3>
-          <p><strong>最大甲長</strong>は40cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/5e02e352-f1a6-4eae-b648-194d5fec7e48)
+
 
 
 
@@ -1930,8 +1407,6 @@ body {
   height: 33.33%;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -1958,45 +1433,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-/* 幅300px、高さ200pxの領域を設定 */
-.flag {
-  width: 300px;
-  height: 200px;
-}
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/e05845e2-bf08-4a36-8f1f-6ca85acd774f)
 
-/* 一番上の黒い水平帯を設定 */
-.black {
-  background-color: black;
-  width: 100%;
-  height: 33.33%;
-}
-
-/* 真ん中の赤い水平帯を設定 */
-.red {
-  background-color: red;
-  width: 100%;
-  height: 33.33%;
-}
-
-/* 一番下の金の水平帯を設定 */
-.gold {
-  background-color: gold;
-  width: 100%;
-  height: 33.33%;
-}
-</style>
-  </head>
-  <body>
-      <div class="flag">
-          <div class="black"></div>
-          <div class="red"></div>
-          <div class="gold"></div>
-      </div>
-  </body>
-</html>
 
 
 
@@ -2071,8 +1509,6 @@ display(htm)
   margin: 0% 10% 0% 10%;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -2099,47 +1535,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-/* 幅300px、高さ250pxの領域を設定 */
-.box {
-  width: 300px;
-  height: 250px;
-  background-color: #F2F2F2;
-}
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/c5e968f9-c4b1-478c-8e69-361a64616a37)
 
-/* 3つの要素の高さはそれぞれ親要素の20% */
-/* 3つの要素の幅はそれぞれ親要素の80% */
-#midori {
-  height: 50px;
-  background-color: #DDFFDD;
-  margin: 0% 10% 50px 10%;
-}
-
-/* ヤマトイシガメの項目は行の高さを"1.7"にする */
-#yamato {
-  height: 50px;
-  background-color: #D3DEF1;
-  margin: 0% 10% 50px 10%; 
-}
-
-/* クサガメの項目は行の高さを"2.5"にする */
-#kusa {
-  height: 50px;
-  background-color: #fff3b8;
-  margin: 0% 10% 0% 10%;
-}
-</style>
-  </head>
-  <body>
-      <div class="box">
-          <div id="midori">ミドリガメ</div>
-          <div id="yamato">ヤマトイシガメ</div>
-          <div id="kusa">クサガメ</div>
-      </div>
-  </body>
-</html>
 
 
 
@@ -2187,8 +1584,6 @@ display(htm)
   padding-top: 50px;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -2215,47 +1610,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-/* 幅300px、高さ250pxの領域を設定 */
-.box {
-  width: 300px;
-  height: 250px;
-  background-color: #F2F2F2;
-}
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/73c1640a-c2fa-4c1a-90bc-f5372098f825)
 
-#midori {
-  height: 50px;
-  background-color: #DDFFDD;
-  margin: 0% 10% 50px 10%;
-}
-
-/* 要素の内側の左方向に親要素の幅の10%(30px)の余白 */
-#yamato {
-  height: 50px;
-  background-color: #D3DEF1;
-  margin: 0% 10% 50px 10%; 
-  padding-left: 10%;
-}
-
-/* 要素の内側の上方向に50pxの余白 */
-#kusa {
-  height: 50px;
-  background-color: #fff3b8;
-  margin: 0% 10% 0% 10%;
-  padding-top: 50px;
-}
-</style>
-  </head>
-  <body>
-      <div class="box">
-          <div id="midori">ミドリガメ</div>
-          <div id="yamato">ヤマトイシガメ</div>
-          <div id="kusa">クサガメ</div>
-      </div>
-  </body>
-</html>
 
 
 
@@ -2300,8 +1656,6 @@ display(htm)
   padding-top: 20%;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -2328,48 +1682,6 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-/* 幅300px、高さ250pxの領域を設定 */
-.box {
-  width: 300px;
-  height: 250px;
-  background-color: #F2F2F2;
-}
-
-#midori {
-  height: 50px;
-  background-color: #DDFFDD;
-  margin: 0% 10% 50px 10%;
-}
-
-/* 要素の内側の左方向に親要素の幅の10%(30px)の余白 */
-#yamato {
-  height: 50px;
-  background-color: #D3DEF1;
-  margin: 0% 10% 50px 10%; 
-  padding-left: 10%;
-}
-
-/* 誤り：要素の内側の上方向に親要素の"高さ"の20%(50px)の余白 */
-/* 正解：要素の内側の上方向に親要素の"幅"の20%(60px)の余白 */
-#kusa {
-  height: 50px;
-  background-color: #fff3b8;
-  margin: 0% 10% 0% 10%;
-  padding-top: 20%;
-}
-</style>
-  </head>
-  <body>
-      <div class="box">
-          <div id="midori">ミドリガメ</div>
-          <div id="yamato">ヤマトイシガメ</div>
-          <div id="kusa">クサガメ</div>
-      </div>
-  </body>
-</html>
 
 
 
@@ -2425,8 +1737,6 @@ paddingやmarginを指定したときにおこる現象だそうです。
   border-style: solid;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -2457,41 +1767,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/9a5053a5-a989-42ab-90bb-2a0e8789f78d)
 
-/* 境界線の太さは普通の太さ */
-#midori {
-  border-width: medium;
-  border-style: solid;
-}
-
-/* 境界線の太さは太い線 */
-#yamato {
-  border-width: thick;
-  border-style: solid;
-}
-
-/* 境界線の太さは細い線 */
-#kusa {
-  border-width: thin;
-  border-style: solid;
-}
-</style>
-  </head>
-  <body>
-      <div class="box">
-          <div id="midori">ミドリガメ</div>
-          <br>
-          <br>
-          <div id="yamato">ヤマトイシガメ</div>
-          <br>
-          <br>
-          <div id="kusa">クサガメ</div>
-      </div>
-  </body>
-</html>
 
 
 
@@ -2532,8 +1809,6 @@ display(htm)
   border-style: dashed;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -2564,41 +1839,7 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-
-/* 境界線の種類は2本の実線 */
-#midori {
-  border-width: medium;
-  border-style: double;
-}
-
-/* 境界線の種類は点線 */
-#yamato {
-  border-width: thick;
-  border-style: dotted;
-}
-
-/* 境界線の種類は破線 */
-#kusa {
-  border-width: thin;
-  border-style: dashed;
-}
-</style>
-  </head>
-  <body>
-      <div class="box">
-          <div id="midori">ミドリガメ</div>
-          <br>
-          <br>
-          <div id="yamato">ヤマトイシガメ</div>
-          <br>
-          <br>
-          <div id="kusa">クサガメ</div>
-      </div>
-  </body>
-</html>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/6f44c6e1-c5b8-43ba-9a9c-9ef42f8f314b)
 
 
 
@@ -2636,8 +1877,6 @@ RGB各値は0から255まで、透明度は0から1までの間で記述しま�
   border: thin dashed blue;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -2668,42 +1907,7 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>
-
-/* 境界線の色を指定 */
-#midori {
-  border-width: medium;
-  border-style: double;
-  border-color: tomato;
-}
-
-/* 境界線の色を上右下左それぞれで指定 */
-#yamato {
-  border-width: thick;
-  border-style: dotted;
-  border-color: tan blue tomato black;
-}
-
-/* borderプロパティで一括指定（順番は自由） */
-#kusa {
-  border: thin dashed blue;
-}
-</style>
-  </head>
-  <body>
-      <div class="box">
-          <div id="midori">ミドリガメ</div>
-          <br>
-          <br>
-          <div id="yamato">ヤマトイシガメ</div>
-          <br>
-          <br>
-          <div id="kusa">クサガメ</div>
-      </div>
-  </body>
-</html>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/e31d98a4-b812-4ae9-a8a0-13b40a0aa534)
 
 
 
@@ -2740,24 +1944,8 @@ display(htm)
 ```
 
 
-<body>
-<h2>日本においてなじみのあるカメの種類</h2>
-<ul>
-  <li>ミドリガメ</li>
-  <li>ヤマトイシガメ</li>
-  <li>クサガメ</li>
-</ul>
-<ol start="0">
-  <li>ミドリガメ</li>
-  <li>ヤマトイシガメ</li>
-  <li>クサガメ</li>
-</ol>
-<ol type="a">
-  <li>ミドリガメ</li>
-  <li>ヤマトイシガメ</li>
-  <li>クサガメ</li>
-</ol>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/c4236ccf-4e16-4700-a112-731c8f806b95)
+
 
 
 
@@ -2795,8 +1983,6 @@ display(htm)
   list-style-type: lower-alpha;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -2834,43 +2020,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>/* リストマーカーの種類は白丸 */
-.normal {
-  list-style-type: circle;
-}
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/a6e65cb7-9f7f-4376-a956-a6a8d885258f)
 
-/* リストマーカーの種類は四角 */
-.square {
-  list-style-type: square;
-}
-
-/* リストマーカーの種類は小文字アルファベット */
-.alpha {
-  list-style-type: lower-alpha;
-}
-</style>
-  </head>
-  <body>
-      <h2>日本においてなじみのあるカメの種類</h2>
-      <ul class="normal">
-        <li>ミドリガメ</li>
-        <li>ヤマトイシガメ</li>
-        <li>クサガメ</li>
-      </ul>
-      <ol class="square">
-        <li>ミドリガメ</li>
-        <li>ヤマトイシガメ</li>
-        <li>クサガメ</li>
-      </ol>
-      <ol class="alpha">
-        <li>ミドリガメ</li>
-        <li>ヤマトイシガメ</li>
-        <li>クサガメ</li>
-      </ol>
-  </body>
-</html>
 
 
 
@@ -2920,8 +2071,6 @@ display(htm)
   background-color: #fff3b8;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -2959,59 +2108,8 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>/* それぞれの要素の<li>タグに背景色をつける
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/8c8d5fe4-60ef-4501-badc-f8bbf1c73887)
 
-/* ここは設定いじらない */
-.normal {
-  list-style-type: circle;
-}
-
-.normal li {
-  background-color: #DDFFDD;
-}
-
-/* ボックスの外側に表示 */
-.square {
-  list-style-type: square;
-  list-style-position: outside;
-}
-
-.square li {
-  background-color: #D3DEF1;
-}
-
-/* ボックスの内側に表示 */
-.alpha {
-  list-style-type: lower-alpha;
-  list-style-position: inside;
-}
-
-.alpha li {
-  background-color: #fff3b8;
-}
-</style>
-  </head>
-  <body>
-      <h2>日本においてなじみのあるカメの種類</h2>
-      <ul class="normal">
-          <li>ミドリガメ</li>
-          <li>ヤマトイシガメ</li>
-          <li>クサガメ</li>
-      </ul>
-      <ol class="square">
-          <li>ミドリガメ</li>
-          <li>ヤマトイシガメ</li>
-          <li>クサガメ</li>
-      </ol>
-      <ol class="alpha">
-          <li>ミドリガメ</li>
-          <li>ヤマトイシガメ</li>
-          <li>クサガメ</li>
-      </ol>
-  </body>
-</html>
 
 
 
@@ -3061,8 +2159,6 @@ display(htm)
   background-color: #fff3b8;
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -3100,59 +2196,7 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-      <style>/* それぞれの要素の<li>タグに背景色をつける
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/693de928-d92b-4740-8421-c3be2c413826)
 
-/* ここは設定いじらない */
-.normal {
-  list-style-type: circle;
-  list-style-image: url(https://imgur.com/RTGMDr6.png);
-}
-
-.normal li {
-  background-color: #DDFFDD;
-}
-
-/* ボックスの外側に表示 */
-.square {
-  list-style-type: square;
-  list-style-position: outside;
-}
-
-.square li {
-  background-color: #D3DEF1;
-}
-
-/* ボックスの内側に表示 */
-.alpha {
-  list-style-type: lower-alpha;
-  list-style-position: inside;
-}
-
-.alpha li {
-  background-color: #fff3b8;
-}
-</style>
-  </head>
-  <body>
-      <h2>日本においてなじみのあるカメの種類</h2>
-      <ul class="normal">
-          <li>ミドリガメ</li>
-          <li>ヤマトイシガメ</li>
-          <li>クサガメ</li>
-      </ul>
-      <ol class="square">
-          <li>ミドリガメ</li>
-          <li>ヤマトイシガメ</li>
-          <li>クサガメ</li>
-      </ol>
-      <ol class="alpha">
-          <li>ミドリガメ</li>
-          <li>ヤマトイシガメ</li>
-          <li>クサガメ</li>
-      </ol>
-  </body>
-</html>
 
 
