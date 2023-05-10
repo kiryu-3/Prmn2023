@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DS_Matplotlib.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="matplotlib">matplotlib</h1>
+<ul>
+<li><a href="#matplotlib">matplotlib</a>
+<ul>
+<li><a href="#matplotlib%E3%81%A8%E3%81%AF">matplotlibとは</a>
+<ul>
+<li><a href="#pltplot">plt.plot()</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A3%85%E9%A3%BE">装飾</a>
+<ul>
+<li><a href="#color">color</a></li>
+<li><a href="#lw">lw</a></li>
+<li><a href="#ls">ls</a></li>
+<li><a href="#marker">marker</a>
+<ul>
+<li><a href="#markersize">markersize</a></li>
+<li><a href="#markerfacecolor">markerfacecolor</a></li>
+<li><a href="#markeredgecolor">markeredgecolor</a></li>
+<li><a href="#markeredgewidth">markeredgewidth</a></li>
+</ul>
+</li>
+<li><a href="#alpha">alpha</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%98%E5%B1%9E%E6%83%85%E5%A0%B1%E3%82%92%E4%BB%98%E3%81%91%E3%82%8B">付属情報を付ける</a>
+<ul>
+<li><a href="#%E8%BB%B8%E3%81%A8%E3%82%B0%E3%83%A9%E3%83%95%E3%81%B8%E3%81%AE%E3%83%A9%E3%83%99%E3%83%AB%E4%BB%98%E3%81%91">軸とグラフへのラベル付け</a></li>
+<li><a href="#%E3%83%A1%E3%83%A2%E3%83%AA%E3%81%AE%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E3%81%A8%E8%A1%A8%E7%A4%BA%E5%80%A4">メモリの最大最小と表示値</a>
+<ul>
+<li><a href="#ticks%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9">ticksの使い方</a>
+<ul>
+<li><a href="#xticks%E3%83%A1%E3%83%A2%E3%83%AA%E5%80%A4%E3%81%AE%E3%83%AA%E3%82%B9%E3%83%88">xticks([メモリ値のリスト])</a></li>
+<li><a href="#xticksndarray">xticks(ndarray)</a></li>
+<li><a href="#xticks%E3%83%A1%E3%83%A2%E3%83%AA%E4%BD%8D%E7%BD%AE%E8%A1%A8%E7%A4%BA%E5%80%A4">xticks([メモリ位置],[表示値])</a></li>
+<li><a href="#xticks">xticks([])</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E8%A4%87%E6%95%B0%E3%81%AEplot">複数のplot</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A4%87%E6%95%B0%E3%81%AE%E3%82%B0%E3%83%A9%E3%83%95%E3%82%92%E4%B8%A6%E3%81%B9%E3%82%8B">複数のグラフを並べる</a>
+<ul>
+<li><a href="#pltsubplot">plt.subplot()</a></li>
+<li><a href="#pltfigure">plt.figure()</a></li>
+<li><a href="#pltsubplots">plt.subplots()</a>
+<ul>
+<li><a href="#%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%8C%87%E5%90%91%E3%81%A7%E4%BB%98%E5%B1%9E%E6%83%85%E5%A0%B1%E3%82%92%E4%BB%98%E3%81%91%E3%82%8B">オブジェクト指向で付属情報を付ける</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%95%A3%E5%B8%83%E5%9B%B3">散布図</a>
+<ul>
+<li><a href="#pltscatter">plt.scatter()</a></li>
+<li><a href="#%E3%83%90%E3%83%96%E3%83%AB%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88">バブルチャート</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%92%E3%82%B9%E3%83%88%E3%82%B0%E3%83%A9%E3%83%A0">ヒストグラム</a>
+<ul>
+<li><a href="#plthist">plt.hist()</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A3%92%E3%82%B0%E3%83%A9%E3%83%95">棒グラフ</a></li>
+<li><a href="#%E7%AE%B1%E3%81%B2%E3%81%92%E5%9B%B3">箱ひげ図</a></li>
+<li><a href="#plot%E3%81%AE%E4%BF%9D%E5%AD%98">plotの保存</a>
+<ul>
+<li><a href="#%E3%82%B0%E3%83%A9%E3%83%95%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%95%E3%81%AE%E8%AA%BF%E6%95%B4">グラフの大きさの調整</a></li>
+<li><a href="#png%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B">pngで保存する</a></li>
+<li><a href="#pdf%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B">pdfで保存する</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="page-break-before:always"></div>
+<h2 id="matplotlib%E3%81%A8%E3%81%AF">matplotlibとは</h2>
+<p>Pythonでデータの可視化をしていく場合に使うライブラリが<strong>matplotlib</strong>です。<br>
+Pythonでグラフを描画（<strong>plotする</strong>という）することができます。</p>
+<p><img src="https://imgur.com/LqabO4Z.png" alt="リンクテキスト"></p>
+<p><strong>MATLAB</strong>という数値解析ソフトウェアに仕様が似ているようです。</p>
+<p>GoogleColabやJupyter Labといった環境下では、最初から入っているため改めて入れる必要はありません。<br>
+自分で入れる場合は<code>conda install matplotlib</code>や<code>pip install matplotlib</code>という記述をします。</p>
+<p>matplotlibをimportする際、<code>plt</code>とするのが一般的です。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt  <span class="hljs-comment">#「pyplot」というモジュールをimportすることが多い</span>
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np  <span class="hljs-comment"># 同時にnumpyをimport</span>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd  <span class="hljs-comment"># 同時にpandasもimport</span>
+<span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns  <span class="hljs-comment"># 同時にSeabornもimport</span>
+
+<span class="hljs-comment"># 日本語を利用するためにimport</span>
+!pip install japanize-matplotlib
+<span class="hljs-keyword">import</span> japanize_matplotlib
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="pltplot">plt.plot()</h3>
+<p><strong><code>plt.plot()</code></strong> 関数に、横軸→縦軸 の順で渡すとplotすることができます。</p>
+<pre class="hljs"><code><div>x = [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]
+y = [<span class="hljs-number">10</span>,<span class="hljs-number">11</span>,<span class="hljs-number">12</span>,<span class="hljs-number">13</span>,<span class="hljs-number">14</span>,<span class="hljs-number">15</span>]
+plt.plot(x,y)  <span class="hljs-comment">#「y=x+10」のグラフを記述</span>
+</div></code></pre>
+<p><img src="output_6_1.png" alt="png"></p>
+<p>yの部分を数式を使って記述しましょう。</p>
+<pre class="hljs"><code><div>x = [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]
+y = np.array(x) + <span class="hljs-number">10</span>  <span class="hljs-comment"># ndarrayにしてからでないと演算できない</span>
+plt.plot(x,y)  <span class="hljs-comment">#「y=x+10」のグラフを記述</span>
+</div></code></pre>
+<p><img src="output_8_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<p>ここでは、AIの分野でよく登場する
+<strong>シグモイド関数</strong>についてplotしてみましょう。</p>
+<p><img src="https://imgur.com/PaFCL6T.png" alt="リンクテキスト"></p>
+<p>シグモイド関数の意味は、ある入力に対する出力を0～1の範囲に抑えることにあります。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># シグモイド関数のplot</span>
+
+x = np.linspace(<span class="hljs-number">-10</span> , <span class="hljs-number">10</span> , <span class="hljs-number">100</span>)
+z = <span class="hljs-number">1</span> / (<span class="hljs-number">1</span> + np.exp(-x))
+plt.plot(x,z)
+</div></code></pre>
+<p><img src="output_11_1.png" alt="png"></p>
+<p>このような数式のグラフを表示する際は、<strong><code>linspace</code></strong> を横軸に使うことが多いようです。</p>
+<div style="page-break-before:always"></div>
+<p>次はDataFrameを使ってplotしてみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># カラムxの値を横軸、カラムyの値を縦軸にしたグラフのplot</span>
+
+df = pd.DataFrame({<span class="hljs-string">"x"</span> : [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,],
+                   <span class="hljs-string">"y"</span> : [<span class="hljs-number">1</span>,<span class="hljs-number">32</span>,<span class="hljs-number">243</span>,<span class="hljs-number">1024</span>,<span class="hljs-number">3125</span>]})
+
+plt.plot(<span class="hljs-string">"x"</span>,<span class="hljs-string">"y"</span> , data=df)  <span class="hljs-comment"># 引数dataにDataFrameを渡してあげる</span>
+</div></code></pre>
+<p><img src="output_14_2.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<h2 id="%E8%A3%85%E9%A3%BE">装飾</h2>
+<p>引数を与えることで、様々なパターンでplotすることができます。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># シグモイド関数のplot</span>
+
+x = np.linspace(<span class="hljs-number">-10</span> , <span class="hljs-number">10</span> , <span class="hljs-number">100</span>)
+z = <span class="hljs-number">1</span> / (<span class="hljs-number">1</span> + np.exp(-x))
+plt.plot(x,z)
+</div></code></pre>
+<p><img src="output_16_1.png" alt="png"></p>
+<h3 id="color">color</h3>
+<p>グラフの線の色を変更することができます。<br>
+※<a href="https://www.yutaka-note.com/entry/matplotlib_color">こちら</a>のページにより詳しい解説が書いてあります。</p>
+<pre class="hljs"><code><div>plt.plot(x,z , color = <span class="hljs-string">"blue"</span>)
+</div></code></pre>
+<p><img src="output_18_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<h3 id="lw">lw</h3>
+<p>「line width」の略です。線の太さを変更します。</p>
+<pre class="hljs"><code><div>plt.plot(x,z , lw = <span class="hljs-number">5</span>)
+</div></code></pre>
+<p><img src="output_20_1.png" alt="png"></p>
+<h3 id="ls">ls</h3>
+<p>「line style」の略です。線の種類を変更します。<br>
+<code>例：'-','--'</code></p>
+<pre class="hljs"><code><div>plt.plot(x, z, ls = <span class="hljs-string">"--"</span>)
+</div></code></pre>
+<p><img src="output_22_1.png" alt="png"></p>
+<ul>
+<li>&quot;--&quot;：ハイフン2つ</li>
+<li>&quot;-&quot;：ハイフンとピリオド</li>
+<li>&quot;:&quot;：コロン</li>
+</ul>
+<div style="page-break-before:always"></div>
+<h3 id="marker">marker</h3>
+<p>マーカーの種類を指定します。<br>
+<code>例：'o','x'</code></p>
+<pre class="hljs"><code><div>plt.plot(x,z , marker = <span class="hljs-string">"o"</span>)
+</div></code></pre>
+<p><img src="output_25_1.png" alt="png"></p>
+<h4 id="markersize">markersize</h4>
+<p>マーカーの大きさを指定します。</p>
+<pre class="hljs"><code><div>plt.plot(x,z , 
+         marker = <span class="hljs-string">"o"</span> , 
+         markersize = <span class="hljs-number">3</span>)
+</div></code></pre>
+<p><img src="output_27_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<h4 id="markerfacecolor">markerfacecolor</h4>
+<p>マーカーの色を指定することができます。</p>
+<pre class="hljs"><code><div>plt.plot(x,z , 
+         marker = <span class="hljs-string">"o"</span> , 
+         markerfacecolor = <span class="hljs-string">"yellow"</span>)
+</div></code></pre>
+<p><img src="output_29_1.png" alt="png"></p>
+<h4 id="markeredgecolor">markeredgecolor</h4>
+<p>マーカーの枠の色を指定します。</p>
+<pre class="hljs"><code><div>plt.plot(x,z , 
+         marker = <span class="hljs-string">"o"</span> , 
+         markerfacecolor = <span class="hljs-string">"yellow"</span> , 
+         markeredgecolor = <span class="hljs-string">"red"</span>)
+</div></code></pre>
+<p><img src="output_31_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<h4 id="markeredgewidth">markeredgewidth</h4>
+<p>マーカーの枠の太さを指定します。</p>
+<pre class="hljs"><code><div>plt.plot(x,z , 
+         marker = <span class="hljs-string">"o"</span> , 
+         markerfacecolor = <span class="hljs-string">"yellow"</span> ,
+         markeredgecolor = <span class="hljs-string">"red"</span> ,
+         markeredgewidth = <span class="hljs-number">3</span>)
+</div></code></pre>
+<p><img src="output_33_1.png" alt="png"></p>
+<h3 id="alpha">alpha</h3>
+<p>plotの透明度を0から1の間で指定します。0に近いほど透明度が上がります。</p>
+<pre class="hljs"><code><div>plt.plot(x,z , 
+         alpha = <span class="hljs-number">0.3</span>)
+</div></code></pre>
+<p><img src="output_35_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<h2 id="%E4%BB%98%E5%B1%9E%E6%83%85%E5%A0%B1%E3%82%92%E4%BB%98%E3%81%91%E3%82%8B">付属情報を付ける</h2>
+<p>plotする際に様々な付属情報を付けたり消したりすることができます。</p>
+<h3 id="%E8%BB%B8%E3%81%A8%E3%82%B0%E3%83%A9%E3%83%95%E3%81%B8%E3%81%AE%E3%83%A9%E3%83%99%E3%83%AB%E4%BB%98%E3%81%91">軸とグラフへのラベル付け</h3>
+<ul>
+<li><strong><code>plt.xlabel()</code></strong> : x軸にラベルを付ける</li>
+<li><strong><code>plt.ylabel()</code></strong> : y軸にラベルを付ける</li>
+<li><strong><code>plt.title()</code></strong> : 図にラベルを付ける<br>
+※<a href="https://www.yutaka-note.com/entry/2020/01/08/080413">こちら</a>のページに書式設定方法が詳しく書いてあります。</li>
+<li><strong><code>plt.plot(label = &quot;ラベル&quot;)</code></strong> : プロットにラベルを付ける</li>
+<li><strong><code>plt.legend()</code></strong> : 凡例を付ける<br>
+※<a href="https://www.yutaka-note.com/entry/matplotlib_legend">こちら</a>のページに詳しい解説があります。</li>
+</ul>
+<pre class="hljs"><code><div>plt.plot(x,z, label=<span class="hljs-string">"sigmoid"</span>)
+plt.xlabel(<span class="hljs-string">"x"</span>)
+plt.ylabel(<span class="hljs-string">"y"</span>)
+plt.title(<span class="hljs-string">"sigmoid(x)"</span>)
+plt.legend(loc=<span class="hljs-string">"best"</span>)  <span class="hljs-comment"># locの値を変更すると、凡例の位置を移動できる</span>
+</div></code></pre>
+<p><img src="output_39_1.png" alt="png"></p>
+<p><code>plt.legend()</code>の中では、<strong><code>loc</code></strong> というパラメータを使って凡例の位置を決めることができます。<br>
+以下の表を参考にしてください。基本的には <strong><code>best</code></strong> を使います。</p>
+<p><img src="https://imgur.com/7W0yhMV.png" alt="location.png"></p>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%83%A1%E3%83%A2%E3%83%AA%E3%81%AE%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E3%81%A8%E8%A1%A8%E7%A4%BA%E5%80%A4">メモリの最大最小と表示値</h3>
+<ul>
+<li><strong><code>plt.xlim(最小値,最大値)</code></strong> : x軸の最大値・最小値を指定する</li>
+<li><strong><code>plt.ylim(最小値,最大値)</code></strong> : y軸の最大値・最小値を指定する</li>
+<li><strong><code>plt.xticks()</code></strong> : x軸に任意のticksを付ける</li>
+<li><strong><code>plt.yticks()</code></strong> : y軸に任意のticksを付ける</li>
+<li><strong><code>plt.axis(&quot;off&quot;)</code></strong> : 軸を消す</li>
+</ul>
+<p>※ticks：目盛り</p>
+<pre class="hljs"><code><div>plt.plot(x,z , label=<span class="hljs-string">"sigmoid"</span>)
+plt.xlabel(<span class="hljs-string">"x"</span>)
+plt.ylabel(<span class="hljs-string">"y"</span>)
+plt.title(<span class="hljs-string">"sigmoid(x)"</span>)
+plt.legend(loc=<span class="hljs-string">"best"</span>)  <span class="hljs-comment"># locの値を変更すると、凡例の位置を移動できる</span>
+plt.xlim(<span class="hljs-number">-10</span>,<span class="hljs-number">10</span>)
+plt.ylim(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)
+plt.xticks([<span class="hljs-number">-5</span>,<span class="hljs-number">0</span>,<span class="hljs-number">5</span>] , rotation=<span class="hljs-number">20</span>)  <span class="hljs-comment"># rotationの値を変更すると、メモリの角度を変更することができる</span>
+plt.yticks([<span class="hljs-number">0</span>,<span class="hljs-number">0.5</span>,<span class="hljs-number">1</span>] , rotation=<span class="hljs-number">20</span>)
+</div></code></pre>
+<p><img src="output_43_1.png" alt="png"></p>
+<p><code>plt.xticks()</code>,<code>plt.yticks()</code>の中では、<strong><code>rotation</code></strong> というパラメータを使って<br>
+目盛りの角度を指定することができます。</p>
+<p>目盛りが長い文字列であるときなどに、被らないように表示できるため使えます。</p>
+<div style="page-break-before:always"></div>
+<h4 id="ticks%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9">ticksの使い方</h4>
+<p><code>ticks()</code>には、主に4つの使い方があります。<br>
+ここでは<code>xticks()</code>について触れますが、<code>yticks()</code>でも同じです。</p>
+<h5 id="xticks%E3%83%A1%E3%83%A2%E3%83%AA%E5%80%A4%E3%81%AE%E3%83%AA%E3%82%B9%E3%83%88">xticks([メモリ値のリスト])</h5>
+<p>表示したいメモリ値をリストで与えて指定することができます。<br>
+値のリストは等間隔で指定する必要はありません。</p>
+<pre class="hljs"><code><div>plt.plot(x,z)
+plt.xticks([<span class="hljs-number">-10</span>,<span class="hljs-number">-2.5</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2.5</span>,<span class="hljs-number">10</span>])
+</div></code></pre>
+<p><img src="output_47_1.png" alt="png"></p>
+<h5 id="xticksndarray">xticks(ndarray)</h5>
+<p><code>np.arange()</code>で生成したndarrayを与えることもできます。</p>
+<pre class="hljs"><code><div>plt.plot(x,z)
+plt.xticks(np.arange(<span class="hljs-number">-10</span>,<span class="hljs-number">11</span>,<span class="hljs-number">2.5</span>))
+</div></code></pre>
+<p><img src="output_49_1.png" alt="png"></p>
+<h5 id="xticks%E3%83%A1%E3%83%A2%E3%83%AA%E4%BD%8D%E7%BD%AE%E8%A1%A8%E7%A4%BA%E5%80%A4">xticks([メモリ位置],[表示値])</h5>
+<p>目盛り値に文字列を指定することもできます。</p>
+<pre class="hljs"><code><div>plt.plot(x,z)
+plt.xticks([<span class="hljs-number">-10</span>,<span class="hljs-number">0</span>,<span class="hljs-number">10</span>] , [<span class="hljs-string">"minus ten"</span> , <span class="hljs-string">"zero"</span> , <span class="hljs-string">"ten"</span>])
+</div></code></pre>
+<p><img src="output_51_1.png" alt="png"></p>
+<h5 id="xticks">xticks([])</h5>
+<p>空のリストを渡すと、軸目盛を非表示にすることができます。</p>
+<pre class="hljs"><code><div>plt.plot(x,z)
+plt.xticks([])
+plt.yticks([])
+</div></code></pre>
+<p><img src="output_53_1.png" alt="png"></p>
+<p><a href="https://www.yutaka-note.com/entry/matplotlib_axis">こちら</a>のページでは軸周りについて詳細な解説があります。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E8%A4%87%E6%95%B0%E3%81%AEplot">複数のplot</h3>
+<p>複数plotするには、単にもう1つ <strong><code>plt.plot()</code></strong> を実行するだけです。</p>
+<pre class="hljs"><code><div>x = np.linspace(<span class="hljs-number">-10</span> , <span class="hljs-number">10</span> , <span class="hljs-number">20</span>)
+y = np.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">20</span>)
+z = <span class="hljs-number">1</span> / (<span class="hljs-number">1</span> + np.exp(-x))
+
+plt.plot(x,y , label=<span class="hljs-string">"normal"</span>)
+plt.plot(x,z , label=<span class="hljs-string">"sigmoid"</span>)
+plt.axis(<span class="hljs-string">"off"</span>)    <span class="hljs-comment">#軸を消す</span>
+plt.legend()
+</div></code></pre>
+<p><img src="output_56_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<h2 id="%E8%A4%87%E6%95%B0%E3%81%AE%E3%82%B0%E3%83%A9%E3%83%95%E3%82%92%E4%B8%A6%E3%81%B9%E3%82%8B">複数のグラフを並べる</h2>
+<p>複数のグラフを並べて表示することができます。<br>
+ここでは「オブジェクト指向」というPythonの考え方が登場します。</p>
+<h3 id="pltsubplot">plt.subplot()</h3>
+<p>以下の2次関数と3次関数のグラフを並べて表示しましょう。</p>
+<pre class="hljs"><code><div>x = np.linspace(<span class="hljs-number">-10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>)
+plt.plot(x,x**<span class="hljs-number">2</span>)  <span class="hljs-comment"># y=x^2のグラフ</span>
+</div></code></pre>
+<p><img src="output_61_1.png" alt="png"></p>
+<pre class="hljs"><code><div>x = np.linspace(<span class="hljs-number">-10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>)
+plt.plot(x,x**<span class="hljs-number">3</span>)  <span class="hljs-comment"># y=x^3のグラフ</span>
+</div></code></pre>
+<p><img src="output_62_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<p><code>plt.plot()</code>の前で <strong><code>plt.subplot(row,column,index)</code></strong> を実行すると、<br>
+row × column の箱が確保され、index番目にplotされます。</p>
+<pre class="hljs"><code><div>x = np.linspace(<span class="hljs-number">-10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>)
+plt.subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)  <span class="hljs-comment"># 1番目に2次関数のグラフ</span>
+plt.plot(x,x**<span class="hljs-number">2</span>)    
+
+plt.subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)  <span class="hljs-comment"># 2番目に3次関数のグラフ</span>
+plt.plot(x,x**<span class="hljs-number">3</span>)
+</div></code></pre>
+<p><img src="output_64_1.png" alt="png"></p>
+<p><strong><code>plt.subplots_adjust()</code></strong> とすると、グラフ間に余白を持たせることができます。<br>
+左右の余白を引数 <strong><code>wspace</code></strong>、上下の余白を <strong><code>hspace</code></strong> で指定します。</p>
+<pre class="hljs"><code><div>x = np.linspace(<span class="hljs-number">-10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>)
+plt.subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)  <span class="hljs-comment"># 1番目に2次関数のグラフ</span>
+plt.plot(x,x**<span class="hljs-number">2</span>)    
+
+plt.subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)  <span class="hljs-comment"># 2番目に3次関数のグラフ</span>
+plt.plot(x,x**<span class="hljs-number">3</span>)
+
+plt.subplots_adjust(wspace=<span class="hljs-number">0.4</span>, hspace=<span class="hljs-number">0.6</span>)
+</div></code></pre>
+<p><img src="output_66_0.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<h3 id="pltfigure">plt.figure()</h3>
+<p>ここでは<strong>オブジェクト指向</strong>という考え方が登場します。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># plt.figureクラスでfigというインスタンスを作る</span>
+fig = plt.figure()
+</div></code></pre>
+<pre><code>&lt;Figure size 432x288 with 0 Axes&gt;
+</code></pre>
+<p><code>add_subplot()</code>というメソッドを利用してplotを追加し、<br>
+<code>axes</code>（座標軸）オブジェクトを複数作っていきます。</p>
+<p>その<code>axes</code>オブジェクトに対して<code>plot()</code>関数を呼び出します。</p>
+<pre class="hljs"><code><div>fig = plt.figure()
+ax1 = fig.add_subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)
+ax2 = fig.add_subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)
+
+x = np.linspace(<span class="hljs-number">-10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>)
+ax1.plot(x,x**<span class="hljs-number">2</span>)
+ax2.plot(x,x**<span class="hljs-number">3</span>)
+
+plt.subplots_adjust(wspace=<span class="hljs-number">0.4</span>, hspace=<span class="hljs-number">0.6</span>)
+</div></code></pre>
+<p><img src="output_70_0.png" alt="png"></p>
+<p><a href="https://www.yutaka-note.com/entry/matplotlib_figure">こちら</a>のサイトを見ていただくとイメージが湧くと思います。</p>
+<div style="page-break-before:always"></div>
+<h3 id="pltsubplots">plt.subplots()</h3>
+<p>インスタンス<code>fig</code>と<code>axes</code>を同時に作ることができます。<br>
+先ほどの方法よりもこちらの方が便利です。</p>
+<pre class="hljs"><code><div>fig , axes = plt.subplots(nrows=<span class="hljs-number">1</span> , ncols=<span class="hljs-number">2</span>)  <span class="hljs-comment"># 1行2列のplots</span>
+plt.subplots_adjust(wspace=<span class="hljs-number">0.4</span>, hspace=<span class="hljs-number">0.6</span>)
+</div></code></pre>
+<p><img src="output_73_0.png" alt="png"></p>
+<p><code>axes</code>はndarrayで返ってきているので、インデックスを指定してplotしてみましょう。</p>
+<pre class="hljs"><code><div>fig , axes = plt.subplots(nrows=<span class="hljs-number">1</span> , ncols=<span class="hljs-number">2</span>)
+x = np.linspace(<span class="hljs-number">-10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>)
+axes[<span class="hljs-number">0</span>].plot(x,x**<span class="hljs-number">2</span>)
+axes[<span class="hljs-number">1</span>].plot(x,x**<span class="hljs-number">3</span>)
+
+plt.subplots_adjust(wspace=<span class="hljs-number">0.4</span>, hspace=<span class="hljs-number">0.6</span>)
+</div></code></pre>
+<p><img src="output_75_0.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<p>複数行を指定した場合は、インデックスを指定する際に注意が必要です。</p>
+<pre class="hljs"><code><div>fig , axes = plt.subplots(nrows=<span class="hljs-number">2</span> , ncols=<span class="hljs-number">2</span>)
+x = np.linspace(<span class="hljs-number">-10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>)
+axes[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>].plot(x,x)
+axes[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>].plot(x,x**<span class="hljs-number">2</span>)
+axes[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>].plot(x,x**<span class="hljs-number">3</span>)
+axes[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>].plot(x,x**<span class="hljs-number">4</span>)
+
+plt.subplots_adjust(wspace=<span class="hljs-number">0.4</span>, hspace=<span class="hljs-number">0.6</span>)
+</div></code></pre>
+<p><img src="output_77_0.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<p><code>tight_layput()</code>というメソッドを使えば、レイアウトがスッキリします。</p>
+<pre class="hljs"><code><div>fig , axes = plt.subplots(nrows=<span class="hljs-number">2</span> , ncols=<span class="hljs-number">2</span>)
+x = np.linspace(<span class="hljs-number">-10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">100</span>)
+axes[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>].plot(x,x)
+axes[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>].plot(x,x**<span class="hljs-number">2</span>)
+axes[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>].plot(x,x**<span class="hljs-number">3</span>)
+axes[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>].plot(x,x**<span class="hljs-number">4</span>)
+fig.tight_layout()
+</div></code></pre>
+<p><img src="output_79_0.png" alt="png"></p>
+<p>1つのプロットの際は、引数に何も指定しないことでplotできます。</p>
+<pre class="hljs"><code><div>x = np.linspace(<span class="hljs-number">-10</span> , <span class="hljs-number">10</span> , <span class="hljs-number">100</span>)
+z = <span class="hljs-number">1</span> / (<span class="hljs-number">1</span> + np.exp(-x))
+
+fig , axes = plt.subplots()
+axes.plot(x,z)
+</div></code></pre>
+<p><img src="output_81_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%8C%87%E5%90%91%E3%81%A7%E4%BB%98%E5%B1%9E%E6%83%85%E5%A0%B1%E3%82%92%E4%BB%98%E3%81%91%E3%82%8B">オブジェクト指向で付属情報を付ける</h4>
+<p>オブジェクト指向では基本 <strong><code>ax.set_xx()</code></strong> という形で、同様に付属情報を付けることができます。<br>
+ただし、<code>legend()</code>と<code>axis('off')</code>はそのままです。</p>
+<pre class="hljs"><code><div>x = np.linspace(<span class="hljs-number">-10</span> , <span class="hljs-number">10</span> , <span class="hljs-number">100</span>)
+z = <span class="hljs-number">1</span> / (<span class="hljs-number">1</span> + np.exp(-x))
+
+fig , axes = plt.subplots(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)
+plt.suptitle(<span class="hljs-string">"Sigmoid"</span>)  <span class="hljs-comment"># 全体のタイトル</span>
+
+axes[<span class="hljs-number">0</span>].plot(x,z)
+axes[<span class="hljs-number">0</span>].axis(<span class="hljs-string">"off"</span>)  <span class="hljs-comment"># そのままなので注意</span>
+
+axes[<span class="hljs-number">1</span>].plot(x,z , label=<span class="hljs-string">"sigmoid"</span>)
+axes[<span class="hljs-number">1</span>].set_xlabel(<span class="hljs-string">"x"</span>)
+axes[<span class="hljs-number">1</span>].set_ylabel(<span class="hljs-string">"y"</span>)
+axes[<span class="hljs-number">1</span>].set_title(<span class="hljs-string">"sigmoid(x)"</span>)
+axes[<span class="hljs-number">1</span>].legend(loc=<span class="hljs-string">"best"</span>)  <span class="hljs-comment"># そのままなので注意</span>
+axes[<span class="hljs-number">1</span>].set_xlim(<span class="hljs-number">-10</span>,<span class="hljs-number">10</span>)
+axes[<span class="hljs-number">1</span>].set_ylim(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)
+axes[<span class="hljs-number">1</span>].set_xticks([<span class="hljs-number">-5</span>,<span class="hljs-number">0</span>,<span class="hljs-number">5</span>])
+axes[<span class="hljs-number">1</span>].set_yticks([<span class="hljs-number">0</span>,<span class="hljs-number">0.5</span>,<span class="hljs-number">1</span>])
+</div></code></pre>
+<p><img src="output_83_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<p>以下のようにすると2つのグラフで共通の軸名を指定できます。</p>
+<pre class="hljs"><code><div>x = np.linspace(<span class="hljs-number">-10</span> , <span class="hljs-number">10</span> , <span class="hljs-number">100</span>)
+z = <span class="hljs-number">1</span> / (<span class="hljs-number">1</span> + np.exp(-x))
+
+fig , axes = plt.subplots(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)
+fig.text(<span class="hljs-number">0.5</span>, <span class="hljs-number">0</span>, <span class="hljs-string">'x common label'</span>, ha=<span class="hljs-string">'center'</span>, va=<span class="hljs-string">'center'</span>, fontsize=<span class="hljs-number">12</span>)
+fig.text(<span class="hljs-number">0</span>, <span class="hljs-number">0.5</span>, <span class="hljs-string">'y comonn label'</span>, ha=<span class="hljs-string">'center'</span>, va=<span class="hljs-string">'center'</span>, 
+         rotation=<span class="hljs-string">'vertical'</span>, fontsize=<span class="hljs-number">12</span>)
+
+plt.suptitle(<span class="hljs-string">"Sigmoid"</span>)  <span class="hljs-comment"># 全体のタイトル</span>
+
+axes[<span class="hljs-number">0</span>].plot(x,z)
+axes[<span class="hljs-number">0</span>].axis(<span class="hljs-string">"off"</span>)  <span class="hljs-comment"># そのままなので注意</span>
+
+axes[<span class="hljs-number">1</span>].plot(x,z , label=<span class="hljs-string">"sigmoid"</span>)
+axes[<span class="hljs-number">1</span>].set_xlabel(<span class="hljs-string">"x"</span>)
+axes[<span class="hljs-number">1</span>].set_ylabel(<span class="hljs-string">"y"</span>)
+axes[<span class="hljs-number">1</span>].set_title(<span class="hljs-string">"sigmoid(x)"</span>)
+axes[<span class="hljs-number">1</span>].legend(loc=<span class="hljs-string">"best"</span>)  <span class="hljs-comment"># そのままなので注意</span>
+axes[<span class="hljs-number">1</span>].set_xlim(<span class="hljs-number">-10</span>,<span class="hljs-number">10</span>)
+axes[<span class="hljs-number">1</span>].set_ylim(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)
+axes[<span class="hljs-number">1</span>].set_xticks([<span class="hljs-number">-5</span>,<span class="hljs-number">0</span>,<span class="hljs-number">5</span>])
+axes[<span class="hljs-number">1</span>].set_yticks([<span class="hljs-number">0</span>,<span class="hljs-number">0.5</span>,<span class="hljs-number">1</span>])
+</div></code></pre>
+<p><img src="output_85_1.png" alt="png"></p>
+<p><a href="https://www.yutaka-note.com/entry/matplotlib_figure">こちら</a>のサイトで細かいレイアウトの調節方法の紹介がありますので、興味のある方は是非。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E6%95%A3%E5%B8%83%E5%9B%B3">散布図</h2>
+<p>これまで書いてきた数式のグラフよりも、これから説明するグラフの方がplotする機会が多いです。</p>
+<p>その中でも1番使う頻度が高いのが<strong>散布図</strong>です。<br>
+データを点でプロットしたもので、データの全体的なばらつきや傾向を見ることができます。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+df.head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="pltscatter">plt.scatter()</h3>
+<p>散布図を作るには <strong><code>plt.scatter()</code></strong> 関数を使います。<br>
+今回は、<code>age</code>（年齢）カラムと<code>fare</code>（料金）カラムを指定します。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># x軸がageカラム、y軸がfareカラム</span>
+plt.scatter(df[<span class="hljs-string">"age"</span>] , df[<span class="hljs-string">"fare"</span>])    
+</div></code></pre>
+<p><img src="output_91_1.png" alt="png"></p>
+<p>プロットが重なるとデータの解釈が難しくなるので、<br>
+<code>alpha</code>を指定して透明度を上げ、データの重なり具合を明らかにします。</p>
+<pre class="hljs"><code><div>plt.scatter(df[<span class="hljs-string">"age"</span>] , df[<span class="hljs-string">"fare"</span>] ,alpha=<span class="hljs-number">0.2</span>)
+</div></code></pre>
+<p><img src="output_93_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%83%90%E3%83%96%E3%83%AB%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88">バブルチャート</h3>
+<p>バブルチャートは、各プロットの特徴量を視覚的に表現するグラフの1つです。</p>
+<p>特徴量に応じてプロットのサイズや色を変化させることで、<br>
+<strong>データの意味を直観的に読み取りやすくする</strong>ことができます。</p>
+<p>今回は<code>deck</code>（デッキ）カラムでグループ化した後に<code>age</code>と<code>fare</code>の平均値をとります。</p>
+<p>その後<code>survived</code>カラムの値によってマーカーの大きさを変化させます。</p>
+<pre class="hljs"><code><div>df.groupby(<span class="hljs-string">"deck"</span>).mean()
+</div></code></pre>
+<p><code>groupby</code>をして平均値を取るために必要なのは<code>age</code>と<code>fare</code>、<br>
+そしてマーカーの大きさを表す<code>survived</code>の3つです。</p>
+<p><code>survived</code>をそのまま使うと値が小さいため、<br>
+値を1000倍した<code>survived_thousand</code>というカラムを追加します。</p>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"survived_thousand"</span>] =df[<span class="hljs-string">"survived"</span>]*<span class="hljs-number">1000</span>
+</div></code></pre>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"age"</span>] = df[<span class="hljs-string">"age"</span>].fillna(df[<span class="hljs-string">"age"</span>].mean())  <span class="hljs-comment"># 欠損値は平均値で置き換え</span>
+survived_group_df = df.groupby(<span class="hljs-string">"deck"</span>).mean()[[<span class="hljs-string">"age"</span>,<span class="hljs-string">"fare"</span>,<span class="hljs-string">"survived_thousand"</span>]]
+
+plt.xlabel(<span class="hljs-string">"age"</span>)
+plt.ylabel(<span class="hljs-string">"fare"</span>)
+plt.xlim(<span class="hljs-number">10</span>,<span class="hljs-number">45</span>)
+plt.ylim(<span class="hljs-number">0</span>,<span class="hljs-number">130</span>)
+
+plt.scatter(<span class="hljs-string">"age"</span> , <span class="hljs-string">"fare"</span> , data=survived_group_df)
+</div></code></pre>
+<p><img src="output_100_1.png" alt="png"></p>
+<p>この状態だと、各グループの平均値がplotされています。</p>
+<div style="page-break-before:always"></div>
+<p>ここからまず、マーカーの大きさを<code>survived_hundred</code>の値に応じて変化させます。<br>
+引数 <strong><code>s</code></strong> を指定します。</p>
+<pre class="hljs"><code><div>plt.xlabel(<span class="hljs-string">"age"</span>)
+plt.ylabel(<span class="hljs-string">"fare"</span>)
+plt.xlim(<span class="hljs-number">10</span>,<span class="hljs-number">45</span>)
+plt.ylim(<span class="hljs-number">0</span>,<span class="hljs-number">130</span>)
+
+plt.scatter(<span class="hljs-string">"age"</span> , <span class="hljs-string">"fare"</span> , s=<span class="hljs-string">"survived_thousand"</span>, data=survived_group_df)
+</div></code></pre>
+<p><img src="output_102_1.png" alt="png"></p>
+<p>引数 <strong><code>c</code></strong> を指定することで、マーカーの色を割り振ることができます。</p>
+<div style="page-break-before:always"></div>
+<p>matplotlibには、数字を指定することで、数字ごとに色を変えるという機能があります。<br>
+これを使っていきましょう。</p>
+<pre class="hljs"><code><div>c = np.arange(len(survived_group_df))
+
+plt.xlabel(<span class="hljs-string">"age"</span>)
+plt.ylabel(<span class="hljs-string">"fare"</span>)
+plt.xlim(<span class="hljs-number">10</span>,<span class="hljs-number">45</span>)
+plt.ylim(<span class="hljs-number">0</span>,<span class="hljs-number">130</span>)
+
+plt.scatter(<span class="hljs-string">"age"</span> , <span class="hljs-string">"fare"</span> , s=<span class="hljs-string">"survived_thousand"</span>, c=c , data=survived_group_df)
+</div></code></pre>
+<p><img src="output_104_1.png" alt="png"></p>
+<p>このままだと各マーカーがどのグループを表しているか分からないので、テキストを挿入します。</p>
+<div style="page-break-before:always"></div>
+<p>テキストをplotするには <strong><code>plt.annotate()</code></strong> という関数を使います。<br>
+挿入するテキストの指定後、タプルで挿入する座標を指定します。</p>
+<pre class="hljs"><code><div>c = np.arange(len(survived_group_df))
+
+plt.xlabel(<span class="hljs-string">"age"</span>)
+plt.ylabel(<span class="hljs-string">"fare"</span>)
+plt.xlim(<span class="hljs-number">10</span>,<span class="hljs-number">45</span>)
+plt.ylim(<span class="hljs-number">0</span>,<span class="hljs-number">130</span>)
+
+plt.scatter(<span class="hljs-string">"age"</span> , <span class="hljs-string">"fare"</span> , s=<span class="hljs-string">"survived_thousand"</span>, c=c , data=survived_group_df)
+plt.annotate(<span class="hljs-string">"hello"</span> , (<span class="hljs-number">40</span>,<span class="hljs-number">100</span>))  <span class="hljs-comment"># 図の右上に「hello」というテキストをplot</span>
+</div></code></pre>
+<p><img src="output_106_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div>survived_group_df = df.groupby(<span class="hljs-string">"deck"</span>).mean()[[<span class="hljs-string">"age"</span>,<span class="hljs-string">"fare"</span>,<span class="hljs-string">"survived_thousand"</span>]]
+c = np.arange(len(survived_group_df))
+
+plt.xlabel(<span class="hljs-string">"age"</span>)
+plt.ylabel(<span class="hljs-string">"fare"</span>)
+plt.xlim(<span class="hljs-number">10</span>,<span class="hljs-number">45</span>)
+plt.ylim(<span class="hljs-number">0</span>,<span class="hljs-number">130</span>)
+
+plt.scatter(<span class="hljs-string">"age"</span> , <span class="hljs-string">"fare"</span> , s=<span class="hljs-string">"survived_thousand"</span>, c=c , data=survived_group_df)
+
+<span class="hljs-keyword">for</span> idx, row <span class="hljs-keyword">in</span> survived_group_df.iterrows():
+    plt.annotate(idx, (row[<span class="hljs-string">'age'</span>]<span class="hljs-number">-3</span>, row[<span class="hljs-string">'fare'</span>]<span class="hljs-number">-3</span>) ,size = <span class="hljs-number">12</span>)
+plt.xlabel(<span class="hljs-string">'age'</span>)
+plt.ylabel(<span class="hljs-string">'fare'</span>)
+</div></code></pre>
+<p><img src="output_107_1.png" alt="png"></p>
+<p>今回はマーカーの大きさがほとんど変わらなかったですが、<br>
+この大きさが変わるとより分かりやすくなるはずです。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E3%83%92%E3%82%B9%E3%83%88%E3%82%B0%E3%83%A9%E3%83%A0">ヒストグラム</h2>
+<p>連続データをいくつかのグループに分け、<br>
+そのグループにデータがどれだけあるかを棒状で表したグラフを<strong>ヒストグラム</strong>といいます。</p>
+<p>縦軸は<strong>度数</strong>（データの個数）、横軸は<strong>階級</strong>（データの区間）です。<br>
+階級は特に<strong>bin</strong>とも呼ばれます。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+df.head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<h3 id="plthist">plt.hist()</h3>
+<p>ヒストグラムを作るには <strong><code>plt.hist()</code></strong> 関数を使います。<br>
+今回は、<code>age</code>カラムのデータをヒストグラム化します。</p>
+<pre class="hljs"><code><div>plt.hist(df[<span class="hljs-string">"age"</span>] )
+plt.show()  <span class="hljs-comment"># 書くことで戻り値を省略可能</span>
+</div></code></pre>
+<p><img src="output_112_0.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<p>引数 <strong><code>bins</code></strong> を指定すると、区間の個数を指定することができます。<br>
+デフォルトは10個です。</p>
+<pre class="hljs"><code><div>plt.hist(df[<span class="hljs-string">"age"</span>], bins=<span class="hljs-number">8</span>)
+plt.show() 
+</div></code></pre>
+<p><img src="output_114_0.png" alt="png"></p>
+<p>引数 <strong><code>range</code></strong> を指定すると、ヒストグラムに使用するデータの範囲を指定することができます。<br>
+range(最小値,最大値)の形になります。</p>
+<p>デフォルトではデータの最小値・最大値が使用されています。</p>
+<pre class="hljs"><code><div>plt.hist(df[<span class="hljs-string">"age"</span>] ,bins=<span class="hljs-number">8</span>,range=(<span class="hljs-number">10</span>,<span class="hljs-number">50</span>))
+plt.show() 
+</div></code></pre>
+<p><img src="output_116_0.png" alt="png"></p>
+<p>ヒストグラムについてさらに学びたい方は、<a href="https://www.yutaka-note.com/entry/matplotlib_hist#%E6%A8%AA%E8%BB%B8%E3%82%92%E5%AF%BE%E6%95%B0%E3%81%AB%E8%A8%AD%E5%AE%9Abins--nplogspace:~:text=%E7%9B%AE%E6%AC%A1%E3%81%B8%E6%88%BB%E3%82%8B-,%E6%A8%AA%E8%BB%B8%E3%82%92%E5%AF%BE%E6%95%B0%E3%81%AB%E8%A8%AD%E5%AE%9A%EF%BC%9Abins%20%3D%20np.logspace(),-%E6%A8%AA%E8%BB%B8%E3%82%92">こちら</a>が参考になると思います。<br>
+特に<strong>横軸を対数に設定する方法</strong>については、今後使う場面があるかもしれません。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E6%A3%92%E3%82%B0%E3%83%A9%E3%83%95">棒グラフ</h2>
+<p>連続データを対象にしているヒストグラムとは対照的に、<br>
+カテゴリー別のデータを比較し、棒の高さでデータの大小を表したグラフを<br>
+<strong>棒グラフ</strong>といいます。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+df.head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<p><code>pclass</code>（客室等級）カラムに対しての、<br>
+男性・女性・子供の数を見てみましょう。</p>
+<pre class="hljs"><code><div>chi = <span class="hljs-keyword">lambda</span> passenger :  <span class="hljs-string">"child"</span> <span class="hljs-keyword">if</span> passenger[<span class="hljs-number">0</span>] &lt; <span class="hljs-number">16</span> <span class="hljs-keyword">else</span> passenger[<span class="hljs-number">1</span>]
+
+df[<span class="hljs-string">"age"</span>] = df[<span class="hljs-string">"age"</span>].fillna(df[<span class="hljs-string">"age"</span>].mean())
+df[<span class="hljs-string">"person"</span>] = df[[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>]].apply(chi , axis=<span class="hljs-number">1</span>)
+df[[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>,<span class="hljs-string">"person"</span>]][<span class="hljs-number">7</span>:<span class="hljs-number">10</span>]
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># クロス集計表の作成</span>
+cross_df = pd.crosstab(df[<span class="hljs-string">"pclass"</span>],df[<span class="hljs-string">"person"</span>])
+cross_df
+</div></code></pre>
+</div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>sex</th>
+      <th>person</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>2.0</td>
+      <td>male</td>
+      <td>child</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>27.0</td>
+      <td>female</td>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>14.0</td>
+      <td>female</td>
+      <td>child</td>
+    </tr>
+  </tbody>
+</table>
+ <div style="page-break-before:always"></div>
+<p>棒グラフを作るには <strong><code>plt.bar()</code></strong> 関数を使います。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 客室等級に対しての男性の数</span>
+plt.bar(cross_df.index , cross_df[<span class="hljs-string">"male"</span>])
+plt.xticks([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])
+plt.show()
+</div></code></pre>
+<p><img src="output_124_0.png" alt="png"></p>
+<p>複数描画してみましょう。</p>
+<pre class="hljs"><code><div>plt.bar(cross_df.index<span class="hljs-number">-0.3</span> , cross_df[<span class="hljs-string">"male"</span>], width=<span class="hljs-number">0.3</span>, label=<span class="hljs-string">'男性'</span>)
+plt.bar(cross_df.index , cross_df[<span class="hljs-string">"female"</span>], width=<span class="hljs-number">0.3</span>, label=<span class="hljs-string">'女性'</span>)
+plt.bar(cross_df.index+<span class="hljs-number">0.3</span> , cross_df[<span class="hljs-string">"child"</span>], width=<span class="hljs-number">0.3</span>, label=<span class="hljs-string">'子供'</span>)
+plt.xticks([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])
+plt.legend(loc=<span class="hljs-string">"best"</span>)
+plt.show()
+</div></code></pre>
+<p><img src="output_126_0.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<p>次はグラフを積み立てていきます。</p>
+<pre class="hljs"><code><div>bottom = np.zeros_like(cross_df.index)
+<span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> cross_df.columns:
+  plt.bar(cross_df.index , cross_df[name], label=name , bottom=bottom)
+  bottom += cross_df[name]
+
+plt.xticks([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])
+plt.legend(loc=<span class="hljs-string">"best"</span>)
+plt.show()
+</div></code></pre>
+<p><img src="output_128_0.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<p>割合を分かりやすくしたいので、100%積み上げ縦棒グラフに変更します。</p>
+<pre class="hljs"><code><div>cross2_df = pd.crosstab(df[<span class="hljs-string">"pclass"</span>],df[<span class="hljs-string">"person"</span>], normalize=<span class="hljs-string">'index'</span>)
+cross2_df
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>person</th>
+      <th>child</th>
+      <th>female</th>
+      <th>male</th>
+    </tr>
+    <tr>
+      <th>pclass</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.027778</td>
+      <td>0.421296</td>
+      <td>0.550926</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.103261</td>
+      <td>0.358696</td>
+      <td>0.538043</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.118126</td>
+      <td>0.232179</td>
+      <td>0.649695</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre class="hljs"><code><div>cross2_df.plot.bar(stacked=<span class="hljs-literal">True</span>)
+</div></code></pre>
+<p><img src="output_131_1.png" alt="png"></p>
+<p>棒グラフについてさらに学びたい方は、<a href="https://www.yutaka-note.com/entry/matplotlib_bar#DataFrame%E3%81%AE%E7%A9%8D%E3%81%BF%E4%B8%8A%E3%81%92%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88:~:text=%E7%9B%AE%E6%AC%A1%E3%81%B8%E6%88%BB%E3%82%8B-,%E7%A9%8D%E3%81%BF%E4%B8%8A%E3%81%92%E6%A3%92%E3%82%B0%E3%83%A9%E3%83%95%E3%81%AE%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95,-%E7%A9%8D%E3%81%BF%E4%B8%8A%E3%81%92%E6%A3%92%E3%82%B0%E3%83%A9%E3%83%95%E3%82%92">こちら</a>が参考になると思います。<br>
+特に積み上げ棒グラフは結構使うと思います。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E7%AE%B1%E3%81%B2%E3%81%92%E5%9B%B3">箱ひげ図</h2>
+<p><strong>箱ひげ図</strong>(<strong>box plot</strong>)とは、データの分布を「箱」と「ひげ」で表したグラフです。<br>
+データの集まり方を一目で捉えることができます。</p>
+<p>箱ひげ図についてよく分からない方は、<a href="https://bellcurve.jp/statistics/course/5220.html">こちら</a>
+のサイトを見ていただければと思います。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+df.head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<p>箱ひげ図を作るには <strong><code>plt.boxplot()</code></strong> 関数を使います。</p>
+<p>今回は、<code>pclass</code>（客室等級）カラムに対しての年齢層の分布を見てみましょう。</p>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"age"</span>] = df[<span class="hljs-string">"age"</span>].fillna(df[<span class="hljs-string">"age"</span>].mean())
+
+data = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> df[<span class="hljs-string">"pclass"</span>].unique():
+  data.append(df[df[<span class="hljs-string">"pclass"</span>]==i][<span class="hljs-string">"age"</span>])
+
+plt.boxplot(tuple(data), whis=<span class="hljs-string">"range"</span>)  <span class="hljs-comment"># 引数を指定して外れ値計算をしないよう指定</span>
+plt.show()
+</div></code></pre>
+<p><img src="output_136_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<h2 id="plot%E3%81%AE%E4%BF%9D%E5%AD%98">plotの保存</h2>
+<p>ここまでで学習してきたplotは、他の人と共有するときなどは基本的にファイルに保存します。</p>
+<h3 id="%E3%82%B0%E3%83%A9%E3%83%95%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%95%E3%81%AE%E8%AA%BF%E6%95%B4">グラフの大きさの調整</h3>
+<p>シグモイド関数をplotして、サイズを調整してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># シグモイド関数のplot</span>
+
+x = np.linspace(<span class="hljs-number">-10</span> , <span class="hljs-number">10</span> , <span class="hljs-number">100</span>)
+z = <span class="hljs-number">1</span> / (<span class="hljs-number">1</span> + np.exp(-x))
+plt.plot(x,z)
+</div></code></pre>
+<p><img src="output_139_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<p><strong><code>plt.figure()</code></strong> という関数の中で、引数 <strong><code>figsize</code></strong> に（横幅 , 高さ）をインチ数で指定します。</p>
+<pre class="hljs"><code><div>plt.figure(figsize=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>))
+plt.plot(x,z)
+</div></code></pre>
+<p><img src="output_141_1.png" alt="png"></p>
+<p>オブジェクト指向を使ってサイズを調整することもできます。</p>
+<pre class="hljs"><code><div>fig , axes = plt.subplots(figsize=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>))
+axes.plot(x,z)
+</div></code></pre>
+<p><img src="output_143_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<h3 id="png%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B">pngで保存する</h3>
+<p>一番使う手法です。</p>
+<p><code>figure</code>オブジェクトの <strong><code>savefig()</code></strong> 関数を呼び出し、<br>
+引数にファイル名を指定することで保存できます。</p>
+<pre class="hljs"><code><div>fig , axes = plt.subplots()
+axes.plot(x,z)
+axes.set_xlabel(<span class="hljs-string">"x"</span>)
+axes.set_ylabel(<span class="hljs-string">"y"</span>)
+axes.set_title(<span class="hljs-string">"sigmoid(x)"</span>)
+
+fig.savefig(<span class="hljs-string">"sigmoid_sample.png"</span>)
+</div></code></pre>
+<p><img src="output_145_0.png" alt="png"></p>
+<p>pngで保存するときは通常、グラフのタイトルや軸のラベルをつけて保存します。<br>
+保存されたかどうか、「ファイル」から確認してみてください。</p>
+<div style="page-break-before:always"></div>
+<h3 id="pdf%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B">pdfで保存する</h3>
+<p>まとめて1つのファイルとして保存したいときはpdfで保存しましょう。</p>
+<p>新しいモジュールを使用します。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> matplotlib.backends.backend_pdf <span class="hljs-keyword">import</span> PdfPages
+</div></code></pre>
+<p>これでPdfPagesクラスを使えるようになります。<br>
+<strong><code>PdfPages()</code></strong> にpdfのファイル名を入れて、<code>pdf</code>というインスタンスを作成します。</p>
+<pre class="hljs"><code><div>pdf = PdfPages(<span class="hljs-string">"sigmoid_sample.pdf"</span>)
+</div></code></pre>
+<p>このインスタンスを使って、保存していきます。<br>
+<strong><code>pdf.savefig()</code></strong> に、<code>figure</code>オブジェクトを入れるだけです。</p>
+<pre class="hljs"><code><div>fig , axes = plt.subplots()
+axes.plot(x,z)
+axes.set_xlabel(<span class="hljs-string">"x"</span>)
+axes.set_ylabel(<span class="hljs-string">"y"</span>)
+axes.set_title(<span class="hljs-string">"sigmoid(x)"</span>)
+
+pdf.savefig(fig)
+
+pdf.close()  <span class="hljs-comment"># pdfの更新を防ぐために実行</span>
+</div></code></pre>
+<p><img src="output_152_0.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<p>pdfで保存することの最大の利点は、<strong>大量のグラフを1つのファイルで保存できる</strong>ことです。<br>
+for文でfigureをループさせます。</p>
+<pre class="hljs"><code><div>pdf = PdfPages(<span class="hljs-string">"sigmoid_sample.pdf"</span>)
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>):
+  fig , axes = plt.subplots()
+  axes.plot(x,x**i)
+  axes.set_xlabel(<span class="hljs-string">"x"</span>)
+  axes.set_ylabel(<span class="hljs-string">"y"</span>)
+  axes.set_title(<span class="hljs-string">"y=x^{}"</span>.format(i))
+
+  pdf.savefig(fig)  <span class="hljs-comment"># forループの中で保存</span>
+
+pdf.close()  <span class="hljs-comment"># ループ後に閉じる</span>
+</div></code></pre>
+<p><img src="output_154_0.png" alt="png"></p>
+<p><img src="output_154_1.png" alt="png"></p>
+<div style="page-break-before:always"></div>
+<p><img src="output_154_2.png" alt="png"></p>
+<p><img src="output_154_3.png" alt="png"></p>
+<p><img src="output_154_4.png" alt="png"></p>
+<p>1ページに1グラフがplotされていることが確認できたでしょうか。<br>
+また、「ctrl+F」を利用することもできます。</p>
+
+</body>
+</html>
