@@ -1,0 +1,2702 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SQL_basic.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="sql%E5%85%A5%E9%96%80">SQL入門</h1>
+<pre class="hljs"><code><div><span class="hljs-comment"># 最初に実行してください</span>
+!apt-get install sqlite3
+</div></code></pre>
+<ul>
+<li><a href="#sql%E5%85%A5%E9%96%80">SQL入門</a>
+<ul>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%83%A2%E3%83%87%E3%83%AB">データモデル</a>
+<ul>
+<li><a href="#%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%8A%E3%83%AB%E3%83%87%E3%83%BC%E3%82%BF%E3%83%A2%E3%83%87%E3%83%AB">リレーショナルデータモデル</a></li>
+<li><a href="#%E4%BB%96%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%83%A2%E3%83%87%E3%83%AB">他のデータモデル</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9">データベース</a>
+<ul>
+<li><a href="#%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%8A%E3%83%AB%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9">リレーショナルデータベース</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E7%AE%A1%E7%90%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0">データベース管理システム</a>
+<ul>
+<li><a href="#%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%8A%E3%83%AB%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E7%AE%A1%E7%90%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0">リレーショナルデータベース管理システム</a></li>
+<li><a href="#sql">SQL</a>
+<ul>
+<li><a href="#%E6%A8%99%E6%BA%96sql">標準SQL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%AE%9F%E8%B7%B5%E7%B7%A8">実践編</a>
+<ul>
+<li><a href="#%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E4%B8%80%E8%A6%A7%E3%81%AE%E7%A2%BA%E8%AA%8D">テーブルの一覧の確認</a></li>
+<li><a href="#%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E6%A7%8B%E9%80%A0%E3%81%AE%E7%A2%BA%E8%AA%8D">テーブルの構造の確認</a></li>
+<li><a href="#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88">コメント</a></li>
+<li><a href="#%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90">テーブルの作成</a>
+<ul>
+<li><a href="#%E3%82%AB%E3%83%A9%E3%83%A0%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B">カラムのデータ型</a></li>
+<li><a href="#%E5%80%A4%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B">値のデータ型</a></li>
+<li><a href="#%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E6%9B%B4%E6%96%B0">テーブルの更新</a></li>
+<li><a href="#%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E5%89%8A%E9%99%A4">テーブルの削除</a></li>
+<li><a href="#%E5%88%B6%E7%B4%84">制約</a></li>
+<li><a href="#%E4%B8%BB%E3%82%AD%E3%83%BC">主キー</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E8%BF%BD%E5%8A%A0">データの追加</a></li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%8F%96%E5%BE%97">データの取得</a></li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%9B%B4%E6%96%B0">データの更新</a></li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%89%8A%E9%99%A4">データの削除</a></li>
+<li><a href="#%E5%9B%9B%E5%A4%A7%E5%91%BD%E4%BB%A4">四大命令</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A4%9C%E7%B4%A2%E7%B5%90%E6%9E%9C%E3%81%AE%E5%8A%A0%E5%B7%A5">検索結果の加工</a>
+<ul>
+<li><a href="#where%E5%8F%A5%E3%81%A7%E3%81%AE%E7%B5%9E%E3%82%8A%E8%BE%BC%E3%81%BF">WHERE句での絞り込み</a>
+<ul>
+<li><a href="#%E6%AF%94%E8%BC%83%E6%BC%94%E7%AE%97%E5%AD%90">比較演算子</a></li>
+<li><a href="#null%E3%81%AE%E5%88%A4%E5%AE%9A">NULLの判定</a></li>
+<li><a href="#%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0%E3%81%A7%E6%AF%94%E8%BC%83">パターンマッチングで比較</a></li>
+<li><a href="#%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%9F%E5%80%A4%E3%81%AE%E7%AF%84%E5%9B%B2%E3%81%A8%E6%AF%94%E8%BC%83">指定した値の範囲と比較</a></li>
+<li><a href="#%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%9F%E5%80%A4%E3%81%AE%E3%83%AA%E3%82%B9%E3%83%88%E3%81%A8%E6%AF%94%E8%BC%83">指定した値のリストと比較</a></li>
+<li><a href="#%E8%AB%96%E7%90%86%E6%BC%94%E7%AE%97%E5%AD%90%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%9D%A1%E4%BB%B6%E5%BC%8F">論理演算子を使った条件式</a></li>
+</ul>
+</li>
+<li><a href="#where%E5%8F%A5%E4%BB%A5%E5%A4%96%E3%81%A7%E3%81%AE%E5%8A%A0%E5%B7%A5">WHERE句以外での加工</a>
+<ul>
+<li><a href="#%E7%B5%90%E6%9E%9C%E3%81%AE%E4%B8%A6%E3%81%B3%E6%9B%BF%E3%81%88">結果の並び替え</a></li>
+<li><a href="#%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%95%B0%E3%81%AE%E6%8C%87%E5%AE%9A">取得するデータの数の指定</a></li>
+<li><a href="#%E5%8F%96%E5%BE%97%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B%E4%BD%8D%E7%BD%AE%E3%81%AE%E6%8C%87%E5%AE%9A">取得を開始する位置の指定</a></li>
+<li><a href="#%E9%87%8D%E8%A4%87%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E9%99%A4%E5%A4%96%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97">重複データを除外して取得</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BC%8F%E3%82%84%E9%96%A2%E6%95%B0%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E5%8A%A0%E5%B7%A5">式や関数を使った加工</a>
+<ul>
+<li><a href="#%E3%82%AB%E3%83%A9%E3%83%A0%E5%80%A4%E3%81%AB%E5%AF%BE%E3%81%97%E3%81%A6%E5%9B%9B%E5%89%87%E6%BC%94%E7%AE%97">カラム値に対して四則演算</a></li>
+<li><a href="#%E3%82%AB%E3%83%A9%E3%83%A0%E5%80%A4%E3%81%AB%E5%BF%9C%E3%81%98%E3%81%A6%E7%95%B0%E3%81%AA%E3%82%8B%E7%B5%90%E6%9E%9C%E3%82%92%E8%BF%94%E3%81%99">カラム値に応じて異なる結果を返す</a></li>
+<li><a href="#%E9%96%A2%E6%95%B0%E3%81%AE%E9%81%A9%E7%94%A8">関数の適用</a>
+<ul>
+<li><a href="#count%E9%96%A2%E6%95%B0">COUNT関数</a></li>
+<li><a href="#sum%E9%96%A2%E6%95%B0">SUM関数</a></li>
+<li><a href="#avg%E9%96%A2%E6%95%B0">AVG関数</a></li>
+<li><a href="#max%E9%96%A2%E6%95%B0">MAX関数</a></li>
+<li><a href="#min%E9%96%A2%E6%95%B0">MIN関数</a></li>
+<li><a href="#strftime%E9%96%A2%E6%95%B0">strftime()関数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E5%8C%96">データのグループ化</a>
+<ul>
+<li><a href="#%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E5%BE%8C%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%81%B8%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%AE%E8%A8%AD%E5%AE%9A">グループ後のデータへの条件の設定</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E7%B5%90%E5%90%88">テーブルの結合</a>
+<ul>
+<li><a href="#%E8%A4%87%E6%95%B0%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AB%E5%88%86%E3%81%91%E3%82%8B%E5%88%A9%E7%82%B9">複数テーブルに分ける利点</a></li>
+<li><a href="#%E5%86%85%E9%83%A8%E7%B5%90%E5%90%88">内部結合</a></li>
+<li><a href="#%E5%A4%96%E9%83%A8%E7%B5%90%E5%90%88">外部結合</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%93%E3%83%A5%E3%83%BC">ビュー</a>
+<ul>
+<li><a href="#%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AE%E4%BD%9C%E6%88%90">ビューの作成</a></li>
+<li><a href="#%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AE%E5%89%8A%E9%99%A4">ビューの削除</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="page-break-before:always"></div>
+<h2 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%83%A2%E3%83%87%E3%83%AB">データモデル</h2>
+<p><strong>データモデル</strong>とは、現実世界の対象やシステム内で扱うデータを、<br>
+コンピュータ上で扱いやすい形式に変換するための手法です。</p>
+<p>データモデルに従って、データを整理・蓄積・処理することで、<br>
+複数種類・大量のデータを効率的に扱うことができます。</p>
+<p>以下のようなデータモデルが存在します。</p>
+<h3 id="%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%8A%E3%83%AB%E3%83%87%E3%83%BC%E3%82%BF%E3%83%A2%E3%83%87%E3%83%AB">リレーショナルデータモデル</h3>
+<p>リレーショナルデータモデルは、テーブルと呼ばれる2次元的な表を使って、データを表現します。</p>
+<p>テーブルは、行と列から構成されており、<br>
+行はデータの個々のレコード、列はデータの属性を表します。</p>
+<p><img src="https://imgur.com/rXiVfp6.png" alt=""></p>
+<h3 id="%E4%BB%96%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%83%A2%E3%83%87%E3%83%AB">他のデータモデル</h3>
+<p>リレーショナルデータモデル以外にも、以下のようなデータモデルが存在します。</p>
+<p>・<strong>階層型データモデル</strong><br>
+→ データを階層構造で表現するモデルで、木構造のような形式でデータを組織化する。<br>
+　 主に、古いシステムで使われる。</p>
+<p>・<strong>ネットワーク型データモデル</strong><br>
+→ データを複数の集合体（レコード）とポインタで繋ぎ合わせたグラフ構造で表現するモデル。<br>
+　 リレーショナルデータモデルよりも複雑な構造を持つため、扱いが難しい。</p>
+<p>・<strong>オブジェクト指向データモデル</strong><br>
+→ オブジェクト指向プログラミングの考え方をデータベースに適用したモデル。<br>
+　 現在のアプリケーション開発において、最もポピュラーなデータモデルの一つ。</p>
+<p>・<strong>NoSQLデータモデル</strong><br>
+→ リレーショナルデータモデルに縛られない柔軟性の高いデータモデル。<br>
+　 主に、大規模なWebサービスやソーシャルメディア等のWebアプリケーションで使用されている。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9">データベース</h2>
+<p><strong>データベース</strong>（<strong>DB</strong>）は、データを保管し、整理、保存、そして検索するための電子的な仕組みです。</p>
+<p>データベースは、データの整合性を保ちながら、データの追加、変更、削除を行うことができます。<br>
+また、<strong>クエリ言語</strong>を使用して、保存されているデータを検索することができます。</p>
+<h3 id="%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%8A%E3%83%AB%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9">リレーショナルデータベース</h3>
+<p><strong>リレーショナルデータベース</strong>（<strong>RDB</strong>）は、リレーショナルデータモデルに基づいて構築されたデータベースのことを指します。</p>
+<p>リレーショナルデータベースは、その使いやすさなどから、 最も広く使われているデータベースです。</p>
+<p>データを表形式で管理するため、各テーブル間にリレーションシップ（関連）を設定することで、<br>
+複数のテーブルから必要なデータを一括して取得できます。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E7%AE%A1%E7%90%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0">データベース管理システム</h2>
+<p><strong>データベース管理システム</strong>（<strong>DBMS</strong>）は、データベースを操作するためのソフトウェアです。</p>
+<p>DBMSにクエリ言語で書かれた命令文を送信することで、<br>
+データベースに対する操作を実行することができます。</p>
+<h3 id="%E3%83%AA%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%8A%E3%83%AB%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E7%AE%A1%E7%90%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0">リレーショナルデータベース管理システム</h3>
+<p>リレーショナルデータベース管理システム（<strong>RDBMS</strong>）は、<br>
+RDBを採用しているDBMSのことを指します。</p>
+<p>RDBに基づいているため、企業や組織にとって信頼性と柔軟性を兼ね備えた<br>
+データ管理システムとして、広く利用されています。</p>
+<p>今回は、このRDBMSについてのみ触れていきます。<br>
+このほかのDBMSについては、<a href="https://bit.ly/40SHXPz">こちら</a>の記事を参考にしてください。</p>
+<p>RDBMSには様々な製品が存在します。<br>
+ここでは主要のものについて、特徴を以下に説明します。</p>
+<ol>
+<li>
+<p><strong>SQLite</strong>：単一ユーザー向け。軽量で初学者が使いやすい。Pythonと相性がいい。</p>
+</li>
+<li>
+<p><strong>MySQL</strong>：オープンソースのRMDBSで、最も広く使用されている。PHPと相性がいい。</p>
+</li>
+<li>
+<p><strong>PostgreSQL</strong>：MySQLと同様複数ユーザー向けだが、より機能が豊富で、複雑である。<br>
+　 　　　　　大規模なデータベースを扱うときによく使われる。</p>
+</li>
+</ol>
+<p>そのほか有償ではありますが、<strong>Microsoft SQL server</strong> や <strong>oracle</strong> といったRDBMSが存在します。</p>
+<p>Google ColabにはSQLiteを使用するためのライブラリが用意されているため、<br>
+ここでは<strong>SQLite</strong>を使って基本的な文法を学習します。</p>
+<h3 id="sql">SQL</h3>
+<p><strong>SQL</strong>は、RDBMSでデータを操作するために、最も一般的に使用される標準的なクエリ言語です。</p>
+<p>SQLは、Structured Query Language（構造化問い合わせ言語）の略称です。<br>
+「エスキューエル、シークエル」などといわれます。</p>
+<p>SQLをRDMBSに送信することで、データベースファイル内の情報を<br>
+検索、追加、更新、削除することができます。</p>
+<h4 id="%E6%A8%99%E6%BA%96sql">標準SQL</h4>
+<p>標準SQLは、国際規格化機構（<strong>ISO</strong>）と国際電気標準会議（<strong>IEC</strong>）によって共同で定められた、<br>
+SQLの標準仕様を指します。</p>
+<p>各種RDBMSは基本的には標準SQLに沿うように設計されています。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E5%AE%9F%E8%B7%B5%E7%B7%A8">実践編</h2>
+<p>ここまで用語の解説が続いたので、いよいよSQLを体験してみようと思います。</p>
+<p>学生の情報を管理する、Userテーブルを作成してみようと思います。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> sqlite3 <span class="hljs-comment"># SQLite3ライブラリをインポート</span>
+
+<span class="hljs-comment"># "sample1.db"という名前のSQLiteデータベースに接続する</span>
+con = sqlite3.connect(<span class="hljs-string">"sample1.db"</span>)
+
+<span class="hljs-comment"># カーソルを作成する</span>
+cursor = con.cursor()
+
+<span class="hljs-comment"># "User"テーブルを作成するSQLクエリを定義する</span>
+sample_query = <span class="hljs-string">"""
+CREATE TABLE IF NOT EXISTS User (  -- 存在しないときのみテーブルを作成
+  UserId INTEGER, -- ユーザーID
+  Name TEXT, -- ユーザー名
+  Age INTEGER, -- 年齢
+  Department TEXT, -- 所属学科
+  Email TEXT -- メールアドレス
+);
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(sample_query)
+</div></code></pre>
+<pre><code>&lt;sqlite3.Cursor at 0x7f21b0fff1c0&gt;
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E4%B8%80%E8%A6%A7%E3%81%AE%E7%A2%BA%E8%AA%8D">テーブルの一覧の確認</h3>
+<p>データベースに存在するテーブルの一覧を表示したいときは、以下のコマンドを実行します。</p>
+<pre class="hljs"><code><div>.tables
+</div></code></pre>
+<p>では実行してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># sample1.dbに作成されたテーブルの一覧を表示する</span>
+!sqlite3 sample1.db <span class="hljs-string">".table"</span>
+</div></code></pre>
+<pre><code>User
+</code></pre>
+<p>User テーブルが作成されていることが確認できました。</p>
+<p>「<strong>!</strong>」は、Google Colaboratoryでコマンドラインコマンドを実行するために使われる<br>
+マジックコマンドの1つです。</p>
+<p>コマンドラインツールに直接コマンドを渡しています。</p>
+<h3 id="%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E6%A7%8B%E9%80%A0%E3%81%AE%E7%A2%BA%E8%AA%8D">テーブルの構造の確認</h3>
+<p>テーブルの構造を<strong>スキーマ</strong>(<strong>schema</strong>)といいます。</p>
+<p>具体的には、テーブルやカラム、インデックス、トリガーなどの定義を含みます。</p>
+<p>データベースに存在するテーブルの構造を表示したいときは、以下のコマンドを実行します。</p>
+<pre class="hljs"><code><div>.schema
+</div></code></pre>
+<p>では実行してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># sample1.dbに作成されたテーブルの構造を表示する</span>
+!sqlite3 sample1.db <span class="hljs-string">".schema"</span>
+</div></code></pre>
+<pre><code>CREATE TABLE User (  -- 存在しないときのみテーブルを作成
+  UserId INTEGER, -- ユーザーID
+  Name TEXT, -- ユーザー名
+  Age INTEGER, -- 年齢
+  Department TEXT, -- 所属学科
+  Email TEXT -- メールアドレス
+);
+</code></pre>
+<p>UserテーブルのCREATE文が表示されました。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88">コメント</h3>
+<p>SQLにおけるコメントの記述方法には、2つのルールがあります。</p>
+<p>① ハイフン2つ「--」から行末まではコメントとして扱われる。<br>
+② 「/*」から「*/」まではコメントとして扱われる</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90">テーブルの作成</h3>
+<p>テーブルを作成するには、<strong>CREATE TABLE</strong>文を使います。<br>
+基本形は以下の通りです。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> テーブル名 (
+  列名<span class="hljs-number">1</span>　列<span class="hljs-number">1</span>の型名,
+  列名<span class="hljs-number">2</span>　列<span class="hljs-number">2</span>の型名,
+  ...
+　列名X　列Xの型名
+)
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<h4 id="%E3%82%AB%E3%83%A9%E3%83%A0%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B">カラムのデータ型</h4>
+<p><strong>カラムのデータ型</strong>は、そのカラムに格納できる値の型を指定するものです。</p>
+<p>SQLiteでは、以下の5つのデータ型がサポートされています。</p>
+<ol>
+<li>
+<p><strong>INTEGER</strong><br>
+→ 整数値を表現するためのデータ型。<br>
+　 8バイト以下の整数はすべてINTEGER型として格納される。</p>
+</li>
+<li>
+<p><strong>REAL</strong><br>
+→  浮動小数点数を表現するためのデータ型。<br>
+　 8バイト以下の浮動小数点数はすべてREAL型として格納される。</p>
+</li>
+<li>
+<p><strong>TEXT</strong><br>
+→  文字列を表現するためのデータ型。<br>
+　  Unicode文字列を格納することができる。</p>
+</li>
+<li>
+<p><strong>BLOB</strong><br>
+→ バイナリデータを表現するためのデータ型。<br>
+　 画像、音声、動画など、様々な種類のデータを格納することができる。</p>
+</li>
+<li>
+<p><strong>NUMERIC</strong><br>
+→ INTEGER型とREAL型のいずれかに自動的に変換される汎用的なデータ型。<br>
+　 整数または浮動小数点数のどちらかに自動的に変換される。</p>
+</li>
+</ol>
+<div style="page-break-before:always"></div>
+<h4 id="%E5%80%A4%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B">値のデータ型</h4>
+<p><strong>値のデータ型</strong>は、実際にそのカラムに格納される値の型を表します。</p>
+<p>SQLiteでは、以下の5つのデータ型がサポートされています。</p>
+<ol>
+<li>
+<p><strong>INTEGER</strong><br>
+→ 整数値を表現するためのデータ型。<br>
+　 8バイト以下の整数はすべてINTEGER型として格納される。</p>
+</li>
+<li>
+<p><strong>REAL</strong><br>
+→  浮動小数点数を表現するためのデータ型。<br>
+　 8バイト以下の浮動小数点数はすべてREAL型として格納される。</p>
+</li>
+<li>
+<p><strong>TEXT</strong><br>
+→  文字列を表現するためのデータ型。<br>
+　  Unicode文字列を格納することができる。</p>
+</li>
+<li>
+<p><strong>BLOB</strong><br>
+→ バイナリデータを表現するためのデータ型。<br>
+　 画像、音声、動画など、様々な種類のデータを格納することができる。</p>
+</li>
+<li>
+<p><strong>NULL</strong><br>
+→ 何も値がないことを表す特殊なデータ型。<br>
+　 データベースに値が存在しない場合や、値が不明な場合に使用される。</p>
+</li>
+</ol>
+<p>例えば、TEXT型のカラムにINTEGERやREALのデータ型の値が格納された場合、<br>
+TEXT型に変換されてから格納されます。</p>
+<p>また、NUMERIC型のカラムに TEXT 型の値が格納された場合、<br>
+INTEGER 型または REAL 型に変換を試みます。<br>
+成功すればそのデータ型で格納されますが、失敗すれば TEXT 型のまま格納されます。</p>
+<p>カラムに格納された値のデータ型の確認方法などは、<br>
+<a href="https://www.javadrive.jp/sqlite/type/index2.html">こちら</a>のページなどを参照してください。</p>
+<div style="page-break-before:always"></div>
+<h4 id="%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E6%9B%B4%E6%96%B0">テーブルの更新</h4>
+<p>テーブル定義の内容を変更するには、<strong>ALTER TABLE</strong>文を使います。</p>
+<p>まず、テーブル名を変更するには、以下のようなALTER TABLE文を使用します。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> テーブル名 <span class="hljs-keyword">RENAME</span> <span class="hljs-keyword">TO</span> 新しいテーブル名;
+</div></code></pre>
+<p>では、&quot;User&quot;テーブルを&quot;Student&quot;テーブルに変更してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># "User"テーブルを作成するSQLクエリを定義する</span>
+sample_query = <span class="hljs-string">"""
+CREATE TABLE IF NOT EXISTS User (  -- 存在しないときのみテーブルを作成
+  UserId INTEGER, -- ユーザーID
+  Name TEXT, -- ユーザー名
+  Age INTEGER, -- 年齢
+  Department TEXT, -- 所属学科
+  Email TEXT -- メールアドレス
+);
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(sample_query)
+
+<span class="hljs-comment"># "User"テーブルを"Student"テーブルに名前変更</span>
+change_tablename = <span class="hljs-string">"ALTER TABLE User RENAME TO Student;"</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(change_tablename)
+
+<span class="hljs-comment"># 変更を確定させる</span>
+con.commit()
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># sample1.dbに作成されたテーブルの一覧を表示する</span>
+!sqlite3 sample1.db <span class="hljs-string">".table"</span>
+</div></code></pre>
+<pre><code>Student
+</code></pre>
+<div style="page-break-before:always"></div>    
+<p>次に、カラム名を変更するには、以下のようなALTER TABLE文を使用します。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> テーブル名 <span class="hljs-keyword">COLUMN</span> 変更前の列名 <span class="hljs-keyword">TO</span> 変更後の列名;
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># "UserId"カラムを"Gakuseki"カラムに名前変更</span>
+change_columsnname = <span class="hljs-string">"ALTER TABLE Student RENAME COLUMN UserId TO Gakuseki;"</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(change_columsnname)
+
+<span class="hljs-comment"># 変更を確定させる</span>
+con.commit()
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># sample1.dbに作成されたテーブルの構造を表示する</span>
+!sqlite3 sample1.db <span class="hljs-string">".schema"</span>
+</div></code></pre>
+<pre><code>CREATE TABLE IF NOT EXISTS &quot;Student&quot; (  -- 存在しないときのみテーブルを作成
+  Gakuseki INTEGER, -- ユーザーID
+  Name TEXT, -- ユーザー名
+  Age INTEGER, -- 年齢
+  Department TEXT, -- 所属学科
+  Email TEXT -- メールアドレス
+);
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>次に、カラムを追加するには、以下のようなALTER TABLE文を使用します。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> テーブル名 <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> 列名 データ型;
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># "Password"カラムを追加</span>
+add_columns = <span class="hljs-string">"ALTER TABLE Student ADD COLUMN Password TEXT;"</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(add_columns)
+
+con.commit()
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># sample1.dbに作成されたテーブルの構造を表示する</span>
+!sqlite3 sample1.db <span class="hljs-string">".schema"</span>
+</div></code></pre>
+<pre><code>CREATE TABLE IF NOT EXISTS &quot;Student&quot; (  -- 存在しないときのみテーブルを作成
+  Gakuseki INTEGER, -- ユーザーID
+  Name TEXT, -- ユーザー名
+  Age INTEGER, -- 年齢
+  Department TEXT, -- 所属学科
+  Email TEXT -- メールアドレス
+, Password TEXT);
+</code></pre>
+<p>なお、2023年4月現在、カラムの削除はできないようです。</p>
+<div style="page-break-before:always"></div>
+<h4 id="%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E5%89%8A%E9%99%A4">テーブルの削除</h4>
+<p>作成済みのテーブルを削除するには、DROP TABLE文を使います。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># sample1.dbに作成されたテーブルの一覧を表示する</span>
+!sqlite3 sample1.db <span class="hljs-string">".table"</span>
+</div></code></pre>
+<pre><code>Student
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># "Student"テーブルを削除</span>
+drop_columns = <span class="hljs-string">"DROP TABLE Student;"</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(drop_columns)
+
+con.commit()
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># sample1.dbに作成されたテーブルの一覧を表示する</span>
+!sqlite3 sample1.db <span class="hljs-string">".table"</span>
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<h4 id="%E5%88%B6%E7%B4%84">制約</h4>
+<p>制約とは、データベースに保存されるデータの整合性を保つために設定される条件のことです。</p>
+<p>制約は、CREATE TABLE文でテーブルを定義する際に、<br>
+列定義の後ろに指定することが可能です。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> テーブル名 (
+  列名　型　制約の指定 ,
+  ...
+)
+</div></code></pre>
+<p>SQLiteには、以下のような制約があります。</p>
+<ol>
+<li><strong>DEFAULT制約</strong><br>
+→ 指定したカラムがデータが挿入されなかった場合に、自動的に設定される値を指定する制約。</li>
+</ol>
+<pre class="hljs"><code><div>カラム名 データ型 DEFAULT デフォルト値
+</div></code></pre>
+<ol start="2">
+<li><strong>NOT NULL制約</strong><br>
+→  指定したカラムにNULL値を許容しないようにする制約。</li>
+</ol>
+<pre class="hljs"><code><div>カラム名 データ型 NOT NULL
+</div></code></pre>
+<ol start="3">
+<li><strong>UNIQUE制約</strong><br>
+→  指定したカラムに重複する値を許容しないようにする制約。</li>
+</ol>
+<pre class="hljs"><code><div>カラム名 データ型 UNIQUE
+</div></code></pre>
+<ol start="4">
+<li><strong>CHECK制約</strong><br>
+→ 指定したカラムに保存される値が、指定された条件を満たしていることを保証する制約。</li>
+</ol>
+<pre class="hljs"><code><div>カラム名 データ型 <span class="hljs-keyword">CHECK</span> (条件式)
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<p>では、これまで作ってきたUserテーブルに制約を追加してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># "User"テーブルを作成するSQLクエリを定義する</span>
+sample_query = <span class="hljs-string">"""
+CREATE TABLE IF NOT EXISTS User (  -- 存在しないときのみテーブルを作成
+  UserId INTEGER, -- ユーザーID
+  Name TEXT NOT NULL, -- ユーザー名。NULLを許容しない。
+  Age INTEGER CHECK (Age &gt;= 18), -- 年齢。18歳以上であることを保証する。
+  Department TEXT DEFAULT 理工学部, -- 所属学科。未指定時は"理工学部"とする。
+  Email TEXT UNIQUE -- メールアドレス。重複を許容しない。
+);
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(sample_query)
+</div></code></pre>
+<pre><code>&lt;sqlite3.Cursor at 0x7f21b0fff1c0&gt;
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># sample1.dbに作成されたテーブルの構造を表示する</span>
+!sqlite3 sample1.db <span class="hljs-string">".schema"</span>
+</div></code></pre>
+<pre><code>CREATE TABLE User (  -- 存在しないときのみテーブルを作成
+  UserId INTEGER, -- ユーザーID
+  Name TEXT NOT NULL, -- ユーザー名。NULLを許容しない。
+  Age INTEGER CHECK (Age &gt;= 18), -- 年齢。18歳以上であることを保証する。
+  Department TEXT DEFAULT 理工学部, -- 所属学科。未指定時は&quot;理工学部&quot;とする。
+  Email TEXT UNIQUE -- メールアドレス。重複を許容しない。
+);
+</code></pre>
+<div style="page-break-before:always"></div>
+<h4 id="%E4%B8%BB%E3%82%AD%E3%83%BC">主キー</h4>
+<p>テーブル内の各行を一意に識別するための列（カラム）のことを <strong>主キー（Primary Key）</strong> といいます。</p>
+<p>主キーに設定された列は、重複が許されず、必ず何らかのデータが格納されます。</p>
+<p>主キーの役割を担う列には、<strong>主キー（PRIMARY KEY）制約</strong>を付けます。</p>
+<pre class="hljs"><code><div>カラム名 データ型 PRIMARY KEY
+</div></code></pre>
+<p>また、複数のカラムを組み合わせて1つの主キーとして指定する方法を<br>
+<strong>複合主キー（Composite Key）</strong> といいます。</p>
+<p>複数の列を組み合わせることで、各行を一意に識別したいときに使用します。</p>
+<p>複合主キーの場合は、カラム名をカンマ区切りで指定して PRIMARY KEY 制約を付加します。<br>
+CREATE TABLE文の最後に追加します。</p>
+<pre class="hljs"><code><div>PRIMARY KEY(カラム名1, カラム名2, ...)
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<p>では、UserテーブルのUserIdカラムを主キーとしてみます。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># "User"テーブルを削除</span>
+drop_columns = <span class="hljs-string">"DROP TABLE User;"</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(drop_columns)
+
+con.commit()
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># "User"テーブルを作成するSQLクエリを定義する</span>
+sample_query = <span class="hljs-string">"""
+CREATE TABLE IF NOT EXISTS User (  -- 存在しないときのみテーブルを作成
+  UserId INTEGER PRIMARY KEY, -- ユーザーID。主キー。
+  Name TEXT NOT NULL, -- ユーザー名。NULLを許容しない。
+  Age INTEGER CHECK (Age &gt;= 18), -- 年齢。18歳以上であることを保証する。
+  Department TEXT DEFAULT 理工学部, -- 所属学科。未指定時は"理工学部"とする。
+  Email TEXT UNIQUE -- メールアドレス。重複を許容しない。
+);
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(sample_query)
+</div></code></pre>
+<pre><code>&lt;sqlite3.Cursor at 0x7f21b0fff1c0&gt;
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># sample1.dbに作成されたテーブルの構造を表示する</span>
+!sqlite3 sample1.db <span class="hljs-string">".schema"</span>
+</div></code></pre>
+<pre><code>CREATE TABLE User (  -- 存在しないときのみテーブルを作成
+  UserId INTEGER PRIMARY KEY, -- ユーザーID。主キー。
+  Name TEXT NOT NULL, -- ユーザー名。NULLを許容しない。
+  Age INTEGER CHECK (Age &gt;= 18), -- 年齢。18歳以上であることを保証する。
+  Department TEXT DEFAULT 理工学部, -- 所属学科。未指定時は&quot;理工学部&quot;とする。
+  Email TEXT UNIQUE -- メールアドレス。重複を許容しない。
+);
+</code></pre>
+<div style="page-break-before:always"></div>    
+<h3 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E8%BF%BD%E5%8A%A0">データの追加</h3>
+<p>テーブルに新しいデータを追加したいときは、<strong>INSERT文</strong>を使います。<br>
+基本形は以下の通りです。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> テーブル名
+　　　　　（列名<span class="hljs-number">1</span>, 列名<span class="hljs-number">2</span>, 列名<span class="hljs-number">3</span>, …, 列名x）
+　　<span class="hljs-keyword">VALUES</span>（値<span class="hljs-number">1</span>, 値<span class="hljs-number">2</span>, 値<span class="hljs-number">3</span>, …, 値x）
+</div></code></pre>
+<p>では、Userテーブルに学生の情報を追加してみましょう。</p>
+<pre class="hljs"><code><div>add_query = <span class="hljs-string">"""
+INSERT INTO User 
+           (UserId, Name, Age, Department, Email) 
+    VALUES (2227000, 'Ichiro', 19, '応用化学生物学科', 'Ichiro@example.com');
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(add_query)
+
+con.commit()
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<p>列名を指定しない場合は、<br>
+テーブルの列の順序で値を指定することになります。</p>
+<pre class="hljs"><code><div>add_query = <span class="hljs-string">"""
+INSERT INTO User 
+    VALUES (2228000, 'Jiro', 20, '電子光工学科', 'Jiro@example.com');
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(add_query)
+
+con.commit()
+</div></code></pre>
+<p>また、一度に複数の行を追加することもできます。<br>
+以下のように、VALUESの括弧内に複数の値をカンマ区切りで指定します。</p>
+<pre class="hljs"><code><div>add_query = <span class="hljs-string">"""
+INSERT INTO User 
+    VALUES (2229010, 'Saburo', 18, '情報システム工学科', 'Saburo@example.com'), 
+           (2229020, 'Siro', 19, '情報システム工学科', 'Siro@example.com'), 
+           (2229030, 'Goro', 20, '情報システム工学科', 'Goro@example.com');
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(add_query)
+
+con.commit()
+</div></code></pre>
+<p>このテーブルには制約を多く設けているので、追加の仕方によってはエラーが出ます。<br>
+いろいろと試してみてください。</p>
+<p>例1：Departmentカラムを指定しないと、<strong>DEFAULT制約</strong>により値が&quot;理工学部&quot;になる<br>
+例2：Nameカラムを指定しないと、<strong>NOT NULL制約</strong>によりエラー<br>
+例3：Emailカラムの値が重複していると、<strong>UNIQUE制約</strong>によりエラー<br>
+例4：Ageカラムの値が18歳未満だと、<strong>CHECK制約</strong>によりエラー</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%8F%96%E5%BE%97">データの取得</h3>
+<p>テーブルに格納されたデータを取得するには <strong>SELECT文</strong>を使用します。<br>
+基本形は以下の通りです。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> 列名<span class="hljs-number">1</span>, 列名<span class="hljs-number">2</span>, 列名<span class="hljs-number">3</span>, …, 列名x
+　<span class="hljs-keyword">FROM</span> テーブル名
+</div></code></pre>
+<p>また、すべての列を指定するときは、以下のように記述することが多いです。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> *
+　<span class="hljs-keyword">FROM</span> テーブル名
+</div></code></pre>
+<p>では、先ほどまでUserテーブルに追加してきた学生の情報を取得してみましょう。</p>
+<p><code>.headers on</code>を指定しているため、ヘッダーが表示されています。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Userテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT * FROM User"</span>
+</div></code></pre>
+<pre><code>UserId|Name|Age|Department|Email
+2227000|Ichiro|19|応用化学生物学科|Ichiro@example.com
+2228000|Jiro|20|電子光工学科|Jiro@example.com
+2229010|Saburo|18|情報システム工学科|Saburo@example.com
+2229020|Siro|19|情報システム工学科|Siro@example.com
+2229030|Goro|20|情報システム工学科|Goro@example.com
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>また、<strong>WHERE句</strong>を用いることで、条件に合致するデータを取得することができます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> *
+　<span class="hljs-keyword">FROM</span> テーブル名
+　<span class="hljs-keyword">WHERE</span> 条件式
+</div></code></pre>
+<p>今回は、情報システム工学科のデータのみを取り出してみます。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Userテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT * FROM User WHERE Department = '情報システム工学科'"</span>
+</div></code></pre>
+<pre><code>UserId|Name|Age|Department|Email
+2229010|Saburo|18|情報システム工学科|Saburo@example.com
+2229020|Siro|19|情報システム工学科|Siro@example.com
+2229030|Goro|20|情報システム工学科|Goro@example.com
+</code></pre>
+<p>WHERE句については<a href="https://www.javadrive.jp/sqlite/select/index3.html">こちら</a>のページなどを参考にしてみてください。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%9B%B4%E6%96%B0">データの更新</h3>
+<p>データベース内のテーブルの行の値を更新するには<strong>UPDATE文</strong>を使用します。<br>
+基本形は以下の通りです。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">UPDATE</span> テーブル名
+　 <span class="hljs-keyword">SET</span> 列名<span class="hljs-number">1</span> = 値<span class="hljs-number">1</span>, 列名<span class="hljs-number">2</span> = 値<span class="hljs-number">2</span>, …
+　 <span class="hljs-keyword">WHERE</span> 条件式  
+</div></code></pre>
+<p>WHERE句を省略すると、全ての行が更新されてしまう可能性があります。</p>
+<p>ここでは、18歳のデータの学科は&quot;理工学部&quot;にデータを更新します。</p>
+<pre class="hljs"><code><div>update_query = <span class="hljs-string">"""
+UPDATE User
+  SET Department = '理工学部'
+  WHERE Age = 18;
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(update_query)
+
+con.commit()
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># Userテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT * FROM User"</span>
+</div></code></pre>
+<pre><code>UserId|Name|Age|Department|Email
+2227000|Ichiro|19|応用化学生物学科|Ichiro@example.com
+2228000|Jiro|20|電子光工学科|Jiro@example.com
+2229010|Saburo|18|理工学部|Saburo@example.com
+2229020|Siro|19|情報システム工学科|Siro@example.com
+2229030|Goro|20|情報システム工学科|Goro@example.com
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%89%8A%E9%99%A4">データの削除</h3>
+<p>データベース内のテーブルから行を削除するには<strong>DELETE文</strong>を使用します。<br>
+基本形は以下の通りです。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DELETE</span>
+　 <span class="hljs-keyword">FROM</span> テーブル名
+　 <span class="hljs-keyword">WHERE</span> 条件式  
+</div></code></pre>
+<p>ここでは、情報システム工学科のデータを削除します。</p>
+<pre class="hljs"><code><div>delete_query = <span class="hljs-string">"""
+DELETE
+  FROM User
+  WHERE Department = '情報システム工学科';
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(delete_query)
+
+con.commit()
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># Userテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT * FROM User"</span>
+</div></code></pre>
+<pre><code>UserId|Name|Age|Department|Email
+2227000|Ichiro|19|応用化学生物学科|Ichiro@example.com
+2228000|Jiro|20|電子光工学科|Jiro@example.com
+2229010|Saburo|18|理工学部|Saburo@example.com
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E5%9B%9B%E5%A4%A7%E5%91%BD%E4%BB%A4">四大命令</h3>
+<p>ここまで紹介してきた<strong>SELECT文</strong>、<strong>INSERT文</strong>、<strong>UPDATE文</strong>、<strong>DELETE文</strong>が、<br>
+SQLiteの四大命令（SQLの基本的な操作命令）になります。</p>
+<p>これらの四大命令を組み合わせることで、データの基本的な操作が可能になります。<br>
+また、これらの命令をSQLクエリとして組み合わせることで、複雑な操作も可能になります。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E6%A4%9C%E7%B4%A2%E7%B5%90%E6%9E%9C%E3%81%AE%E5%8A%A0%E5%B7%A5">検索結果の加工</h2>
+<p>ここまでは、<strong>WHERE句</strong>を使って抽出の条件を指定しました。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> 列名<span class="hljs-number">1</span>, 列名<span class="hljs-number">2</span>, 列名<span class="hljs-number">3</span>, …, 列名x
+　<span class="hljs-keyword">FROM</span> テーブル名
+（<span class="hljs-keyword">WHERE</span>句による修飾）
+（そのほかの修飾）
+</div></code></pre>
+<p>他の修飾について学び、検索結果を加工しましょう。</p>
+<div style="page-break-before:always"></div>
+<p>以下のような家計簿テーブルを作成します。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> sqlite3 <span class="hljs-comment"># SQLite3ライブラリをインポート</span>
+
+<span class="hljs-comment"># "sample1.db"という名前のSQLiteデータベースに接続する</span>
+con = sqlite3.connect(<span class="hljs-string">"sample1.db"</span>)
+
+<span class="hljs-comment"># カーソルを作成する</span>
+cursor = con.cursor()
+
+<span class="hljs-comment"># "expense"テーブルを作成するSQLクエリを定義する</span>
+sample_query = <span class="hljs-string">"""
+CREATE TABLE IF NOT EXISTS expense (
+  id INTEGER PRIMARY KEY,
+  date TEXT,
+  category TEXT,
+  amount INTEGER,
+  memo TEXT
+);
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(sample_query)
+</div></code></pre>
+<pre><code>&lt;sqlite3.Cursor at 0x7f5962afb640&gt;
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># sample1.dbに作成されたテーブルの構造を表示する</span>
+!sqlite3 sample1.db <span class="hljs-string">".schema"</span>
+</div></code></pre>
+<pre><code>CREATE TABLE expense (
+  id INTEGER PRIMARY KEY,
+  date TEXT,
+  category TEXT,
+  amount INTEGER,
+  memo TEXT
+);
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>以下のサンプルデータを追加します。</p>
+<pre class="hljs"><code><div>add_query = <span class="hljs-string">"""
+INSERT INTO expense (id, date, category, amount, memo) VALUES
+  (1, '2022-05-21', 'food', 1000, 'lunch'),
+  (2, '2022-07-10', 'shopping', 5000, ''),
+  (3, '2022-09-07', 'food', 1200, 'dinner'),
+  (4, '2022-03-30', 'travel', 8000, ''),
+  (5, '2022-02-14', 'food', 800, 'breakfast'),
+  (6, '2022-04-05', 'shopping', 1500, ''),
+  (7, '2022-06-18', 'travel', 5000, ''),
+  (8, '2022-08-21', 'shopping', 2000, ''),
+  (9, '2022-12-25', 'food', 1500, 'dinner'),
+  (10, '2022-11-05', 'travel', 3000, ''),
+  (11, '2022-04-12', 'food', 600, 'snack'),
+  (12, '2022-07-28', 'shopping', 2500, ''),
+  (13, '2022-09-10', 'travel', 4000, ''),
+  (14, '2022-02-17', 'food', 1200, 'lunch'),
+  (15, '2022-08-06', 'shopping', 3500, ''),
+  (16, '2022-06-30', 'food', 1000, 'breakfast'),
+  (17, '2022-11-21', 'travel', 6000, ''),
+  (18, '2022-12-18', 'shopping', 1800, ''),
+  (19, '2022-03-15', 'food', 1500, 'dinner'),
+  (20, '2022-01-22', 'travel', 2000, ''),
+  (21, '2022-05-23', 'shopping', 2000, ''),
+  (22, '2022-06-05', 'food', 800, 'snack'),
+  (23, '2022-07-12', 'travel', 5000, ''),
+  (24, '2022-08-14', 'food', 1500, 'dinner'),
+  (25, '2022-09-01', 'shopping', 3000, ''),
+  (26, '2022-10-06', 'travel', 4000, ''),
+  (27, '2022-11-11', 'food', 1000, 'lunch'),
+  (28, '2022-12-24', 'shopping', 5000, ''),
+  (29, '2022-02-28', 'food', 800, 'breakfast'),
+  (30, '2022-03-20', 'travel', 6000, '');
+
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(add_query)
+
+con.commit()
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT * FROM expense"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+1|2022-05-21|food|1000|lunch
+2|2022-07-10|shopping|5000|
+3|2022-09-07|food|1200|dinner
+4|2022-03-30|travel|8000|
+5|2022-02-14|food|800|breakfast
+6|2022-04-05|shopping|1500|
+7|2022-06-18|travel|5000|
+8|2022-08-21|shopping|2000|
+9|2022-12-25|food|1500|dinner
+10|2022-11-05|travel|3000|
+11|2022-04-12|food|600|snack
+12|2022-07-28|shopping|2500|
+13|2022-09-10|travel|4000|
+14|2022-02-17|food|1200|lunch
+15|2022-08-06|shopping|3500|
+16|2022-06-30|food|1000|breakfast
+17|2022-11-21|travel|6000|
+18|2022-12-18|shopping|1800|
+19|2022-03-15|food|1500|dinner
+20|2022-01-22|travel|2000|
+21|2022-05-23|shopping|2000|
+22|2022-06-05|food|800|snack
+23|2022-07-12|travel|5000|
+24|2022-08-14|food|1500|dinner
+25|2022-09-01|shopping|3000|
+26|2022-10-06|travel|4000|
+27|2022-11-11|food|1000|lunch
+28|2022-12-24|shopping|5000|
+29|2022-02-28|food|800|breakfast
+30|2022-03-20|travel|6000|
+</code></pre>
+<p>上記の&quot;expense&quot;テーブルは、以下のような構造を持ちます。</p>
+<ul>
+<li>id：自動的に割り当てられる数値型の主キー列。</li>
+<li>date: ：日付を表すテキスト列。YYYY-MM-DD形式で保存される。</li>
+<li>category：支出のカテゴリを表すテキスト列。</li>
+<li>amount：支出金額を表す数値型の列。</li>
+<li>memo：メモを表すテキスト列。</li>
+</ul>
+<div style="page-break-before:always"></div>
+<h3 id="where%E5%8F%A5%E3%81%A7%E3%81%AE%E7%B5%9E%E3%82%8A%E8%BE%BC%E3%81%BF">WHERE句での絞り込み</h3>
+<p>まずは、WHERE句による絞り込みについてさらに理解を深めていきます。</p>
+<h4 id="%E6%AF%94%E8%BC%83%E6%BC%94%E7%AE%97%E5%AD%90">比較演算子</h4>
+<p>基本的な<strong>比較演算子</strong>は以下の通りです。<br>
+前回も少し登場しましたよね。</p>
+<table>
+<thead>
+<tr>
+<th>比較演算子</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>=</strong></td>
+<td>左右の値が等しい</td>
+</tr>
+<tr>
+<td><strong>&lt;</strong></td>
+<td>左辺は右辺より小さい</td>
+</tr>
+<tr>
+<td><strong>&gt;</strong></td>
+<td>左辺は右辺より大きい</td>
+</tr>
+<tr>
+<td><strong>&lt;=</strong></td>
+<td>左辺は右辺の値以下</td>
+</tr>
+<tr>
+<td><strong>&gt;=</strong></td>
+<td>左辺は右辺の値以上</td>
+</tr>
+<tr>
+<td><strong>&lt;&gt;</strong></td>
+<td>左右の値が等しくない</td>
+</tr>
+</tbody>
+</table>
+<p>今回は、5000円以上の出費についてのデータのみ取り出していきます。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT * FROM expense WHERE amount &gt;= 5000"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+2|2022-07-10|shopping|5000|
+4|2022-03-30|travel|8000|
+7|2022-06-18|travel|5000|
+17|2022-11-21|travel|6000|
+23|2022-07-12|travel|5000|
+28|2022-12-24|shopping|5000|
+30|2022-03-20|travel|6000|
+</code></pre>
+<div style="page-break-before:always"></div>
+<h4 id="null%E3%81%AE%E5%88%A4%E5%AE%9A">NULLの判定</h4>
+<p>テーブルの中のデータは、何も値が格納されていない状態を意味する<br>
+<strong>NULL</strong>という特別なものになることがあります。</p>
+<p>格納データが「不明」であるときに登場します。</p>
+<p>今回のデータでいうと、&quot;category&quot;カラムの値が&quot;food&quot;のときは、<br>
+&quot;memo&quot;カラムの値は必ず<strong>NULL</strong>になります。</p>
+<p>NULLかどうかを判定するときは、&quot;=&quot;演算子や&quot;&lt;&gt;&quot;演算子を利用できません。</p>
+<p>NULlであることを判定するためには <strong>IS NULL演算子</strong>、<br>
+NULLでないことを判定するためには <strong>IS NOT NULL 演算子</strong> を使います。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># "memo"カラムの値が空のものは"NULL"値に置き換えます</span>
+drop_columns = <span class="hljs-string">"UPDATE expense SET memo = NULL WHERE memo = ''"</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(drop_columns)
+
+con.commit()
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT * FROM expense WHERE memo IS NULL"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+2|2022-07-10|shopping|5000|
+4|2022-03-30|travel|8000|
+6|2022-04-05|shopping|1500|
+7|2022-06-18|travel|5000|
+8|2022-08-21|shopping|2000|
+10|2022-11-05|travel|3000|
+12|2022-07-28|shopping|2500|
+13|2022-09-10|travel|4000|
+15|2022-08-06|shopping|3500|
+17|2022-11-21|travel|6000|
+18|2022-12-18|shopping|1800|
+20|2022-01-22|travel|2000|
+21|2022-05-23|shopping|2000|
+23|2022-07-12|travel|5000|
+25|2022-09-01|shopping|3000|
+26|2022-10-06|travel|4000|
+28|2022-12-24|shopping|5000|
+30|2022-03-20|travel|6000|
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT * FROM expense WHERE memo IS NOT NULL"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+1|2022-05-21|food|1000|lunch
+3|2022-09-07|food|1200|dinner
+5|2022-02-14|food|800|breakfast
+9|2022-12-25|food|1500|dinner
+11|2022-04-12|food|600|snack
+14|2022-02-17|food|1200|lunch
+16|2022-06-30|food|1000|breakfast
+19|2022-03-15|food|1500|dinner
+22|2022-06-05|food|800|snack
+24|2022-08-14|food|1500|dinner
+27|2022-11-11|food|1000|lunch
+29|2022-02-28|food|800|breakfast
+</code></pre>
+<p>SQLiteではないですが、<a href="https://qiita.com/devopsCoordinator/items/9c10410b50f8fcc2ba79">こちらのQiita記事</a>にNULLについて解説があります。</p>
+<div style="page-break-before:always"></div>
+<h4 id="%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0%E3%81%A7%E6%AF%94%E8%BC%83">パターンマッチングで比較</h4>
+<p>文字列があるパターンに合致しているかをチェックすることを<br>
+<strong>パターンマッチング</strong>といいます。</p>
+<p>SQLではこのパターンマッチングに<strong>LIKE演算子</strong>を使います。</p>
+<pre class="hljs"><code><div>式 LIKE パターン文字列
+</div></code></pre>
+<p>検索対象の文字列の中に、指定したパターンが含まれるかどうかを調べます。</p>
+<p>LIKE句には、次の2つのワイルドカードがあります。</p>
+<ul>
+<li><strong>%</strong>：0文字以上の任意の文字列</li>
+<li><strong>_</strong>（アンダースコア）：任意の1文字</li>
+</ul>
+<p>ここでは、2022年12月のデータのみ取り出してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT * FROM expense WHERE date LIKE '%-12-%'"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+9|2022-12-25|food|1500|dinner
+18|2022-12-18|shopping|1800|
+28|2022-12-24|shopping|5000|
+</code></pre>
+<p>次に、&quot;memo&quot;カラムの値が5文字の文字列であるデータを取り出してみましょう。<br>
+(条件式で _ を5個記述しています)</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT * FROM expense WHERE memo LIKE '_____'"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+1|2022-05-21|food|1000|lunch
+11|2022-04-12|food|600|snack
+14|2022-02-17|food|1200|lunch
+22|2022-06-05|food|800|snack
+27|2022-11-11|food|1000|lunch
+</code></pre>
+<div style="page-break-before:always"></div>    
+<p>&quot;%&quot;や&quot;_&quot;を含む文字列をLIKE句で探したいときは、少し工夫が必要です。</p>
+<p><a href="https://bit.ly/3KEWurd">こちら</a>の記事を参考にしてください。</p>
+<p>またSQLiteでは、<strong>GROB句</strong>を使ってもLIKE句と同様のことができます。</p>
+<p>詳しくは<a href="https://www.javadrive.jp/sqlite/select/index12.html">こちら</a>の記事を参考にしてください。</p>
+<div style="page-break-before:always"></div>
+<h4 id="%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%9F%E5%80%A4%E3%81%AE%E7%AF%84%E5%9B%B2%E3%81%A8%E6%AF%94%E8%BC%83">指定した値の範囲と比較</h4>
+<p>ある範囲内に値が収まっているかを判定したいときは、<strong>BETWEEN演算子</strong>を使用します。</p>
+<pre class="hljs"><code><div>式 BETWEEN 値1 AND 値2
+</div></code></pre>
+<p>BETWEEN演算子では、データが「値1以上かつ値2以下」の場合に真になります。</p>
+<p>ここでは、1000円以上2000円以下の出費が発生したデータのみ取り出してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT * FROM expense WHERE amount BETWEEN 1000 AND 2000 "</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+1|2022-05-21|food|1000|lunch
+3|2022-09-07|food|1200|dinner
+6|2022-04-05|shopping|1500|
+8|2022-08-21|shopping|2000|
+9|2022-12-25|food|1500|dinner
+14|2022-02-17|food|1200|lunch
+16|2022-06-30|food|1000|breakfast
+18|2022-12-18|shopping|1800|
+19|2022-03-15|food|1500|dinner
+20|2022-01-22|travel|2000|
+21|2022-05-23|shopping|2000|
+24|2022-08-14|food|1500|dinner
+27|2022-11-11|food|1000|lunch
+</code></pre>
+<div style="page-break-before:always"></div>    
+<h4 id="%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%9F%E5%80%A4%E3%81%AE%E3%83%AA%E3%82%B9%E3%83%88%E3%81%A8%E6%AF%94%E8%BC%83">指定した値のリストと比較</h4>
+<p>ある値リストのいづれかにデータが合致するかを判定したいときは、<strong>IN演算子</strong>を使用します。</p>
+<pre class="hljs"><code><div>式 IN （値1, 値2, 値3 …）
+</div></code></pre>
+<p>IN演算子を使えば、一度にたくさんの値との比較が可能です。</p>
+<p>ここでは、&quot;memo&quot;カラムの値が&quot;lunch&quot;または&quot;snack&quot;に合致する行のみを取り出しましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT * FROM expense WHERE memo IN ('lunch', 'snack')"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+1|2022-05-21|food|1000|lunch
+11|2022-04-12|food|600|snack
+14|2022-02-17|food|1200|lunch
+22|2022-06-05|food|800|snack
+27|2022-11-11|food|1000|lunch
+</code></pre>
+<p>逆に、値リストのどれとも合致しないことを判定するには、<strong>NOT IN演算子</strong>を使います。</p>
+<p>ここでは、&quot;memo&quot;カラムの値が&quot;lunch&quot;または&quot;snack&quot;に合致しない行のみを取り出しましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT * FROM expense WHERE memo NOT IN ('lunch', 'snack')"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+3|2022-09-07|food|1200|dinner
+5|2022-02-14|food|800|breakfast
+9|2022-12-25|food|1500|dinner
+16|2022-06-30|food|1000|breakfast
+19|2022-03-15|food|1500|dinner
+24|2022-08-14|food|1500|dinner
+29|2022-02-28|food|800|breakfast
+</code></pre>
+<div style="page-break-before:always"></div>
+<h4 id="%E8%AB%96%E7%90%86%E6%BC%94%E7%AE%97%E5%AD%90%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%9D%A1%E4%BB%B6%E5%BC%8F">論理演算子を使った条件式</h4>
+<p>1つの条件式ではうまく行を絞り込めない場合、<strong>論理演算子</strong>を使って、<br>
+複数の条件式を組み合わせることができます。</p>
+<pre class="hljs"><code><div>WHERE 条件式1 AND 条件式2
+WHERE 条件式1 OR 条件式2
+WHERE NOT 条件式
+</div></code></pre>
+<p>ここでは、食費として1200円以上使ったデータを取り出してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT * FROM expense WHERE category = 'food' AND amount &gt;= 1200"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+3|2022-09-07|food|1200|dinner
+9|2022-12-25|food|1500|dinner
+14|2022-02-17|food|1200|lunch
+19|2022-03-15|food|1500|dinner
+24|2022-08-14|food|1500|dinner
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="where%E5%8F%A5%E4%BB%A5%E5%A4%96%E3%81%A7%E3%81%AE%E5%8A%A0%E5%B7%A5">WHERE句以外での加工</h3>
+<p>WHERE句以外の修飾について学び、目的に応じてデータを成形してきましょう。</p>
+<div style="page-break-before:always"></div>
+<h4 id="%E7%B5%90%E6%9E%9C%E3%81%AE%E4%B8%A6%E3%81%B3%E6%9B%BF%E3%81%88">結果の並び替え</h4>
+<p>SELECT分の最後に<strong>ORDER BY句</strong>を記述すると、<br>
+指定した列の値を基準として並び替えた検索結果を取得することができます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> 列名 <span class="hljs-keyword">FROM</span> テーブル名
+　<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> 列名 並び順
+</div></code></pre>
+<p>並び順は、昇順にする場合は<strong>ASC</strong>、
+降順にする場合は<strong>DESC</strong>を指定します。</p>
+<p>初期値は昇順です。</p>
+<p>では、買い物のデータのみを抽出し、日付順に並び替えてみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT * FROM expense WHERE category = 'shopping' ORDER BY date"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+6|2022-04-05|shopping|1500|
+21|2022-05-23|shopping|2000|
+2|2022-07-10|shopping|5000|
+12|2022-07-28|shopping|2500|
+15|2022-08-06|shopping|3500|
+8|2022-08-21|shopping|2000|
+25|2022-09-01|shopping|3000|
+18|2022-12-18|shopping|1800|
+28|2022-12-24|shopping|5000|
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>また、ソートする対象のカラムは複数指定できます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> 列名 <span class="hljs-keyword">FROM</span> テーブル名
+　<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> 列名<span class="hljs-number">1</span> 並び順, 列名<span class="hljs-number">2</span> 並び順
+</div></code></pre>
+<p>複数のカラムを指定した場合には、まず最初のカラムでソートを行い、<br>
+次に最初のカラムで同じ値だったものだけを対象に2番目のカラムでソートを行います。</p>
+<p>では、食費のデータのみを抽出し、<br>
+&quot;memo&quot;カラムの値で並び替えたあと、さらに日付順に並び替えてみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT * FROM expense WHERE category = 'food' ORDER BY memo DESC, date ASC"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+11|2022-04-12|food|600|snack
+22|2022-06-05|food|800|snack
+14|2022-02-17|food|1200|lunch
+1|2022-05-21|food|1000|lunch
+27|2022-11-11|food|1000|lunch
+19|2022-03-15|food|1500|dinner
+24|2022-08-14|food|1500|dinner
+3|2022-09-07|food|1200|dinner
+9|2022-12-25|food|1500|dinner
+5|2022-02-14|food|800|breakfast
+29|2022-02-28|food|800|breakfast
+16|2022-06-30|food|1000|breakfast
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>また、列名ではなく列番号を指定して並び替えることもできます。</p>
+<p>先ほどのコードを列番号で書き換えてみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT * FROM expense WHERE category = 'food' ORDER BY 5 DESC, 2 ASC"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+11|2022-04-12|food|600|snack
+22|2022-06-05|food|800|snack
+14|2022-02-17|food|1200|lunch
+1|2022-05-21|food|1000|lunch
+27|2022-11-11|food|1000|lunch
+19|2022-03-15|food|1500|dinner
+24|2022-08-14|food|1500|dinner
+3|2022-09-07|food|1200|dinner
+9|2022-12-25|food|1500|dinner
+5|2022-02-14|food|800|breakfast
+29|2022-02-28|food|800|breakfast
+16|2022-06-30|food|1000|breakfast
+</code></pre>
+<div style="page-break-before:always"></div>
+<h4 id="%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%95%B0%E3%81%AE%E6%8C%87%E5%AE%9A">取得するデータの数の指定</h4>
+<p><strong>LIMIT句</strong>を使用することで、取得するデータの数を指定することができます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> 列名 <span class="hljs-keyword">FROM</span> テーブル名
+　(<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> 列名 並び順)
+　<span class="hljs-keyword">LIMIT</span> 行数
+</div></code></pre>
+<p>行数が指定された場合には先頭のデータから指定した行数のデータだけを取得します。</p>
+<p>ORDER BY 句と LIMIT 句が同時に記述された場合、<br>
+まず ORDER BY 句で並び替えを行った上で、<br>
+LIMIT 句で指定された数のデータを取得します。</p>
+<p>では、全体のデータの内、出費が多かった行ベスト5を取り出してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT * FROM expense ORDER BY amount DESC LIMIT 5"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+4|2022-03-30|travel|8000|
+17|2022-11-21|travel|6000|
+30|2022-03-20|travel|6000|
+2|2022-07-10|shopping|5000|
+7|2022-06-18|travel|5000|
+</code></pre>
+<p>旅行に結構お金を使っているようですね。</p>
+<div style="page-break-before:always"></div>
+<h4 id="%E5%8F%96%E5%BE%97%E3%82%92%E9%96%8B%E5%A7%8B%E3%81%99%E3%82%8B%E4%BD%8D%E7%BD%AE%E3%81%AE%E6%8C%87%E5%AE%9A">取得を開始する位置の指定</h4>
+<p>データの取得を行う最初の位置を指定するには、<strong>OFFSET 句</strong>を使用します。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> 列名 <span class="hljs-keyword">FROM</span> テーブル名
+　(<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> 列名 並び順)
+　<span class="hljs-keyword">LIMIT</span> 行数
+　<span class="hljs-keyword">OFFSET</span> 開始位置
+</div></code></pre>
+<p>LIMIT 句の後に取得するデータの行数、そして OFFSET 句の後にデータを取得する開始位置を指定します。</p>
+<p>OFFSET句は省略することができます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> 列名 <span class="hljs-keyword">FROM</span> テーブル名
+　(<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> 列名 並び順)
+　<span class="hljs-keyword">LIMIT</span> 開始位置 行数
+</div></code></pre>
+<p>OFFSET句を使用しない場合は、開始位置を指定した後に取得する行数を指定します。</p>
+<p>では、全体のデータの内、出費が多かった行の6位～10位を取り出してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT * FROM expense ORDER BY amount DESC LIMIT 5 OFFSET 5"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+23|2022-07-12|travel|5000|
+28|2022-12-24|shopping|5000|
+13|2022-09-10|travel|4000|
+26|2022-10-06|travel|4000|
+15|2022-08-06|shopping|3500|
+</code></pre>
+<div style="page-break-before:always"></div>
+<h4 id="%E9%87%8D%E8%A4%87%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E9%99%A4%E5%A4%96%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97">重複データを除外して取得</h4>
+<p><strong>DISTINCTキーワード</strong>をSELECT分の選択リストの前に記述すると、<br>
+内容が重複している部分は取り除いて取得できます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> 列名 …
+　<span class="hljs-keyword">FROM</span> テーブル名
+</div></code></pre>
+<p>ここでは、どのような種類の支出があったか一覧で取得しましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">"SELECT DISTINCT category FROM expense"</span>
+</div></code></pre>
+<pre><code>food
+shopping
+travel
+</code></pre>
+<p>複数のカラムを指定することもできます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> 列名<span class="hljs-number">1</span>, 列名<span class="hljs-number">2</span> …
+　<span class="hljs-keyword">FROM</span> テーブル名
+</div></code></pre>
+<p>&quot;memo&quot;カラムも追加してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">"SELECT DISTINCT category, memo FROM expense"</span>
+</div></code></pre>
+<pre><code>food|lunch
+shopping|
+food|dinner
+travel|
+food|breakfast
+food|snack
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E5%BC%8F%E3%82%84%E9%96%A2%E6%95%B0%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E5%8A%A0%E5%B7%A5">式や関数を使った加工</h3>
+<p>式や関数を用いて、様々な処理を行うことができます。</p>
+<h4 id="%E3%82%AB%E3%83%A9%E3%83%A0%E5%80%A4%E3%81%AB%E5%AF%BE%E3%81%97%E3%81%A6%E5%9B%9B%E5%89%87%E6%BC%94%E7%AE%97">カラム値に対して四則演算</h4>
+<p>SELECTの後ろには、今まで選択する列のリストを置いてきました。</p>
+<p>ほかにも、<strong>固定値</strong>や<strong>計算式</strong>を指定することもできます。</p>
+<p>SQLiteで使用できる算術演算子は以下の通りです。</p>
+<ul>
+<li>+（加算）</li>
+<li>-（減算）</li>
+<li>*（乗算）</li>
+<li>/（除算）</li>
+<li>%（剰余）</li>
+</ul>
+<p>ここでは、支出額のカラムに1000円を引いたカラムを取得してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT id,\
+        amount,\
+        amount-1000\
+   FROM expense\
+   WHERE category = 'food'"</span>
+</div></code></pre>
+<pre><code>id|amount|amount-1000
+1|1000|0
+3|1200|200
+5|800|-200
+9|1500|500
+11|600|-400
+14|1200|200
+16|1000|0
+19|1500|500
+22|800|-200
+24|1500|500
+27|1000|0
+29|800|-200
+</code></pre>
+<p>固定値や計算式がそのまま表の列名になってしまいます。</p>
+<div style="page-break-before:always"></div>
+<p>列名を変えるときは<strong>AS演算子</strong>を使います。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT *,\
+        amount-1000 AS substracted_amount\
+   FROM expense\
+   WHERE category = 'food'"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo|substracted_amount
+1|2022-05-21|food|1000|lunch|0
+3|2022-09-07|food|1200|dinner|200
+5|2022-02-14|food|800|breakfast|-200
+9|2022-12-25|food|1500|dinner|500
+11|2022-04-12|food|600|snack|-400
+14|2022-02-17|food|1200|lunch|200
+16|2022-06-30|food|1000|breakfast|0
+19|2022-03-15|food|1500|dinner|500
+22|2022-06-05|food|800|snack|-200
+24|2022-08-14|food|1500|dinner|500
+27|2022-11-11|food|1000|lunch|0
+29|2022-02-28|food|800|breakfast|-200
+</code></pre>
+<h4 id="%E3%82%AB%E3%83%A9%E3%83%A0%E5%80%A4%E3%81%AB%E5%BF%9C%E3%81%98%E3%81%A6%E7%95%B0%E3%81%AA%E3%82%8B%E7%B5%90%E6%9E%9C%E3%82%92%E8%BF%94%E3%81%99">カラム値に応じて異なる結果を返す</h4>
+<p><strong>CASE演算子</strong>は、列の値や条件式を評価し、<br>
+その結果に応じて値を自由に変換することができます。</p>
+<pre class="hljs"><code><div>CASE 評価する列や式 WHEN 値1 THEN 値1の時に返す値  
+　　　　　　　　　　WHEN 値2 THEN 値2の時に返す値
+　　　　　　　　　　ELSE デフォルト値
+ <span class="hljs-keyword">END</span>
+</div></code></pre>
+<p>では、&quot;memo&quot;カラムの値を変換して取得してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">" SELECT id, date, category, amount, \
+  CASE memo \
+    WHEN 'breakfast' THEN '朝食' \
+    WHEN 'lunch' THEN '昼食' \
+    WHEN 'dinner' THEN '夕食' \
+    ELSE 'その他' \
+  END AS translated_memo \
+FROM expense \
+WHERE category = 'food' \
+"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|translated_memo
+1|2022-05-21|food|1000|昼食
+3|2022-09-07|food|1200|夕食
+5|2022-02-14|food|800|朝食
+9|2022-12-25|food|1500|夕食
+11|2022-04-12|food|600|その他
+14|2022-02-17|food|1200|昼食
+16|2022-06-30|food|1000|朝食
+19|2022-03-15|food|1500|夕食
+22|2022-06-05|food|800|その他
+24|2022-08-14|food|1500|夕食
+27|2022-11-11|food|1000|昼食
+29|2022-02-28|food|800|朝食
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>また、構文はもう一つあります。</p>
+<pre class="hljs"><code><div>CASE 
+   WHEN 条件1 THEN 条件1の時に返す値  
+   WHEN 条件2 THEN 条件2の時に返す値
+   ELSE デフォルト値
+ <span class="hljs-keyword">END</span>
+</div></code></pre>
+<p>では、書き換えてみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">" SELECT id, date, category, amount, \
+  CASE \
+    WHEN memo = 'breakfast' THEN '朝食' \
+    WHEN memo = 'lunch' THEN '昼食' \
+    WHEN memo = 'dinner' THEN '夕食' \
+    ELSE 'その他' \
+  END AS translated_memo \
+FROM expense \
+WHERE category = 'food' \
+"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|translated_memo
+1|2022-05-21|food|1000|昼食
+3|2022-09-07|food|1200|夕食
+5|2022-02-14|food|800|朝食
+9|2022-12-25|food|1500|夕食
+11|2022-04-12|food|600|その他
+14|2022-02-17|food|1200|昼食
+16|2022-06-30|food|1000|朝食
+19|2022-03-15|food|1500|夕食
+22|2022-06-05|food|800|その他
+24|2022-08-14|food|1500|夕食
+27|2022-11-11|food|1000|昼食
+29|2022-02-28|food|800|朝食
+</code></pre>
+<div style="page-break-before:always"></div>
+<h4 id="%E9%96%A2%E6%95%B0%E3%81%AE%E9%81%A9%E7%94%A8">関数の適用</h4>
+<p><strong>関数</strong>を使うと、式を使うより高度な処理を手軽に実現できます。</p>
+<p>ここで紹介していない関数は<a href="https://www.javadrive.jp/sqlite/function/">こちら</a>のページなどを参考にしてください。</p>
+<div style="page-break-before:always"></div>
+<h5 id="count%E9%96%A2%E6%95%B0">COUNT関数</h5>
+<p>カラムごとの行数を取得することができます。</p>
+<p>今回は、それぞれのカラムの行数を取得してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># "memo"カラムの値が空のものは"NULL"値に置き換えます</span>
+drop_columns = <span class="hljs-string">"UPDATE expense SET memo = NULL WHERE memo = ''"</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(drop_columns)
+
+con.commit()
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT COUNT(id), COUNT(date), COUNT(category), COUNT(amount), COUNT(memo) FROM expense"</span>
+</div></code></pre>
+<pre><code>COUNT(id)|COUNT(date)|COUNT(category)|COUNT(amount)|COUNT(memo)
+30|30|30|30|12
+</code></pre>
+<p>&quot;memo&quot;カラムは&quot;category&quot;カラムの値が&quot;food&quot;ではない場合はNULL値になるので、<br>
+行数が極端に少なくなっています。</p>
+<p>カラムに &quot; * &quot; を指定すると、全体の行数を取得できます。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT COUNT(*) FROM expense"</span>
+</div></code></pre>
+<pre><code>COUNT(*)
+30
+</code></pre>
+<div style="page-break-before:always"></div>
+<h5 id="sum%E9%96%A2%E6%95%B0">SUM関数</h5>
+<p>指定したカラムの値の合計を求めます。</p>
+<p>では、支出額の合計を求めてみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT SUM(amount) FROM expense"</span>
+</div></code></pre>
+<pre><code>SUM(amount)
+82200   
+</code></pre>
+<h5 id="avg%E9%96%A2%E6%95%B0">AVG関数</h5>
+<p>指定したカラムの平均値を求めます。</p>
+<p>では、支出額の平均を求めてみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT AVG(amount) FROM expense"</span>
+</div></code></pre>
+<pre><code>AVG(amount)
+2740.0
+</code></pre>
+<p>次に、食費の支出額の合計と平均を求めてみましょう。</p>
+<pre class="hljs"><code><div>!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT \
+  SUM(amount) AS total, \
+  AVG(amount) AS average \
+FROM \
+  expense \
+WHERE \
+  category = 'food'"</span>
+</div></code></pre>
+<pre><code>total|average
+12900|1075.0
+</code></pre>
+<div style="page-break-before:always"></div>    
+<h5 id="max%E9%96%A2%E6%95%B0">MAX関数</h5>
+<p>指定したカラムの最大値を求めます。</p>
+<p>では、支出額の最大値を求めてみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT MAX(amount) FROM expense"</span>
+</div></code></pre>
+<pre><code>MAX(amount)
+8000
+</code></pre>
+<h5 id="min%E9%96%A2%E6%95%B0">MIN関数</h5>
+<p>指定したカラムの最小値を求めます。</p>
+<p>では、支出額の最小値を求めてみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT MIN(amount) FROM expense"</span>
+</div></code></pre>
+<pre><code>MIN(amount)
+600
+</code></pre>
+<p>次に、食費の支出額の最大値と最小値を求めてみましょう。</p>
+<pre class="hljs"><code><div>!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT \
+  MAX(amount) AS max, \
+  MIN(amount) AS min \
+FROM \
+  expense \
+WHERE \
+  category = 'food'"</span>
+</div></code></pre>
+<pre><code>max|min
+1500|600
+</code></pre>
+<p>なお、これまで紹介してきた5つの関数は、<br>
+検索結果のデータを集計する<strong>集計関数</strong>です。</p>
+<div style="page-break-before:always"></div>
+<h5 id="strftime%E9%96%A2%E6%95%B0">strftime()関数</h5>
+<p>SQLiteの<strong>strftime()関数</strong>は、日付/時刻を文字列に変換する関数です。</p>
+<p>strftime()関数は、<strong>書式指定子</strong>を使用して、出力される文字列の形式を制御することができます。</p>
+<p>書式指定子は、特定の文字列を置換するために使用される特別な文字列です。<br>
+書式指定子には、日付や時刻の各要素を表す略語が含まれています。</p>
+<p>strftime()関数を使用すると、日付や時刻を様々な形式で出力することができます。<br>
+具体的には、次のような書式指定子が用意されています。</p>
+<table>
+<thead>
+<tr>
+<th>比較演算子</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>%Y</strong></td>
+<td>西暦年（4桁）</td>
+</tr>
+<tr>
+<td><strong>%m</strong></td>
+<td>月（2桁）</td>
+</tr>
+<tr>
+<td><strong>%d</strong></td>
+<td>日（2桁）</td>
+</tr>
+<tr>
+<td><strong>%H</strong></td>
+<td>時間（24時間表記、2桁）</td>
+</tr>
+<tr>
+<td><strong>%M</strong></td>
+<td>分（2桁）</td>
+</tr>
+<tr>
+<td><strong>%S</strong></td>
+<td>秒（2桁）</td>
+</tr>
+<tr>
+<td><strong>%j</strong></td>
+<td>年間の通算日数（3桁）</td>
+</tr>
+<tr>
+<td><strong>%w</strong></td>
+<td>曜日（0-6で表される。0は日曜日）</td>
+</tr>
+<tr>
+<td><strong>%W</strong></td>
+<td>年間の通算週番号（2桁）</td>
+</tr>
+<tr>
+<td><strong>%Z</strong></td>
+<td>タイムゾーンの名前</td>
+</tr>
+</tbody>
+</table>
+<p>これらの書式指定子を組み合わせることで、様々な形式の日付や時刻を出力することができます。</p>
+<p>詳細は<a href="https://www.javadrive.jp/sqlite/function/index6.html#section4">こちら</a>の記事などを参照してください。</p>
+<div style="page-break-before:always"></div>
+<p>ではまず、現在時刻を取得してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 東京の現在時刻を取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">"SELECT strftime('%Y-%m-%d %H:%M:%S', 'now', 'localtime', '+9 hours');"</span>
+</div></code></pre>
+<pre><code>2023-04-29 17:01:39
+</code></pre>
+<div style="page-break-before:always"></div>    
+<p>次に、家計簿テーブルについて、それぞれの月のデータを表示してみましょう。</p>
+<pre class="hljs"><code><div>!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT *, strftime('%Y-%m', date) AS month FROM expense;"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo|month
+1|2022-05-21|food|1000|lunch|2022-05
+2|2022-07-10|shopping|5000||2022-07
+3|2022-09-07|food|1200|dinner|2022-09
+4|2022-03-30|travel|8000||2022-03
+5|2022-02-14|food|800|breakfast|2022-02
+6|2022-04-05|shopping|1500||2022-04
+7|2022-06-18|travel|5000||2022-06
+8|2022-08-21|shopping|2000||2022-08
+9|2022-12-25|food|1500|dinner|2022-12
+10|2022-11-05|travel|3000||2022-11
+11|2022-04-12|food|600|snack|2022-04
+12|2022-07-28|shopping|2500||2022-07
+13|2022-09-10|travel|4000||2022-09
+14|2022-02-17|food|1200|lunch|2022-02
+15|2022-08-06|shopping|3500||2022-08
+16|2022-06-30|food|1000|breakfast|2022-06
+17|2022-11-21|travel|6000||2022-11
+18|2022-12-18|shopping|1800||2022-12
+19|2022-03-15|food|1500|dinner|2022-03
+20|2022-01-22|travel|2000||2022-01
+21|2022-05-23|shopping|2000||2022-05
+22|2022-06-05|food|800|snack|2022-06
+23|2022-07-12|travel|5000||2022-07
+24|2022-08-14|food|1500|dinner|2022-08
+25|2022-09-01|shopping|3000||2022-09
+26|2022-10-06|travel|4000||2022-10
+27|2022-11-11|food|1000|lunch|2022-11
+28|2022-12-24|shopping|5000||2022-12
+29|2022-02-28|food|800|breakfast|2022-02
+30|2022-03-20|travel|6000||2022-03
+</code></pre>
+<p>月のデータだけ取得することができました。</p>
+<div style="page-break-before:always"></div>
+<p>以下のような家計簿テーブルを作成します。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> sqlite3 <span class="hljs-comment"># SQLite3ライブラリをインポート</span>
+
+<span class="hljs-comment"># "sample1.db"という名前のSQLiteデータベースに接続する</span>
+con = sqlite3.connect(<span class="hljs-string">"sample1.db"</span>)
+
+<span class="hljs-comment"># カーソルを作成する</span>
+cursor = con.cursor()
+
+<span class="hljs-comment"># "expense"テーブルを作成するSQLクエリを定義する</span>
+sample_query = <span class="hljs-string">"""
+CREATE TABLE IF NOT EXISTS expense (
+  id INTEGER PRIMARY KEY,
+  date TEXT,
+  category TEXT,
+  amount INTEGER,
+  memo TEXT
+);
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(sample_query)
+</div></code></pre>
+<pre><code>&lt;sqlite3.Cursor at 0x7f93d1757640&gt;
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># sample1.dbに作成されたテーブルの構造を表示する</span>
+!sqlite3 sample1.db <span class="hljs-string">".schema"</span>
+</div></code></pre>
+<pre><code>CREATE TABLE expense (
+  id INTEGER PRIMARY KEY,
+  date TEXT,
+  category TEXT,
+  amount INTEGER,
+  memo TEXT
+);
+</code></pre>
+<div style="page-break-before:always"></div>    
+<p>以下のサンプルデータを追加します。</p>
+<pre class="hljs"><code><div>add_query = <span class="hljs-string">"""
+INSERT INTO expense (id, date, category, amount, memo) VALUES
+  (1, '2022-05-21', 'food', 1000, 'lunch'),
+  (2, '2022-07-10', 'shopping', 5000, ''),
+  (3, '2022-09-07', 'food', 1200, 'dinner'),
+  (4, '2022-03-30', 'travel', 8000, ''),
+  (5, '2022-02-14', 'food', 800, 'breakfast'),
+  (6, '2022-04-05', 'shopping', 1500, ''),
+  (7, '2022-06-18', 'travel', 5000, ''),
+  (8, '2022-08-21', 'shopping', 2000, ''),
+  (9, '2022-12-25', 'food', 1500, 'dinner'),
+  (10, '2022-11-05', 'travel', 3000, ''),
+  (11, '2022-04-12', 'food', 600, 'snack'),
+  (12, '2022-07-28', 'shopping', 2500, ''),
+  (13, '2022-09-10', 'travel', 4000, ''),
+  (14, '2022-02-17', 'food', 1200, 'lunch'),
+  (15, '2022-08-06', 'shopping', 3500, ''),
+  (16, '2022-06-30', 'food', 1000, 'breakfast'),
+  (17, '2022-11-21', 'travel', 6000, ''),
+  (18, '2022-12-18', 'shopping', 1800, ''),
+  (19, '2022-03-15', 'food', 1500, 'dinner'),
+  (20, '2022-01-22', 'travel', 2000, ''),
+  (21, '2022-05-23', 'shopping', 2000, ''),
+  (22, '2022-06-05', 'food', 800, 'snack'),
+  (23, '2022-07-12', 'travel', 5000, ''),
+  (24, '2022-08-14', 'food', 1500, 'dinner'),
+  (25, '2022-09-01', 'shopping', 3000, ''),
+  (26, '2022-10-06', 'travel', 4000, ''),
+  (27, '2022-11-11', 'food', 1000, 'lunch'),
+  (28, '2022-12-24', 'shopping', 5000, ''),
+  (29, '2022-02-28', 'food', 800, 'breakfast'),
+  (30, '2022-03-20', 'travel', 6000, '');
+
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(add_query)
+
+con.commit()
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT * FROM expense"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+1|2022-05-21|food|1000|lunch
+2|2022-07-10|shopping|5000|
+3|2022-09-07|food|1200|dinner
+4|2022-03-30|travel|8000|
+5|2022-02-14|food|800|breakfast
+6|2022-04-05|shopping|1500|
+7|2022-06-18|travel|5000|
+8|2022-08-21|shopping|2000|
+9|2022-12-25|food|1500|dinner
+10|2022-11-05|travel|3000|
+11|2022-04-12|food|600|snack
+12|2022-07-28|shopping|2500|
+13|2022-09-10|travel|4000|
+14|2022-02-17|food|1200|lunch
+15|2022-08-06|shopping|3500|
+16|2022-06-30|food|1000|breakfast
+17|2022-11-21|travel|6000|
+18|2022-12-18|shopping|1800|
+19|2022-03-15|food|1500|dinner
+20|2022-01-22|travel|2000|
+21|2022-05-23|shopping|2000|
+22|2022-06-05|food|800|snack
+23|2022-07-12|travel|5000|
+24|2022-08-14|food|1500|dinner
+25|2022-09-01|shopping|3000|
+26|2022-10-06|travel|4000|
+27|2022-11-11|food|1000|lunch
+28|2022-12-24|shopping|5000|
+29|2022-02-28|food|800|breakfast
+30|2022-03-20|travel|6000|
+</code></pre>
+<p>上記の&quot;expense&quot;テーブルは、以下のような構造を持ちます。</p>
+<ul>
+<li>id：自動的に割り当てられる数値型の主キー列。</li>
+<li>date: ：日付を表すテキスト列。YYYY-MM-DD形式で保存される。</li>
+<li>category：支出のカテゴリを表すテキスト列。</li>
+<li>amount：支出金額を表す数値型の列。</li>
+<li>memo：メモを表すテキスト列。</li>
+</ul>
+<div style="page-break-before:always"></div>
+<h2 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E5%8C%96">データのグループ化</h2>
+<p>テーブルの行をグループ化して集計したいときは、<strong>GROUP BY</strong>を使います。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> グループ化の基準列名…, 集計関数
+  <span class="hljs-keyword">FROM</span> テーブル名
+ (<span class="hljs-keyword">WHERE</span> 絞り込み条件)
+  <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> グループ化の基準列名…
+</div></code></pre>
+<p>GROUP BY 句の後に指定したカラム名の値が同じものが同じグループとなります。</p>
+<div style="page-break-before:always"></div>
+<p>では、&quot;category&quot;カラムでグループ化を行い、<br>
+グループ毎に含まれるデータの行数を取得してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT category, count(*) FROM expense GROUP BY category"</span>
+</div></code></pre>
+<pre><code>category|count(*)
+food|12
+shopping|9
+travel|9
+</code></pre>
+<p>GROUP BY 句に複数の列をカンマで区切って指定すれば、<br>
+複数の列を基準にしたグループ化をすることができます。</p>
+<p>&quot;category&quot;カラムと&quot;memo&quot;カラムでグループ化してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT category,memo, count(*) FROM expense GROUP BY category, memo"</span>
+</div></code></pre>
+<pre><code>category|memo|count(*)
+food|breakfast|3
+food|dinner|4
+food|lunch|3
+food|snack|2
+shopping||9
+travel||9
+</code></pre>
+<div style="page-break-before:always"></div>    
+<p>次に、それぞれの月のデータでグループ化し、<br>
+さらに&quot;category&quot;カラムでグループ化してみようと思います。</p>
+<p>支出額の合計を可視化してみます。</p>
+<pre class="hljs"><code><div>!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT strftime('%Y-%m', date) AS month, category, SUM(amount) AS sum \
+ FROM expense \
+ GROUP BY month, category"</span>
+</div></code></pre>
+<pre><code>month|category|sum
+2022-01|travel|2000
+2022-02|food|2800
+2022-03|food|1500
+2022-03|travel|14000
+2022-04|food|600
+2022-04|shopping|1500
+2022-05|food|1000
+2022-05|shopping|2000
+2022-06|food|1800
+2022-06|travel|5000
+2022-07|shopping|7500
+2022-07|travel|5000
+2022-08|food|1500
+2022-08|shopping|5500
+2022-09|food|1200
+2022-09|shopping|3000
+2022-09|travel|4000
+2022-10|travel|4000
+2022-11|food|1000
+2022-11|travel|9000
+2022-12|food|1500
+2022-12|shopping|6800
+</code></pre>
+<p>3月に旅行代としての支出が多かったようですね。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E5%BE%8C%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%81%B8%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%AE%E8%A8%AD%E5%AE%9A">グループ後のデータへの条件の設定</h3>
+<p>WHERE 句では、グループ化する前の条件を指定することになります。</p>
+<p>グループ化した後の条件を指定するときは、<strong>HAVING句</strong>を使います。</p>
+<p>ここで、SELECT文の構文を改めて整理しましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> 選択列リスト
+  <span class="hljs-keyword">FROM</span> テーブル名
+ [<span class="hljs-keyword">WHERE</span> 条件式]
+ [<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> グループ化列名]
+ [<span class="hljs-keyword">HAVING</span> 集計結果に対する条件式]
+ [<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> 並び替え列名]
+</div></code></pre>
+<p>では、月ごと・カテゴリーごとで支出額の合計をグループ化したもののうち、<br>
+5000円以上のものだけを取得してみましょう。</p>
+<pre class="hljs"><code><div>!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT strftime('%Y-%m', date) AS month, category, SUM(amount) AS sum \
+ FROM expense \
+ GROUP BY month, category \
+ HAVING sum &gt;= 5000"</span>
+</div></code></pre>
+<pre><code>month|category|sum
+2022-03|travel|14000
+2022-06|travel|5000
+2022-07|shopping|7500
+2022-07|travel|5000
+2022-08|shopping|5500
+2022-11|travel|9000
+2022-12|shopping|6800
+</code></pre>
+<div style="page-break-before:always"></div>    
+<h2 id="%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E7%B5%90%E5%90%88">テーブルの結合</h2>
+<p>今までの家計簿テーブルは以下のような形でした。<br>
+（一部カラムについては省略しています）</p>
+<p><img src="https://imgur.com/REDHKlW.png" alt=""></p>
+<p>ここで、家計簿テーブルを<br>
+「家計簿テーブル」と「費目テーブル」の2つに分けてみましょう。</p>
+<p><img src="https://imgur.com/bbMUHSi.png" alt="">　<img src="https://imgur.com/Ylbp27q.png" alt=""></p>
+<p>見た目的に見やすいのは単一のテーブルで管理している場合です。</p>
+<p>しかし、複数のテーブルに分けて管理すると、<strong>安全・確実にデータを管理する</strong>ことができます。</p>
+<p>構文は以下のようになっています。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> 選択列リスト
+  <span class="hljs-keyword">FROM</span> テーブルA
+  <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> テーブルB
+    <span class="hljs-keyword">ON</span> テーブルA.カラム名 = テーブルB.カラム名 
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<p>ではテーブルを結合してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># "new_expense"テーブルを作成するSQLクエリを定義する</span>
+sample_query = <span class="hljs-string">"""
+CREATE TABLE IF NOT EXISTS new_expense (
+  id INTEGER PRIMARY KEY,
+  date TEXT,
+  categoryId INTEGER,
+  amount INTEGER,
+  memo TEXT
+);
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(sample_query)
+</div></code></pre>
+<pre><code>&lt;sqlite3.Cursor at 0x7f93d1757640&gt;
+</code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div>add_query = <span class="hljs-string">"""
+INSERT INTO new_expense (id, date, categoryId, amount, memo) VALUES
+  (1, '2022-05-21', 1, 1000, 'lunch'),
+  (2, '2022-07-10', 2, 5000, ''),
+  (3, '2022-09-07', 1, 1200, 'dinner'),
+  (4, '2022-03-30', 3, 8000, ''),
+  (5, '2022-02-14', 1, 800, 'breakfast'),
+  (6, '2022-04-05', 2, 1500, ''),
+  (7, '2022-06-18', 3, 5000, ''),
+  (8, '2022-08-21', 2, 2000, ''),
+  (9, '2022-12-25', 1, 1500, 'dinner'),
+  (10, '2022-11-05', 3, 3000, ''),
+  (11, '2022-04-12', 1, 600, 'snack'),
+  (12, '2022-07-28', 2, 2500, ''),
+  (13, '2022-09-10', 3, 4000, ''),
+  (14, '2022-02-17', 1, 1200, 'lunch'),
+  (15, '2022-08-06', 2, 3500, ''),
+  (16, '2022-06-30', 1, 1000, 'breakfast'),
+  (17, '2022-11-21', 3, 6000, ''),
+  (18, '2022-12-18', 2, 1800, ''),
+  (19, '2022-03-15', 1, 1500, 'dinner'),
+  (20, '2022-01-22', 'travel', 2000, ''),
+  (21, '2022-05-23', 2, 2000, ''),
+  (22, '2022-06-05', 1, 800, 'snack'),
+  (23, '2022-07-12', 3, 5000, ''),
+  (24, '2022-08-14', 1, 1500, 'dinner'),
+  (25, '2022-09-01', 2, 3000, ''),
+  (26, '2022-10-06', 3, 4000, ''),
+  (27, '2022-11-11', 1, 1000, 'lunch'),
+  (28, '2022-12-24', 2, 5000, ''),
+  (29, '2022-02-28', 1, 800, 'breakfast'),
+  (30, '2022-03-20', 3, 6000, '');
+
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(add_query)
+
+con.commit()
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-comment"># "categories"テーブルを作成するSQLクエリを定義する</span>
+sample_query = <span class="hljs-string">"""
+CREATE TABLE IF NOT EXISTS categories (
+  id INTEGER PRIMARY KEY,
+  category TEXT
+);
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(sample_query)
+</div></code></pre>
+<pre><code>&lt;sqlite3.Cursor at 0x7f93d1757640&gt;
+</code></pre>
+<pre class="hljs"><code><div>add_query = <span class="hljs-string">"""
+INSERT INTO categories (id, category) VALUES
+  (1, 'food'),
+  (2, 'shopping'),
+  (3, 'travel');
+
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(add_query)
+
+con.commit()
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-comment"># new_expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT * FROM new_expense"</span>
+</div></code></pre>
+<pre><code>id|date|categoryId|amount|memo
+1|2022-05-21|1|1000|lunch
+2|2022-07-10|2|5000|
+3|2022-09-07|1|1200|dinner
+4|2022-03-30|3|8000|
+5|2022-02-14|1|800|breakfast
+6|2022-04-05|2|1500|
+7|2022-06-18|3|5000|
+8|2022-08-21|2|2000|
+9|2022-12-25|1|1500|dinner
+10|2022-11-05|3|3000|
+11|2022-04-12|1|600|snack
+12|2022-07-28|2|2500|
+13|2022-09-10|3|4000|
+14|2022-02-17|1|1200|lunch
+15|2022-08-06|2|3500|
+16|2022-06-30|1|1000|breakfast
+17|2022-11-21|3|6000|
+18|2022-12-18|2|1800|
+19|2022-03-15|1|1500|dinner
+20|2022-01-22|travel|2000|
+21|2022-05-23|2|2000|
+22|2022-06-05|1|800|snack
+23|2022-07-12|3|5000|
+24|2022-08-14|1|1500|dinner
+25|2022-09-01|2|3000|
+26|2022-10-06|3|4000|
+27|2022-11-11|1|1000|lunch
+28|2022-12-24|2|5000|
+29|2022-02-28|1|800|breakfast
+30|2022-03-20|3|6000|
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># categoriesテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT * FROM categories"</span>
+</div></code></pre>
+<pre><code>id|category
+1|food
+2|shopping
+3|travel
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>では、結合してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># new_expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT new_expense.id, \
+        new_expense.date, \
+        categories.category, \
+        new_expense.amount, \
+        new_expense.memo \
+ FROM new_expense \
+ INNER JOIN categories \
+ ON new_expense.categoryId = categories.id; \
+"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+1|2022-05-21|food|1000|lunch
+2|2022-07-10|shopping|5000|
+3|2022-09-07|food|1200|dinner
+4|2022-03-30|travel|8000|
+5|2022-02-14|food|800|breakfast
+6|2022-04-05|shopping|1500|
+7|2022-06-18|travel|5000|
+8|2022-08-21|shopping|2000|
+9|2022-12-25|food|1500|dinner
+10|2022-11-05|travel|3000|
+11|2022-04-12|food|600|snack
+12|2022-07-28|shopping|2500|
+13|2022-09-10|travel|4000|
+14|2022-02-17|food|1200|lunch
+15|2022-08-06|shopping|3500|
+16|2022-06-30|food|1000|breakfast
+17|2022-11-21|travel|6000|
+18|2022-12-18|shopping|1800|
+19|2022-03-15|food|1500|dinner
+21|2022-05-23|shopping|2000|
+22|2022-06-05|food|800|snack
+23|2022-07-12|travel|5000|
+24|2022-08-14|food|1500|dinner
+25|2022-09-01|shopping|3000|
+26|2022-10-06|travel|4000|
+27|2022-11-11|food|1000|lunch
+28|2022-12-24|shopping|5000|
+29|2022-02-28|food|800|breakfast
+30|2022-03-20|travel|6000|
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E8%A4%87%E6%95%B0%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AB%E5%88%86%E3%81%91%E3%82%8B%E5%88%A9%E7%82%B9">複数テーブルに分ける利点</h3>
+<p>複数のテーブルに分けて管理すると、安全・確実にデータを管理することができると先ほど述べました。</p>
+<p>例えば、実際の分かりやすい例として、<br>
+古い家計簿テーブルの&quot;category&quot;カラムの値をすべて日本語に変更するとしましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT category, count(*) FROM expense GROUP BY category"</span>
+</div></code></pre>
+<pre><code>category|count(*)
+food|12
+shopping|9
+travel|9
+</code></pre>
+<pre class="hljs"><code><div>update_query = <span class="hljs-string">"""
+UPDATE expense
+SET category = 
+    CASE 
+        WHEN category = 'food' THEN '食費'
+        WHEN category = 'shopping' THEN '日用品費'
+        WHEN category = 'travel' THEN '旅費'
+        ELSE category
+    END;
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(update_query)
+
+con.commit()
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT category, count(*) FROM expense GROUP BY category"</span>
+</div></code></pre>
+<pre><code>category|count(*)
+旅費|9
+日用品費|9
+食費|12
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>1行ずつ条件に合致するかを調べて書き換えることになります。</p>
+<p>もし家計簿テーブルが何万行もあったりしたら、明らかに大変です。</p>
+<p>では次に、複数テーブルに分けた場合を考えてみましょう。</p>
+<p>「費目テーブル」の値を更新するだけで、同様のことができます。</p>
+<pre class="hljs"><code><div>update_query = <span class="hljs-string">"""
+UPDATE categories
+SET category = 
+    CASE 
+        WHEN category = 'food' THEN '食費'
+        WHEN category = 'shopping' THEN '日用品費'
+        WHEN category = 'travel' THEN '旅費'
+        ELSE category
+    END;
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(update_query)
+
+con.commit()
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># categoriesテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT * FROM categories"</span>
+</div></code></pre>
+<pre><code>id|category
+1|食費
+2|日用品費
+3|旅費
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E5%86%85%E9%83%A8%E7%B5%90%E5%90%88">内部結合</h3>
+<p>結合条件を満たす行だけを抽出し、それ以外の行を除外する<br>
+結合方法を<strong>内部結合</strong>といいます。</p>
+<p>2つのテーブルに共通するデータだけが結合されます。</p>
+<p>これまでやってきたのは内部結合です。</p>
+<p>内部結合が何なのかを分かりやすくするために、「費目テーブル」を以下のように変更します。</p>
+<p><img src="https://imgur.com/bbMUHSi.png" alt="">　<img src="https://imgur.com/HzXNgQ3.png" alt=""></p>
+<p>結合結果は以下のようになります。</p>
+<p><img src="https://imgur.com/YAvfUUF.png" alt=""></p>
+<p>「費目テーブル」の&quot;ID&quot;カラムの値の中に、<br>
+「家計簿テーブル」の&quot;categoryID&quot;カラムの値が存在しなかった場合は、<br>
+データは取得されません。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E5%A4%96%E9%83%A8%E7%B5%90%E5%90%88">外部結合</h3>
+<p>一方のテーブルに存在する行でもう一方のテーブルに存在しない場合の<br>
+結合方法を、<strong>外部結合</strong>といいます。</p>
+<p>外部結合の場合は一致しない場合もデータとして取得します。</p>
+<p>外部結合が何なのかを分かりやすくするために、「費目テーブル」を以下のように変更します。</p>
+<p><img src="https://imgur.com/bbMUHSi.png" alt="">　<img src="https://imgur.com/HzXNgQ3.png" alt=""></p>
+<p>結合結果は以下のようになります。</p>
+<p><img src="https://imgur.com/AZTV68v.png" alt=""></p>
+<p>「費目テーブル」の&quot;ID&quot;カラムの値の中に、<br>
+「家計簿テーブル」の&quot;categoryID&quot;カラムの値が存在しなかった場合は、<br>
+内容がすべてNULLな行を生み出して結合します。</p>
+<p>構文は以下のようになっています。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> 選択列リスト
+  <span class="hljs-keyword">FROM</span> テーブルA
+  <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> テーブルB
+    <span class="hljs-keyword">ON</span> テーブルA.カラム名 = テーブルB.カラム名 
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<p>ではやってみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># "new_categories"テーブルを作成するSQLクエリを定義する</span>
+sample_query = <span class="hljs-string">"""
+CREATE TABLE IF NOT EXISTS new_categories (
+  id INTEGER PRIMARY KEY,
+  category TEXT
+);
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(sample_query)
+</div></code></pre>
+<pre><code>&lt;sqlite3.Cursor at 0x7f93d1757640&gt;
+</code></pre>
+<pre class="hljs"><code><div>add_query = <span class="hljs-string">"""
+INSERT INTO new_categories (id, category) VALUES
+  (1, 'food'),
+  (2, 'shopping');
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(add_query)
+
+con.commit()
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># new_categoriesテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> <span class="hljs-string">"SELECT * FROM new_categories"</span>
+</div></code></pre>
+<pre><code>id|category
+1|food
+2|shopping
+</code></pre>
+<div style="page-break-before:always"></div>    
+<p>ではテーブルを結合してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># new_categoriesテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT new_expense.id, \
+        new_expense.date, \
+        new_categories.category, \
+        new_expense.amount, \
+        new_expense.memo \
+ FROM new_expense \
+ LEFT OUTER JOIN new_categories \
+ ON new_expense.categoryId = new_categories.id; \
+"</span>
+</div></code></pre>
+<pre><code>id|date|category|amount|memo
+1|2022-05-21|food|1000|lunch
+2|2022-07-10|shopping|5000|
+3|2022-09-07|food|1200|dinner
+4|2022-03-30||8000|
+5|2022-02-14|food|800|breakfast
+6|2022-04-05|shopping|1500|
+7|2022-06-18||5000|
+8|2022-08-21|shopping|2000|
+9|2022-12-25|food|1500|dinner
+10|2022-11-05||3000|
+11|2022-04-12|food|600|snack
+12|2022-07-28|shopping|2500|
+13|2022-09-10||4000|
+14|2022-02-17|food|1200|lunch
+15|2022-08-06|shopping|3500|
+16|2022-06-30|food|1000|breakfast
+17|2022-11-21||6000|
+18|2022-12-18|shopping|1800|
+19|2022-03-15|food|1500|dinner
+20|2022-01-22||2000|
+21|2022-05-23|shopping|2000|
+22|2022-06-05|food|800|snack
+23|2022-07-12||5000|
+24|2022-08-14|food|1500|dinner
+25|2022-09-01|shopping|3000|
+26|2022-10-06||4000|
+27|2022-11-11|food|1000|lunch
+28|2022-12-24|shopping|5000|
+29|2022-02-28|food|800|breakfast
+30|2022-03-20||6000|
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>&quot;category&quot;カラムの値が、&quot;travel&quot;から空になって取得できたことが確認できます。</p>
+<p>これで、取得結果から何らかの行が消滅してしまうことが避けられます。</p>
+<p><img src="https://imgur.com/8TsI5MO.png" alt="">　<img src="https://imgur.com/1ASe8QX.png" alt=""></p>
+<p>そのほかの結合については、<a href="https://www.javadrive.jp/sqlite/join/">こちら</a>のページなどを参考にしてください。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E3%83%93%E3%83%A5%E3%83%BC">ビュー</h2>
+<p>データベースのテーブルのクエリ結果を仮想的に表したものを <strong>ビュー(view)</strong> といいます。</p>
+<p>SELECT 文などによってテーブルの一部のカラムのデータを閲覧したい場合に、<br>
+再利用しやすくなります。</p>
+<p>例えば、複数のテーブルを用意した場合、以下のコードを入力してテーブルを結合しました。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT new_expense.id, \
+        new_expense.date, \
+        categories.category, \
+        new_expense.amount, \
+        new_expense.memo \
+ FROM new_expense \
+ INNER JOIN categories \
+ ON new_expense.categoryId = categories.id \
+ ORDER BY date; \
+"</span>
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre><code>id|date|category|amount|memo
+5|2022-02-14|食費|800|breakfast
+14|2022-02-17|食費|1200|lunch
+29|2022-02-28|食費|800|breakfast
+19|2022-03-15|食費|1500|dinner
+30|2022-03-20|旅費|6000|
+4|2022-03-30|旅費|8000|
+6|2022-04-05|日用品費|1500|
+11|2022-04-12|食費|600|snack
+1|2022-05-21|食費|1000|lunch
+21|2022-05-23|日用品費|2000|
+22|2022-06-05|食費|800|snack
+7|2022-06-18|旅費|5000|
+16|2022-06-30|食費|1000|breakfast
+2|2022-07-10|日用品費|5000|
+23|2022-07-12|旅費|5000|
+12|2022-07-28|日用品費|2500|
+15|2022-08-06|日用品費|3500|
+24|2022-08-14|食費|1500|dinner
+8|2022-08-21|日用品費|2000|
+25|2022-09-01|日用品費|3000|
+3|2022-09-07|食費|1200|dinner
+13|2022-09-10|旅費|4000|
+26|2022-10-06|旅費|4000|
+10|2022-11-05|旅費|3000|
+27|2022-11-11|食費|1000|lunch
+17|2022-11-21|旅費|6000|
+18|2022-12-18|日用品費|1800|
+28|2022-12-24|日用品費|5000|
+9|2022-12-25|食費|1500|dinner
+</code></pre>
+<p>ビューでは結果表をテーブルのように扱うことができます。</p>
+<p>つまり、SELECT文によって取得できたデータをを再利用できるようになるということです。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AE%E4%BD%9C%E6%88%90">ビューの作成</h3>
+<p>ビューの作成には<strong>CREATE VIEW文</strong>を使います。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> ビュー名 <span class="hljs-keyword">AS</span> <span class="hljs-keyword">SELECT</span>文
+</div></code></pre>
+<p>では、先ほど得られたデータからビューを作成してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># expenseテーブルのデータを取得する</span>
+!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"CREATE VIEW combined_expense \
+ AS SELECT new_expense.id, \
+        new_expense.date, \
+        categories.category, \
+        new_expense.amount, \
+        new_expense.memo \
+    FROM new_expense \
+    INNER JOIN categories \
+    ON new_expense.categoryId = categories.id; \
+"</span>
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<p>このビューにSELECT文を実行してみましょう。</p>
+<pre class="hljs"><code><div>!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT strftime('%Y-%m', date) AS month, category, SUM(amount) AS sum \
+ FROM combined_expense \
+ GROUP BY month, category"</span>
+</div></code></pre>
+<pre><code>month|category|sum
+2022-02|食費|2800
+2022-03|旅費|14000
+2022-03|食費|1500
+2022-04|日用品費|1500
+2022-04|食費|600
+2022-05|日用品費|2000
+2022-05|食費|1000
+2022-06|旅費|5000
+2022-06|食費|1800
+2022-07|旅費|5000
+2022-07|日用品費|7500
+2022-08|日用品費|5500
+2022-08|食費|1500
+2022-09|旅費|4000
+2022-09|日用品費|3000
+2022-09|食費|1200
+2022-10|旅費|4000
+2022-11|旅費|9000
+2022-11|食費|1000
+2022-12|日用品費|6800
+2022-12|食費|1500
+</code></pre>
+<p>テーブルを使った時と同じ結果が得られました。</p>
+<p>ビュー自体にデータを保持する機能はなく、あくまで参照元のデータをその都度表示する仕組みです。</p>
+<p>そのため、参照元のデータが変更された場合には、ビューの内容も自動的に更新されます。</p>
+<p>では、ここでは大みそかに食費の出費があったとして、そのデータを追加します。</p>
+<pre class="hljs"><code><div>add_query = <span class="hljs-string">"""
+INSERT INTO new_expense (id, date, categoryId, amount, memo) VALUES
+  (31, '2022-12-31', 1, 5000, 'dinner');
+"""</span>
+
+<span class="hljs-comment"># SQLクエリを実行する</span>
+cursor.execute(add_query)
+
+con.commit()
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div>!sqlite3 sample1.db <span class="hljs-string">".headers on"</span> \
+<span class="hljs-string">"SELECT strftime('%Y-%m', date) AS month, category, SUM(amount) AS sum \
+ FROM combined_expense \
+ GROUP BY month, category"</span>
+</div></code></pre>
+<pre><code>month|category|sum
+2022-02|食費|2800
+2022-03|旅費|14000
+2022-03|食費|1500
+2022-04|日用品費|1500
+2022-04|食費|600
+2022-05|日用品費|2000
+2022-05|食費|1000
+2022-06|旅費|5000
+2022-06|食費|1800
+2022-07|旅費|5000
+2022-07|日用品費|7500
+2022-08|日用品費|5500
+2022-08|食費|1500
+2022-09|旅費|4000
+2022-09|日用品費|3000
+2022-09|食費|1200
+2022-10|旅費|4000
+2022-11|旅費|9000
+2022-11|食費|1000
+2022-12|日用品費|6800
+2022-12|食費|6500
+</code></pre>
+<p>ビュー<code>combined_expense</code>が自動で更新されていることが、<br>
+12月の食費のデータから確認できます。</p>
+<p>また、ビューはテーブルとよく似ていますが、全く同じというわけではありません。</p>
+<p>ビューに対してデータの追加や削除、データの更新といった処理を行うことは、<br>
+基本的にはできなくなっています。注意しましょう。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%83%93%E3%83%A5%E3%83%BC%E3%81%AE%E5%89%8A%E9%99%A4">ビューの削除</h3>
+<p>ビューの作成には<strong>DROP VIEW文</strong>を使います。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">VIEW</span> ビュー名
+</div></code></pre>
+<p>では先ほど作ったビュー<code>combined_expense</code>を削除してみましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># sample1.dbに作成されたテーブルの一覧を表示する</span>
+!sqlite3 sample1.db <span class="hljs-string">".table"</span>
+</div></code></pre>
+<pre><code>categories        expense           new_expense     
+combined_expense  new_categories  
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># sample1.dbに作成されたテーブルの一覧を表示する</span>
+!sqlite3 sample1.db <span class="hljs-string">"DROP VIEW combined_expense"</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># sample1.dbに作成されたテーブルの一覧を表示する</span>
+!sqlite3 sample1.db <span class="hljs-string">".table"</span>
+</div></code></pre>
+<pre><code>categories      expense         new_categories  new_expense   
+</code></pre>
+
+</body>
+</html>
