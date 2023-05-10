@@ -188,20 +188,6 @@ display(htm)
 ```
 
 
-<html>
-  <head>
-    <style>
-p {
-  background-color: #DDFFDD;
-}
-</style>
-  </head>
-  <body>
-      <!-- pタグにstyle属性を適用
-          背景色を薄い緑色にする -->
-      <p>カメの平均寿命は30年ほどです</p>
-  </body>
-</html>
 
 ![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/9bbc3a6e-3b5c-42ea-8646-f798cbbcb8f8)
 
@@ -272,6 +258,7 @@ htm = HTML(f'''\
 ''')
 display(htm)
 ```
+
 ![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/fd2a6cbf-90d8-49e8-9ee6-d61f6211311e)
 
 
@@ -448,6 +435,7 @@ htm = HTML(f'''\
 ''')
 display(htm)
 ```
+
 ![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/7171c8c6-8397-46cc-8f84-01329e283258)
 
 
@@ -748,6 +736,7 @@ htm = HTML(f'''\
 
 display(htm)
 ```
+
 ![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/fe736346-01fe-4e54-affa-b0d719df35fd)
 
 
@@ -1679,6 +1668,7 @@ display(htm)
 ```
 
 
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/312b2e67-4107-4a77-aa67-8a49fe2dba6e)
 
 
 
