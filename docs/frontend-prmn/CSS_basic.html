@@ -1,0 +1,2240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSS_basic.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="css">CSS</h1>
+<ul>
+<li><a href="#css">CSS</a>
+<ul>
+<li><a href="#css%E3%81%A8%E3%81%AF">CSSとは</a>
+<ul>
+<li><a href="#css%E3%82%92%E9%81%A9%E7%94%A8%E3%81%95%E3%81%9B%E3%82%8B%E6%96%B9%E6%B3%95">CSSを適用させる方法</a></li>
+<li><a href="#css%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0">CSSの基本構造</a></li>
+<li><a href="#%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%A8id">クラスとID</a>
+<ul>
+<li><a href="#class%E5%B1%9E%E6%80%A7">class属性</a></li>
+<li><a href="#id%E5%B1%9E%E6%80%A7">id属性</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E5%AD%97%E3%82%84%E6%96%87%E7%AB%A0%E3%81%AE%E8%A3%85%E9%A3%BE">文字や文章の装飾</a>
+<ul>
+<li><a href="#%E6%96%87%E5%AD%97%E3%81%AE%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88">文字のフォント</a></li>
+<li><a href="#%E6%96%87%E5%AD%97%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%95">文字の大きさ</a></li>
+<li><a href="#%E6%96%87%E5%AD%97%E3%81%AE%E5%A4%AA%E3%81%95">文字の太さ</a></li>
+<li><a href="#%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E6%B0%B4%E5%B9%B3%E6%96%B9%E5%90%91%E3%81%AE%E9%85%8D%E7%BD%AE">文字列の水平方向の配置</a></li>
+<li><a href="#%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E8%A3%85%E9%A3%BE">文字列の装飾</a></li>
+<li><a href="#%E8%A1%8C%E3%81%AE%E9%AB%98%E3%81%95">行の高さ</a></li>
+</ul>
+</li>
+<li><a href="#%E8%89%B2%E3%82%92%E4%BB%98%E3%81%91%E3%82%8B">色を付ける</a>
+<ul>
+<li><a href="#%E6%96%87%E5%AD%97%E3%81%AB%E8%89%B2%E3%82%92%E4%BB%98%E3%81%91%E3%82%8B">文字に色を付ける</a></li>
+<li><a href="#%E8%83%8C%E6%99%AF%E3%81%AB%E8%89%B2%E3%82%92%E4%BB%98%E3%81%91%E3%82%8B">背景に色を付ける</a></li>
+</ul>
+</li>
+<li><a href="#%E8%83%8C%E6%99%AF%E3%81%AB%E7%94%BB%E5%83%8F%E3%82%92%E8%A8%AD%E7%BD%AE%E3%81%99%E3%82%8B">背景に画像を設置する</a>
+<ul>
+<li><a href="#%E8%83%8C%E6%99%AF%E7%94%BB%E5%83%8F%E3%82%92%E6%8C%87%E5%AE%9A">背景画像を指定</a></li>
+<li><a href="#%E8%83%8C%E6%99%AF%E7%94%BB%E5%83%8F%E3%81%AE%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E3%82%92%E8%A8%AD%E5%AE%9A">背景画像の繰り返しを設定</a></li>
+<li><a href="#%E8%83%8C%E6%99%AF%E7%94%BB%E5%83%8F%E3%81%AE%E3%82%B5%E3%82%A4%E3%82%BA%E3%82%92%E8%A8%AD%E5%AE%9A">背景画像のサイズを設定</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B9%85%E3%81%A8%E9%AB%98%E3%81%95%E3%82%92%E6%8C%87%E5%AE%9A">幅と高さを指定</a></li>
+<li><a href="#%E4%BD%99%E7%99%BD%E3%82%92%E6%8C%87%E5%AE%9A">余白を指定</a>
+<ul>
+<li><a href="#margin">margin</a></li>
+<li><a href="#padding">padding</a></li>
+<li><a href="#%E8%A3%9C%E8%B6%B3">補足</a></li>
+</ul>
+</li>
+<li><a href="#%E7%B7%9A%E3%82%92%E5%BC%95%E3%81%8F">線を引く</a>
+<ul>
+<li><a href="#%E5%A2%83%E7%95%8C%E7%B7%9A%E3%81%AE%E5%B9%85%E3%82%92%E6%8C%87%E5%AE%9A">境界線の幅を指定</a></li>
+<li><a href="#%E5%A2%83%E7%95%8C%E7%B7%9A%E3%81%AE%E7%A8%AE%E9%A1%9E%E3%82%92%E6%8C%87%E5%AE%9A">境界線の種類を指定</a></li>
+<li><a href="#%E5%A2%83%E7%95%8C%E7%B7%9A%E3%81%AE%E8%89%B2%E3%82%92%E6%8C%87%E5%AE%9A">境界線の色を指定</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%AA%E3%82%B9%E3%83%88%E3%82%92%E4%BF%AE%E9%A3%BE">リストを修飾</a>
+<ul>
+<li><a href="#%E3%83%AA%E3%82%B9%E3%83%88%E3%83%9E%E3%83%BC%E3%82%AB%E3%83%BC%E3%81%AE%E7%A8%AE%E9%A1%9E%E3%82%92%E6%8C%87%E5%AE%9A">リストマーカーの種類を指定</a></li>
+<li><a href="#%E3%83%AA%E3%82%B9%E3%83%88%E3%83%9E%E3%83%BC%E3%82%AB%E3%83%BC%E3%81%AE%E4%BD%8D%E7%BD%AE%E3%82%92%E6%8C%87%E5%AE%9A">リストマーカーの位置を指定</a></li>
+<li><a href="#%E3%83%AA%E3%82%B9%E3%83%88%E3%83%9E%E3%83%BC%E3%82%AB%E3%83%BC%E3%81%AE%E7%94%BB%E5%83%8F%E3%82%92%E6%8C%87%E5%AE%9A">リストマーカーの画像を指定</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># 最初に実行してください</span>
+<span class="hljs-keyword">import</span> IPython
+<span class="hljs-keyword">from</span> IPython.display <span class="hljs-keyword">import</span> display, HTML
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="css%E3%81%A8%E3%81%AF">CSSとは</h2>
+<p><strong>CSS</strong>とは、「Cascading Style Sheets」の略で、文章の見た目を装飾するための言語です。</p>
+<p>HTMLのみだと白い背景と黒い文字のWebサイトになってしまいます。<br>
+CSSを適用させ、HPの外装、内装を定義します。</p>
+<div style="page-break-before:always"></div>
+<h3 id="css%E3%82%92%E9%81%A9%E7%94%A8%E3%81%95%E3%81%9B%E3%82%8B%E6%96%B9%E6%B3%95">CSSを適用させる方法</h3>
+<p>CSSを適用させる方法は、大きく分けて3つあります。</p>
+<p>1つ目は、外部CSSファイルを使用する方法です。</p>
+<p>外部CSSファイルを作成し、HTML内で <strong><code>link</code>要素</strong> を使用してファイルを読み込みます。<br>
+この方法では、複数のHTMLファイルで同じCSSを使用することができます。</p>
+<p>この方法はGoogleColabではなぜかできなかったので、コードの紹介だけにとどめます。<br>
+（おそらくセキュリティ上の問題）</p>
+<pre class="hljs"><code><div>%%writefile style.css
+<span class="hljs-meta">@charset "UTF-8"</span>
+/* 文字化け防止 必ず先頭に置く*/
+/* これ以降のコードでは省略する */
+
+p {
+  background-color: <span class="hljs-comment">#DDFFDD;</span>
+}
+</div></code></pre>
+<pre class="hljs"><code><div>htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;!-- style.cssを読み込ませる(GoogleColab上ではできない) --&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;p&gt;カメの平均寿命は30年ほどです&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+display(htm)
+</div></code></pre>
+<html>
+  <head>
+    <!-- style.cssを読み込ませる(GoogleColab上ではできない) -->
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+      <p>カメの平均寿命は30年ほどです</p>
+  </body>
+</html>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/6d1b0264-78bf-4c91-a0aa-2812de7faee2" alt="image"></p>
+<div style="page-break-before:always"></div>
+<p>2つ目は、<code>style</code>要素を使用する方法です。</p>
+<p>HTMLファイル内で<code>style</code>要素を使用することで、CSSを直接適用することができます。<br>
+この方法では、HTMLとCSSを同じファイル内に含めることができます。</p>
+<p>では、CSSを適用させて、背景色を変えてみましょう。<br>
+（HTML編でも少し登場しました）</p>
+<pre class="hljs"><code><div>htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;style&gt;
+      p {{
+        background-color: #DDFFDD;
+      }}
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;!-- pタグにstyle属性を適用
+          背景色を薄い緑色にする --&gt;
+      &lt;p&gt;カメの平均寿命は30年ほどです&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/9d8d82ba-ca6e-4f99-9c9c-3102202768ef" alt="image"></p>
+<div style="page-break-before:always"></div>
+<p>3つ目は、インラインスタイル属性を使用する方法です。</p>
+<p>HTML要素のスタイル属性に直接CSSを指定することで、インラインでCSSを適用することができます。<br>
+この方法では、HTML要素ごとにスタイルを指定することができます。</p>
+<p>HTML編で登場したやり方と同じですが、確認がてら実行してみましょう。</p>
+<pre class="hljs"><code><div>htm = HTML(<span class="hljs-string">'''\
+&lt;body&gt;
+    &lt;!-- pタグにstyle属性を適用
+         背景色を薄い緑色にする --&gt;
+    &lt;p style="background-color: #DDFFDD"&gt;カメの平均寿命は30年ほどです&lt;/p&gt;
+&lt;/body&gt;
+'''</span>)
+ 
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/eb656ef1-60db-483a-ae58-b5d11180597f" alt="image"></p>
+<div style="page-break-before:always"></div>
+<p>一番ベストな方法は、1番目の方法である、外部CSSファイルを使用する方法です。<br>
+外部CSSファイルを使用することで、HTMLとCSSを分離でき、作業の効率が上がります。</p>
+<p>本資料ではPythonと組み合わせることで、無理やりですが<br>
+HTMLとCSSを分離しようと思います。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+p {
+  background-color: <span class="hljs-comment">#DDFFDD;</span>
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;!-- pタグにstyle属性を適用
+          背景色を薄い緑色にする --&gt;
+      &lt;p&gt;カメの平均寿命は30年ほどです&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+display(htm)
+
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/9bbc3a6e-3b5c-42ea-8646-f798cbbcb8f8" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h3 id="css%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%A7%8B%E9%80%A0">CSSの基本構造</h3>
+<p>CSSは、以下の3つの部分を組み合わせて、スタイルを指定します。</p>
+<p><img src="https://imgur.com/fAdOwMj.png" alt=""></p>
+<p>〇<strong>セレクタ</strong><br>
+→スタイルを適用する要素を指定するための識別子。HTMLの要素名、クラス名、ID名、属性値などを指定する。</p>
+<p>〇<strong>プロパティ</strong><br>
+→スタイルの種類を指定するためのキーワード。コロン「:」を続けて書く。</p>
+<p>〇<strong>値</strong><br>
+→プロパティに指定する具体的なスタイルの値。最後にセミコロン「;」を最後に書く。</p>
+<div style="page-break-before:always"></div>
+<p>では、以下のコードを実行してみましょう。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* divタグ内の要素の背景色を薄い灰色にする */
+div {
+  background-color: <span class="hljs-comment">#F2F2F2;</span>
+}
+
+/* spanタグ内の要素の背景色を薄い緑色にする */
+span {
+  background-color: <span class="hljs-comment">#DDFFDD</span>
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は40cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+display(htm)
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/fd2a6cbf-90d8-49e8-9ee6-d61f6211311e" alt="image"></p>
+<p><code>div</code>タグで囲んだところの背景色が薄い灰色になっています。<br>
+そして、<code>span</code>タグで囲んだところの背景色が薄い緑色になっています。</p>
+<p>しかし、このままではコードの中のすべての<code>div</code>タグ内の要素が<br>
+上書きしない限りは薄い灰色になってしまいます。</p>
+<p>そこで、要素を識別する必要があります。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%A8id">クラスとID</h3>
+<p><strong><code>class</code>属性</strong>と <strong><code>id</code>属性</strong> は、CSSでスタイルを指定する際に<br>
+要素を識別するために使用されます。</p>
+<h4 id="class%E5%B1%9E%E6%80%A7">class属性</h4>
+<p><strong><code>class</code>属性</strong>は、同じスタイルを複数の要素に適用したい場合に使用されます。<br>
+複数の要素で同じclass属性の値を指定することで、同じスタイルが適用されます。</p>
+<p>CSSのスタイル定義では、「.」(ドット)を使って<code>class</code>属性を指定します。</p>
+<p>先ほどのコードのうち、「最大甲長」の背景色を薄い青色に、<br>
+「野生での平均寿命」の背景色を薄い黄色に変更します。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+div {
+  background-color: <span class="hljs-comment">#F2F2F2;</span>
+}
+
+span {
+  background-color: <span class="hljs-comment">#DDFFDD</span>
+}
+
+/* <span class="hljs-string">"kotyo"</span>クラス内の要素の背景色を薄い青色にする */
+.kotyo {
+  background-color: <span class="hljs-comment">#D3DEF1</span>
+}
+
+/* <span class="hljs-string">"jumyo"</span>クラス内の要素の背景色を薄い黄色にする */
+.jumyo {
+  background-color: <span class="hljs-comment">#fff3b8</span>
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;!-- "kotyo"クラスの要素の背景色は"薄い青" --&gt;
+      &lt;!-- "jumyo"クラスの要素の背景色は"薄い黄" --&gt;
+      &lt;div&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong class="kotyo"&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong class="jumyo"&gt;野生での平均寿命&lt;/strong&gt;は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong class="kotyo"&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong class="jumyo"&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong class="kotyo"&gt;最大甲長&lt;/strong&gt;は40cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong class="jumyo"&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/f1944a7e-8637-4156-aaed-0bb089321d8c" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="id%E5%B1%9E%E6%80%A7">id属性</h4>
+<p><strong><code>id</code>属性</strong> は、一つの要素に対して一意にスタイルを指定したい場合に使用されます。<br>
+同じ <strong><code>id</code>属性</strong> の値を複数の要素で指定することはできません。</p>
+<p>CSSのスタイル定義では、「#」(シャープ)を使って<code>id</code>属性を指定します。</p>
+<p>先ほどのコードのうち、「最大甲長」の最大値の背景色と、<br>
+「野生での平均寿命」の最大値の背景色を薄い赤色に変更します。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+div {
+  background-color: <span class="hljs-comment">#F2F2F2;</span>
+}
+
+span {
+  background-color: <span class="hljs-comment">#DDFFDD</span>
+}
+
+.kotyo {
+  background-color: <span class="hljs-comment">#D3DEF1</span>
+}
+
+.jumyo {
+  background-color: <span class="hljs-comment">#fff3b8</span>
+}
+
+/* id<span class="hljs-string">"kotyo_max"</span>の要素の背景色を薄い赤色にする */
+<span class="hljs-comment">#kotyo_max {</span>
+  background-color: <span class="hljs-comment">#FADBDA</span>
+}
+
+/* id<span class="hljs-string">"jumyo_max"</span>の要素の背景色を薄い赤色にする */
+<span class="hljs-comment">#jumyo_max {</span>
+  background-color: <span class="hljs-comment">#FADBDA</span>
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;!-- id"kotyo_max"の要素の背景色は"薄い赤" --&gt;
+      &lt;!-- id"jumyo_max"の要素の背景色は"薄い赤" --&gt;
+      &lt;div&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong class="kotyo"&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong class="jumyo"&gt;野生での平均寿命&lt;/strong&gt;は&lt;span id="jumyo_max"&gt;45年&lt;/span&gt;程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong class="kotyo"&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong class="jumyo"&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong class="kotyo"&gt;最大甲長&lt;/strong&gt;は&lt;span id="kotyo_max"&gt;40cm&lt;/span&gt;程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong class="jumyo"&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/7171c8c6-8397-46cc-8f84-01329e283258" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h3 id="%E6%96%87%E5%AD%97%E3%82%84%E6%96%87%E7%AB%A0%E3%81%AE%E8%A3%85%E9%A3%BE">文字や文章の装飾</h3>
+<h4 id="%E6%96%87%E5%AD%97%E3%81%AE%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88">文字のフォント</h4>
+<p><strong><code>font-family</code></strong> プロパティでは、文字のフォントを指定することができます。</p>
+<p>以下のような値を適用することができます。</p>
+<p>〇フォント名<br>
+→フォントの名前を記述する。<br>
+　フォント名に日本語やスペースがある場合は、「'」か「&quot;」で囲んで指定する。</p>
+<p>〇キーワード<br>
+→ <code>serif</code>(明朝系)、<code>sans-serif</code>(ゴシック系)、<code>monospace</code>(等幅)、<br>
+　 <code>cursive</code>(筆記体)、<code>fantasy</code>(装飾系)、<code>system-ui</code>(規定フォント) から指定する。</p>
+<p>フォントの違いについて確認してみましょう。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* ミドリガメの項目のフォントを明朝系にする */
+<span class="hljs-comment">#midori {</span>
+  font-family: serif;
+}
+
+/* ヤマトイシガメの項目のフォントを等幅にする */
+<span class="hljs-comment">#yamato {</span>
+  font-family: monospace;
+}
+
+/* クサガメの項目のフォントを筆記体にする */
+<span class="hljs-comment">#kusa {</span>
+  font-family: cursive;
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id="midori"&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="yamato"&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="kusa"&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は40cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/4b60e12a-d6e4-495d-a775-2f584bd7c0a2" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E6%96%87%E5%AD%97%E3%81%AE%E5%A4%A7%E3%81%8D%E3%81%95">文字の大きさ</h4>
+<p><strong><code>font-size</code></strong> プロパティでは、文字のサイズを指定することができます。</p>
+<p>以下のような値を適用することができます。</p>
+<p>〇数値<br>
+→ 数値に「px」「rem」「%」などの単位をつける。</p>
+<p>〇キーワード<br>
+→ <code>xx-small</code>、<code>x-small</code>、<code>small</code>、<code>medium</code>、<code>large</code>、<code>x-large</code>、<code>xx-large</code> から指定する。</p>
+<p>サイズの違いについて確認してみましょう。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* ミドリガメの項目のサイズをsmallにする */
+<span class="hljs-comment">#midori {</span>
+  font-size: small;
+}
+
+/* ヤマトイシガメの項目のサイズをmediumにする */
+<span class="hljs-comment">#yamato {</span>
+  font-size: medium;
+}
+
+/* クサガメの項目のサイズをlargeにする */
+<span class="hljs-comment">#kusa {</span>
+  font-size: large;
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id="midori"&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="yamato"&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="kusa"&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は40cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/f009e54d-7174-4a29-a597-5357c839ebbf" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E6%96%87%E5%AD%97%E3%81%AE%E5%A4%AA%E3%81%95">文字の太さ</h4>
+<p><strong><code>font-weight</code></strong> プロパティでは、文字の太さを指定することができます。</p>
+<p>以下のような値を適用することができます。</p>
+<p>〇数値<br>
+→ 1~1000までの任意の数値を指定する。</p>
+<p>〇キーワード<br>
+→ <code>normal</code>(標準)、<code>bold</code>(太字)、<code>lighter</code>(一段階細く)、 <code>bolder</code>(一段階太く) から指定する。</p>
+<p>太さの違いについて確認してみましょう。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* ミドリガメの項目の太さはそのままにする */
+<span class="hljs-comment">#midori {</span>
+  font-weight: normal;
+}
+
+/* ヤマトイシガメの項目の太さをlighterにする */
+<span class="hljs-comment">#yamato {</span>
+  font-weight: lighter;
+}
+
+/* クサガメの項目の太さをbolderにする */
+<span class="hljs-comment">#kusa {</span>
+  font-weight: bolder;
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id="midori"&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;最大甲長は20cm程度です&lt;/p&gt;
+          &lt;p&gt;野生での平均寿命は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="yamato"&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;最大甲長は30cm程度です&lt;/p&gt;
+          &lt;p&gt;野生での平均寿命は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="kusa"&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;最大甲長は40cm程度です&lt;/p&gt;
+          &lt;p&gt;野生での平均寿命は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/087c840f-d604-4a68-9569-bfe3d2da454b" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E6%B0%B4%E5%B9%B3%E6%96%B9%E5%90%91%E3%81%AE%E9%85%8D%E7%BD%AE">文字列の水平方向の配置</h4>
+<p><strong><code>text-align</code></strong> プロパティでは、文字列の水平方向の配置方法を指定することができます。</p>
+<p>以下のような値を適用することができます。</p>
+<p>〇キーワード<br>
+→ <code>left</code>(左揃え)、<code>right</code>(右揃え)、<code>center</code>(中央揃え)、<code>justify</code>(両端揃え) から指定する。</p>
+<p>配置の違いについて確認してみましょう。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* ミドリガメの項目は左揃えにする */
+<span class="hljs-comment">#midori {</span>
+  text-align: left;
+}
+
+/* ヤマトイシガメの項目は中央揃えにする */
+<span class="hljs-comment">#yamato {</span>
+  text-align: center;
+}
+
+/* クサガメの項目は右揃えにする */
+<span class="hljs-comment">#kusa {</span>
+  text-align: right;
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id="midori"&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="yamato"&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="kusa"&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は40cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/fe736346-01fe-4e54-affa-b0d719df35fd" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E8%A3%85%E9%A3%BE">文字列の装飾</h4>
+<p><strong><code>text-decoration</code></strong> プロパティでは、文字列の装飾方法を指定することができます。</p>
+<p>以下のような値を適用することができます。</p>
+<p>〇キーワード<br>
+→ <code>underline</code>(下線)、<code>line-through</code>(打ち消し線)、<code>overline</code>(強調) から指定する。</p>
+<p>文字列を装飾してみましょう。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* ミドリガメの項目は赤い下線を引く */
+<span class="hljs-comment">#midori {</span>
+  text-decoration: underline red;
+}
+
+/* ヤマトイシガメの項目は青い打ち消し線を引く */
+<span class="hljs-comment">#yamato {</span>
+  text-decoration: line-through blue;
+}
+
+/* クサガメの項目は強調する（上線を引く） */
+<span class="hljs-comment">#kusa {</span>
+  text-decoration: overline;
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id="midori"&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="yamato"&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="kusa"&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は40cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/ab2d7442-99f8-40bc-acd8-ee38c3635784" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E8%A1%8C%E3%81%AE%E9%AB%98%E3%81%95">行の高さ</h4>
+<p><strong><code>line-height</code></strong> プロパティでは、行の高さ（行間）を指定することができます。</p>
+<p>おすすめの数値は <strong>1.5~1.9</strong> だそうです。</p>
+<p>行の高さを変更してみましょう。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* ミドリガメの項目は行の高さはそのまま */
+<span class="hljs-comment">#midori {</span>
+  line-height: normal;
+  background-color: <span class="hljs-comment">#DDFFDD;</span>
+}
+
+/* ヤマトイシガメの項目は行の高さを<span class="hljs-string">"1.7"</span>にする */
+<span class="hljs-comment">#yamato {</span>
+  line-height: <span class="hljs-number">1.7</span>;
+  background-color: <span class="hljs-comment">#D3DEF1;</span>
+}
+
+/* クサガメの項目は行の高さを<span class="hljs-string">"2.5"</span>にする */
+<span class="hljs-comment">#kusa {</span>
+  line-height: <span class="hljs-number">2.5</span>;
+  background-color: <span class="hljs-comment">#fff3b8;</span>
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id="midori"&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="yamato"&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="kusa"&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は40cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/7f25a618-97b2-4fe3-8c1c-d0bb253205d0" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h3 id="%E8%89%B2%E3%82%92%E4%BB%98%E3%81%91%E3%82%8B">色を付ける</h3>
+<p>文字や背景の色を指定するには、<strong>カラーコード</strong> を使用する方法や、<br>
+<strong>RGB値</strong> を使用する方法などがあります。</p>
+<p>RGB値を指定したときは、透明度を表す <strong>Alpha値</strong> を指定することができます。<br>
+RGB各値は0から255まで、透明度は0から1までの間で記述します。</p>
+<h4 id="%E6%96%87%E5%AD%97%E3%81%AB%E8%89%B2%E3%82%92%E4%BB%98%E3%81%91%E3%82%8B">文字に色を付ける</h4>
+<p><strong><code>color</code></strong> プロパティでは、テキストの色を指定することができます。</p>
+<p>文字の色を変更してみましょう。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* ミドリガメの項目はキーワードを使って文字色を赤色にする */
+<span class="hljs-comment">#midori {</span>
+  color: red;
+}
+
+/* ヤマトイシガメの項目はRGB値を使って文字色を緑色にする */
+<span class="hljs-comment">#yamato {</span>
+  color: rgb(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>);
+}
+
+/* クサガメの項目はRGBA値を使って文字色を緑色にする */
+/* 透明度はかなり高めに設定する */
+<span class="hljs-comment">#kusa {</span>
+  color: rgb(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0.2</span>);
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id="midori"&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="yamato"&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="kusa"&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は40cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/e6960402-a4e7-49a4-a744-765cbe6ac7cf" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E8%83%8C%E6%99%AF%E3%81%AB%E8%89%B2%E3%82%92%E4%BB%98%E3%81%91%E3%82%8B">背景に色を付ける</h4>
+<p><strong><code>background-color</code></strong> プロパティでは、背景の色を指定することができます。<br>
+これまでも散々出てきました。</p>
+<p>背景の色を変更してみましょう。<br>
+ページ全体の背景に色を付けたいときは、<code>body</code>タグに対して指定します。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* bodyタグ内の要素の背景色を薄い灰色にする */
+body {
+  background-color: <span class="hljs-comment">#F2F2F2;</span>
+}
+
+/* spanタグ内の要素の背景色を薄い緑色にする */
+span {
+  background-color: <span class="hljs-comment">#DDFFDD</span>
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id="midori"&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="yamato"&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="kusa"&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は40cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/47202b34-312c-4991-ab34-34012fae0834" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h3 id="%E8%83%8C%E6%99%AF%E3%81%AB%E7%94%BB%E5%83%8F%E3%82%92%E8%A8%AD%E7%BD%AE%E3%81%99%E3%82%8B">背景に画像を設置する</h3>
+<p>背景に画像を設定する際に必要なプロパティは、<br>
+以下に紹介する3つが主なものになります。</p>
+<h4 id="%E8%83%8C%E6%99%AF%E7%94%BB%E5%83%8F%E3%82%92%E6%8C%87%E5%AE%9A">背景画像を指定</h4>
+<p><strong><code>background-image</code></strong> プロパティでは、背景画像を指定します。</p>
+<p>値には画像のファイルパスやURLを指定します。</p>
+<p>とりあえず背景に画像を設置してみましょう。<br>
+今回設置する画像はこちらです。</p>
+<p><img src="https://imgur.com/VctMf95.png" alt=""></p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* 背景画像を設定する */
+body {
+  background-image: url(https://imgur.com/VctMf95.png);
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id="midori"&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="yamato"&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="kusa"&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は40cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/d4b9cbd6-351e-4bac-a992-525430198e58" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E8%83%8C%E6%99%AF%E7%94%BB%E5%83%8F%E3%81%AE%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E3%82%92%E8%A8%AD%E5%AE%9A">背景画像の繰り返しを設定</h4>
+<p><strong><code>background-repeat</code></strong> プロパティでは、背景画像の繰り返し方を指定します。</p>
+<p>以下のような値を適用することができます。</p>
+<p>〇キーワード<br>
+→ <code>repeat</code>(縦・横ともに繰り返す)、<code>no-repeat</code>(繰り返さない)、<br>
+　<code>repeat-x</code>(横方向に繰り返す) 、<code>repeat-y</code>（縦方向に繰り返す）から指定する。</p>
+<div style="page-break-before:always"></div>
+<p>では先ほどの画像の繰り返しを設定してみましょう。<br>
+デフォルトでは<code>repeat</code>が設定されていました。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* 画像を縦方向に繰り返す */
+body {
+  background-image: url(https://imgur.com/VctMf95.png);
+  background-repeat: repeat-y;
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id="midori"&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="yamato"&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="kusa"&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は40cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/cfd2580d-b878-4264-8d25-e6a60e89f8cc" alt="image"></p>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* 画像を横方向に繰り返す */
+body {
+  background-image: url(https://imgur.com/VctMf95.png);
+  background-repeat: repeat-x;
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id="midori"&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="yamato"&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="kusa"&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は40cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/d06fd61a-258d-4db5-aa1f-20be07014390" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E8%83%8C%E6%99%AF%E7%94%BB%E5%83%8F%E3%81%AE%E3%82%B5%E3%82%A4%E3%82%BA%E3%82%92%E8%A8%AD%E5%AE%9A">背景画像のサイズを設定</h4>
+<p><strong><code>background-size</code></strong> プロパティでは、背景画像のサイズを指定します。</p>
+<p>以下のような値を適用することができます。</p>
+<p>〇数値<br>
+→ 数値に「px」「rem」「%」などの単位をつける。</p>
+<p>〇キーワード<br>
+→ <code>auto（元サイズ）</code>、<code>cover</code>、<code>contain</code>から指定する。</p>
+<p><code>cover</code>を指定すると、表示領域に画像が完全に収まるように大きさが調整されます。<br>
+画像の縦横比は維持されます。</p>
+<div style="page-break-before:always"></div>
+<p>表示してみましょう。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* 背景画像を設定する */
+body {
+  background-image: url(https://imgur.com/VctMf95.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id="midori"&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="yamato"&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="kusa"&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は40cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/fe056c2c-9d9f-4402-80b9-f819b5c8fb5b" alt="image"></p>
+<p>表示領域に余白が発生しないように、画像が拡大しました。</p>
+<div style="page-break-before:always"></div>
+<p><code>contain</code>を指定すると、表示領域の幅または高さに画像の幅または高さが<br>
+一致するように大きさが調整されます。画像の縦横比は維持されます。</p>
+<p>表示してみましょう。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* 背景画像を設定する */
+body {
+  background-image: url(https://imgur.com/VctMf95.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id="midori"&gt;
+          &lt;h3&gt;&lt;span&gt;ミドリガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は20cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は45年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="yamato"&gt;
+          &lt;h3&gt;&lt;span&gt;ヤマトイシガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は30cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は15年程度です&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div id="kusa"&gt;
+          &lt;h3&gt;&lt;span&gt;クサガメ&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;strong&gt;最大甲長&lt;/strong&gt;は40cm程度です&lt;/p&gt;
+          &lt;p&gt;&lt;strong&gt;野生での平均寿命&lt;/strong&gt;は35年程度です&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/5e02e352-f1a6-4eae-b648-194d5fec7e48" alt="image"></p>
+<p>表示領域の高さと一致するように、画像の高さを拡大して合わせました。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E5%B9%85%E3%81%A8%E9%AB%98%E3%81%95%E3%82%92%E6%8C%87%E5%AE%9A">幅と高さを指定</h3>
+<p>テキストや画像、背景色や枠線のサイズなど、レイアウトの各要素のサイズを指定するときは、<br>
+<strong><code>width</code></strong> プロパティや <strong><code>height</code></strong> プロパティを使用します。</p>
+<p><code>width</code>プロパティで要素の横幅を、<code>height</code>プロパティで要素の縦幅を指定します。<br>
+単位は数値に「px」「rem」「%」などをつけたものです。</p>
+<p>では、ドイツの国旗を表現してみましょう。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* 幅<span class="hljs-number">300</span>px、高さ<span class="hljs-number">200</span>pxの領域を設定 */
+.flag {
+  width: <span class="hljs-number">300</span>px;
+  height: <span class="hljs-number">200</span>px;
+}
+
+/* 一番上の黒い水平帯を設定 */
+.black {
+  background-color: black;
+  width: <span class="hljs-number">100</span>%;
+  height: <span class="hljs-number">33.33</span>%;
+}
+
+/* 真ん中の赤い水平帯を設定 */
+.red {
+  background-color: red;
+  width: <span class="hljs-number">100</span>%;
+  height: <span class="hljs-number">33.33</span>%;
+}
+
+/* 一番下の金の水平帯を設定 */
+.gold {
+  background-color: gold;
+  width: <span class="hljs-number">100</span>%;
+  height: <span class="hljs-number">33.33</span>%;
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div class="flag"&gt;
+          &lt;div class="black"&gt;&lt;/div&gt;
+          &lt;div class="red"&gt;&lt;/div&gt;
+          &lt;div class="gold"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/e05845e2-bf08-4a36-8f1f-6ca85acd774f" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h3 id="%E4%BD%99%E7%99%BD%E3%82%92%E6%8C%87%E5%AE%9A">余白を指定</h3>
+<p>余白に関するプロパティには以下のようなものがあります。</p>
+<p>〇 <strong>margin</strong><br>
+→ 要素の外側の余白を指定する。<br>
+〇 <strong>padding</strong><br>
+→ 要素の内側の余白を指定する。<br>
+〇 <strong>border</strong><br>
+→ 要素の境界線を指定する。</p>
+<p><img src="https://imgur.com/5j3y5Kk.png" alt=""></p>
+<div style="page-break-before:always"></div>
+<h4 id="margin">margin</h4>
+<p><strong><code>margin</code>プロパティ</strong> を指定すると、上下左右の外側の余白を個別に指定できます。</p>
+<table>
+<thead>
+<tr>
+<th>指定方法</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>margin-top</code></strong></td>
+<td>上側の余白を指定</td>
+</tr>
+<tr>
+<td><strong><code>margin-right</code></strong></td>
+<td>右側の余白を指定</td>
+</tr>
+<tr>
+<td><strong><code>margin-bottom</code></strong></td>
+<td>下側の余白を指定</td>
+</tr>
+<tr>
+<td><strong><code>margin-left</code></strong></td>
+<td>左側の余白を指定</td>
+</tr>
+</tbody>
+</table>
+<p>また、半角スペースで区切ることで、<br>
+上から時計回りに上右下左の余白を指定することができます。</p>
+<table>
+<thead>
+<tr>
+<th>指定方法</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>margin: 四辺すべて;</td>
+<td>margin: 10px;</td>
+</tr>
+<tr>
+<td>margin: 上下 左右;</td>
+<td>margin: 10px 20px;</td>
+</tr>
+<tr>
+<td>margin: 上 左右 下;</td>
+<td>margin: 10px 20px 30px;</td>
+</tr>
+<tr>
+<td>margin: 上 右 下 左;</td>
+<td>margin: 10px 20px 30px 40px;</td>
+</tr>
+</tbody>
+</table>
+<p>数値に「px」「rem」「%」などをつけたもので外側の余白を指定します。<br>
+<strong><code>auto</code></strong> を指定すると、自動設定される値が設定されます。</p>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* 幅<span class="hljs-number">300</span>px、高さ<span class="hljs-number">250</span>pxの領域を設定 */
+.box {
+  width: <span class="hljs-number">300</span>px;
+  height: <span class="hljs-number">250</span>px;
+  background-color: <span class="hljs-comment">#F2F2F2;</span>
+}
+
+/* <span class="hljs-number">3</span>つの要素の高さはそれぞれ親要素の<span class="hljs-number">20</span>% */
+/* <span class="hljs-number">3</span>つの要素の幅はそれぞれ親要素の<span class="hljs-number">80</span>% */
+<span class="hljs-comment">#midori {</span>
+  height: <span class="hljs-number">50</span>px;
+  background-color: <span class="hljs-comment">#DDFFDD;</span>
+  margin: <span class="hljs-number">0</span>% <span class="hljs-number">10</span>% <span class="hljs-number">50</span>px <span class="hljs-number">10</span>%;
+}
+
+/* ヤマトイシガメの項目は行の高さを<span class="hljs-string">"1.7"</span>にする */
+<span class="hljs-comment">#yamato {</span>
+  height: <span class="hljs-number">50</span>px;
+  background-color: <span class="hljs-comment">#D3DEF1;</span>
+  margin: <span class="hljs-number">0</span>% <span class="hljs-number">10</span>% <span class="hljs-number">50</span>px <span class="hljs-number">10</span>%; 
+}
+
+/* クサガメの項目は行の高さを<span class="hljs-string">"2.5"</span>にする */
+<span class="hljs-comment">#kusa {</span>
+  height: <span class="hljs-number">50</span>px;
+  background-color: <span class="hljs-comment">#fff3b8;</span>
+  margin: <span class="hljs-number">0</span>% <span class="hljs-number">10</span>% <span class="hljs-number">0</span>% <span class="hljs-number">10</span>%;
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div class="box"&gt;
+          &lt;div id="midori"&gt;ミドリガメ&lt;/div&gt;
+          &lt;div id="yamato"&gt;ヤマトイシガメ&lt;/div&gt;
+          &lt;div id="kusa"&gt;クサガメ&lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/c5e968f9-c4b1-478c-8e69-361a64616a37" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="padding">padding</h4>
+<p><strong><code>padding</code>プロパティ</strong> を指定すると、上下左右の内側の余白を個別に指定できます。</p>
+<table>
+<thead>
+<tr>
+<th>指定方法</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>padding-top</code></strong></td>
+<td>上側の余白を指定</td>
+</tr>
+<tr>
+<td><strong><code>padding-right</code></strong></td>
+<td>右側の余白を指定</td>
+</tr>
+<tr>
+<td><strong><code>padding-bottom</code></strong></td>
+<td>下側の余白を指定</td>
+</tr>
+<tr>
+<td><strong><code>padding-left</code></strong></td>
+<td>左側の余白を指定</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* 幅<span class="hljs-number">300</span>px、高さ<span class="hljs-number">250</span>pxの領域を設定 */
+.box {
+  width: <span class="hljs-number">300</span>px;
+  height: <span class="hljs-number">250</span>px;
+  background-color: <span class="hljs-comment">#F2F2F2;</span>
+}
+
+<span class="hljs-comment">#midori {</span>
+  height: <span class="hljs-number">50</span>px;
+  background-color: <span class="hljs-comment">#DDFFDD;</span>
+  margin: <span class="hljs-number">0</span>% <span class="hljs-number">10</span>% <span class="hljs-number">50</span>px <span class="hljs-number">10</span>%;
+}
+
+/* 要素の内側の左方向に親要素の幅の<span class="hljs-number">10</span>%(<span class="hljs-number">30</span>px)の余白 */
+<span class="hljs-comment">#yamato {</span>
+  height: <span class="hljs-number">50</span>px;
+  background-color: <span class="hljs-comment">#D3DEF1;</span>
+  margin: <span class="hljs-number">0</span>% <span class="hljs-number">10</span>% <span class="hljs-number">50</span>px <span class="hljs-number">10</span>%; 
+  padding-left: <span class="hljs-number">10</span>%;
+}
+
+/* 要素の内側の上方向に<span class="hljs-number">50</span>pxの余白 */
+<span class="hljs-comment">#kusa {</span>
+  height: <span class="hljs-number">50</span>px;
+  background-color: <span class="hljs-comment">#fff3b8;</span>
+  margin: <span class="hljs-number">0</span>% <span class="hljs-number">10</span>% <span class="hljs-number">0</span>% <span class="hljs-number">10</span>%;
+  padding-top: <span class="hljs-number">50</span>px;
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div class="box"&gt;
+          &lt;div id="midori"&gt;ミドリガメ&lt;/div&gt;
+          &lt;div id="yamato"&gt;ヤマトイシガメ&lt;/div&gt;
+          &lt;div id="kusa"&gt;クサガメ&lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/73c1640a-c2fa-4c1a-90bc-f5372098f825" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E8%A3%9C%E8%B6%B3">補足</h4>
+<p>前回は「クサガメ」の項目は、要素の内側の上方向に50pxの余白を設定しました。</p>
+<p>このような上下の余白を、paddingやmarginの <strong>%指定</strong> で行おうとすると、少し値がおかしくなります。<br>
+以下のコードを実行してください。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+/* 幅<span class="hljs-number">300</span>px、高さ<span class="hljs-number">250</span>pxの領域を設定 */
+.box {
+  width: <span class="hljs-number">300</span>px;
+  height: <span class="hljs-number">250</span>px;
+  background-color: <span class="hljs-comment">#F2F2F2;</span>
+}
+
+<span class="hljs-comment">#midori {</span>
+  height: <span class="hljs-number">50</span>px;
+  background-color: <span class="hljs-comment">#DDFFDD;</span>
+  margin: <span class="hljs-number">0</span>% <span class="hljs-number">10</span>% <span class="hljs-number">50</span>px <span class="hljs-number">10</span>%;
+}
+
+/* 要素の内側の左方向に親要素の幅の<span class="hljs-number">10</span>%(<span class="hljs-number">30</span>px)の余白 */
+<span class="hljs-comment">#yamato {</span>
+  height: <span class="hljs-number">50</span>px;
+  background-color: <span class="hljs-comment">#D3DEF1;</span>
+  margin: <span class="hljs-number">0</span>% <span class="hljs-number">10</span>% <span class="hljs-number">50</span>px <span class="hljs-number">10</span>%; 
+  padding-left: <span class="hljs-number">10</span>%;
+}
+
+/* 誤り：要素の内側の上方向に親要素の<span class="hljs-string">"高さ"</span>の<span class="hljs-number">20</span>%(<span class="hljs-number">50</span>px)の余白 */
+/* 正解：要素の内側の上方向に親要素の<span class="hljs-string">"幅"</span>の<span class="hljs-number">20</span>%(<span class="hljs-number">60</span>px)の余白 */
+<span class="hljs-comment">#kusa {</span>
+  height: <span class="hljs-number">50</span>px;
+  background-color: <span class="hljs-comment">#fff3b8;</span>
+  margin: <span class="hljs-number">0</span>% <span class="hljs-number">10</span>% <span class="hljs-number">0</span>% <span class="hljs-number">10</span>%;
+  padding-top: <span class="hljs-number">20</span>%;
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div class="box"&gt;
+          &lt;div id="midori"&gt;ミドリガメ&lt;/div&gt;
+          &lt;div id="yamato"&gt;ヤマトイシガメ&lt;/div&gt;
+          &lt;div id="kusa"&gt;クサガメ&lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/312b2e67-4107-4a77-aa67-8a49fe2dba6e" alt="image"></p>
+<p>微妙な違いですが、<code>padding-top</code>は親要素の&quot;高さ&quot;の20%である50pxではなく、<br>
+親要素の&quot;幅&quot;の20pxである60pxになります。</p>
+<p>paddingやmarginを指定したときにおこる現象だそうです。<br>
+<code>width</code>の値を変更して実行すると、余白の違いが生まれると思います。<br>
+<a href="https://diwao.com/2017/06/padding_margin_per.html">こちら</a>のページなどを参考にしてください。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E7%B7%9A%E3%82%92%E5%BC%95%E3%81%8F">線を引く</h3>
+<p>要素に境界線を追加するときは、以下のプロパティを使用します。</p>
+<h4 id="%E5%A2%83%E7%95%8C%E7%B7%9A%E3%81%AE%E5%B9%85%E3%82%92%E6%8C%87%E5%AE%9A">境界線の幅を指定</h4>
+<p><strong><code>border-width</code></strong> プロパティでは、境界線の幅を指定します。</p>
+<p>以下のような値を適用することができます。</p>
+<p>〇数値<br>
+→ 数値に「px」「rem」「%」などの単位をつける。</p>
+<p>〇キーワード<br>
+→ <code>thin</code>(細い線)、<code>medium</code>(普通の太さ)、<code>thick</code>(太い線) から指定する。</p>
+<div style="page-break-before:always"></div>
+<p>では線の太さを変えてみましょう。<br>
+この後解説しますが、線のスタイルは&quot;実線&quot;としています。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+
+/* 境界線の太さは普通の太さ */
+<span class="hljs-comment">#midori {</span>
+  border-width: medium;
+  border-style: solid;
+}
+
+/* 境界線の太さは太い線 */
+<span class="hljs-comment">#yamato {</span>
+  border-width: thick;
+  border-style: solid;
+}
+
+/* 境界線の太さは細い線 */
+<span class="hljs-comment">#kusa {</span>
+  border-width: thin;
+  border-style: solid;
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div class="box"&gt;
+          &lt;div id="midori"&gt;ミドリガメ&lt;/div&gt;
+          &lt;br&gt;
+          &lt;br&gt;
+          &lt;div id="yamato"&gt;ヤマトイシガメ&lt;/div&gt;
+          &lt;br&gt;
+          &lt;br&gt;
+          &lt;div id="kusa"&gt;クサガメ&lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/9a5053a5-a989-42ab-90bb-2a0e8789f78d" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E5%A2%83%E7%95%8C%E7%B7%9A%E3%81%AE%E7%A8%AE%E9%A1%9E%E3%82%92%E6%8C%87%E5%AE%9A">境界線の種類を指定</h4>
+<p><strong><code>border-style</code>プロパティ</strong> を指定すると、境界線の種類を指定できます。</p>
+<table>
+<thead>
+<tr>
+<th>指定方法</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>none</code></strong></td>
+<td>線を非表示</td>
+</tr>
+<tr>
+<td><strong><code>solid</code></strong></td>
+<td>1本の実線</td>
+</tr>
+<tr>
+<td><strong><code>double</code></strong></td>
+<td>2本の実線</td>
+</tr>
+<tr>
+<td><strong><code>dashed</code></strong></td>
+<td>破線</td>
+</tr>
+<tr>
+<td><strong><code>dotted</code></strong></td>
+<td>点線</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-before:always"></div>
+<p>では線の種類を変えてみましょう。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+
+/* 境界線の種類は<span class="hljs-number">2</span>本の実線 */
+<span class="hljs-comment">#midori {</span>
+  border-width: medium;
+  border-style: double;
+}
+
+/* 境界線の種類は点線 */
+<span class="hljs-comment">#yamato {</span>
+  border-width: thick;
+  border-style: dotted;
+}
+
+/* 境界線の種類は破線 */
+<span class="hljs-comment">#kusa {</span>
+  border-width: thin;
+  border-style: dashed;
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div class="box"&gt;
+          &lt;div id="midori"&gt;ミドリガメ&lt;/div&gt;
+          &lt;br&gt;
+          &lt;br&gt;
+          &lt;div id="yamato"&gt;ヤマトイシガメ&lt;/div&gt;
+          &lt;br&gt;
+          &lt;br&gt;
+          &lt;div id="kusa"&gt;クサガメ&lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/6f44c6e1-c5b8-43ba-9a9c-9ef42f8f314b" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E5%A2%83%E7%95%8C%E7%B7%9A%E3%81%AE%E8%89%B2%E3%82%92%E6%8C%87%E5%AE%9A">境界線の色を指定</h4>
+<p><strong><code>border-color</code>プロパティ</strong> を指定すると、境界線の色を指定できます。</p>
+<p>境界線の色を指定するには、 <strong>カラーコード</strong> を使用する方法や、<br>
+<strong>RGB値</strong> を使用する方法などがあります。</p>
+<p>RGB値を指定したときは、透明度を表す <strong>Alpha値</strong> を指定することができます。<br>
+RGB各値は0から255まで、透明度は0から1までの間で記述します。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+
+
+/* 境界線の色を指定 */
+<span class="hljs-comment">#midori {</span>
+  border-width: medium;
+  border-style: double;
+  border-color: tomato;
+}
+
+/* 境界線の色を上右下左それぞれで指定 */
+<span class="hljs-comment">#yamato {</span>
+  border-width: thick;
+  border-style: dotted;
+  border-color: tan blue tomato black;
+}
+
+/* borderプロパティで一括指定（順番は自由） */
+<span class="hljs-comment">#kusa {</span>
+  border: thin dashed blue;
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div class="box"&gt;
+          &lt;div id="midori"&gt;ミドリガメ&lt;/div&gt;
+          &lt;br&gt;
+          &lt;br&gt;
+          &lt;div id="yamato"&gt;ヤマトイシガメ&lt;/div&gt;
+          &lt;br&gt;
+          &lt;br&gt;
+          &lt;div id="kusa"&gt;クサガメ&lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/e31d98a4-b812-4ae9-a8a0-13b40a0aa534" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%83%AA%E3%82%B9%E3%83%88%E3%82%92%E4%BF%AE%E9%A3%BE">リストを修飾</h3>
+<p>リストを修飾するときは、以下のプロパティを使用します。</p>
+<p>まずは就職前のhtmlについて確認しましょう。</p>
+<pre class="hljs"><code><div>htm = HTML(<span class="hljs-string">'''\
+&lt;body&gt;
+&lt;h2&gt;日本においてなじみのあるカメの種類&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;ミドリガメ&lt;/li&gt;
+  &lt;li&gt;ヤマトイシガメ&lt;/li&gt;
+  &lt;li&gt;クサガメ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="0"&gt;
+  &lt;li&gt;ミドリガメ&lt;/li&gt;
+  &lt;li&gt;ヤマトイシガメ&lt;/li&gt;
+  &lt;li&gt;クサガメ&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol type="a"&gt;
+  &lt;li&gt;ミドリガメ&lt;/li&gt;
+  &lt;li&gt;ヤマトイシガメ&lt;/li&gt;
+  &lt;li&gt;クサガメ&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/body&gt;
+'''</span>)
+ 
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/c4236ccf-4e16-4700-a112-731c8f806b95" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E3%83%AA%E3%82%B9%E3%83%88%E3%83%9E%E3%83%BC%E3%82%AB%E3%83%BC%E3%81%AE%E7%A8%AE%E9%A1%9E%E3%82%92%E6%8C%87%E5%AE%9A">リストマーカーの種類を指定</h4>
+<p><strong><code>list-style-type</code>プロパティ</strong> を指定すると、リストマーカーの種類を指定できます。</p>
+<table>
+<thead>
+<tr>
+<th>指定方法</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>none</code></strong></td>
+<td>リストマーカーを非表示</td>
+</tr>
+<tr>
+<td><strong><code>disc</code></strong></td>
+<td>黒丸</td>
+</tr>
+<tr>
+<td><strong><code>circle</code></strong></td>
+<td>白丸</td>
+</tr>
+<tr>
+<td><strong><code>square</code></strong></td>
+<td>四角</td>
+</tr>
+<tr>
+<td><strong><code>decimal</code></strong></td>
+<td>数字</td>
+</tr>
+<tr>
+<td><strong><code>lower-alpha</code></strong></td>
+<td>小文字アルファベット</td>
+</tr>
+<tr>
+<td><strong><code>upper-alpha</code></strong></td>
+<td>大文字アルファベット</td>
+</tr>
+</tbody>
+</table>
+<p>ではリストマーカーの種類を変えてみましょう。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+/* リストマーカーの種類は白丸 */
+.normal {
+  list-style-type: circle;
+}
+
+/* リストマーカーの種類は四角 */
+.square {
+  list-style-type: square;
+}
+
+/* リストマーカーの種類は小文字アルファベット */
+.alpha {
+  list-style-type: lower-alpha;
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;h2&gt;日本においてなじみのあるカメの種類&lt;/h2&gt;
+      &lt;ul class="normal"&gt;
+          &lt;li&gt;ミドリガメ&lt;/li&gt;
+          &lt;li&gt;ヤマトイシガメ&lt;/li&gt;
+          &lt;li&gt;クサガメ&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;ol class="square"&gt;
+          &lt;li&gt;ミドリガメ&lt;/li&gt;
+          &lt;li&gt;ヤマトイシガメ&lt;/li&gt;
+          &lt;li&gt;クサガメ&lt;/li&gt;
+      &lt;/ol&gt;
+      &lt;ol class="alpha"&gt;
+          &lt;li&gt;ミドリガメ&lt;/li&gt;
+          &lt;li&gt;ヤマトイシガメ&lt;/li&gt;
+          &lt;li&gt;クサガメ&lt;/li&gt;
+      &lt;/ol&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/a6e65cb7-9f7f-4376-a956-a6a8d885258f" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E3%83%AA%E3%82%B9%E3%83%88%E3%83%9E%E3%83%BC%E3%82%AB%E3%83%BC%E3%81%AE%E4%BD%8D%E7%BD%AE%E3%82%92%E6%8C%87%E5%AE%9A">リストマーカーの位置を指定</h4>
+<p><strong><code>list-style-position</code>プロパティ</strong> を指定すると、リストマーカーの位置を指定できます。</p>
+<table>
+<thead>
+<tr>
+<th>指定方法</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>outside</strong></td>
+<td>ボックスの外側に表示</td>
+</tr>
+<tr>
+<td><strong>inside</strong></td>
+<td>ボックスの内側に表示</td>
+</tr>
+</tbody>
+</table>
+<p>ではリストマーカーの位置を変えてみましょう。<br>
+背景色もつけて分かりやすくします。</p>
+<pre class="hljs"><code><div>%%writefile style.css
+/* それぞれの要素の&lt;li&gt;タグに背景色をつける
+
+/* ここは設定いじらない */
+.normal {
+  list-style-type: circle;
+}
+
+.normal li {
+  background-color: <span class="hljs-comment">#DDFFDD;</span>
+}
+
+/* ボックスの外側に表示 */
+.square {
+  list-style-type: square;
+  list-style-position: outside;
+}
+
+.square li {
+  background-color: <span class="hljs-comment">#D3DEF1;</span>
+}
+
+/* ボックスの内側に表示 */
+.alpha {
+  list-style-type: lower-alpha;
+  list-style-position: inside;
+}
+
+.alpha li {
+  background-color: <span class="hljs-comment">#fff3b8;</span>
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;h2&gt;日本においてなじみのあるカメの種類&lt;/h2&gt;
+      &lt;ul class="normal"&gt;
+          &lt;li&gt;ミドリガメ&lt;/li&gt;
+          &lt;li&gt;ヤマトイシガメ&lt;/li&gt;
+          &lt;li&gt;クサガメ&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;ol class="square"&gt;
+          &lt;li&gt;ミドリガメ&lt;/li&gt;
+          &lt;li&gt;ヤマトイシガメ&lt;/li&gt;
+          &lt;li&gt;クサガメ&lt;/li&gt;
+      &lt;/ol&gt;
+      &lt;ol class="alpha"&gt;
+          &lt;li&gt;ミドリガメ&lt;/li&gt;
+          &lt;li&gt;ヤマトイシガメ&lt;/li&gt;
+          &lt;li&gt;クサガメ&lt;/li&gt;
+      &lt;/ol&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/8c8d5fe4-60ef-4501-badc-f8bbf1c73887" alt="image"></p>
+<div style="page-break-before:always"></div>
+<h4 id="%E3%83%AA%E3%82%B9%E3%83%88%E3%83%9E%E3%83%BC%E3%82%AB%E3%83%BC%E3%81%AE%E7%94%BB%E5%83%8F%E3%82%92%E6%8C%87%E5%AE%9A">リストマーカーの画像を指定</h4>
+<p><strong><code>list-style-image</code>プロパティ</strong> を指定すると、リストマーカーの画像を指定できます。</p>
+<p>余り複雑な画像にするとコンテンツの邪魔になるので、注意が必要です。</p>
+<p>ではリストマーカーの画像を変えてみましょう。<br>
+使用する画像は背景画像でも使った以下の画像です。</p>
+<p><img src="https://imgur.com/RTGMDr6.png" alt=""></p>
+<pre class="hljs"><code><div>%%writefile style.css
+/* それぞれの要素の&lt;li&gt;タグに背景色をつける
+
+/* ここは設定いじらない */
+.normal {
+  list-style-type: circle;
+  list-style-image: url(https://imgur.com/RTGMDr6.png);
+}
+
+.normal li {
+  background-color: <span class="hljs-comment">#DDFFDD;</span>
+}
+
+/* ボックスの外側に表示 */
+.square {
+  list-style-type: square;
+  list-style-position: outside;
+}
+
+.square li {
+  background-color: <span class="hljs-comment">#D3DEF1;</span>
+}
+
+/* ボックスの内側に表示 */
+.alpha {
+  list-style-type: lower-alpha;
+  list-style-position: inside;
+}
+
+.alpha li {
+  background-color: <span class="hljs-comment">#fff3b8;</span>
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'/content/style.css'</span>, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
+  css = f.read()
+
+htm = HTML(<span class="hljs-string">f'''\
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;style&gt;<span class="hljs-subst">{css}</span>&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;h2&gt;日本においてなじみのあるカメの種類&lt;/h2&gt;
+      &lt;ul class="normal"&gt;
+          &lt;li&gt;ミドリガメ&lt;/li&gt;
+          &lt;li&gt;ヤマトイシガメ&lt;/li&gt;
+          &lt;li&gt;クサガメ&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;ol class="square"&gt;
+          &lt;li&gt;ミドリガメ&lt;/li&gt;
+          &lt;li&gt;ヤマトイシガメ&lt;/li&gt;
+          &lt;li&gt;クサガメ&lt;/li&gt;
+      &lt;/ol&gt;
+      &lt;ol class="alpha"&gt;
+          &lt;li&gt;ミドリガメ&lt;/li&gt;
+          &lt;li&gt;ヤマトイシガメ&lt;/li&gt;
+          &lt;li&gt;クサガメ&lt;/li&gt;
+      &lt;/ol&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+'''</span>)
+
+display(htm)
+</div></code></pre>
+<p><img src="https://github.com/kiryu-3/Prmn2023/assets/84606676/693de928-d92b-4740-8421-c3be2c413826" alt="image"></p>
+
+</body>
+</html>

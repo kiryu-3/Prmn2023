@@ -1,0 +1,3475 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Javascript_basic.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="javascript-%E5%9F%BA%E6%9C%AC%E6%96%87%E6%B3%95">Javascript 基本文法</h1>
+<pre class="hljs"><code><div><span class="hljs-comment"># 最初に実行してください</span>
+!apt-get install -y nodejs
+</div></code></pre>
+<ul>
+<li><a href="#javascript-%E5%9F%BA%E6%9C%AC%E6%96%87%E6%B3%95">Javascript 基本文法</a>
+<ul>
+<li><a href="#consolelog%E9%96%A2%E6%95%B0">console.log関数</a></li>
+<li><a href="#%E6%95%B0%E5%80%A4%E5%9E%8B">数値型</a>
+<ul>
+<li><a href="#%E6%95%B0%E5%80%A4%E5%9E%8B%E3%81%AE%E7%AE%97%E8%A1%93%E6%BC%94%E7%AE%97%E5%AD%90">数値型の算術演算子</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E5%AD%97%E5%88%97%E5%9E%8B">文字列型</a>
+<ul>
+<li><a href="#%E6%96%87%E5%AD%97%E5%88%97%E5%9E%8B%E3%81%AE%E7%AE%97%E8%A1%93%E6%BC%94%E7%AE%97%E5%AD%90">文字列型の算術演算子</a></li>
+<li><a href="#%E6%95%B0%E5%80%A4%E5%9E%8B%E3%81%A8%E6%96%87%E5%AD%97%E5%88%97%E5%9E%8B%E3%81%AE%E6%B3%A8%E6%84%8F">数値型と文字列型の注意</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A4%89%E6%95%B0">変数</a>
+<ul>
+<li><a href="#%E8%87%AA%E5%B7%B1%E4%BB%A3%E5%85%A5">自己代入</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B">データ型</a>
+<ul>
+<li><a href="#typeof%E6%BC%94%E7%AE%97%E5%AD%90">typeof演算子</a></li>
+<li><a href="#%E5%9E%8B%E5%A4%89%E6%8F%9B">型変換</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E6%96%87%E5%AD%97%E5%88%97">テンプレート文字列</a></li>
+<li><a href="#%E5%85%A5%E5%8A%9B%E3%82%92%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8B">入力を受け取る</a></li>
+<li><a href="#%E4%B9%B1%E6%95%B0">乱数</a>
+<ul>
+<li><a href="#mathrandom">Math.random()</a></li>
+<li><a href="#mathfloormathrandom--%E6%9C%80%E5%A4%A7%E5%80%A4---%E6%9C%80%E5%B0%8F%E5%80%A4--1--%E6%9C%80%E5%B0%8F%E5%80%A4">Math.floor(Math.random() * (最大値 - 最小値 + 1)) + 最小値</a></li>
+<li><a href="#mathrandom--%E6%9C%80%E5%A4%A7%E5%80%A4---%E6%9C%80%E5%B0%8F%E5%80%A4--%E6%9C%80%E5%B0%8F%E5%80%A4">Math.random() * (最大値 - 最小値) + 最小値</a></li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BFmathfloormathrandom--%E3%83%87%E3%83%BC%E3%82%BFlength">データ[Math.floor(Math.random() * データ.length)]</a></li>
+<li><a href="#%E3%83%87%E3%83%BC%E3%82%BFsort--mathrandom---050">データ.sort(() =&gt; Math.random() - 0.5)[0]</a></li>
+</ul>
+</li>
+<li><a href="#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88">コメント</a></li>
+<li><a href="#%E5%85%A8%E8%A7%92%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9">全角スペース</a></li>
+<li><a href="#%E3%82%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9">エスケープシーケンス</a></li>
+<li><a href="#%E3%82%A4%E3%83%B3%E3%82%AF%E3%83%AA%E3%83%A1%E3%83%B3%E3%83%88%E3%83%87%E3%82%AF%E3%83%AA%E3%83%A1%E3%83%B3%E3%83%88%E6%BC%94%E7%AE%97%E5%AD%90">インクリメント・デクリメント演算子</a></li>
+<li><a href="#length%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">lengthプロパティ</a></li>
+<li><a href="#%E6%96%87%E5%AD%97%E5%88%97%E3%81%A8%E3%82%A4%E3%83%B3%E3%83%87%E3%83%83%E3%82%AF%E3%82%B9">文字列とインデックス</a></li>
+<li><a href="#%E5%88%B6%E5%BE%A1%E6%A7%8B%E6%96%87">制御構文</a></li>
+<li><a href="#%E6%9D%A1%E4%BB%B6%E5%BC%8F">条件式</a>
+<ul>
+<li><a href="#%E6%AF%94%E8%BC%83%E6%BC%94%E7%AE%97%E5%AD%90">比較演算子</a></li>
+<li><a href="#boolean%E5%9E%8B">Boolean型</a></li>
+<li><a href="#%E8%AB%96%E7%90%86%E6%BC%94%E7%AE%97%E5%AD%90">論理演算子</a></li>
+</ul>
+</li>
+<li><a href="#if%E6%96%87">if文</a></li>
+<li><a href="#switch%E6%96%87">switch文</a></li>
+<li><a href="#while%E3%83%AB%E3%83%BC%E3%83%97">whileループ</a></li>
+<li><a href="#for%E3%83%AB%E3%83%BC%E3%83%97">forループ</a>
+<ul>
+<li><a href="#%E5%88%9D%E6%9C%9F%E5%8C%96%E5%87%A6%E7%90%86">初期化処理</a></li>
+<li><a href="#%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E6%9D%A1%E4%BB%B6">繰り返し条件</a></li>
+<li><a href="#%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E6%99%82%E5%87%A6%E7%90%86">繰り返し時処理</a></li>
+<li><a href="#%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E4%BE%8B">プログラム例</a></li>
+</ul>
+</li>
+<li><a href="#%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E3%81%AE%E4%B8%AD%E6%96%AD">繰り返しの中断</a></li>
+<li><a href="#for%E6%96%87%E3%81%AB%E3%82%88%E3%82%8B%E5%8F%82%E7%85%A7">for文による参照</a></li>
+<li><a href="#%E6%96%87%E5%AD%97%E5%88%97%E5%90%8C%E5%A3%AB%E3%81%AE%E6%AF%94%E8%BC%83">文字列同士の比較</a></li>
+<li><a href="#includes">.includes()</a></li>
+<li><a href="#%E4%B8%89%E9%A0%85%E6%BC%94%E7%AE%97%E5%AD%90">三項演算子</a></li>
+<li><a href="#null">null</a></li>
+<li><a href="#%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">オブジェクト</a></li>
+<li><a href="#%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">メソッド</a></li>
+<li><a href="#%E6%96%87%E5%AD%97%E5%88%97%E5%9E%8B%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">文字列型のメソッド</a></li>
+<li><a href="#mutable%E3%81%A8immutable">mutableとimmutable</a></li>
+<li><a href="#%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">コレクション</a></li>
+<li><a href="#%E9%85%8D%E5%88%97">配列</a>
+<ul>
+<li><a href="#%E9%85%8D%E5%88%97%E3%81%AE%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">配列の作成方法</a>
+<ul>
+<li><a href="#-%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%85%8D%E5%88%97%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B">[ ]を使って配列を作成する</a></li>
+<li><a href="#-%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%85%8D%E5%88%97%E3%82%92%E5%88%9D%E6%9C%9F%E5%8C%96%E3%81%99%E3%82%8B">[ ]を使って配列を初期化する</a></li>
+<li><a href="#array%E3%82%B3%E3%83%B3%E3%82%B9%E3%83%88%E3%83%A9%E3%82%AF%E3%82%BF%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%85%8D%E5%88%97%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B"><code>Array</code>コンストラクタを使って配列を作成する</a></li>
+</ul>
+</li>
+<li><a href="#%E9%85%8D%E5%88%97%E3%81%AE%E8%A6%81%E7%B4%A0%E3%81%AE%E5%8F%82%E7%85%A7">配列の要素の参照</a></li>
+<li><a href="#%E9%85%8D%E5%88%97%E5%86%85%E3%81%AE%E5%90%88%E8%A8%88%E3%81%A8%E8%A6%81%E7%B4%A0%E6%95%B0%E3%81%AE%E5%8F%96%E5%BE%97">配列内の合計と要素数の取得</a></li>
+<li><a href="#%E9%85%8D%E5%88%97%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">配列のメソッド</a>
+<ul>
+<li><a href="#%E8%A6%81%E7%B4%A0%E3%81%AE%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88">要素のカウント</a></li>
+<li><a href="#%E8%A6%81%E7%B4%A0%E3%81%AE%E8%BF%BD%E5%8A%A0">要素の追加</a></li>
+<li><a href="#%E8%A6%81%E7%B4%A0%E3%81%AE%E5%89%8A%E9%99%A4">要素の削除</a></li>
+<li><a href="#%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE%E3%81%B8%E3%81%AE%E8%A6%81%E7%B4%A0%E3%81%AE%E8%BF%BD%E5%8A%A0%E3%81%A8%E5%89%8A%E9%99%A4">指定位置への要素の追加と削除</a></li>
+<li><a href="#%E9%85%8D%E5%88%97%E3%81%AE%E3%82%BD%E3%83%BC%E3%83%88%E6%98%87%E9%A0%86%E9%99%8D%E9%A0%86">配列のソート（昇順・降順）</a></li>
+<li><a href="#%E9%85%8D%E5%88%97%E3%81%AE%E7%B5%90%E5%90%88">配列の結合</a></li>
+<li><a href="#join%E3%81%A8split">joinとsplit</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A6%81%E7%B4%A0%E3%81%AE%E5%A4%89%E6%9B%B4">要素の変更</a></li>
+<li><a href="#%E9%85%8D%E5%88%97%E3%81%AE%E8%A6%81%E7%B4%A0%E3%81%AE%E3%82%B9%E3%83%A9%E3%82%A4%E3%82%B9">配列の要素のスライス</a></li>
+<li><a href="#includes-1">.includes()</a></li>
+<li><a href="#%E4%BA%8C%E6%AC%A1%E5%85%83%E9%85%8D%E5%88%97">二次元配列</a></li>
+</ul>
+</li>
+<li><a href="#%E9%96%A2%E6%95%B0">関数</a>
+<ul>
+<li><a href="#%E7%B5%84%E3%81%BF%E8%BE%BC%E3%81%BF%E9%96%A2%E6%95%B0">組み込み関数</a>
+<ul>
+<li><a href="#%E6%96%87%E5%AD%97%E5%88%97%E9%96%A2%E6%95%B0">文字列関数</a></li>
+<li><a href="#%E9%85%8D%E5%88%97%E9%96%A2%E6%95%B0">配列関数</a></li>
+</ul>
+</li>
+<li><a href="#%E9%96%A2%E6%95%B0%E3%81%AE%E5%AE%9A%E7%BE%A9">関数の定義</a>
+<ul>
+<li><a href="#%E9%96%A2%E6%95%B0%E3%81%A8%E5%BC%95%E6%95%B0">関数と引数</a></li>
+<li><a href="#%E9%96%A2%E6%95%B0%E3%81%A8%E6%88%BB%E3%82%8A%E5%80%A4">関数と戻り値</a></li>
+</ul>
+</li>
+<li><a href="#%E3%82%A2%E3%83%AD%E3%83%BC%E9%96%A2%E6%95%B0">アロー関数</a></li>
+<li><a href="#%E3%82%B0%E3%83%AD%E3%83%BC%E3%83%90%E3%83%AB%E5%A4%89%E6%95%B0">グローバル変数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="page-break-before:always"></div>
+<h2 id="consolelog%E9%96%A2%E6%95%B0">console.log関数</h2>
+<p><strong><code>console.log</code>関数</strong>を使うことで画面に文字を表示することができます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+console.log(<span class="hljs-string">"Hello World!"</span>);
+console.log(<span class="hljs-string">"Welcome to JavaScript!"</span>);
+console.log(25);
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>Hello World!
+Welcome to JavaScript!
+25
+</code></pre>
+<div style="page-break-before:always"></div>
+<p><code>console.log</code>関数の途中で改行したいときは、<strong>&quot; \n &quot;</strong> を途中に挿入します。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+console.log(<span class="hljs-string">"Hello World!\nWelcome to JavaScript!"</span>);
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>Hello World!
+Welcome to JavaScript!
+</code></pre>
+<p><strong><code>process.stdout.write</code></strong> 関数を使用すると、改行を防止することができます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+process.stdout.write(<span class="hljs-string">"Hello World! "</span>);
+process.stdout.write(<span class="hljs-string">"Welcome to JavaScript!, "</span>);
+process.stdout.write(<span class="hljs-string">"25"</span>);
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>Hello World! Welcome to JavaScript!, 25
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="%E6%95%B0%E5%80%A4%E5%9E%8B">数値型</h2>
+<p>数値型(Number)には<strong>整数(integers)</strong>、<strong>浮動小数点数(floating-point numbers)</strong> の2つがあります。</p>
+<p>また、JavaScriptには<strong>BigInt型</strong>という、非常に大きな整数を表すためのデータ型もあります。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+console.log(25);
+console.log(25.25);
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>25
+25.25
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E6%95%B0%E5%80%A4%E5%9E%8B%E3%81%AE%E7%AE%97%E8%A1%93%E6%BC%94%E7%AE%97%E5%AD%90">数値型の算術演算子</h3>
+<p>以下表のような四則演算をすることができます。</p>
+<table>
+<thead>
+<tr>
+<th>演算子</th>
+<th>例</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>x+y</td>
+<td>足し算</td>
+</tr>
+<tr>
+<td>-</td>
+<td>x-y</td>
+<td>引き算</td>
+</tr>
+<tr>
+<td>*</td>
+<td>x*y</td>
+<td>掛け算</td>
+</tr>
+<tr>
+<td>**</td>
+<td>x**y</td>
+<td>階乗</td>
+</tr>
+<tr>
+<td>/</td>
+<td>x/y</td>
+<td>割り算<br>(商は実数)</td>
+</tr>
+<tr>
+<td>%</td>
+<td>x%y</td>
+<td>剰余算<br>(除算の余り)</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+console.log(25 + 1); // 足し算
+console.log(25 - 1); // 引き算
+
+console.log(2 * 4); // 掛け算
+console.log(2 ** 4); // 階乗
+
+console.log(25 / 4); // 割り算（商は実数）
+console.log(25 % 4); // 剰余算
+
+console.log( 25 - 2*5 ); // 演算子の優先順位
+console.log( (25-2) * 5 ); // 剰余算
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>26
+24
+8
+16
+6.25
+1
+15
+115
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="%E6%96%87%E5%AD%97%E5%88%97%E5%9E%8B">文字列型</h2>
+<p>JavaScriptの文字列は『<strong>シングルクォーテーション</strong>』か『<strong>ダブルクォーテーション</strong>』で囲みます。<br>
+単数文字か複数文字かの区別はなく、どちらを使ってもよいです。</p>
+<p>囲むときは同じものをセットで使う必要があることに注意しましょう。<br>
+『<strong>ダブルクォーテーション</strong>』を使うことが多いようです。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+console.log(<span class="hljs-string">'Hello World!'</span>);
+console.log(<span class="hljs-string">"Hello World!"</span>);
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>Hello World!
+Hello World!
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E6%96%87%E5%AD%97%E5%88%97%E5%9E%8B%E3%81%AE%E7%AE%97%E8%A1%93%E6%BC%94%E7%AE%97%E5%AD%90">文字列型の算術演算子</h3>
+<p>以下表のような四則演算をすることができます。</p>
+<table>
+<thead>
+<tr>
+<th>演算子</th>
+<th>説明</th>
+<th>例</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>連結（文字列+文字列）</td>
+<td>'w' + 'w'</td>
+<td>ww</td>
+</tr>
+<tr>
+<td>.repeat</td>
+<td>反復（文字列.repeat(数値))</td>
+<td>'w'.repeat(3)</td>
+<td>www</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+console.log(<span class="hljs-string">"Hello"</span> + <span class="hljs-string">"World!"</span>);
+console.log(<span class="hljs-string">"Hello"</span>.repeat(3));
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>HelloWorld!
+HelloHelloHello
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E6%95%B0%E5%80%A4%E5%9E%8B%E3%81%A8%E6%96%87%E5%AD%97%E5%88%97%E5%9E%8B%E3%81%AE%E6%B3%A8%E6%84%8F">数値型と文字列型の注意</h3>
+<p>JavaScriptでは、数値型と文字列型を結合することができます。<br>
+数値型と文字列型を結合する場合は、数値型が自動的に文字列型に変換されます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+console.log(25 + 4);  // 29を出力
+console.log(<span class="hljs-string">"25"</span> + <span class="hljs-string">"4"</span>);  // <span class="hljs-string">"254"</span>を出力
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>29
+254
+</code></pre>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+console.log(<span class="hljs-string">"25"</span> + 4);  // <span class="hljs-string">"254"</span>を出力
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>254
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="%E5%A4%89%E6%95%B0">変数</h2>
+<p><strong>変数</strong>は、データを格納するためにコンピュータ内部に準備する箱のようなものです。</p>
+<p>JavaScriptで変数を宣言する場合は、<strong><code>let</code></strong> もしくは <strong><code>const</code></strong> キーワードを使います。</p>
+<p><strong><code>let</code></strong> は再代入可能な変数、<strong><code>const</code></strong> は再代入不可能な定数として宣言します。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+<span class="hljs-built_in">let</span> name = <span class="hljs-string">"Chitose"</span>;  // nameという変数に、文字列の<span class="hljs-string">"Chitose"</span>を代入
+<span class="hljs-built_in">let</span> number = <span class="hljs-string">"b1998040"</span>;  // numberという変数に、文字列の<span class="hljs-string">"b1998040"</span>を代入
+<span class="hljs-built_in">let</span> age = 25;  // ageという変数に、整数の<span class="hljs-string">"25"</span>を代入 
+
+console.log(name);
+console.log(number);
+console.log(age);
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>Chitose
+b1998040
+25
+</code></pre>
+<p>変数のキーワードについては<a href="https://www.javadrive.jp/javascript/var/">JavaDriveの記事</a>や<a href="https://3pysci.com/javascript-3/">3PySciの記事</a>が参考になります。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E8%87%AA%E5%B7%B1%E4%BB%A3%E5%85%A5">自己代入</h3>
+<p>変数に入っている数値を利用して計算を行い、再度その変数に書き戻す演算を<strong>自己代入</strong>といいます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+<span class="hljs-built_in">let</span> age = 25;
+
+// 元の変数に対して4を加算する
+age = age + 4;
+console.log(age);
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>29
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>自己代入には省略形があります。<br>
+以下の表を参考にしてください。</p>
+<table>
+<thead>
+<tr>
+<th>代入演算子</th>
+<th>記述例</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+=</td>
+<td>a +=  b</td>
+<td>a = a + b</td>
+</tr>
+<tr>
+<td>-=</td>
+<td>a -=  b</td>
+<td>a = a - b</td>
+</tr>
+<tr>
+<td>*=</td>
+<td>a *=  b</td>
+<td>a = a * b</td>
+</tr>
+<tr>
+<td>/=</td>
+<td>a /=  b</td>
+<td>a = a / b</td>
+</tr>
+<tr>
+<td>%=</td>
+<td>a %=  b</td>
+<td>a = a % b</td>
+</tr>
+<tr>
+<td>**=</td>
+<td>a **=  b</td>
+<td>a = a ** b</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> age = 25;
+age += 4;
+console.log(age);  // 足し算
+
+age = 25;
+age -= 4;
+console.log(age);  // 引き算
+
+age = 2;
+age *= 4;
+console.log(age);  // 掛け算
+
+age = 2;
+age **= 4;
+console.log(age);  // 階乗
+
+age = 25;
+age /= 4;
+console.log(age);  // 割り算（商は実数）
+
+age = 25;
+age %= 4;
+console.log(age);  // 剰余算
+
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>29
+21
+8
+16
+6.25
+1
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B">データ型</h2>
+<p>プログラムで扱うことのできるデータの種類を<strong>データ型</strong>といいます。</p>
+<p>JavaScriptにおけるデータ型は以下表のようなものがあります。</p>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>型</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文字列</td>
+<td>string</td>
+<td>&quot;Taro&quot; , &quot;b2220000&quot;</td>
+</tr>
+<tr>
+<td>整数</td>
+<td>number</td>
+<td>-12 , 19</td>
+</tr>
+<tr>
+<td>浮動小数点数</td>
+<td>number</td>
+<td>-0.5 , 19.0</td>
+</tr>
+<tr>
+<td>真偽値</td>
+<td>boolean</td>
+<td>True , False</td>
+</tr>
+</tbody>
+</table>
+<p>Pythonとは異なり、JavaScriptには明示的に型を指定する必要がありません。<br>
+JavaScriptでは、変数に代入された値に基づいて、その変数の型が自動的に決まります。</p>
+<p><strong>Pythonでは、変数代入した値によってそのデータ型が決まります。</strong></p>
+<p>Pythonの柔軟性がよく分かるでしょう。</p>
+<div style="page-break-before:always"></div>
+<h3 id="typeof%E6%BC%94%E7%AE%97%E5%AD%90">typeof演算子</h3>
+<p><strong>typeof演算子</strong>を使うと、変数にどのような型の値が格納されているかを調べることができます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> name = <span class="hljs-string">"Chitose"</span>;
+<span class="hljs-built_in">let</span> number = <span class="hljs-string">"b1998040"</span>;
+<span class="hljs-built_in">let</span> age = 25;
+
+console.log(typeof name);
+console.log(typeof number);
+console.log(typeof age);
+
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>string
+string
+number
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E5%9E%8B%E5%A4%89%E6%8F%9B">型変換</h3>
+<p>データ型を別のものに変換する際には、<strong>型変換</strong>を行います。</p>
+<p>JavaScriptでは、以下のように変換する先の型を表す関数を使用します。</p>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>変換先の型名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文字列</td>
+<td>String()</td>
+</tr>
+<tr>
+<td>整数</td>
+<td>parseInt()</td>
+</tr>
+<tr>
+<td>浮動小数点数</td>
+<td>parseFloat()</td>
+</tr>
+<tr>
+<td>真偽値</td>
+<td>Boolean()</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> age = <span class="hljs-string">"25"</span>;
+console.log(typeof age); // 最初は文字列型です
+
+age = parseInt(age);
+console.log(typeof age); // 型変換して整数型になりました
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>string
+number
+</code></pre>
+<p>数値と文字列の間で演算が行われる場合は、 数値型に揃えられてから演算が行われます。</p>
+<p>このように自動的に型変換が行われる仕組みを<strong>暗黙の型変換</strong>といいます。</p>
+<div style="page-break-before:always"></div>
+<p>ただし、真偽値と文字列の間では暗黙の型変換は行われません。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> age = 25;
+console.log(typeof age);
+
+<span class="hljs-built_in">let</span> plus = 0.5;
+console.log(typeof plus);
+
+age += plus; // ageが浮動小数点に揃えられて演算
+console.log(typeof age);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>number
+number
+number
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E6%96%87%E5%AD%97%E5%88%97">テンプレート文字列</h2>
+<p>JavaScriptでは、テンプレート文字列を使用することで、<br>
+文字列の中に値を埋め込むことができます。</p>
+<p>テンプレート文字列は、バッククォート「```」で囲まれた文字列です。<br>
+埋め込みたい値を「<strong>${}</strong>」で囲んで書きます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+const name = <span class="hljs-string">"Chitose"</span>;
+const age = 25;
+
+console.log(`<span class="hljs-variable">${name}</span>さんの年齢は <span class="hljs-variable">${age}</span>歳 です`);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>Chitoseさんの年齢は 25歳 です
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>また、テンプレート文字列内では、式を記述することもできます。</p>
+<p>例えば、以下のように記述することで、変数<code>age</code>に4を足した値をテンプレート文字列に埋め込んで<br>
+コンソールに出力することができます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+const name = <span class="hljs-string">"Chitose"</span>;
+const age = 25;
+
+console.log(`<span class="hljs-variable">${name}</span>さんの年齢は <span class="hljs-variable">${age}</span>歳 です`);
+console.log(`4年後は <span class="hljs-variable">${age+4}</span>歳 です`);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>Chitoseさんの年齢は 25歳 です
+4年後は 29歳 です
+</code></pre>
+<p>テンプレート文字列については、<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals">こちら</a>のページも参考になります。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E5%85%A5%E5%8A%9B%E3%82%92%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8B">入力を受け取る</h2>
+<p>Google Colab上でのJavaScriptの実行環境は、プロンプトを表示することができないため、<br>
+ユーザーからの入力を受け取ることができません。</p>
+<p><code>prompt</code>関数は、ラウザ上で実行されるJavaScriptの関数です、</p>
+<p>実行環境によっては使えるので、ぜひ試してみてください。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+<span class="hljs-comment"># 今回はエラー吐きます</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+const name = <span class="hljs-string">"Chitose"</span>;
+const age = prompt(<span class="hljs-string">"年齢を入力してください"</span>);  // メッセージを指定して入力を促す
+
+console.log(`${name}さんの年齢は ${age}歳 です`);
+console.log(`<span class="hljs-number">4</span>年後は ${Number(age)+<span class="hljs-number">4</span>}歳 です`);  // ageは文字列型なので、Number関数で数値型に変換します
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="%E4%B9%B1%E6%95%B0">乱数</h2>
+<p><strong>乱数</strong>とは、ランダムで何が出るか分からない数字のことです。<br>
+確率・統計的な処理や、数値シミュレーションには欠かせません。</p>
+<p>JavaScriptで乱数を扱う場合、Mathオブジェクトを使用します。<br>
+以下にまとめたものを示します。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:left">書き方</th>
+<th style="text-align:left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:left">Math.random()</td>
+<td style="text-align:left">0以上1未満のランダムな数を返す</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:left">Math.floor(Math.random() * (最大値 - 最小値 + 1)) + 最小値</td>
+<td style="text-align:left">最小値以上最大値以下のランダムな整数を返す</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:left">Math.random() * (最大値 - 最小値) + 最小値</td>
+<td style="text-align:left">最小値以上最大値未満のランダムな数を返す</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:left">データ[Math.floor(Math.random() * データ.length)]</td>
+<td style="text-align:left">データの中でランダムに一つだけ要素を返す</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:left">データ.sort(() =&gt; Math.random() - 0.5)[0]</td>
+<td style="text-align:left">データの中からランダムに一つだけ要素を返す</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-before:always"></div>
+<h3 id="mathrandom">Math.random()</h3>
+<p><strong>0.0以上、1.0未満</strong>のランダムな実数を返します。</p>
+<h3 id="mathfloormathrandom--%E6%9C%80%E5%A4%A7%E5%80%A4---%E6%9C%80%E5%B0%8F%E5%80%A4--1--%E6%9C%80%E5%B0%8F%E5%80%A4">Math.floor(Math.random() * (最大値 - 最小値 + 1)) + 最小値</h3>
+<p><strong>最小値 ≦ N ≦ 最大値</strong>となるランダムな整数Nを返します。<br>
+以下のコードは、0~20の中から整数値をランダムに選んでいます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+console.log(Math.floor(Math.random() * (21 - 0 + 1)) + 0);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>2
+</code></pre>
+<h3 id="mathrandom--%E6%9C%80%E5%A4%A7%E5%80%A4---%E6%9C%80%E5%B0%8F%E5%80%A4--%E6%9C%80%E5%B0%8F%E5%80%A4">Math.random() * (最大値 - 最小値) + 最小値</h3>
+<p><strong>最小値 ≦ N ≦ 最大値</strong>となるランダムな実数Nを返します。<br>
+以下のコードは、0~20の中から実数値をランダムに選んでいます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+console.log(Math.random() * (20 - 0) + 0);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>8.453544298121756
+</code></pre>
+<h3 id="%E3%83%87%E3%83%BC%E3%82%BFmathfloormathrandom--%E3%83%87%E3%83%BC%E3%82%BFlength">データ[Math.floor(Math.random() * データ.length)]</h3>
+<p><strong>文字列</strong>など（他に<strong>文字列</strong>、<strong>Map</strong>、<strong>Set</strong>）のデータからランダムに要素を1つ選んで返します。<br>
+以下のコードは、文字列の中からランダムな文字を表示するプログラムです。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+var string = <span class="hljs-string">"ABCD"</span>;
+console.log(string[Math.floor(Math.random() * string.length)]);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>C
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%83%87%E3%83%BC%E3%82%BFsort--mathrandom---050">データ.sort(() =&gt; Math.random() - 0.5)[0]</h3>
+<p>配列の要素をランダムにシャッフルし、先頭の要素を返します。</p>
+<p>以下のコードは、クラスの番号4つが含まれている配列を用意し、4つの要素をシャッフルした配列<code>class</code>を表示するプログラムです。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> random
+ABC_list = [<span class="hljs-string">'A'</span>, <span class="hljs-string">'B'</span>, <span class="hljs-string">'C'</span>, <span class="hljs-string">'D'</span>]
+random.shuffle(ABC_list)
+print(ABC_list)
+</div></code></pre>
+<pre><code>['D', 'B', 'C', 'A']
+</code></pre>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> classes = [<span class="hljs-string">'A'</span>, <span class="hljs-string">'B'</span>, <span class="hljs-string">'C'</span>, <span class="hljs-string">'D'</span>];
+<span class="hljs-built_in">let</span> shuffledClasses = classes.sort(() =&gt; Math.random() - 0.5);
+
+console.log(shuffledClasses);
+
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>[ 'B', 'A', 'C', 'D' ]
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88">コメント</h2>
+<p>「//」 記号を利用すると、コメントを入力することができます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// コメント
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<p>複数コメントを入力したいときは、範囲を選択して<br>
+&quot;Ctrlキー+「/」キー&quot; を押すと一気にコメント化できます。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E5%85%A8%E8%A7%92%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9">全角スペース</h2>
+<p>全角スペースは空白とはみなされません。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E3%82%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9">エスケープシーケンス</h2>
+<p>「&quot;」や「'」などの特殊な文字列を入力するためには、<br>
+<strong>エスケープシーケンス</strong>と呼ばれる特殊な文字列を使う必要があります。</p>
+<p>以下表のような特殊文字を扱うことができます。</p>
+<table>
+<thead>
+<tr>
+<th>表記</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\n</td>
+<td>改行</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>Tabキー</td>
+</tr>
+<tr>
+<td>\&quot;</td>
+<td>ダブルクォーテーション</td>
+</tr>
+<tr>
+<td>\'</td>
+<td>シングルクォーテーション</td>
+</tr>
+<tr>
+<td>\</td>
+<td>\マーク</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+console.log(<span class="hljs-string">"\"はダブルクォーテーションと読みます"</span>);
+console.log(<span class="hljs-string">"\'はシングルクォーテーションと読みます"</span>);
+console.log(<span class="hljs-string">"\\は日本語では円記号ですが、海外ではバックスラッシュと呼びます"</span>);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>&quot;はダブルクォーテーションと読みます
+'はシングルクォーテーションと読みます
+\は日本語では円記号ですが、海外ではバックスラッシュと呼びます
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="%E3%82%A4%E3%83%B3%E3%82%AF%E3%83%AA%E3%83%A1%E3%83%B3%E3%83%88%E3%83%BB%E3%83%87%E3%82%AF%E3%83%AA%E3%83%A1%E3%83%B3%E3%83%88%E6%BC%94%E7%AE%97%E5%AD%90">インクリメント・デクリメント演算子</h2>
+<p>JavaScriptにはインクリメント・デクリメント演算子があります。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> count = 1;
+
+count++; // インクリメント
+count++; // インクリメント
+count++; // インクリメント
+console.log(count); // 4
+
+count--; // デクリメント
+console.log(count); // 3
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>4
+3
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>ただし、自己代入演算子を使っても同じ結果を得ることができます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> count = 1;
+
+count += 1; // インクリメント
+count += 1; // インクリメント
+count += 1; // インクリメント
+console.log(count); // 4
+
+count -= 1; // デクリメント
+console.log(count); // 3
+
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>4
+3
+</code></pre>
+<p>詳しい話は<a href="https://www.javadrive.jp/javascript/ope/index6.html">こちら</a>のページが参考になります。</p>
+<div style="page-break-before:always"></div>
+<h2 id="length%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">lengthプロパティ</h2>
+<p>JavaScriptには、文字列の長さを取得するための <strong><code>length</code></strong> プロパティ があります。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> count = 1;
+
+// <span class="hljs-string">"これは文字です"</span>を変数sに代入
+<span class="hljs-built_in">let</span> s = <span class="hljs-string">'これは文字です'</span>;
+
+// 文字列変数sの長さを出力
+console.log(s.length);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>7
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="%E6%96%87%E5%AD%97%E5%88%97%E3%81%A8%E3%82%A4%E3%83%B3%E3%83%87%E3%83%83%E3%82%AF%E3%82%B9">文字列とインデックス</h2>
+<p>文字列の場合、<strong>添え字</strong>（<strong>インデックス</strong>）を指定することで、特定の文字を取得できます。<br>
+添え字は<strong>1ではなく0からスタートします</strong>。</p>
+<p>以下のコードでは、文字列の1文字目を取得しています。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// <span class="hljs-string">"b2223456"</span>を変数numberに代入
+<span class="hljs-built_in">let</span> number = <span class="hljs-string">"b1998040"</span>;
+
+// numberから「b」だけ取得する
+console.log(number[0]);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>b
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>負の数を指定すると、末尾からの順番で指定することもできます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// <span class="hljs-string">"b2223456"</span>を変数numberに代入
+<span class="hljs-built_in">let</span> number = <span class="hljs-string">"b1998040"</span>;
+
+// numberから最後の文字「0」を取得する
+console.log(number[number.length - 1]);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>0
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>以下のコードでは、複数の文字をまとめて取得しています。<br>
+このとき、<strong>スライス</strong>という構文を用います。</p>
+<p>※<code>A</code>は<strong>開始値</strong>。<code>A:</code>と<code>B</code>を指定しなかった場合は添え字が<code>A</code>以上のすべての要素を参照する<br>
+※<code>B</code>は<strong>終了値</strong>。<code>:B</code>と<code>A</code>を指定しなかった場合は添え字が<code>B</code>未満のすべての要素を参照する<br>
+※<code>C</code>は<strong>増減値</strong>。<code>A:B</code>と<code>C</code>を指定しなかった場合は増減値は「+1」となる<br>
+※<code>:</code>とだけ指定すると、すべての要素を参照する</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// <span class="hljs-string">"b2223456"</span>を変数numberに代入
+<span class="hljs-built_in">let</span> number = <span class="hljs-string">"b1998040"</span>;
+
+// numberから「b199」を取得する
+console.log(number.slice(0, 4));
+
+// 以下のように省略可能
+console.log(number.slice(0, 4));
+
+//添字4以降を取得
+console.log(number.slice(4));
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>b199
+b199
+8040
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>増減値を負の数にすると、逆順にして取り出すことができます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// <span class="hljs-string">"b2223456"</span>を変数numberに代入
+<span class="hljs-built_in">let</span> number = <span class="hljs-string">"b1998040"</span>;
+
+// 逆順にして取り出す
+console.log(number.split(<span class="hljs-string">""</span>).reverse().join(<span class="hljs-string">""</span>));
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>0408991b
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="%E5%88%B6%E5%BE%A1%E6%A7%8B%E6%96%87">制御構文</h2>
+<p>文の実行順をコントロールするプログラムの構成を<strong>制御構造</strong>といいます。</p>
+<p>代表的な構造が<strong>順次</strong>（これまで学習してきたもの）・分岐・繰り返し（今回学習）です。<br>
+この3つの制御構造を組み合わせることで、どんなに複雑なプログラムでも作成できることが理論上可能です。<br>
+これを<strong>構造化定理</strong>といいます。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E6%9D%A1%E4%BB%B6%E5%BC%8F">条件式</h2>
+<p>分岐する条件・繰り返しを続ける条件のことを<strong>条件式</strong>といいます。<br>
+分岐や繰り返しを行いたいときに利用されます。</p>
+<h3 id="%E6%AF%94%E8%BC%83%E6%BC%94%E7%AE%97%E5%AD%90">比較演算子</h3>
+<p>条件式を立てるときは<strong>比較演算子</strong>と呼ばれる演算子を用います。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">比較演算子</th>
+<th style="text-align:center">使い方</th>
+<th style="text-align:center">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">==</td>
+<td style="text-align:center">a == b</td>
+<td style="text-align:center">aとbが同じである(a=b)</td>
+</tr>
+<tr>
+<td style="text-align:center">!=</td>
+<td style="text-align:center">a != b</td>
+<td style="text-align:center">aがbではない(a≠b)</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;</td>
+<td style="text-align:center">a &lt; b</td>
+<td style="text-align:center">aがbよりも小さい</td>
+</tr>
+<tr>
+<td style="text-align:center">&gt;</td>
+<td style="text-align:center">a &gt; b</td>
+<td style="text-align:center">aがbよりも大きい</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;=</td>
+<td style="text-align:center">a &lt;= b</td>
+<td style="text-align:center">aがb以下である(a≦b)</td>
+</tr>
+<tr>
+<td style="text-align:center">&gt;=</td>
+<td style="text-align:center">a &gt;= b</td>
+<td style="text-align:center">aがb以上である(a≧b)</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-before:always"></div>
+<h3 id="boolean%E5%9E%8B">Boolean型</h3>
+<p>比較演算子を用いた条件式は、<br>
+条件が成立したら <strong>&quot;true&quot;</strong> 、しなければ <strong>&quot;false</strong>&quot; に置き換わります。</p>
+<p>&quot;true&quot;と&quot;false&quot;は<strong>真偽値</strong>といい、データ型は<strong>Boolean型</strong>です。</p>
+<p>プログラムで確認してみましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+console.log(4 == 4); // <span class="hljs-literal">true</span>
+console.log(4 != 4); // <span class="hljs-literal">false</span>
+
+console.log(4 &lt; 4); // <span class="hljs-literal">false</span>
+console.log(4 &gt; 4); // <span class="hljs-literal">false</span>
+console.log(4 &lt;= 4); // <span class="hljs-literal">true</span>
+console.log(4 &gt;= 4); // <span class="hljs-literal">true</span>
+
+console.log(4 == 4.0); // JavaScriptが勝手に型を調整するので<span class="hljs-literal">true</span>
+console.log(4 == <span class="hljs-string">"4.0"</span>); // JavaScriptが勝手に型を調整して比較するので<span class="hljs-literal">true</span>
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>true
+false
+false
+false
+true
+true
+true
+true
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E8%AB%96%E7%90%86%E6%BC%94%E7%AE%97%E5%AD%90">論理演算子</h3>
+<p>2つ以上の条件を組み合わせて、より複雑な条件式を使いたい場合は、  <strong>論理演算子</strong>を用います。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">論理演算子</th>
+<th style="text-align:center">説明</th>
+<th style="text-align:center">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&amp;&amp;</td>
+<td style="text-align:center">かつ</td>
+<td style="text-align:center">両方の条件が満たされたらTrue</td>
+</tr>
+<tr>
+<td style="text-align:center">||</td>
+<td style="text-align:center">または</td>
+<td style="text-align:center">どちらかの条件が満たされたらTrue</td>
+</tr>
+<tr>
+<td style="text-align:center">!</td>
+<td style="text-align:center">否定</td>
+<td style="text-align:center">条件が満たされなかったらTrue</td>
+</tr>
+</tbody>
+</table>
+<p>プログラムで確認してみましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+const number = Math.floor(Math.random() * 16); // 0～15までの整数をランダムに取得
+console.log(number);
+
+console.log(number &gt;= 0 &amp;&amp; number &lt;= 10); // 0以上10以下の値ならTrue
+console.log(number &lt;= 0 || number &gt;= 10); // 0以下の値か10以上の値ならTrue
+console.log(!(number == 10)); // numberが10ではなかったらTrue
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>0
+true
+true
+true
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="if%E6%96%87">if文</h2>
+<p>条件に応じて処理を分岐させるために使用される<strong>if文</strong>は、<br>
+ほとんどのプログラミング言語で似たような構文を持っています。</p>
+<p>if文には、ifブロック、else ifブロック（省略可能）、elseブロックがあります。</p>
+<p>JavaScriptでは、ブロックの範囲を波括弧（{}）で示します。</p>
+<p>基本形は<strong>if-else構文</strong>です。<br>
+条件式が成立したときとしなかったときで、処理を分けることができます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (条件式) {
+  <span class="hljs-comment">// 条件式がtrueの場合に実行する文</span>
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-comment">// 条件式がfalseの場合に実行する文</span>
+}
+</div></code></pre>
+<p>条件式が成立しなかった場合に何もしない場合は、elseブロックを省略することができます。<br>
+これは<strong>ifのみの構文</strong>となります。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (条件式) {
+    <span class="hljs-comment">// 条件式が真の場合に実行する文</span>
+}
+</div></code></pre>
+<p>条件式が成立しなかった時には別の条件式で判定したい場合は、<br>
+ifブロックのあとにelifブロックを追加した<strong>if-else if構文</strong>を使用します。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (条件式<span class="hljs-number">1</span>) {
+  <span class="hljs-comment">// 条件式1が真の場合に実行する処理</span>
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (条件式<span class="hljs-number">2</span>) {
+  <span class="hljs-comment">// 条件式1が偽で条件式2が真の場合に実行する処理</span>
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-comment">// 条件式1と条件式2が偽の場合に実行する処理</span>
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<p>下のコードは、<strong>if-else構文</strong>を用いたプログラムの例です。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> number = Math.floor(Math.random() * 101); // 0～100までの整数をランダムに取得
+console.log(`この科目の合計点は<span class="hljs-variable">${number}</span>点です`);
+<span class="hljs-built_in">let</span> result = number % 2;
+
+// 偶数奇数判定をするプログラム
+<span class="hljs-keyword">if</span> (result == 0) {
+  console.log(`<span class="hljs-variable">${number}</span> は偶数です`);
+} <span class="hljs-keyword">else</span> {
+  console.log(`<span class="hljs-variable">${number}</span> は奇数です`);
+}
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>この科目の合計点は32点です
+32 は偶数です
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>下のコードは、<strong>if-elif構文</strong>を用い、  なおかつ論理演算子も用いたプログラムの例です。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> point = Math.floor(Math.random() * 101); // 0～100までの整数をランダムに取得
+console.log(`この科目の合計点は<span class="hljs-variable">${point}</span>点です`);
+
+<span class="hljs-keyword">if</span> (point &gt;= 0 &amp;&amp; point &lt; 60) { // 0点以上60点未満
+  console.log(<span class="hljs-string">"成績はEです"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (point &gt;= 60 &amp;&amp; point &lt; 70) { // 60点以上70点未満
+  console.log(<span class="hljs-string">"成績はDです"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (point &gt;= 70 &amp;&amp; point &lt; 80) { // 70点以上80点未満
+  console.log(<span class="hljs-string">"成績はBです"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (point &gt;= 80 &amp;&amp; point &lt; 90) { // 80点以上90点未満
+  console.log(<span class="hljs-string">"成績はAです"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (point &gt;= 90 &amp;&amp; point &lt;= 100) { // 90点以上100点以下
+  console.log(<span class="hljs-string">"成績はSです"</span>);
+} <span class="hljs-keyword">else</span> { // エラー処理
+  console.log(<span class="hljs-string">"点数を正しく入力してください"</span>);
+}
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>この科目の合計点は72点です
+成績はBです
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="switch%E6%96%87">switch文</h2>
+<p>JavaScriptには<strong>switch文</strong>があります。<br>
+switch文は、複数の条件に対して処理を分岐させる場合に使用されます。</p>
+<p>以下は、switch文の基本的な書き方です。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">switch</span> (式) {
+  <span class="hljs-keyword">case</span> 値<span class="hljs-number">1</span>:
+    <span class="hljs-comment">// 値1に該当する処理</span>
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> 値<span class="hljs-number">2</span>:
+    <span class="hljs-comment">// 値2に該当する処理</span>
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> 値<span class="hljs-number">3</span>:
+    <span class="hljs-comment">// 値3に該当する処理</span>
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">default</span>:
+    <span class="hljs-comment">// 上記のいずれにも該当しない場合の処理</span>
+    <span class="hljs-keyword">break</span>;
+}
+</div></code></pre>
+<p>switch文は、式の評価結果によって、値1、値2、値3のいずれかに該当する場合に、その処理を実行します。<br>
+該当する値がない場合は、<strong>default</strong>の処理を実行します。</p>
+<p>また、<strong>break</strong>文がない場合は、該当する処理の実行後に次の処理も実行されます。<br>
+（この後詳しく解説します）</p>
+<div style="page-break-before:always"></div>
+<h2 id="while%E3%83%AB%E3%83%BC%E3%83%97">whileループ</h2>
+<p>回数の決まっていない繰り返しには、<strong>whileループ</strong>を使用することが多いです。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">while</span> (条件式) {
+  繰り返す処理
+}
+</div></code></pre>
+<p>処理を実行する前に条件式を評価します。<br>
+評価結果が<strong>true</strong>である間は、処理が繰り返し実行されます。</p>
+<p>下のコードは、第1回目～第3回目まで出力するプログラムの例です。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> i = 0;
+<span class="hljs-keyword">while</span> (i &lt; 3) {
+  console.log(`<span class="hljs-variable">${i+1}</span>回目です`);
+  i++;
+}
+console.log(<span class="hljs-string">"終了しました"</span>);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>1回目です
+2回目です
+3回目です
+終了しました
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>変数<code>i</code>のように、繰り返すたびにその値が変化し、繰り返しの条件となる変数のことを<br>
+<strong>カウンタ変数</strong>または<strong>ループ変数</strong>（<strong>ループカウンタ</strong>）といいます。</p>
+<p>変数<code>i</code>の値をwhileブロックの中で更新し忘れると、繰り返しが終了しません。<br>
+このようないつまでも続く繰り返しのことを<strong>無限ループ</strong>と呼びます。</p>
+<p>あえて無限ループを作るときは以下のようにしましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+  <span class="hljs-comment">// 無限ループの処理</span>
+}
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="for%E3%83%AB%E3%83%BC%E3%83%97">forループ</h2>
+<p>コンピュータは、同じことを何回も繰り返すことができます。<br>
+回数の決まっている繰り返しには、<strong>forループ</strong>を使用することが多いです。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (初期化処理; 繰り返し条件 ; 繰り返し時処理) {
+  繰り返す処理;
+}
+</div></code></pre>
+<h4 id="%E5%88%9D%E6%9C%9F%E5%8C%96%E5%87%A6%E7%90%86">初期化処理</h4>
+<p>for文による繰り返しを始める前に、最初に一回だけ実行される文です。<br>
+通常、何回目のループなのかを記録する変数の宣言や初期化を行います。</p>
+<p>このような変数を<strong>ループ変数</strong>といいます。<br>
+ループ変数は1文字の変数名（特に「<strong>i</strong>」）にすることが多いです。<br>
+for文内での計算や表示などの処理に用いることができます。</p>
+<h4 id="%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E6%9D%A1%E4%BB%B6">繰り返し条件</h4>
+<p>ループを継続するかしないかを判定する条件式です。<br>
+評価結果が真である間は、処理が繰り返し実行されます。</p>
+<h4 id="%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E6%99%82%E5%87%A6%E7%90%86">繰り返し時処理</h4>
+<p>ループの本体で実行される文です。<br>
+通常は、ループ変数の値を更新する文を書きます。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E4%BE%8B">プログラム例</h3>
+<p>下のコードは、第0回目～第3回目まで出力するプログラムの例です。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-keyword">for</span> (<span class="hljs-built_in">let</span> i = 0; i &lt; 4; i++) {
+  console.log(`<span class="hljs-variable">${i}</span>回目です`);
+}
+console.log(<span class="hljs-string">"終了しました"</span>);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>0回目です
+1回目です
+2回目です
+3回目です
+終了しました
+</code></pre>
+<p>開始値と増減値は省略しています。<br>
+<strong>(終了値-1)</strong> 回までの反復処理が行われることが確認できました。</p>
+<div style="page-break-before:always"></div>
+<p>下のコードは、第1回目～第3回目まで出力するプログラムの例です。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-keyword">for</span>(<span class="hljs-built_in">let</span> i = 1; i &lt; 6; i += 2) {
+  console.log(`<span class="hljs-variable">${i}</span>回目です`);
+}
+console.log(<span class="hljs-string">"終了しました"</span>);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>1回目です
+3回目です
+5回目です
+終了しました
+</code></pre>
+<p>1からスタートすることができました。</p>
+<div style="page-break-before:always"></div>
+<p>下のコードは、第1回目～第5回目までの内奇数回を出力するプログラムの例です。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-keyword">for</span> (<span class="hljs-built_in">let</span> i = 1; i &lt; 6; i += 2) {
+  console.log(`<span class="hljs-variable">${i}</span>回目です`);
+}
+console.log(<span class="hljs-string">"終了しました"</span>);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>1回目です
+3回目です
+5回目です
+終了しました
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>for文を使って九九を表示してみましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// 縦方向のループ用
+<span class="hljs-keyword">for</span> (<span class="hljs-built_in">let</span> num1 = 1; num1 &lt; 10; num1++) {
+  // 横方向のループ用
+  <span class="hljs-keyword">for</span> (<span class="hljs-built_in">let</span> num2 = 1; num2 &lt; 10; num2++) {
+    // 改行なしで2ケタ表示
+    process.stdout.write(`<span class="hljs-variable">${num1 * num2 &lt; 10 ? " " : ""}</span><span class="hljs-variable">${num1 * num2}</span> `);
+  }
+  // 1行分が終わったので改行を実施
+  console.log()
+}
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code> 1  2  3  4  5  6  7  8  9 
+ 2  4  6  8 10 12 14 16 18 
+ 3  6  9 12 15 18 21 24 27 
+ 4  8 12 16 20 24 28 32 36 
+ 5 10 15 20 25 30 35 40 45 
+ 6 12 18 24 30 36 42 48 54 
+ 7 14 21 28 35 42 49 56 63 
+ 8 16 24 32 40 48 56 64 72 
+ 9 18 27 36 45 54 63 72 81 
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E3%81%AE%E4%B8%AD%E6%96%AD">繰り返しの中断</h2>
+<p>処理によっては、繰り返しを最後まで行わずに途中で中断したいことがあります。</p>
+<p><strong>break文</strong>はループそのものを中断し、ループの次に記述された処理へと進みます。</p>
+<p>以下のコードで確認しましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> i = 0;
+
+<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+  console.log(`<span class="hljs-variable">${i+1}</span>回目です`);
+  i++;
+
+  <span class="hljs-keyword">if</span> (i == 3) {
+    <span class="hljs-built_in">break</span>;
+  }
+}
+
+console.log(<span class="hljs-string">"終了しました"</span>);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>1回目です
+2回目です
+3回目です
+終了しました
+</code></pre>
+<div style="page-break-before:always"></div>    
+<p>一方の<strong>continue文</strong>は、ループの現在の回だけを中断してループの先頭へ戻り、次の回のループを継続します。</p>
+<p><strong>※多重ループの場合、break文、continue文は現在のループに対してのみ有効です。</strong></p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-keyword">for</span> (<span class="hljs-built_in">let</span> i = 1; i &lt;= 5; i++) {
+  <span class="hljs-keyword">if</span> (i % 2 === 0) {  // 変数iが偶数のときループをスキップ
+    <span class="hljs-built_in">continue</span>;
+  }
+  
+  console.log(`第<span class="hljs-variable">${i}</span>回目`);
+}
+
+console.log(<span class="hljs-string">"終了しました"</span>);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>第1回目
+第3回目
+第5回目
+終了しました
+</code></pre>
+<div style="page-break-before:always"></div>    
+<p>下のコードは、break文とcontinue文と無限ループを用いて、<br>
+成績処理を3回だけ行うプログラムの例です。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> count = 1; // 成績処理回数
+
+<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+  <span class="hljs-built_in">let</span> point = Math.floor(Math.random() * (111 - (-10) + 1) + (-10)); // -10～110までの整数をランダムに取得
+  console.log(`<span class="hljs-variable">${count}</span>回目`);
+  console.log(`この科目の合計点は<span class="hljs-variable">${point}</span>点です`);
+
+  <span class="hljs-keyword">if</span> (point &gt;= 0 &amp;&amp; point &lt; 60) { // 0点以上60点未満
+    console.log(<span class="hljs-string">"成績はEです\n"</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (point &gt;= 60 &amp;&amp; point &lt; 70) { // 60点以上70点未満
+    console.log(<span class="hljs-string">"成績はDです\n"</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (point &gt;= 70 &amp;&amp; point &lt; 80) { // 70点以上80点未満
+    console.log(<span class="hljs-string">"成績はBです\n"</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (point &gt;= 80 &amp;&amp; point &lt; 90) { // 80点以上90点未満
+    console.log(<span class="hljs-string">"成績はAです\n"</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (point &gt;= 90 &amp;&amp; point &lt;= 100) { // 90点以上100点以下
+    console.log(<span class="hljs-string">"成績はSです\n"</span>);
+  } <span class="hljs-keyword">else</span> { // エラー処理
+    console.log(<span class="hljs-string">"点数を正しく入力してください\n"</span>);
+    <span class="hljs-built_in">continue</span>; // 成績処理をしてないものとしてループの先頭へ
+  }
+
+  count += 1;
+  <span class="hljs-keyword">if</span> (count == 4) { // 3回の成績処理を終えたらループから抜ける
+    <span class="hljs-built_in">break</span>;
+  }
+}
+
+console.log(<span class="hljs-string">"終了しました"</span>);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+
+
+
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre><code>1回目
+この科目の合計点は104点です
+点数を正しく入力してください
+
+1回目
+この科目の合計点は40点です
+成績はEです
+
+2回目
+この科目の合計点は95点です
+成績はSです
+
+3回目
+この科目の合計点は68点です
+成績はDです
+
+終了しました
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="for%E6%96%87%E3%81%AB%E3%82%88%E3%82%8B%E5%8F%82%E7%85%A7">for文による参照</h2>
+<p>文字列や配列（次回学習）などのデータの集まりは、<br>
+forループを使って簡単に参照することができます。</p>
+<p>以下のコードは、文字列&quot;b2223456&quot; を順に1文字ずつ変数numberに格納し、<br>
+1文字ずつ出力するプログラムです。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// numberという変数に、<span class="hljs-string">"b1990040"</span>という文字列を入れる
+<span class="hljs-built_in">let</span> number = <span class="hljs-string">"b1990040"</span>;
+
+// <span class="hljs-keyword">for</span>文で文字列を1文字ずつ出力する
+<span class="hljs-keyword">for</span>(<span class="hljs-built_in">let</span> i=0; i&lt;number.length; i++){
+console.log(number[i]);
+}
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>b
+1
+9
+9
+0
+0
+4
+0
+</code></pre>
+<p>今後「配列」などを学習した際に活躍します。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E6%96%87%E5%AD%97%E5%88%97%E5%90%8C%E5%A3%AB%E3%81%AE%E6%AF%94%E8%BC%83">文字列同士の比較</h2>
+<p>Javascriptにおける数字と文字列の比較では、少しだけ違いがあります。<br>
+C言語よりは大分簡単に扱うことができます。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">比較演算子</th>
+<th style="text-align:center">使い方</th>
+<th style="text-align:center">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">==</td>
+<td style="text-align:center">a==b</td>
+<td style="text-align:center">aとbが同じである(a=b)</td>
+</tr>
+<tr>
+<td style="text-align:center">!=</td>
+<td style="text-align:center">a!=b</td>
+<td style="text-align:center">aがbではない(a≠b)</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;</td>
+<td style="text-align:center">a&lt;b</td>
+<td style="text-align:center">aがbより辞書的に前</td>
+</tr>
+<tr>
+<td style="text-align:center">&gt;</td>
+<td style="text-align:center">a&gt;b</td>
+<td style="text-align:center">aがbより辞書的に後</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;=</td>
+<td style="text-align:center">a&lt;=b</td>
+<td style="text-align:center">aがbより辞書的に前または同じ</td>
+</tr>
+<tr>
+<td style="text-align:center">&gt;=</td>
+<td style="text-align:center">a&gt;=b</td>
+<td style="text-align:center">aがbより辞書的に後または同じ</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> name1 = <span class="hljs-string">"Chitose"</span>;
+<span class="hljs-built_in">let</span> name2 = <span class="hljs-string">"Hokudai"</span>;
+
+console.log(name1 == name2); // <span class="hljs-string">"Chitose"</span>と<span class="hljs-string">"Hokudai"</span>は同じではないので<span class="hljs-literal">false</span>
+console.log(name1 != name2); // <span class="hljs-string">"Chitose"</span>と<span class="hljs-string">"Hokudai"</span>は同じではないので<span class="hljs-literal">true</span>
+
+console.log(name1 &lt; name2); // <span class="hljs-string">"Chitose"</span>は<span class="hljs-string">"Hokudai"</span>より辞書的に前なので<span class="hljs-literal">true</span>
+console.log(name1 &gt; name2); // <span class="hljs-string">"Chitose"</span>は<span class="hljs-string">"Hokudai"</span>より辞書的に後ではないなので<span class="hljs-literal">false</span>
+console.log(name1 &lt;= name2); // <span class="hljs-string">"Chitose"</span>は<span class="hljs-string">"Hokudai"</span>より辞書的に前なので<span class="hljs-literal">true</span>
+console.log(name1 &gt;= name2); // <span class="hljs-string">"Chitose"</span>は<span class="hljs-string">"Hokudai"</span>より辞書的に後ではないなので<span class="hljs-literal">false</span>
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>false
+true
+true
+false
+true
+false
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="includes">.includes()</h2>
+<p>JavaScriptには、文字列や配列に特定の要素が含まれるかどうかを判定するための<br>
+<strong><code>.includes()</code></strong> メソッドが用意されています。</p>
+<p><code>.includes()</code>メソッドは、引数に指定した要素が<br>
+対象の文字列や配列に含まれる場合に true を、含まれていない場合には false を返します。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">使い方</th>
+<th style="text-align:center">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">b.includes(a)</td>
+<td style="text-align:center">aはbに含まれる</td>
+</tr>
+<tr>
+<td style="text-align:center">!b.includes(a)</td>
+<td style="text-align:center">aがbに含まれていない</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> a = <span class="hljs-string">"b1990040"</span>;
+<span class="hljs-built_in">let</span> b = <span class="hljs-string">"b199"</span>;
+
+console.log(a.includes(b)); // <span class="hljs-string">"b199"</span>が<span class="hljs-string">"b1990040"</span>に含まれるので<span class="hljs-literal">true</span>
+console.log(!a.includes(b)); // <span class="hljs-string">"b199"</span>が<span class="hljs-string">"b199040"</span>に含まれるので<span class="hljs-literal">false</span>
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>true
+false
+</code></pre>
+<div style="page-break-before:always"></div>    
+<h2 id="%E4%B8%89%E9%A0%85%E6%BC%94%E7%AE%97%E5%AD%90">三項演算子</h2>
+<p>JavaScriptにおける<strong>三項演算子</strong>は、条件式を評価して真偽値を返し、<br>
+真であれば第1引数を、偽であれば第2引数を返す演算子です。</p>
+<p>一般的な書き方は以下の通りです。</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// 一般的なfor文</span>
+<span class="hljs-keyword">if</span> (条件式) {
+  <span class="hljs-comment">// 条件式がtrueの場合に実行する文</span>
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-comment">// 条件式がfalseの場合に実行する文</span>
+}
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">// 三項演算子</span>
+条件式 ? 式<span class="hljs-number">1</span> : 式<span class="hljs-number">2</span>
+
+</div></code></pre>
+<p>さきほどの関数のif文の箇所を1行で記述しましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+const number = Math.floor(Math.random() * 101); // 0~100の整数をランダムに取得
+console.log(`この科目の合計点は<span class="hljs-variable">${number}</span>点です`);
+const result = number % 2;
+
+// 偶数奇数判定をするプログラム
+result == 0 ? console.log(`<span class="hljs-variable">${number}</span> は偶数です`) : console.log(`<span class="hljs-variable">${number}</span> は奇数です`);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>この科目の合計点は94点です
+94 は偶数です
+</code></pre>
+<p>三項演算子はif文を簡潔に書くために使われることが多いです。<br>
+結構癖が強めです。</p>
+<div style="page-break-before:always"></div>
+<h2 id="null">null</h2>
+<p>何も存在しないことを表すオブジェクトは、Pythonでは &quot;None&quot; と呼ばれますが、<br>
+JavaScriptには対応するものがあります。</p>
+<p>それは、 &quot;<strong>null</strong>&quot; という特別な値です。</p>
+<p>JavaScriptでは、&quot;<strong>undefined</strong>&quot; という値も存在しますが、<br>
+PythonのNoneとは少し異なります。</p>
+<p>undefinedは、値が設定されていないことを表し、<br>
+nullは、存在しないことを明示的に表します。</p>
+<p>例えば、変数が何らかの値を持たない場合や、オブジェクトのプロパティが存在しない場合に、<br>
+nullを使用することができます。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">オブジェクト</h2>
+<p>Javascriptでは、「数値」「文字列」「真偽値」などのあらゆる情報が<br>
+<strong>『オブジェクト』</strong> として管理されています。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> name1 = <span class="hljs-string">"Chitose"</span>;
+<span class="hljs-built_in">let</span> name2 = <span class="hljs-string">"Hokudai"</span>;
+
+console.log(19); // 整数
+console.log(3.14);  // 浮動小数点数
+console.log(<span class="hljs-string">"Hello"</span>);
+console.log(<span class="hljs-literal">true</span>);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>19
+3.14
+Hello
+true
+</code></pre>
+<p><img src="https://bit.ly/3HhNMyC" alt="python_3-1.png"></p>
+<div style="page-break-before:always"></div>
+<h2 id="%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">メソッド</h2>
+<p>オブジェクトに何らかの操作を行うための関数のことを<strong>メソッド</strong>といいます。</p>
+<p>オブジェクトの種類に応じて多くのメソッドがあります。</p>
+<h2 id="%E6%96%87%E5%AD%97%E5%88%97%E5%9E%8B%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">文字列型のメソッド</h2>
+<p>文字を変換するためのメソッドには、以下のようなものがあります。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">メソッド</th>
+<th style="text-align:center">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">toLowerCase()</td>
+<td style="text-align:center">すべての文字を小文字に変換</td>
+</tr>
+<tr>
+<td style="text-align:center">toUpperCase()</td>
+<td style="text-align:center">すべての文字を大文字に変換</td>
+</tr>
+<tr>
+<td style="text-align:center">indexOf()</td>
+<td style="text-align:center">指定した文字列が最初に現れるインデックスを取得</td>
+</tr>
+<tr>
+<td style="text-align:center">includes()</td>
+<td style="text-align:center">指定した文字列が含まれるかどうかを判定</td>
+</tr>
+<tr>
+<td style="text-align:center">slice()</td>
+<td style="text-align:center">指定した位置から指定した位置までの部分文字列を取得</td>
+</tr>
+<tr>
+<td style="text-align:center">split()</td>
+<td style="text-align:center">指定した区切り文字で文字列を分割して、配列として取得</td>
+</tr>
+<tr>
+<td style="text-align:center">replace()</td>
+<td style="text-align:center">文字列の中の指定した文字列を別の文字列に置換</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-before:always"></div>
+<p>プログラムで確認してみましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// 文字列オブジェクトを生成
+<span class="hljs-built_in">let</span> name = <span class="hljs-string">"Chitose Taro"</span>;
+
+// 文字列を変換するメソッド
+console.log(`<span class="hljs-variable">${name.toLowerCase()}</span> : lower`);
+console.log(`<span class="hljs-variable">${name.toUpperCase()}</span> : upper`);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>chitose taro : lower
+CHITOSE TARO : upper
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># 文字列オブジェクトを生成</span>
+str = <span class="hljs-string">"Hello World"</span>
+
+<span class="hljs-comment"># countメソッド</span>
+print(<span class="hljs-string">f"<span class="hljs-subst">{str.count(<span class="hljs-string">'l'</span>)}</span>"</span>)
+</div></code></pre>
+<pre><code>3
+</code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// spllitを変換するメソッド
+<span class="hljs-built_in">let</span> str = <span class="hljs-string">"hello world"</span>;
+console.log(`<span class="hljs-variable">${str.split('l').length - 1}</span>`);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>3
+</code></pre>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> str = <span class="hljs-string">"b1990040"</span>;
+
+// replaceメソッド
+console.log(str.replace(<span class="hljs-string">'b1990'</span>, <span class="hljs-string">'b2019'</span>));
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>b2019040
+</code></pre>
+<p>文字列型のメソッドを使って他にもいろんな処理を行いたい際は、<br>
+<a href="https://www.javadrive.jp/javascript/string/">こちら</a>のサイトを参考にしてください。</p>
+<div style="page-break-before:always"></div>
+<h2 id="mutable%E3%81%A8immutable">mutableとimmutable</h2>
+<p>変更可能なオブジェクトを <strong>「mutable」</strong>、<br>
+変更不可能なオブジェクトを <strong>「immutable」</strong> といいます。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">データ型</th>
+<th style="text-align:center">mutable or immutable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">number</td>
+<td style="text-align:center">immutable</td>
+</tr>
+<tr>
+<td style="text-align:center">string</td>
+<td style="text-align:center">immutable</td>
+</tr>
+<tr>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">immutable</td>
+</tr>
+<tr>
+<td style="text-align:center">null</td>
+<td style="text-align:center">immutable</td>
+</tr>
+<tr>
+<td style="text-align:center">object</td>
+<td style="text-align:center">mutable</td>
+</tr>
+<tr>
+<td style="text-align:center">array</td>
+<td style="text-align:center">mutable</td>
+</tr>
+<tr>
+<td style="text-align:center">Map</td>
+<td style="text-align:center">mutable</td>
+</tr>
+<tr>
+<td style="text-align:center">Set</td>
+<td style="text-align:center">mutable</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-before:always"></div>
+<p>文字列型のオブジェクトは <strong>immutable</strong> なので、<br>
+メソッドで生成された文字列オブジェクトは、新しいものとなります。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// 文字列オブジェクトを生成
+<span class="hljs-built_in">let</span> name1 = <span class="hljs-string">"Chitose Taro"</span>;
+console.log(`置換前のname1 : <span class="hljs-variable">${name1}</span>`);
+
+// lowerメソッド
+<span class="hljs-built_in">let</span> name2 = name1.toLowerCase();
+
+console.log(`置換後のname1 : <span class="hljs-variable">${name1}</span>`);
+console.log(`置換後のname2 : <span class="hljs-variable">${name2}</span>`);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>置換前のname1 : Chitose Taro
+置換後のname1 : Chitose Taro
+置換後のname2 : chitose taro
+</code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">コレクション</h2>
+<p>JavaScriptには、 <strong>配列</strong> (<strong>Array</strong>)、 <strong>マップ</strong> (<strong>Map</strong>)、<strong>セット</strong> (<strong>Set</strong>)の3つの主要なコレクションがあります。</p>
+<p>これらは、関連するデータをグループにして、まとめて1つの変数として扱うことができます。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E9%85%8D%E5%88%97">配列</h2>
+<p><strong>配列</strong>は、複数の値を1列に並べて管理するためのコレクションです。<br>
+配列の各要素には0から始まるインデックス番号が付けられます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> nothing = null; // nullの代入
+
+// 変数nothingがnullかどうかで分岐
+<span class="hljs-keyword">if</span> (nothing === null) {
+    console.log(`nothingは<span class="hljs-variable">${nothing}</span>です`);
+} <span class="hljs-keyword">else</span> {
+    console.log(`nothingは<span class="hljs-variable">${nothing}</span>ではありません`);
+}
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>nothingはnullです
+</code></pre>
+<p>上記のコードでは、nullを代入した変数nothingをif文で評価し、<br>
+その結果に応じてメッセージを出力しています。</p>
+<p>注意すべき点としては、Pythonと異なり、JavaScriptでは<br>
+比較演算子として <strong>&quot;===&quot;</strong> を使用する必要があることです。</p>
+<p>また、nullとundefinedは別物なので、<br>
+間違ってundefinedを評価しないように注意してください。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E9%85%8D%E5%88%97%E3%81%AE%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">配列の作成方法</h3>
+<p>Javascriptで配列を作成する方法はいくつかあります。</p>
+<h4 id="%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%85%8D%E5%88%97%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B">[ ]を使って配列を作成する</h4>
+<p>以下のようにして、空の配列を作成することができます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> arrayName = []; <span class="hljs-comment">//空の配列を作成する</span>
+</div></code></pre>
+<p>ここで <code>arrayName</code><input type="checkbox" id="checkbox0"><label for="checkbox0">の中に要素を入れます。</label></p>
+<p>配列内の要素は、文字列、数値、真偽値、オブジェクト、配列など、<br>
+JavaScriptで扱えるあらゆるデータ型を格納することができます。</p>
+<h4 id="%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%85%8D%E5%88%97%E3%82%92%E5%88%9D%E6%9C%9F%E5%8C%96%E3%81%99%E3%82%8B">[ ]を使って配列を初期化する</h4>
+<p>配列の中に要素を含めて、初期化された配列を作成することができます。<br>
+要素は、カンマで区切って配列の中に記述することができます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> arrayName = [item1, item2, item3]; <span class="hljs-comment">//要素を持つ配列を作成する</span>
+</div></code></pre>
+<h4 id="array%E3%82%B3%E3%83%B3%E3%82%B9%E3%83%88%E3%83%A9%E3%82%AF%E3%82%BF%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%85%8D%E5%88%97%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B"><code>Array</code>コンストラクタを使って配列を作成する</h4>
+<p>この方法では、<code>Array()</code>コンストラクターを使って配列を作成します。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(); <span class="hljs-comment">// 空の配列を作成する</span>
+
+</div></code></pre>
+<p>この方法は、引数として渡すことができる配列の長さを指定することができます。</p>
+<p>たとえば、次のようにして、長さが3の配列を作成することができます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(<span class="hljs-number">3</span>); <span class="hljs-comment">// 長さが3の配列を作成する</span>
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E9%85%8D%E5%88%97%E3%81%AE%E8%A6%81%E7%B4%A0%E3%81%AE%E5%8F%82%E7%85%A7">配列の要素の参照</h3>
+<p>ではまず、3つの学科の配列を作ってまとめて表示してみましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+const gakka = [<span class="hljs-string">"Ouka"</span>, <span class="hljs-string">"Denshi"</span>, <span class="hljs-string">"Josisu"</span>];
+console.log(gakka);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>[ 'Ouka', 'Denshi', 'Josisu' ]
+</code></pre>
+<div style="page-break-before:always"></div>    
+<p>配列内の特定の要素を参照することもできます。</p>
+<pre class="hljs"><code><div>arrayName[添え字]
+</div></code></pre>
+<p>以下のコードは、配列の1番目の要素を表示するプログラムです。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+const gakka = [<span class="hljs-string">"Ouka"</span>, <span class="hljs-string">"Denshi"</span>, <span class="hljs-string">"Josisu"</span>];
+console.log(gakka[1]);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>Denshi
+</code></pre>
+<p>Javascriptでは、添え字として負の数を指定することができません。<br>
+最後の要素にアクセスしたいときは、以下のようにしましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+const gakka = [<span class="hljs-string">"Ouka"</span>, <span class="hljs-string">"Denshi"</span>, <span class="hljs-string">"Josisu"</span>];
+console.log(gakka[gakka.length - 1]);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>Josisu
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>for文を組み合わせることで、簡単にすべての中身を表示するプログラムを書けます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+const gakka = [<span class="hljs-string">"Ouka"</span>, <span class="hljs-string">"Denshi"</span>, <span class="hljs-string">"Josisu"</span>];
+<span class="hljs-keyword">for</span> (<span class="hljs-built_in">let</span> p of gakka) {
+  console.log(p);
+}
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>Ouka
+Denshi
+Josisu
+</code></pre>
+<div style="page-break-before:always"></div>    
+<h3 id="%E9%85%8D%E5%88%97%E5%86%85%E3%81%AE%E5%90%88%E8%A8%88%E3%81%A8%E8%A6%81%E7%B4%A0%E6%95%B0%E3%81%AE%E5%8F%96%E5%BE%97">配列内の合計と要素数の取得</h3>
+<p>JavaScriptにも、リスト（配列）の合計を求めるための方法があります。<br>
+それは、<strong><code>reduce()</code>メソッド</strong> を使うことです。</p>
+<p><code>reduce()</code>メソッドは、リストの要素を1つずつ加算していき、最終的な合計値を返します。</p>
+<p>各学科の人数の合計を求めてみましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+const ninzuu = [75, 99, 94];
+const total = ninzuu.reduce((acc, curr) =&gt; acc + curr, 0);
+console.log(`合計人数は<span class="hljs-variable">${total}</span>人です`);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>合計人数は268人です
+</code></pre>
+<p>このコードでは、<code>ninzuu</code>という配列を定義し、<code>reduce()</code>メソッドを使って配列の合計を計算しています。</p>
+<p><code>reduce()</code>メソッドには、1つ目の引数として、加算結果を累積するための初期値として0を渡し、<br>
+2つ目の引数として、リストの要素を加算する関数を定義しています。</p>
+<p>この関数は、前の処理結果を示す<code>acc</code>と、次に加算する要素を示す<code>curr</code>を<br>
+引数に取り、それらを加算した結果を返します。</p>
+<div style="page-break-before:always"></div>
+<p>Javascriptには、平均を求めるメソッドはありません。</p>
+<p>しかし、配列の要素数で合計を割ることで平均値を求めることができます。<br>
+<strong><code>length</code>プロパティ</strong> を使います。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+const ninzuu = [75, 99, 94];
+const total = ninzuu.reduce((acc, curr) =&gt; acc + curr, 0);
+const ave = total / ninzuu.length;
+console.log(`平均人数は<span class="hljs-variable">${ave}</span>人です`);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>平均人数は89.33333333333333人です
+</code></pre>
+<div style="page-break-before:always"></div>    
+<h3 id="%E9%85%8D%E5%88%97%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">配列のメソッド</h3>
+<p>作成したリストの要素を追加したり削除したりできます。<br>
+<a href="https://www.javadrive.jp/javascript/array/">こちら</a>のページには紹介していないメソッドもあります。</p>
+<div style="page-break-before:always"></div>
+<h4 id="%E8%A6%81%E7%B4%A0%E3%81%AE%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88">要素のカウント</h4>
+<p>Pythonでいう <strong><code>count</code>メソッド</strong> のようなものは、Javascriptにはありません。</p>
+<p><strong><code>filter</code>メソッド</strong> を使えば、似たようなことができます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+const university = [<span class="hljs-string">"Hokudai"</span>, <span class="hljs-string">"Hokudai"</span>, <span class="hljs-string">"Hokudai"</span>, <span class="hljs-string">"Hokudai"</span>, <span class="hljs-string">"Hokudai"</span>,
+                    <span class="hljs-string">"Hokudai"</span>, <span class="hljs-string">"Chitose"</span>, <span class="hljs-string">"Chitose"</span>, <span class="hljs-string">"Chitose"</span>, <span class="hljs-string">"Muroran"</span>];
+const count = university.filter((x) =&gt; x === <span class="hljs-string">"Hokudai"</span>).length;
+console.log(count);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>6
+</code></pre>
+<p>このコードでは、<code>university</code>という配列を定義し、<code>filter()メソッド</code>を使って<br>
+<code>hokudai</code>と等しい要素だけを取り出し、その数を取得しています。</p>
+<p><code>filter()</code>メソッドは、配列の要素を一つずつ処理し、コールバック関数で<br>
+条件に合致するかどうかを判定して、新しい配列を作成します。</p>
+<p>その後、<code>length</code>プロパティで、新しい配列の要素数を取得しています。</p>
+<div style="page-break-before:always"></div>
+<h4 id="%E8%A6%81%E7%B4%A0%E3%81%AE%E8%BF%BD%E5%8A%A0">要素の追加</h4>
+<p>作成した配列に要素を追加するには、<strong><code>push</code>メソッド</strong> を使います。<br>
+配列の末尾に値が追加されます。</p>
+<p>以下のコードは、配列<code>university</code> に要素<code>Hakodate</code>を追加しているプログラムの例です。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> university = [<span class="hljs-string">"Chitose"</span>, <span class="hljs-string">"Hokudai"</span>, <span class="hljs-string">"Muroran"</span>];
+console.log(university);
+university.push(<span class="hljs-string">"Hakodate"</span>);
+console.log(university);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>[ 'Chitose', 'Hokudai', 'Muroran' ]
+[ 'Chitose', 'Hokudai', 'Muroran', 'Hakodate' ]
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>この<code>push</code>メソッドとfor文を応用すると、以下のようなリストの作成ができます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// 空の配列を作成する
+<span class="hljs-built_in">let</span> s = [];
+
+// <span class="hljs-keyword">for</span>文とpush()で配列の中身を追加する
+<span class="hljs-keyword">for</span> (<span class="hljs-built_in">let</span> i = 0; i &lt; 5; i++) {
+  s.push(i);
+}
+
+// 結果の確認
+console.log(s);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>[ 0, 1, 2, 3, 4 ]
+</code></pre>
+<div style="page-break-before:always"></div>    
+<h4 id="%E8%A6%81%E7%B4%A0%E3%81%AE%E5%89%8A%E9%99%A4">要素の削除</h4>
+<p><strong><code>pop</code>メソッド</strong> を使うと、配列の末尾の要素を削除することができます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> university = [<span class="hljs-string">"Chitose"</span>, <span class="hljs-string">"Hokudai"</span>, <span class="hljs-string">"Muroran"</span>];
+console.log(university);
+university.pop();
+console.log(university);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>[ 'Chitose', 'Hokudai', 'Muroran' ]
+[ 'Chitose', 'Hokudai' ]
+</code></pre>
+<p><code>length</code>プロパティを0に設定することで、配列内の要素をすべて削除します。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> university = [<span class="hljs-string">'Chitose'</span>, <span class="hljs-string">'Hokudai'</span>, <span class="hljs-string">'Hakodate'</span>, <span class="hljs-string">'Muroran'</span>];
+console.log(university);
+university.length = 0;
+console.log(university);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>[ 'Chitose', 'Hokudai', 'Hakodate', 'Muroran' ]
+[]
+</code></pre>
+<div style="page-break-before:always"></div>    
+<h4 id="%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE%E3%81%B8%E3%81%AE%E8%A6%81%E7%B4%A0%E3%81%AE%E8%BF%BD%E5%8A%A0%E3%81%A8%E5%89%8A%E9%99%A4">指定位置への要素の追加と削除</h4>
+<p><strong><code>splice</code>メソッド</strong> では、配列の指定された位置に新しい要素を挿入したり、既存の要素を削除したりします。</p>
+<p>第一引数は、挿入または削除を開始するインデックスです。<br>
+第二引数は、削除する要素の数です。<br>
+第三引数以降は、新しい要素です。</p>
+<p>下記のコードでは、2番目の位置に&quot;Hakodate&quot;を挿入し、元の要素を後ろに移動させています。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> university = [<span class="hljs-string">"Chitose"</span>, <span class="hljs-string">"Hokudai"</span>, <span class="hljs-string">"Muroran"</span>];
+console.log(university);
+university.splice(2, 0, <span class="hljs-string">"Hakodate"</span>);
+console.log(university);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>[ 'Chitose', 'Hokudai', 'Muroran' ]
+[ 'Chitose', 'Hokudai', 'Hakodate', 'Muroran' ]
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>下記のコードでは、2番目の要素を削除しています。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> university = [<span class="hljs-string">'Chitose'</span>, <span class="hljs-string">'Hokudai'</span>, <span class="hljs-string">'Hakodate'</span>, <span class="hljs-string">'Muroran'</span>];
+console.log(university);
+university.splice(2, 1);
+console.log(university);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>[ 'Chitose', 'Hokudai', 'Hakodate', 'Muroran' ]
+[ 'Chitose', 'Hokudai', 'Muroran' ]
+</code></pre>
+<div style="page-break-before:always"></div>    
+<p>オブジェクトを指定して要素を削除することもできます。<br>
+<strong><code>indexOf()</code>メソッド</strong> を使用して&quot;Hakodate&quot;のインデックスを検索しています。</p>
+<p>同じオブジェクトが2回出てくると、最初にヒットする方だけ削除されます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> university = [<span class="hljs-string">'Chitose'</span>, <span class="hljs-string">'Hokudai'</span>, <span class="hljs-string">'Hakodate'</span>, <span class="hljs-string">'Muroran'</span>];
+console.log(university);
+university.splice(university.indexOf(<span class="hljs-string">'Hakodate'</span>), 1);
+console.log(university);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>[ 'Chitose', 'Hokudai', 'Hakodate', 'Muroran' ]
+[ 'Chitose', 'Hokudai', 'Muroran' ]
+</code></pre>
+<div style="page-break-before:always"></div>    
+<h4 id="%E9%85%8D%E5%88%97%E3%81%AE%E3%82%BD%E3%83%BC%E3%83%88%E6%98%87%E9%A0%86%E3%83%BB%E9%99%8D%E9%A0%86">配列のソート（昇順・降順）</h4>
+<p><strong><code>sort</code>メソッド</strong> を使うと、配列の要素を昇順に並び替えることができます。</p>
+<p><code>sort</code>メソッドの後に <strong><code>reverse</code>メソッド</strong> をつけると、降順に並び替えることができます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> university = [<span class="hljs-string">'Chitose'</span>, <span class="hljs-string">'Hokudai'</span>, <span class="hljs-string">'Hakodate'</span>, <span class="hljs-string">'Muroran'</span>];
+console.log(university);
+
+<span class="hljs-built_in">let</span> university1 = university.sort();  // 昇順（アルファベット順）に並び替え
+console.log(university1);
+
+<span class="hljs-built_in">let</span> university2 = university.sort().reverse();  // 降順（アルファベット順）に並び替え
+console.log(university2);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>[ 'Chitose', 'Hokudai', 'Hakodate', 'Muroran' ]
+[ 'Chitose', 'Hakodate', 'Hokudai', 'Muroran' ]
+[ 'Muroran', 'Hokudai', 'Hakodate', 'Chitose' ]
+</code></pre>
+<div style="page-break-before:always"></div>
+<h4 id="%E9%85%8D%E5%88%97%E3%81%AE%E7%B5%90%E5%90%88">配列の結合</h4>
+<p><strong><code>concat</code>メソッド</strong> をつかうと、配列を結合することができます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> gakka_2022 = [75, 99, 94];
+<span class="hljs-built_in">let</span> gakka_2021 = [80, 83, 90];
+<span class="hljs-built_in">let</span> gakka = gakka_2022.concat(gakka_2021);
+console.log(gakka);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>[ 75, 99, 94, 80, 83, 90 ]
+</code></pre>
+<div style="page-break-before:always"></div>
+<h4 id="join%E3%81%A8split">joinとsplit</h4>
+<p><strong><code>join</code>メソッド</strong> を使うと、文字列の配列を一つの文字列に連結できます。<br>
+このとき、結合する際の区切り文字を指定できます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> university = [<span class="hljs-string">'Chitose'</span>, <span class="hljs-string">'Hokudai'</span>, <span class="hljs-string">'Hakodate'</span>, <span class="hljs-string">'Muroran'</span>];
+
+<span class="hljs-built_in">let</span> text = university.join(<span class="hljs-string">" "</span>);  // 空白で文字列を区切る
+console.log(text);
+
+text = university.join(<span class="hljs-string">"\\"</span>);  // <span class="hljs-string">"\"で文字列を区切る
+console.log(text);
+
+EOF
+
+# 一時ファイルを実行する
+node temp.js
+</span></div></code></pre>
+<pre><code>Chitose Hokudai Hakodate Muroran
+Chitose\Hokudai\Hakodate\Muroran
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>文字列の <strong><code>split</code>メソッド</strong> を使うと、文字列の区切り文字を指定できます。</p>
+<p>引数に文字列を分割する際の区切り文字を指定します。<br>
+省略した場合は<strong>空白</strong>で文字列を分割します。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> filename = <span class="hljs-string">"sample.py"</span>;
+<span class="hljs-built_in">let</span> splitFilename = filename.split(<span class="hljs-string">"."</span>);
+console.log(splitFilename[0]); // <span class="hljs-string">"."</span>の左側の文字列を出力
+console.log(splitFilename[1]); // <span class="hljs-string">"."</span>の右側の文字列を出力
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>sample
+py
+</code></pre>
+<p>上記のコードでは、<code>split()</code>メソッドを使用して、<br>
+&quot;.&quot;を区切り文字として文字列を分割しています。</p>
+<p>分割された文字列は、配列の要素として変数<code>splitFilename</code>に代入されます。<br>
+そして、配列のインデックスを指定して、&quot;.&quot;の左側と右側の文字列を取得しています。</p>
+<div style="page-break-before:always"></div>
+<p><strong>正規表現</strong>を使うことで、複数条件で文字列を分割することができます。<br>
+詳しくは<a href="https://www.javadrive.jp/javascript/regexp/">こちら</a>の記事などが参考になります。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> filename = <span class="hljs-string">"PythonBasic_4.ipynb"</span>;
+<span class="hljs-built_in">let</span> splitFilename = filename.split(/[_\.]/);
+console.log(splitFilename[0]); // <span class="hljs-string">"_"</span>の左側の文字列を出力
+console.log(splitFilename[1]); // <span class="hljs-string">"_"</span>の右側の文字列を出力
+console.log(splitFilename[2]); // <span class="hljs-string">"."</span>の右側の文字列を出力
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>PythonBasic
+4
+ipynb
+</code></pre>
+<div style="page-break-before:always"></div>    
+<h3 id="%E8%A6%81%E7%B4%A0%E3%81%AE%E5%A4%89%E6%9B%B4">要素の変更</h3>
+<p>配列内の特定の要素の内容は変更できます。</p>
+<pre class="hljs"><code><div>配列[添え字] = 変更値
+</div></code></pre>
+<p>以下のコードは、配列の2番目の要素を変更するプログラムです。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> university = [<span class="hljs-string">'Chitose'</span>, <span class="hljs-string">'Hokudai'</span>, <span class="hljs-string">'Hakodate'</span>, <span class="hljs-string">'Muroran'</span>];
+university[2] = <span class="hljs-string">"Kitami"</span>;
+console.log(university);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>[ 'Chitose', 'Hokudai', 'Kitami', 'Muroran' ]
+</code></pre>
+<p><code>splice()</code>メソッドを使用しても、同じことができます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> university = [<span class="hljs-string">'Chitose'</span>, <span class="hljs-string">'Hokudai'</span>, <span class="hljs-string">'Hakodate'</span>, <span class="hljs-string">'Muroran'</span>];
+university.splice(2, 1, <span class="hljs-string">"Kitami"</span>);
+console.log(university);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>[ 'Chitose', 'Hokudai', 'Kitami', 'Muroran' ]
+</code></pre>
+<div style="page-break-before:always"></div>    
+<h3 id="%E9%85%8D%E5%88%97%E3%81%AE%E8%A6%81%E7%B4%A0%E3%81%AE%E3%82%B9%E3%83%A9%E3%82%A4%E3%82%B9">配列の要素のスライス</h3>
+<p>配列で要素を指定する際、<strong>スライス</strong>という構文を用いることで、<br>
+連続した範囲にある要素を参照することができます。</p>
+<pre class="hljs"><code><div>array.slice(start, end)
+</div></code></pre>
+<p>ここで、<strong><code>start</code></strong> はスライスの開始位置を指定する整数値であり、<br>
+<strong><code>end</code></strong> はスライスの終了位置を指定する整数値です。</p>
+<p><strong><code>end</code></strong> で指定したインデックスはスライスには含まれないことに注意してください。</p>
+<p>また、<code>start</code>と<code>end</code>は省略可能であり、<br>
+省略された場合は、配列の先頭からの最初の要素から、配列の末尾までが選択されます。</p>
+<p><code>start</code>と<code>end</code>がどちらも省略された場合は、元の配列のコピーが返されます。</p>
+<p>スライスした配列は、元の配列とは別の新しい配列として返されます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> a = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+console.log(a.slice(1, 3));  // 添え字が1以上3未満の要素
+console.log(a.slice(2));  // 添え字が2以上の全ての要素
+console.log(a.slice(0, 3));  // 添え字が未満の全ての要素
+console.log(a.slice());  // 全ての要素
+console.log(a.filter((_, i) =&gt; i % 2 === 0));  // 2つ飛ばし
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<p>Javascriptでは、増減値を指定することができません。</p>
+<p>代わりに <code>filter()</code> メソッドを使用することで、<br>
+指定したステップごとに要素を取り出すことができます。</p>
+<div style="page-break-before:always"></div>
+<h3 id="includes">.includes()</h3>
+<p>listオブジェクトに対しても、<strong><code>.includes()</code></strong> メソッドを適用することができます。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">使い方</th>
+<th style="text-align:center">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">b.includes(a)</td>
+<td style="text-align:center">aはbに含まれる</td>
+</tr>
+<tr>
+<td style="text-align:center">!b.includes(a)</td>
+<td style="text-align:center">aがbに含まれていない</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> a = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+const university = [<span class="hljs-string">'Chitose'</span>, <span class="hljs-string">'Hokudai'</span>, <span class="hljs-string">'Hakodate'</span>, <span class="hljs-string">'Muroran'</span>];
+
+// 文字列<span class="hljs-string">"Hokudai"</span>が配列内に入っているかどうか
+console.log(university.includes(<span class="hljs-string">"Hokudai"</span>));
+// 文字列<span class="hljs-string">"Hokudai"</span>が配列内に入っていないかどうか
+console.log(!university.includes(<span class="hljs-string">"Hokudai"</span>));
+
+// 文字列<span class="hljs-string">"Kitami"</span>が配列内に入っているかどうか
+console.log(university.includes(<span class="hljs-string">"Kitami"</span>));
+// 文字列<span class="hljs-string">"Kitami"</span>が配列内に入っていないかどうか
+console.log(!university.includes(<span class="hljs-string">"Kitami"</span>));
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>true
+false
+false
+true
+</code></pre>
+<div style="page-break-before:always"></div>    
+<h3 id="%E4%BA%8C%E6%AC%A1%E5%85%83%E9%85%8D%E5%88%97">二次元配列</h3>
+<p>配列の中に配列を入れた構造は、<strong>2次元配列</strong>と呼ばれます。<br>
+表の構造を持つデータ管理などに使われます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> number = [
+  [<span class="hljs-string">"Ouka"</span>,80,75],   // 0行目
+  [<span class="hljs-string">"Denshi"</span>,83,99], // 1行目
+  [<span class="hljs-string">"Josisu"</span>,90,94]  // 2行目
+];
+
+console.log(number);  // リストnumber全体を参照
+console.log(number[0]);  // リストnumberの0番目だけを参照
+console.log(`<span class="hljs-variable">${number[1][0]}</span>の2022年の人数は<span class="hljs-variable">${number[1][2]}</span>人です`);  // リストnumberの1番目だけを参照
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>[ [ 'Ouka', 80, 75 ],
+  [ 'Denshi', 83, 99 ],
+  [ 'Josisu', 90, 94 ] ]
+[ 'Ouka', 80, 75 ]
+Denshiの2022年の人数は99人です
+</code></pre>
+<div style="page-break-before:always"></div>    
+<h2 id="%E9%96%A2%E6%95%B0">関数</h2>
+<p>様々な処理が機能として１つにまとまっているものを<strong>関数</strong>といいます。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E7%B5%84%E3%81%BF%E8%BE%BC%E3%81%BF%E9%96%A2%E6%95%B0">組み込み関数</h3>
+<p>Javascriptで最初から準備されている関数のことを、<strong>組み込み関数</strong>といいます。</p>
+<p>組み込み関数には、以下のようなものがあります。</p>
+<h4 id="%E6%96%87%E5%AD%97%E5%88%97%E9%96%A2%E6%95%B0">文字列関数</h4>
+<p>文字列に関する処理を行うための関数です。</p>
+<pre class="hljs"><code><div>length: 文字列の長さを取得する関数です。
+<span class="hljs-attr">indexOf</span>: 指定した文字列が最初に現れる位置を取得する関数です。
+<span class="hljs-attr">substring</span>: 指定した範囲の文字列を取得する関数です。
+<span class="hljs-attr">replace</span>: 指定した文字列を別の文字列に置換する関数です。
+<span class="hljs-attr">toUpperCase</span>: 文字列を大文字に変換する関数です。
+<span class="hljs-attr">toLowerCase</span>: 文字列を小文字に変換する関数です。
+</div></code></pre>
+<h4 id="%E9%85%8D%E5%88%97%E9%96%A2%E6%95%B0">配列関数</h4>
+<p>配列に関する処理を行うための関数です。</p>
+<pre class="hljs"><code><div>push: 配列の末尾に要素を追加する関数です。
+<span class="hljs-attr">pop</span>: 配列の末尾の要素を削除し、その要素を取得する関数です。
+<span class="hljs-attr">shift</span>: 配列の先頭の要素を削除し、その要素を取得する関数です。
+<span class="hljs-attr">unshift</span>: 配列の先頭に要素を追加する関数です。
+<span class="hljs-attr">slice</span>: 配列の一部を取り出して新しい配列を作成する関数です。
+
+#### 数値関数
+
+数値に関する処理を行うための関数です。  
+[こちら](https:<span class="hljs-comment">//www.javadrive.jp/javascript/math_class/)などのページにはより詳しい解説があります。</span>
+
+<span class="hljs-string">``</span><span class="hljs-string">` javascript
+parseInt: 文字列を整数に変換する関数です。
+parseFloat: 文字列を浮動小数点数に変換する関数です。
+Math.abs: 絶対値を取得する関数です。
+Math.round: 四捨五入した値を取得する関数です。
+Math.floor: 小数点以下を切り捨てた値を取得する関数です。
+</span></div></code></pre>
+<p>また、最大値と最小値を求める関数もあります。</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">Math</span>.min()：最小値を求める関数です。  
+<span class="hljs-built_in">Math</span>.max()：最大値を求める関数です。  
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<p>試しに、リストを作成して実行してみましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+const l = [1, 2, 3];
+
+// 最大値を表示
+console.log(Math.max(...l)); // 出力: 3
+
+// 最小値を表示
+console.log(Math.min(...l)); // 出力: 1
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>3
+1
+</code></pre>
+<p>リストを展開して関数に渡すために、「...演算子」を使用しています。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E9%96%A2%E6%95%B0%E3%81%AE%E5%AE%9A%E7%BE%A9">関数の定義</h3>
+<p>組み込み関数とは別に、関数は自分で作ることもできます。</p>
+<p>関数を自分で作れるようになると、プログラムを複数の部品に分けることができるようになります。<br>
+1つのプログラムを複数の部品に分けることを<strong>部品化</strong>といいます。メリットは以下の通りです。</p>
+<ul>
+<li>プログラム全体の見通しがよくなり、処理を把握しやすくなる</li>
+<li>機能ごとに関数を記述するため、修正範囲を限定できる</li>
+<li>何度も使う機能を関数にまとめることで、プログラミングの作業効率が上がる</li>
+</ul>
+<p>一般的に、JavaScriptの関数の定義は以下のようになります。</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// 関数の定義</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> 関数名(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-comment">// 処理内容</span>
+}
+
+</div></code></pre>
+<p>関数名の右にある()の部分は、より複雑な関数を定義するときに使います。<br>
+構文の2行目以降は、この関数が呼び出されたときに実行する処理を記述します。</p>
+<p>この部分を<strong>関数ブロック</strong>といいます。</p>
+<div style="page-break-before:always"></div>
+<p>シンプルな関数の場合は、次のような構文で呼び出すことができます。</p>
+<pre class="hljs"><code><div>関数名();
+</div></code></pre>
+<p>では、呼び出されると<code>&quot;Hello&quot;</code>と表示する<br>
+hello関数を作成してみましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">hello</span></span>() {
+  console.log(<span class="hljs-string">"Hello"</span>);
+}
+
+hello(); // 関数の呼び出し
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>Hello
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>関数内で準備された変数（<strong>ローカル変数</strong>）は、その関数の中でしか読み書きできません。<br>
+このようなローカル変数の性質を<strong>独立性</strong>といいます。</p>
+<pre class="hljs"><code><div><span class="hljs-string">"""
+実行するとエラーが出ます
+"""</span>
+%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+function hello() {
+  let greet = <span class="hljs-string">"Hello"</span>;
+  console.log(greet);
+}
+
+hello();
+console.log(greet); // 変数greetは利用できない
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<h4 id="%E9%96%A2%E6%95%B0%E3%81%A8%E5%BC%95%E6%95%B0">関数と引数</h4>
+<p>呼び出し元から関数へデータを渡す仕組みを<strong>引数</strong>といいます。<br>
+呼び出し側で渡すデータを<strong>実引数</strong>、そのデータを受け取る変数を<strong>仮引数</strong>といいます。<br>
+引数には、数値や文字列のなどのオブジェクトを引き渡すことができます。</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// 関数の定義</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> 関数名(<span class="hljs-params">引数<span class="hljs-number">1</span>, 引数<span class="hljs-number">2</span>, ...</span>)</span>{
+    <span class="hljs-comment">// 処理内容</span>
+}
+
+</div></code></pre>
+<p>関数名に続くカッコの中に書いた変数名は、関数が呼び出された際に<br>
+データを引数で受け取り、関数内で扱っていくものです。</p>
+<p>引数がある関数の場合は、次のような構文で呼び出すことができます。</p>
+<pre class="hljs"><code><div>関数名(引数<span class="hljs-number">1</span>, 引数<span class="hljs-number">2</span>, ...);
+</div></code></pre>
+<p>関数名の後ろのカッコ内でデータを渡しています。</p>
+<div style="page-break-before:always"></div>
+<p>偶数奇数判定をするhantei関数を作成してみましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-keyword">function</span> hantei(num) {  // 仮引数numで実引数numberの値を受け取る
+  <span class="hljs-keyword">if</span> (num % 2 === 0) {
+    console.log(`<span class="hljs-variable">${num}</span>は偶数です`);
+  } <span class="hljs-keyword">else</span> {
+    console.log(`<span class="hljs-variable">${num}</span>は奇数です`);
+  }
+}
+
+<span class="hljs-built_in">let</span> number = 2;
+hantei(number);  // 実引数numberをhantei関数に渡す
+
+number = 3;
+hantei(number);  // 実引数numberをhantei関数に渡す
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>2は偶数です
+3は奇数です
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>複数の引数を渡すことも可能です。</p>
+<p>税込み価格を表示するtax_price関数を作成してみましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-keyword">function</span> tax_price(name, price, tax) {  // 仮引数name,price,taxで実引数の値を受け取る
+  console.log(`<span class="hljs-variable">${name}</span>の税抜き価格は<span class="hljs-variable">${price}</span>円です`);
+  console.log(`<span class="hljs-variable">${name}</span>の税込み価格は<span class="hljs-variable">${price * (1+(tax*0.01))}</span>円です\n`);
+}
+
+tax_price(<span class="hljs-string">"牛丼並盛"</span>, 408, 10);  // 店の中で食べるときは消費税率10%
+tax_price(<span class="hljs-string">"牛丼並盛"</span>, 408, 8);   // 持ち帰って食べるときは消費税率8%
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>牛丼並盛の税抜き価格は408円です
+牛丼並盛の税込み価格は448.8円です
+
+牛丼並盛の税抜き価格は408円です
+牛丼並盛の税込み価格は440.64000000000004円です
+</code></pre>
+<div style="page-break-before:always"></div>
+<h4 id="%E9%96%A2%E6%95%B0%E3%81%A8%E6%88%BB%E3%82%8A%E5%80%A4">関数と戻り値</h4>
+<p>関数から呼び出し元へデータを渡す仕組みを<strong>戻り値</strong>といいます。<br>
+関数で何らかの処理を行った結果を他の関数でも利用することができるようになります。</p>
+<p>戻り値には、数値や文字列のなどのオブジェクトを引き渡すことができます。</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// 関数の定義</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> 関数名(<span class="hljs-params">引数<span class="hljs-number">1</span>, 引数<span class="hljs-number">2</span>, ...</span>)</span>{
+    <span class="hljs-comment">// 処理内容</span>
+    <span class="hljs-keyword">return</span> 戻り値;
+}
+
+</div></code></pre>
+<p>関数定義の最終行には<strong>return文</strong>を書きます。<br>
+関数内の処理を終了し、呼び出し元にデータを渡すことが出来ます。</p>
+<p>引数と戻り値がある関数の場合は、次のような構文で呼び出すことができます。</p>
+<pre class="hljs"><code><div>戻り値を受け取る変数名 = 関数名(引数<span class="hljs-number">1</span>, 引数<span class="hljs-number">2</span>, ...);
+</div></code></pre>
+<p><code>関数名(引数1,引数2,…)</code>の部分は、関数の実行後に戻り値に置き換わります。<br>
+結果として、変数に戻り値が代入されることになります。</p>
+<div style="page-break-before:always"></div>
+<p>hantei関数内で偶数か奇数を判断し、その戻り値を出力しましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-keyword">function</span> hantei(num) {  // 仮引数numで実引数numberの値を受け取る
+  <span class="hljs-keyword">if</span> (num % 2 === 0) {
+    <span class="hljs-built_in">return</span> <span class="hljs-string">"偶数"</span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">return</span> <span class="hljs-string">"奇数"</span>;
+  }
+}
+
+<span class="hljs-built_in">let</span> number = 2;
+<span class="hljs-built_in">let</span> judge = hantei(number);  // 実引数numberをhantei関数に渡す
+console.log(`<span class="hljs-variable">${number}</span>は<span class="hljs-variable">${judge}</span>です`);
+
+number = 3;
+judge = hantei(number);  // 実引数numberをhantei関数に渡す
+console.log(`<span class="hljs-variable">${number}</span>は<span class="hljs-variable">${judge}</span>です`);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>2は偶数です
+3は奇数です
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>乱数を戻り値に指定するとサイコロ関数が出来上がります。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// サイコロを関数で表現する
+
+<span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">saikoro</span></span>() {
+<span class="hljs-built_in">return</span> Math.floor(Math.random() * 6) + 1; // 1～6の乱数
+}
+
+<span class="hljs-keyword">for</span> (<span class="hljs-built_in">let</span> i = 0; i &lt; 3; i++) {
+console.log(saikoro());
+}
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>5
+6
+4
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>戻り値は複数指定することができません。<br>
+しかし、配列にしてしまえば複数のデータを扱うことができます。</p>
+<p>税込み価格を表示するtax_price関数を作成してみましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-keyword">function</span> taxPrice(price) {
+  const keigen = price * (1 + 8 * 0.01);  // 持ち帰って食べるときは消費税率8%
+  const notKeigen = price * (1 + 10 * 0.01);  // 店の中で食べるときは消費税率10%
+  <span class="hljs-built_in">return</span> [keigen, notKeigen];  // 戻り値は一つの配列
+}
+
+const name = <span class="hljs-string">"牛丼"</span>;
+const price = 408;
+const [keigen, notKeigen] = taxPrice(price);  // 戻り値の配列を分割代入
+console.log(`<span class="hljs-variable">${name}</span>の税抜き価格は<span class="hljs-variable">${price}</span>円です`);
+console.log(`持ち帰って食べるときの価格は<span class="hljs-variable">${keigen}</span>円です`);
+console.log(`店の中で食べるときの価格は<span class="hljs-variable">${notKeigen}</span>円です`);
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>牛丼の税抜き価格は408円です
+持ち帰って食べるときの価格は440.64000000000004円です
+店の中で食べるときの価格は448.8円です
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%82%A2%E3%83%AD%E3%83%BC%E9%96%A2%E6%95%B0">アロー関数</h3>
+<p>JavaScriptにおける<strong>アロー関数</strong>は、通常の関数定義の代替手段として使われる関数式のことです。</p>
+<p>アロー関数は、コードを簡潔にすることができるため、ES6以降では広く使われるようになっています。<br>
+ただし、引数の数や処理の複雑さに応じて、通常の関数定義の方が可読性が高くなる場合もあります。</p>
+<p>一般的には以下のような構文を持ちます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> 関数名 = <span class="hljs-function">(<span class="hljs-params">引数<span class="hljs-number">1</span>, 引数<span class="hljs-number">2</span>, ...</span>) =&gt;</span> {
+  <span class="hljs-comment">// 関数の処理</span>
+  <span class="hljs-keyword">return</span> 戻り値;
+};
+</div></code></pre>
+<p>または、引数が一つの場合は引数の括弧を省略することもできます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> 関数名 = 引数 =&gt; {
+  <span class="hljs-comment">// 関数の処理</span>
+  <span class="hljs-keyword">return</span> 戻り値;
+};
+</div></code></pre>
+<p>さらに、処理が1つの式で完結する場合はreturn文と中括弧を省略することもできます。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> 関数名 = 引数 =&gt; 式;
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<p>では、アロー関数を使って、先ほどまで登場してきた関数を書き換えてみましょう。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// 呼び出されると<span class="hljs-string">"Hello"</span>と表示する hello関数
+const hello = () =&gt; {
+  console.log(<span class="hljs-string">"Hello"</span>);
+}
+
+hello(); // 関数の呼び出し
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>Hello
+</code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// 偶数奇数判定をするhantei関数
+const hantei = (num) =&gt; {  // 仮引数numで実引数numberの値を受け取る
+  <span class="hljs-keyword">if</span> (num % 2 === 0) {
+    console.log(`<span class="hljs-variable">${num}</span>は偶数です`);
+  } <span class="hljs-keyword">else</span> {
+    console.log(`<span class="hljs-variable">${num}</span>は奇数です`);
+  }
+}
+
+<span class="hljs-built_in">let</span> number = 2;
+hantei(number);  // 実引数numberをhantei関数に渡す
+
+number = 3;
+hantei(number);  // 実引数numberをhantei関数に渡す
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>2は偶数です
+3は奇数です
+</code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+// サイコロ関数
+const saikoro = () =&gt; Math.floor(Math.random() * 6) + 1;
+
+<span class="hljs-keyword">for</span> (<span class="hljs-built_in">let</span> i = 0; i &lt; 3; i++) {
+  console.log(saikoro());
+}
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>4
+6
+3
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="%E3%82%B0%E3%83%AD%E3%83%BC%E3%83%90%E3%83%AB%E5%A4%89%E6%95%B0">グローバル変数</h3>
+<p>JavaScriptにおいて、関数の外側で定義された変数を<strong>グローバル変数</strong>と呼びます。<br>
+グローバル変数は、どの関数からでもアクセスすることができます。</p>
+<p>※同名のローカル変数がある場合は、ローカル変数が優先して利用されます。</p>
+<pre class="hljs"><code><div>%%bash
+
+<span class="hljs-comment"># 一時ファイルにコードを書き込む</span>
+cat &lt;&lt;<span class="hljs-string">'EOF'</span> &gt; temp.js
+
+<span class="hljs-built_in">let</span> greet = <span class="hljs-string">"Hello"</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">hello</span></span>() {
+  console.log(greet);
+}
+
+hello();
+
+EOF
+
+<span class="hljs-comment"># 一時ファイルを実行する</span>
+node temp.js
+</div></code></pre>
+<pre><code>Hello
+</code></pre>
+<p>関数の<strong>独立性</strong>を考えると、hello関数の中身では変数が何も定義されていないので、<br>
+変数<code>greet</code>は使えないように思えます。</p>
+<p>しかしエラーは出ません。それは変数<code>greet</code>がグローバル変数であるからです。</p>
+<p>ただし、グローバル変数はどこからでも変更できるため、誤って上書きしてしまう可能性があります。<br>
+そのため、グローバル変数を使用する際は、注意が必要です。</p>
+<p>関数内でのみ使用する変数は、関数内で定義し、<br>
+グローバル変数をできるだけ避けるようにしましょう。</p>
+
+</body>
+</html>
