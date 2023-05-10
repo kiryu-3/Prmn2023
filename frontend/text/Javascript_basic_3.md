@@ -147,8 +147,8 @@ node temp.js
 
 
 
-変更可能なオブジェクトを**「mutable」**、  
-変更不可能なオブジェクトを**「immutable」**といいます。
+変更可能なオブジェクトを **「mutable」**、  
+変更不可能なオブジェクトを **「immutable」** といいます。
 
 |データ型|mutable or immutable|
 |:---:| :---: |
