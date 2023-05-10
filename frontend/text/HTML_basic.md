@@ -65,29 +65,8 @@ display(htm)
 ```
 
 
-<!-- Doctype宣言 HTMLのバージョン指定（ここではHTML5） -->
-<!DOCTYPE html>
-<!-- Webページの言語を指定 -->
-<html lang="ja">
-<!-- ページのタイトルや説明文、外部ファイルのリンクなどのページの情報を指定。
-     ブラウザに表示されない -->
-<head>
-    <!-- タイトルの指定　ページタイトルやブラウザタブ -->
-    <title>HTML①</title>
-    <!-- 文字コードの指定 -->
-    <meta charset="UTF-8">
-    <!-- ページについての説明文
- 　　　　検索エンジンでページタイトルとともに表示される-->
-    <meta name="description" content="カメについていろいろ紹介します">
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/49ddd656-c167-4d98-8cd9-c822bc4ce396)
 
-</head>
-<body>
-    # 見出しを表示する
-    <h1>カメの生態</h1>
-    # 段落を表示する
-    <p>カメの平均寿命は30年ほどです</p>
-</body>
-</html>
 
 
 
@@ -125,11 +104,8 @@ display(htm)
 ```
 
 
-<body>
-    <!-- pタグにstyle属性を適用
-         背景色を薄い緑色にする -->
-    <p style="background-color: #DDFFDD">カメの平均寿命は30年ほどです</p>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/b24c07ab-d89d-438d-b657-2ddb6334cf12)
+
 
 
 
@@ -161,18 +137,9 @@ display(htm)
 ```
 
 
-<body>
-<!-- この大枠のdivタグの下の要素の背景色は"薄い赤" -->
-<div style="background-color: #FADBDA">
-    <p>グループ1-1</p>
-    <div>
-        <!-- 内側のstyle属性が反映され、背景色を"薄い緑"に再設定する -->
-        <p style="background-color: #DDFFDD">グループ2-1</p>
-        <!-- 外側のstyle属性が反映され、背景色は"薄い赤"のまま -->
-        <p>グループ2-2</p>
-    </div>
-</div>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/a61d73e8-8f09-4be7-bc21-04f04501f6b8)
+
+
 
 
 
@@ -213,20 +180,8 @@ display(htm)
 ```
 
 
-<body>
-<p>
-  <!-- このspanタグの下の要素の背景色は"薄い赤" -->
-  <span style="background-color: #DDFFDD">緑色で表示される部分</span>
-  <!-- このspanタグの下の要素の背景色は"薄い緑" -->
-  <span style="background-color: #FADBDA">赤色で表示される部分</span>
-</p>
-<p>
-  <!-- このspanタグの下の要素の背景色は"薄い青" -->
-  <span style="background-color: #D3DEF1">青色で表示される部分</span>
-  <!-- このspanタグの下の要素の背景色は"薄い黄 -->
-  <span style="background-color: #fff3b8">黄色で表示される部分</span>
-</p>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/f426a799-6f24-4ed3-997d-497c732f02cd)
+
 
 
 
@@ -267,17 +222,8 @@ display(htm)
 ```
 
 
-<body>
-<div>
-  <h2>OK Google</h2>
-  <p style="background-color: #FADBDA"><strong>こちら</strong>のボタンを押してください</p>
-</div>
-<div>
-  <a href="https://www.google.com/?hl=ja">
-  <img src="https://imgur.com/pwOe016.png" alt="OK Google">
-  </a>
-</div>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/b54d4a63-f833-41da-b271-adddf7e92435)
+
 
 
 
@@ -343,25 +289,8 @@ htm = HTML('''\
 display(htm)
 ```
 
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/b4865fb7-7ea5-44fe-88fe-7b94cbc757a9)
 
-<body>
-<h2>日本においてなじみのあるカメの種類</h2>
-<ul>
-  <li>ミドリガメ</li>
-  <li>ヤマトイシガメ</li>
-  <li>クサガメ</li>
-</ul>
-<ol start="0">
-  <li>ミドリガメ</li>
-  <li>ヤマトイシガメ</li>
-  <li>クサガメ</li>
-</ol>
-<ol type="a">
-  <li>ミドリガメ</li>
-  <li>ヤマトイシガメ</li>
-  <li>クサガメ</li>
-</ol>
-</body>
 
 
 
@@ -420,39 +349,7 @@ display(htm)
 ```
 
 
-<body>
-<h2>カメの種類とサイズと平均寿命</h2>
-<table>
-  <tr>
-    <th>種類</th>
-    <th>最大甲長</th>
-    <th>平均体重</th>
-    <th>平均寿命（野生）</th>
-    <th>平均寿命（飼育下）</th>
-  </tr>
-  <tr>
-    <td>ミドリガメ</td>
-    <td>20cm程度</td>
-    <td>1kg程度</td>
-    <td>45年程度</td>
-    <td>70年以上</td>
-  </tr>
-  <tr>
-    <td>ヤマトイシガメ</td>
-    <td>30cm程度</td>
-    <td>3kg程度</td>
-    <td>15年程度</td>
-    <td>30年以上</td>
-  </tr>
-  <tr>
-    <td>クサガメ</td>
-    <td>40cm程度</td>
-    <td>10kg程度</td>
-    <td>35年程度</td>
-    <td>50年以上</td>
-  </tr>
-</table>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/0681058a-0480-43e1-a989-744e2d4f251c)
 
 
 
@@ -526,52 +423,8 @@ display(htm)
 ```
 
 
-<body>
-  <table>
-    <!-- 表のタイトルを指定 -->
-    <caption>カメの種類とサイズと平均寿命</caption>
-    <!-- 表のヘッダ部分を区切る -->
-    <thead>
-      <tr>
-        <!-- 種類列の見出しセルを2つの行にまたがるようにする -->
-        <th rowspan="2">種類</th>
-        <!-- サイズ列と平均寿命列の見出しセルを2つの列にまたがるようにする -->
-        <th colspan="2">サイズ</th>
-        <th colspan="2">平均寿命</th>
-      </tr>
-      <tr>
-        <th>最大甲長</th>
-        <th>平均体重</th>
-        <th>野生</th>
-        <th>飼育下</th>
-      </tr>
-    </thead>
-    <!-- 表のボディ部分を区切る -->
-    <tbody>
-      <tr>
-        <td>ミドリガメ</td>
-        <td>20cm程度</td>
-        <td>1kg程度</td>
-        <td>45年程度</td>
-        <td>70年以上</td>
-      </tr>
-      <tr>
-        <td>ヤマトイシガメ</td>
-        <td>30cm程度</td>
-        <td>3kg程度</td>
-        <td>15年程度</td>
-        <td>30年以上</td>
-      </tr>
-      <tr>
-        <td>クサガメ</td>
-        <td>40cm程度</td>
-        <td>10kg程度</td>
-        <td>35年程度</td>
-        <td>50年以上</td>
-      </tr>
-    </tbody>
-  </table>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/b5b1c59f-af07-46ac-b75f-7f90da6f016d)
+
 
 
 
@@ -639,15 +492,8 @@ display(htm)
 ```
 
 
-<body>
-  <form action="https://www.google.com/?hl=ja" method="post">
-    メールアドレス：<input type="email" name="email" placeholder="b2220000@">
-    <br> <!-- 改行 -->
-    学籍番号：<input type="text" name="number" placeholder="b2220000">
-    <br> <!-- 改行 -->
-    パスワード：<input type="password" name="password">
-  </form>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/007f124a-c341-4daa-89d4-bc0a11fb3f5a)
+
 
 
 
@@ -689,17 +535,8 @@ display(htm)
 ```
 
 
-<body>
-  <form action="https://www.google.com/?hl=ja" method="post">
-    メールアドレス：<input type="email" name="email" placeholder="b2220000@">
-    <br>
-    学籍番号：<input type="text" name="number" placeholder="b2220000">
-    <br>
-    パスワード：<input type="password" name="password">
-    <br>
-    <input type="submit" value="ログイン">
-  </form>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/9f5dee14-c604-452e-b2f6-b17fd1651119)
+
 
 
 
@@ -725,17 +562,8 @@ display(htm)
 ```
 
 
-<body>
-  <form action="https://www.google.com/?hl=ja" method="post">
-    メールアドレス：<input type="email" name="email" placeholder="b2220000@">
-    <br>
-    学籍番号：<input type="text" name="number" placeholder="b2220000">
-    <br>
-    パスワード：<input type="password" name="password">
-    <br>
-    <input type="image" src="https://imgur.com/cfpIWbe.png" alt="送信する">
-  </form>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/9be3a9b4-8ee3-4a5d-b4d3-8b19892069b2)
+
 
 
 
@@ -774,16 +602,8 @@ display(htm)
 ```
 
 
-<body>
-  <form action="https://www.google.com/?hl=ja" method="post">
-    ニックネーム：<input type="text" name="password">
-    <br>
-    性別：
-    <input type="radio" name="gender" value="man">男
-    <input type="radio" name="gender" value="woman">女
-    <input type="radio" name="gender" value="others">その他
-  </form>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/369d143d-35cb-43d0-8da2-2b245ccfdf99)
+
 
 
 
@@ -829,23 +649,7 @@ display(htm)
 ```
 
 
-<body>
-  <form action="https://www.google.com/?hl=ja" method="post">
-    ニックネーム：<input type="text" name="password">
-    <br>
-    性別：
-    <input type="radio" name="gender" value="man">男
-    <input type="radio" name="gender" value="woman">女
-    <input type="radio" name="gender" value="others">その他
-    <br>
-    飼ってみたいカメの種類：
-    <input type="checkbox" name="turtle" value="ミドリガメ">ミドリガメ
-    <input type="checkbox" name="turtle" value="ヤマトイシガメ">ヤマトイシガメ
-    <input type="checkbox" name="turtle" value="クサガメ">クサガメ
-    <input type="checkbox" name="turtle" value="その他">その他
-    <input type="checkbox" name="turtle" value="飼ってみたくない">興味なし
-  </form>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/6cd64908-9b42-4ea7-9c64-0ae1b224b673)
 
 
 
@@ -876,14 +680,8 @@ display(htm)
 ```
 
 
-<body>
-  <form action="https://www.google.com/?hl=ja" method="post", enctype="multipart/form-data">
-    <input type="file">
-    <br>
-    <br>
-    <input type="submit" value="送信">
-  </form>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/bd0dd60c-2bb6-422b-ac9e-3d9e0024fd6b)
+
 
 
 
@@ -936,25 +734,8 @@ display(htm)
 ```
 
 
-<body>
-  <form action="https://www.google.com/?hl=ja" method="post">
-    ニックネーム：<input type="text" name="password">
-    <br>
-    性別：
-    <input type="radio" name="gender" value="man">男
-    <input type="radio" name="gender" value="woman">女
-    <input type="radio" name="gender" value="others">その他
-    <br>
-    飼ってみたいカメの種類：
-    <select name="turtle">
-      <option value="ミドリガメ">ミドリガメ</option>
-      <option value="ヤマトイシガメ">ヤマトイシガメ</option>
-      <option value="クサガメ">クサガメ</option>
-      <option value="その他">その他</option>
-      <option value="興味なし" selected>興味なし</option>
-    </select>
-  </form>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/812f3e78-d6d1-45f8-a29d-4edafdbdc836)
+
 
 
 
@@ -1001,30 +782,8 @@ display(htm)
 ```
 
 
-<body>
-  <form action="https://www.google.com/?hl=ja" method="post">
-    ニックネーム：<input type="text" name="password">
-    <br>
-    性別：
-    <input type="radio" name="gender" value="man">男
-    <input type="radio" name="gender" value="woman">女
-    <input type="radio" name="gender" value="others">その他
-    <br>
-    飼ってみたいカメの種類：
-    <select name="turtle">
-      <option value="ミドリガメ">ミドリガメ</option>
-      <option value="ヤマトイシガメ">ヤマトイシガメ</option>
-      <option value="クサガメ">クサガメ</option>
-      <option value="その他">その他</option>
-      <option value="興味なし" selected>興味なし</option>
-    </select>
-    <br>
-    <br>
-    <br>
-    <textarea name="message" placeholder="メッセージを入力"
-              cols="40" rows="4"></textarea>
-  </form>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/d8b03f4a-4ad5-4093-82ee-4d899f5e57bc)
+
 
 
 
@@ -1059,15 +818,8 @@ display(htm)
 ```
 
 
-<body>
-  <button type="submit" name="submit" value="送信する">送信</button>
-  <br>
-  <br>
-  <button type="reset" name="reset" value="リセットする">リセット</button>
-  <br>
-  <br>
-  <button type="button" name="button" value="クリックする">クリック</button>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/1aaecc0c-7551-4d90-9ae7-8ddfc1013de4)
+
 
 
 
@@ -1124,29 +876,7 @@ display(htm)
 ```
 
 
-<body>
-  <form action="https://www.google.com/?hl=ja" method="post">
-    <label for="nickname">ニックネーム：</label>
-    <input type="text" name="nickname" id="nickname">
-    <br>
-    <label>性別：</label>
-    <input type="radio" name="gender" value="man" id="gender-man">
-    <label for="gender-man">男</label>
-    <input type="radio" name="gender" value="woman" id="gender-woman">
-    <label for="gender-woman">女</label>
-    <input type="radio" name="gender" value="others" id="gender-others">
-    <label for="gender-others">その他</label>
-    <br>
-    <label for="turtle">飼ってみたいカメの種類：</label>
-    <select name="turtle" id="turtle">
-      <option value="ミドリガメ">ミドリガメ</option>
-      <option value="ヤマトイシガメ">ヤマトイシガメ</option>
-      <option value="クサガメ">クサガメ</option>
-      <option value="その他">その他</option>
-      <option value="興味なし" selected>興味なし</option>
-    </select>
-  </form>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/341beb33-4b83-4104-aa54-b21e07250533)
 
 
 
@@ -1228,52 +958,7 @@ display(htm)
 ```
 
 
-<body>
-  <!-- ヘッダー部分を作る -->
-  <header>
-    <h1>アンケート</h1>
-    <!-- ナビゲーションメニューを作る -->
-    <nav>
-      <ul>
-        <li><a href="#">ホーム</a></li>
-        <li><a href="#">お問い合わせ</a></li>
-      </ul>
-    </nav>
-  </header>
-  <!-- メイン部分を作る -->
-  <main>
-    <form action="https://www.google.com/?hl=ja" method="post">
-      <div>
-        <label for="nickname">ニックネーム：</label>
-        <input type="text" id="nickname" name="nickname">
-      </div>
-      <div>
-        <label>性別：</label>
-        <input type="radio" name="gender" value="man" id="gender-man">
-        <label for="gender-man">男性</label>
-        <input type="radio" name="gender" value="woman" id="gender-woman">
-        <label for="gender-woman">女性</label>
-        <input type="radio" name="gender" value="other" id="gender-other">
-        <label for="gender-other">その他</label>
-      </div>
-      <div>
-        <label for="turtle">飼ってみたいカメの種類：</label>
-        <select name="turtle" id="turtle">
-          <option value="ミドリガメ">ミドリガメ</option>
-          <option value="ヤマトイシガメ">ヤマトイシガメ</option>
-          <option value="クサガメ">クサガメ</option>
-          <option value="その他">その他</option>
-          <option value="no-interest" selected>興味なし</option>
-        </select>
-      </div>
-      <button type="submit">送信する</button>
-    </form>
-  </main>
-  <!-- フッター部分を作る -->
-  <footer>
-    <p>&copy; 2023 カメ飼育研究会</p>
-  </footer>
-</body>
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/817c29c1-4bdb-41a2-9365-e2f37748c1b5)
 
 
 
