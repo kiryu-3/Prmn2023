@@ -39,8 +39,6 @@ p {
   background-color: #DDFFDD;
 }
 ```
-
-    Writing style.css
     
 
 
