@@ -145,12 +145,6 @@ display(htm)
 ```
 
 
-<body>
-    <!-- pタグにstyle属性を適用
-         背景色を薄い緑色にする -->
-    <p style="background-color: #DDFFDD">カメの平均寿命は30年ほどです</p>
-</body>
-
 ![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/eb656ef1-60db-483a-ae58-b5d11180597f)
 
 
