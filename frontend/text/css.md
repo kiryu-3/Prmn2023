@@ -116,7 +116,7 @@ display(htm)
       <p>カメの平均寿命は30年ほどです</p>
   </body>
 </html>
-
+![](https://imgur.com/SIYsVhQ.png)
 
 
 3つ目は、インラインスタイル属性を使用する方法です。  
@@ -147,7 +147,7 @@ display(htm)
          背景色を薄い緑色にする -->
     <p style="background-color: #DDFFDD">カメの平均寿命は30年ほどです</p>
 </body>
-
+![](https://imgur.com/8bzeutV)
 
 
 一番ベストな方法は、1番目の方法である、外部CSSファイルを使用する方法です。  
@@ -165,7 +165,6 @@ p {
 }
 ```
 
-    Overwriting style.css
     
 
 
@@ -204,6 +203,7 @@ p {
       <p>カメの平均寿命は30年ほどです</p>
   </body>
 </html>
+![](https://imgur.com/CAQDOKB)
 
 
 
@@ -238,8 +238,6 @@ span {
   background-color: #DDFFDD
 }
 ```
-
-    Overwriting style.css
     
 
 
@@ -273,40 +271,11 @@ htm = HTML(f'''\
 ''')
 display(htm)
 ```
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/fd2a6cbf-90d8-49e8-9ee6-d61f6211311e)
 
 
-<html>
-  <head>
-      <style>
-/* divタグ内の要素の背景色を薄い灰色にする */
-div {
-  background-color: #F2F2F2;
-}
 
-/* spanタグ内の要素の背景色を薄い緑色にする */
-span {
-  background-color: #DDFFDD
-}
-</style>
-  </head>
-  <body>
-      <div>
-          <h3><span>ミドリガメ</span></h3>
-          <p><strong>最大甲長</strong>は20cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は45年程度です</p>
-      </div>
-      <div>
-          <h3><span>ヤマトイシガメ</span></h3>
-          <p><strong>最大甲長</strong>は30cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は15年程度です</p>
-      </div>
-      <div>
-          <h3><span>クサガメ</span></h3>
-          <p><strong>最大甲長</strong>は40cm程度です</p>
-          <p><strong>野生での平均寿命</strong>は35年程度です</p>
-      </div>
-  </body>
-</html>
+
 
 
 
