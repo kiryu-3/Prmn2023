@@ -451,7 +451,7 @@ node temp.js
 
 #### 要素のカウント
 
-Pythonでいう**`count`メソッド** のようなものは、Javascriptにはありません。  
+Pythonでいう **`count`メソッド** のようなものは、Javascriptにはありません。  
 
 **`filter`メソッド** を使えば、似たようなことができます。
 
