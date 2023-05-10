@@ -117,6 +117,7 @@ display(htm)
       <p>カメの平均寿命は30年ほどです</p>
   </body>
 </html>
+
 ![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/9d8d82ba-ca6e-4f99-9c9c-3102202768ef)
 
 
@@ -149,6 +150,7 @@ display(htm)
          背景色を薄い緑色にする -->
     <p style="background-color: #DDFFDD">カメの平均寿命は30年ほどです</p>
 </body>
+
 ![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/eb656ef1-60db-483a-ae58-b5d11180597f)
 
 
@@ -206,6 +208,7 @@ p {
       <p>カメの平均寿命は30年ほどです</p>
   </body>
 </html>
+
 ![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/9bbc3a6e-3b5c-42ea-8646-f798cbbcb8f8)
 
 
