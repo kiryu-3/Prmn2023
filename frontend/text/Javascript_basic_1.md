@@ -49,7 +49,7 @@ node temp.js
     Welcome to JavaScript!
     
 
-**`process.stdout.write`**関数を使用すると、改行を防止することができます。
+**`process.stdout.write`** 関数を使用すると、改行を防止することができます。
 
 
 ```bash
