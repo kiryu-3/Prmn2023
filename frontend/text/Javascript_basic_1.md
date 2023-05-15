@@ -6,6 +6,14 @@
 !apt-get install -y nodejs
 ```
 
+<details>
+<summary>xxx</summary>
+
+aaaaaaaaaaaaaaaaaaaaa
+bbbbbbbbbbbbbbbbbbb
+ccccccccccccccccccccc
+</details>
+
 ## console.log関数
 
 **`console.log`関数**を使うことで画面に文字を表示することができます。
