@@ -41,7 +41,7 @@ kamakiriさんの[こちら](https://takun-physics.net/category/%e5%a4%a7%e5%ad%
 
 例 $m$行 $n$ 列の行列($m×n$行列)  
 
-$  
+$$  
 A = \left(  
 \begin{matrix} 
 a _ {11} & ･･･ & a _ {1n} \\ 
@@ -51,7 +51,7 @@ a _ {11} & ･･･ & a _ {1n} \\
 a _ {m1} & ･･･ & a _ {mn} 
 \end{matrix}  
 \right)  
-$
+$$
 
 - $m=n$となる行列を**正方行列**と呼ぶ。
 - 構成するそれぞれの数値を**要素**と呼ぶ。
@@ -84,7 +84,7 @@ $$
 
 以下のように行列$A$と$B$を定義する。
 
-例 $m×n$行列$A$と$B$
+例 $m×n$行列 $A$と $B$
 
 $\mathbf{e}_{i}$ と $\mathbf{e}_{j}$
 
