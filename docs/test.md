@@ -120,9 +120,7 @@ a_{11}+b_{11} & ･･･ & a_{1n}+b_{1n} \\
 ･ & ･･･ & ･ \\
 a_{m1}+b_{m1} & ･･･ & a_{mn}+b_{mn} 
 \end{matrix} 
-\right)
-
-A-B = \left(
+\right)  　　A-B = \left(
 \begin{matrix} 
 a_{11}-b_{11} & ･･･ & a_{1n}-b_{1n} \\ 
 ･ & ･･･ & ･ \\
@@ -144,15 +142,13 @@ A = \left(
 5 & 7 
 \end{matrix} 
 \right)
-$　　　$
+  　　
 B = \left(
 \begin{matrix} 
 2 & 4 \\ 
 6 & 8 
 \end{matrix} 
-\right)
-
-A+B = \left(
+\right)  　　A+B = \left(
 \begin{matrix} 
 1+2 & 3+4 \\ 
 5+6 & 7+8 
