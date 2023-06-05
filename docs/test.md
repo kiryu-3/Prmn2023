@@ -1,8 +1,4 @@
-
-
 # 線形代数基礎
-
-&lt;script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"&gt;&lt;/script&gt;
 
 ```python
 # 最初に実行してください
