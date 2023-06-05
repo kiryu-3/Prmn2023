@@ -139,7 +139,7 @@ $$
 
 例　
 
-$
+$$
 A = \left(
 \begin{matrix} 
 1 &  3 \\ 
@@ -153,9 +153,7 @@ B = \left(
 6 & 8 
 \end{matrix} 
 \right)
-$  
 
-$
 A+B = \left(
 \begin{matrix} 
 1+2 & 3+4 \\ 
@@ -168,7 +166,7 @@ A+B = \left(
 11 & 15 
 \end{matrix} 
 \right)
-$
+$$
 
 
 ```python
