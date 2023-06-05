@@ -39,7 +39,7 @@ kamakiriさんの[こちら](https://takun-physics.net/category/%e5%a4%a7%e5%ad%
 
 **行列**：数を方形に並べたもの。横の並びが**行**で、縦の並びが**列**である。
 
-例 $m$行$n$列の行列($m×n$行列)  
+例 $m$行 $n$ 列の行列($m×n$行列)  
 
 $  
 A = \left(  
