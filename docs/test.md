@@ -66,7 +66,7 @@ $
 
 例　行列$A$を$k$倍した行列
 
-$
+$$
 kA = \left(
 \begin{matrix} 
 ka_{11} & ･･･ & ka_{1n} \\ 
@@ -76,7 +76,7 @@ ka_{11} & ･･･ & ka_{1n} \\
 ka_{m1} & ･･･ & ka_{mn} 
 \end{matrix} 
 \right)
-$
+$$
 
 <div style="page-break-before:always"></div>
 
