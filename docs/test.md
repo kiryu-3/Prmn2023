@@ -53,3 +53,6 @@ a_{m1} & ･･･ & a_{mn}
 \end{matrix} 
 \right)
 $$
+
+![image](https://github.com/kiryu-3/Prmn2023/assets/84606676/50157a12-8b43-414a-9dc4-6d2e1b095076)
+
