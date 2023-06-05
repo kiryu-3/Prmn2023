@@ -97,7 +97,9 @@ a_{11} & ･･･ & a_{1n} \\
 a_{m1} & ･･･ & a_{mn} 
 \end{matrix} 
 \right)
+$$  
 
+$$
 B = \left(
 \begin{matrix} 
 b_{11} & ･･･ & b_{1n} \\ 
