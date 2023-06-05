@@ -189,7 +189,7 @@ print(ndarrayA + ndarrayB)
 
 以下のように行列 $A$と $B$と $C$を定義する。
 
-例 $m×n$行列 $A$と $p×q$行列 $Bと$m×q$行列 $C$
+例 $m×n$ 行列 $A$ と $p×q$ 行列 $B と$m×q$ 行列 $C$
 
 $$
 A = \left(
@@ -200,9 +200,7 @@ a_{21} & a_{22} & ･･･ & a_{2n} \\
 ･ & ･ & ･･･ & ･ \\
 a_{m1} & a_{m2} & ･･･ & a_{mn} 
 \end{matrix} 
-\right)
-
-B = \left(
+\right)  　　B = \left(
 \begin{matrix} 
 b_{11} & b_{12} & ･･･ & b_{1q} \\ 
 b_{21} & b_{22} & ･･･ & b_{2q} \\
@@ -210,9 +208,7 @@ b_{21} & b_{22} & ･･･ & b_{2q} \\
 ･ & ･ & ･･･ & ･ \\
 b_{p1} & a_{p2} & ･･･ & b_{pq} 
 \end{matrix} 
-\right)
-
-C = \left(
+\right)  　　C = \left(
 \begin{matrix} 
 c_{11} & c_{12} & ･･･ & c_{1q} \\ 
 c_{21} & c_{22} & ･･･ & c_{2q} \\
@@ -223,9 +219,9 @@ c_{m1} & c_{m2} & ･･･ & c_{mq}
 \right)
 $$
 
-$A$と $B$の積 $AB(=C)$は、 $n=p$の時に定義できる。
+$A$ と $B$ の積 $AB(=C)$ は、 $n=p$ の時に定義できる。
 
-例 $A$と $B$の積 $AB$である $m×q$の行列 $C$
+例 $A$と $B$ の積 $AB$ である $m×q$ の行列 $C$
 
 $$
 C = AB = \left(
@@ -239,8 +235,8 @@ a_{m1}b_{11}+a_{22}b_{21}+･･･+a_{mn}b_{p1} & ･･･ & a_{m1}b_{1q}+a_{m
 \right)
 $$
 
-$A$が$m×n$行列、$B$が$p×q$行列で$n=p$のとき、  
-$A$の行ベクトルを$\vec{a_1}$,$\vec{a_2}$,…,$\vec{a_m}$、$B$の列ベクトルを$b_1$,$b_2$,…,$b_q$とすると、
+$A$が$m×n$ 行列、 $B$ が $p×q$ 行列で $n=p$ のとき、  
+$A$の行ベクトルを $\vec{a_1}$ , $\vec{a_2}$,…, $\vec{a_m}$、 $B$の列ベクトルを $b_1$, $b_2$,…, $b_q$とすると、
 
 $$
 AB = \left(
@@ -263,9 +259,7 @@ A = \left(
 1 &  3 \\ 
 5 & 7 
 \end{matrix} 
-\right)
-
-B = \left(
+\right)  　　B = \left(
 \begin{matrix} 
 2 & 4 \\ 
 6 & 8 
@@ -316,9 +310,9 @@ print(np.dot(ndarrayA,ndarrayB))
 
 ### 零行列
 
-成分がすべて0である行列を**零行列**といいます。$O$で表します。
+成分がすべて0である行列を**零行列**といいます。 $O$で表します。
 
-$
+$$
 O = \left(
 \begin{matrix} 
 0 & 0 \\ 
@@ -326,7 +320,7 @@ O = \left(
 0 & 0 
 \end{matrix} 
 \right)
-$　, $
+  　,　
 O = \left(
 \begin{matrix} 
 0 & 0 & 0 \\ 
@@ -334,7 +328,7 @@ O = \left(
 0 & 0 & 0 
 \end{matrix} 
 \right)
-$ 
+$$ 
 
 
 ```python
@@ -369,16 +363,16 @@ np.zeros(shape)
 ### 単位行列
 
 対角成分がすべて1で、それ以外の成分がすべて0である正方行列を**単位行列**といいます。  
-$n$次単位行列を$E_n$で表します。
+$n$ 次単位行列を $E_n$で表します。
 
-$
+$$
 E_n = \left(
 \begin{matrix} 
 1 & 0 \\ 
 0 & 1 
 \end{matrix} 
 \right)
-$　,  $
+  　,　
 E_n = \left(
 \begin{matrix} 
 1 & 0 & 0 \\ 
@@ -386,7 +380,7 @@ E_n = \left(
 0 & 0 & 1 
 \end{matrix} 
 \right)
-$ 
+$$
 
 
 ```python
@@ -420,7 +414,7 @@ np.eye(3, dtype=int)
 対角成分以外の成分がすべて0の正方行列を**対角行列**といいます。  
 
 
-$
+$$
 A = \left(
 \begin{matrix} 
 3 & 0 & 0 \\ 
@@ -434,7 +428,7 @@ A = \left(
 0 & 0 
 \end{matrix} 
 \right)
-$　,  $
+  　,　
 E_n = \left(
 \begin{matrix} 
 1 & 0 & 0 \\ 
@@ -442,7 +436,7 @@ E_n = \left(
 0 & 0 & 1 
 \end{matrix} 
 \right)
-$ 
+$$ 
 
 
 ```python
@@ -475,17 +469,20 @@ np.eye(3, dtype=int)
 
 ### 転置行列
 
-$m×n$行列$A$の行と列を入れ替えた行列を**転置行列**といいます。
+$m×n$行列 $A$の行と列を入れ替えた行列を**転置行列**といいます。
 
-$
+$$
 A = \left(
 \begin{matrix} 
 1 & 3 & 5 \\ 
 6 & 4 & 2
 \end{matrix} 
 \right)
-$　のとき、
-$
+$$
+
+のとき、
+
+$$
 A^{ \mathrm{ T } } = \left(
 \begin{matrix} 
 1 & 6 \\ 
@@ -493,7 +490,7 @@ A^{ \mathrm{ T } } = \left(
 5 & 2
 \end{matrix} 
 \right)
-$
+$$
 
 
 
@@ -530,9 +527,9 @@ print(ndarray.T)
 
 ### 対称行列
 
-$n$次正方行列$A$において、$A=A^{ \mathrm{ T } }$の行列を**対称行列**といいます。
+$n$次正方行列 $A$において、 $A=A^{ \mathrm{ T } }$ の行列を**対称行列**といいます。
 
-$
+$4
 A = \left(
 \begin{matrix} 
 1 & 4 & 5 \\
@@ -540,7 +537,7 @@ A = \left(
 5 & 6 & 3
 \end{matrix} 
 \right)
-$
+$$
 
 
 
@@ -578,11 +575,11 @@ print(ndarray.T)
 
 ### 交代行列
 
-$n$次正方行列$A$において、$A^{ \mathrm{ T } }=-A$の行列を**交代行列**といいます。
+$n$次正方行列 $A$において、 $A^{ \mathrm{ T } }=-A$ の行列を**交代行列**といいます。
 
 このとき、対角成分はすべて0になります。
 
-$
+$$
 A = \left(
 \begin{matrix} 
 0 & 1 & 2 \\
@@ -590,7 +587,7 @@ A = \left(
 -2 & -3 & 0
 \end{matrix} 
 \right)
-$
+$$
 
 
 
@@ -622,27 +619,27 @@ print(alternating_matrix)
 
 ### 零因子
 
-2つの行列$A$と$B$の積が零行列$O$であっても、$A=O$、$B=O$であるとは限りません。  特に、
+2つの行列 $A$と $B$の積が零行列 $O$であっても、 $A=O$ 、 $B=O$ であるとは限りません。  特に、
 
 $$AB=O　,　 A≠O　,　B≠O$$
 
-である行列$A$、$B$を**零因子**と呼びます。
+である行列 $A$、 $B$を**零因子**と呼びます。
 
-$
+$$
 A = \left(
 \begin{matrix} 
 1 & -2 \\ 
 -2 & 4
 \end{matrix} 
 \right)
-$　,　$
+  　,　
 B = \left(
 \begin{matrix} 
 2 & 2 \\ 
 1 & 1 
 \end{matrix} 
 \right)
-$  
+$$
 
 
 ```python
@@ -665,16 +662,16 @@ print(np.dot(ndarrayA,ndarrayB))
 
 ## 逆行列
 
-ある正方行列$A$にたいして、$XA=E_n$、または$AX=E_n$となる行列$X$のことを  
-**逆行列**と呼び、$A^{-1}$と呼びます。
+ある正方行列$A$にたいして、 $XA=E_n$、または $AX=E_n$となる行列 $X$のことを  
+**逆行列**と呼び、 $A^{-1}$ と呼びます。
 
-$A$が逆行列を持つとき、$A$を**正則**、または**正則行列**と呼びます。
+$A$が逆行列を持つとき、 $A$を**正則**、または**正則行列**と呼びます。
 
 ### 行列式
 
-ある正方行列$A$の**行列式**は、$det(A)$または$|A|$というように表記します。
+ある正方行列 $A$の**行列式**は、 $det(A)$または $|A|$ というように表記します。
 
-$|A|≠0$となるとき、$A$は正則となり、逆行列$A^{-1}$が存在します。
+$|A|≠0$となるとき、 $A$は正則となり、逆行列 $A^{-1}$が存在します。
 
 参考記事はkamakiriさんの[こちら](https://takun-physics.net/12196/)です。
 
@@ -822,7 +819,7 @@ print(round(det, 2))
 
 #### 2次の逆行列
 
-$ A=\begin{pmatrix}  a &b\\  c & d \end{pmatrix}\\ $の逆行列$X=A^{-1}$は、以下で与えられます。
+$ A=\begin{pmatrix}  a &b\\  c & d \end{pmatrix}\\ $の逆行列$X=A^{-1}$ は、以下で与えられます。
 
 $$
 X = \frac{1}{ad - bc}\begin{pmatrix}  d & -b\\  -c & a \end{pmatrix}\\
@@ -911,14 +908,14 @@ except np.linalg.LinAlgError:
 
 ## 固有値と固有ベクトル
 
-$n$次正方行列$A$に対し、
+$n$次正方行列 $A$に対し、
 
 $$
 Ax = λx　(x≠0)
 $$
 
-を満たす$λ$（スカラー）と$n$次ベクトル$x$が存在するとき、  
-$λ$を$A$の**固有値**、$x$を$A$の$λ$に関する**固有ベクトル**といいます。
+を満たす $λ$（スカラー）と $n$次ベクトル $x$が存在するとき、  
+$λ$を $A$の**固有値**、 $x$を $A$の $λ$に関する**固有ベクトル**といいます。
 
 参考記事はkamakiriさんの[こちら](https://takun-physics.net/13634/)です。  
 
@@ -926,7 +923,7 @@ $λ$を$A$の**固有値**、$x$を$A$の$λ$に関する**固有ベクトル**�
 
 ### 固有値
 
-正方行列$A$が与えられたとき、
+正方行列 $A$が与えられたとき、
 
 $$
 g_{A}(t) = |tE - A| = A = \left(
@@ -940,11 +937,11 @@ t - a_{11} & - a_{12} & ･･･ & - a_{1n} \\
 \right)　(x≠0)
 $$
 
-を**固有多項式**、$g_{A}(t)=0$ を**固有方程式**と呼びます。
+を**固有多項式**、 $g_{A}(t)=0$ を**固有方程式**と呼びます。
 
 ＜固有値の求め方＞
 
-$n$次正方行列$A$の**固有値**は、固有方程式$g_A(t)=0$の解として求められます。
+$n$次正方行列 $A$の**固有値**は、固有方程式 $g_A(t)=0$ の解として求められます。
 
 
 ```python
@@ -978,12 +975,12 @@ print(eig[0])
     [4. 4.]
     
 
-$A = \begin{pmatrix}  3 & -1\\  1 & 5 \end{pmatrix}$の場合、固有値は$λ = 4$と1個しかありません。
+$A = \begin{pmatrix}  3 & -1\\  1 & 5 \end{pmatrix}$ の場合、固有値は $λ = 4$ と1個しかありません。
 
-このように、固有多項式が$(t - λ)^mh(t)$と書けるとき（固有値に重解が含まれるとき）、  
-$λ$を**重複度**$m$の解と呼びます。
+このように、固有多項式が $(t - λ)^mh(t)$ と書けるとき（固有値に重解が含まれるとき）、  
+$λ$ を**重複度** $m$ の解と呼びます。
 
-$A = \begin{pmatrix}  3 & -1\\  1 & 5 \end{pmatrix}$の場合、固有多項式は$(t - 4)^2$となり、重複度は$2$となります。
+$A = \begin{pmatrix}  3 & -1\\  1 & 5 \end{pmatrix}$ の場合、固有多項式は $(t - 4)^2$ となり、重複度は$2$となります。
 
 参考記事はkamakiriさんの[こちら](https://takun-physics.net/13634/#rtoc-3)です。
 
@@ -991,7 +988,7 @@ $A = \begin{pmatrix}  3 & -1\\  1 & 5 \end{pmatrix}$の場合、固有多項式�
 
 ＜固有ベクトルの求め方＞
 
-固有値$λ$に対応する**固有ベクトル**は、同次連立1次方程式
+固有値 $λ$ に対応する**固有ベクトル**は、同次連立1次方程式
 
 $$
 (λE - A)=0
@@ -1015,15 +1012,15 @@ print(eig[1])
      [0.70710678 0.89442719]]
     
 
-$A = \begin{pmatrix}  5 & -1\\  2 & 2 \end{pmatrix}$の場合、  
+$A = \begin{pmatrix}  5 & -1\\  2 & 2 \end{pmatrix}$ の場合、  
 
-固有値が$λ = 4$ の場合は、$λE - A = \begin{pmatrix}  4-5 & -(-1)\\  -(2) & 4-2 \end{pmatrix} = \begin{pmatrix}  -1 & -1\\  -2 & 2 \end{pmatrix}$となるので、  
-固有ベクトルは$\begin{pmatrix}  x_1\\  x_2 \end{pmatrix} = \begin{pmatrix}  1\\  1 \end{pmatrix}C$ となります。
+固有値が $λ = 4$ の場合は、 $λE - A = \begin{pmatrix}  4-5 & -(-1)\\  -(2) & 4-2 \end{pmatrix} = \begin{pmatrix}  -1 & -1\\  -2 & 2 \end{pmatrix}$となるので、  
+固有ベクトルは $\begin{pmatrix}  x_1\\  x_2 \end{pmatrix} = \begin{pmatrix}  1\\  1 \end{pmatrix}C$ となります。
 
-固有値が$λ = 3$ の場合は、$λE - A = \begin{pmatrix}  3-5 & -(-1)\\  -(2) & 3-2 \end{pmatrix} = \begin{pmatrix}  -2 & -1\\  -2 & 1 \end{pmatrix}$となるので、  
-固有ベクトルは$\begin{pmatrix}  x_1\\  x_2 \end{pmatrix} = \begin{pmatrix}  1\\  2 \end{pmatrix}C$ となります。
+固有値が $λ = 3$ の場合は、 $λE - A = \begin{pmatrix}  3-5 & -(-1)\\  -(2) & 3-2 \end{pmatrix} = \begin{pmatrix}  -2 & -1\\  -2 & 1 \end{pmatrix}$ となるので、  
+固有ベクトルは $\begin{pmatrix}  x_1\\  x_2 \end{pmatrix} = \begin{pmatrix}  1\\  2 \end{pmatrix}C$ となります。
 
-※$C$：任意の数
+※ $C$：任意の数
 
 **※ numpyで求めた固有方程式は、ベクトルの長さが1になるように正規化されています。**
 
@@ -1045,8 +1042,8 @@ print(eig[1])
 
 $A = \begin{pmatrix}  3 & -1\\  1 & 5 \end{pmatrix}$の場合、  
 
-固有値が$λ = 4$ の場合は、$λE - A = \begin{pmatrix}  4-3 & -(-1)\\  -(1) & 4-5 \end{pmatrix} = \begin{pmatrix}  1 & 1\\  -1 & -1 \end{pmatrix}$となるので、  
-固有ベクトルは$\begin{pmatrix}  x_1\\  x_2 \end{pmatrix} = \begin{pmatrix}  -1\\  1 \end{pmatrix}C$ となります。
+固有値が $λ = 4$ の場合は、 $λE - A = \begin{pmatrix}  4-3 & -(-1)\\  -(1) & 4-5 \end{pmatrix} = \begin{pmatrix}  1 & 1\\  -1 & -1 \end{pmatrix}$となるので、  
+固有ベクトルは $\begin{pmatrix}  x_1\\  x_2 \end{pmatrix} = \begin{pmatrix}  -1\\  1 \end{pmatrix}C$ となります。
 
 
 ※$C$：任意の数
