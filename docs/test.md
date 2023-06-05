@@ -97,7 +97,7 @@ a_{11} & ･･･ & a_{1n} \\
 a_{m1} & ･･･ & a_{mn} 
 \end{matrix} 
 \right)
-$　　　$
+
 B = \left(
 \begin{matrix} 
 b_{11} & ･･･ & b_{1n} \\ 
@@ -193,11 +193,11 @@ print(ndarrayA + ndarrayB)
 
 ## 行列の積
 
-以下のように行列$A$と$B$と$C$を定義する。
+以下のように行列 $A$と $B$と $C$を定義する。
 
-例 $m×n$行列Aと$p×q$行列Bと$m×q$行列$C$
+例 $m×n$行列 $A$と $p×q$行列 $Bと$m×q$行列 $C$
 
-$
+$$
 A = \left(
 \begin{matrix} 
 a_{11} & a_{12} & ･･･ & a_{1n} \\ 
@@ -207,7 +207,7 @@ a_{21} & a_{22} & ･･･ & a_{2n} \\
 a_{m1} & a_{m2} & ･･･ & a_{mn} 
 \end{matrix} 
 \right)
-$　　　$
+
 B = \left(
 \begin{matrix} 
 b_{11} & b_{12} & ･･･ & b_{1q} \\ 
@@ -217,7 +217,7 @@ b_{21} & b_{22} & ･･･ & b_{2q} \\
 b_{p1} & a_{p2} & ･･･ & b_{pq} 
 \end{matrix} 
 \right)
-$　　　$
+
 C = \left(
 \begin{matrix} 
 c_{11} & c_{12} & ･･･ & c_{1q} \\ 
@@ -227,13 +227,13 @@ c_{21} & c_{22} & ･･･ & c_{2q} \\
 c_{m1} & c_{m2} & ･･･ & c_{mq} 
 \end{matrix} 
 \right)
-$
+$$
 
-$A$と$B$の積$AB(=C)$は、$n=p$の時に定義できる。
+$A$と $B$の積 $AB(=C)$は、 $n=p$の時に定義できる。
 
-例 $A$と$B$の積$AB$である$m×q$の行列$C$
+例 $A$と $B$の積 $AB$である $m×q$の行列 $C$
 
-$
+$$
 C = AB = \left(
 \begin{matrix} 
 a_{11}b_{11}+a_{12}b_{21}+･･･+a_{1n}b_{p1} & ･･･ & a_{11}b_{1q}+a_{12}b_{2q}+･･･+a_{1q}b_{pq} \\ 
@@ -243,12 +243,12 @@ a_{21}b_{11}+a_{22}b_{21}+･･･+a_{2n}b_{p1} & ･･･ & a_{21}b_{1q}+a_{2
 a_{m1}b_{11}+a_{22}b_{21}+･･･+a_{mn}b_{p1} & ･･･ & a_{m1}b_{1q}+a_{m2}b_{2q}+･･･+a_{mq}b_{pq} \\
 \end{matrix} 
 \right)
-$
+$$
 
 $A$が$m×n$行列、$B$が$p×q$行列で$n=p$のとき、  
 $A$の行ベクトルを$\vec{a_1}$,$\vec{a_2}$,…,$\vec{a_m}$、$B$の列ベクトルを$b_1$,$b_2$,…,$b_q$とすると、
 
-$
+$$
 AB = \left(
 \begin{matrix} 
 \vec{a_1}b_1 & \vec{a_1}b_2 & ･･･ & \vec{a_1}b_q \\ 
@@ -257,29 +257,29 @@ AB = \left(
 \vec{a_m}b_1 & \vec{a_m}b_2 & ･･･ & \vec{a_m}b_q
 \end{matrix} 
 \right)
-$
+$$
 
-積$AB$はこのようになり、$m×q$ 行列になる。
+積 $AB$はこのようになり、 $m×q$ 行列になる。
 
 例　
 
-$
+$$
 A = \left(
 \begin{matrix} 
 1 &  3 \\ 
 5 & 7 
 \end{matrix} 
 \right)
-$　　　$
+
 B = \left(
 \begin{matrix} 
 2 & 4 \\ 
 6 & 8 
 \end{matrix} 
 \right)
-$  
+$$  
 
-$
+$$
 AB = \left(
 \begin{matrix} 
 1×2+3×6 & 1×4+3×8 \\ 
@@ -293,7 +293,7 @@ AB = \left(
 \end{matrix} 
 \right)
  ≠ BA
-$
+$$
 
 
 ```python
@@ -314,7 +314,7 @@ print(np.dot(ndarrayA,ndarrayB))
      [52 76]]
     
 
-- 特別に$AB = BA$が成り立つ場合、$A$と$B$は**交換可能**であるといいます。
+- 特別に $AB = BA$ が成り立つ場合、 $A$ と $B$ は**交換可能**であるといいます。
 
 参考記事はkamakiriさんの[こちら](https://takun-physics.net/11917/#rtoc-3)です。
 
