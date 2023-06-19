@@ -1,0 +1,139 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>LINEBot_Prmn</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="linebot-prmn"
+                  title="LINEBot_Prmn"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="導入" duration="0">
+        <p>本資料では、PythonでLINEBotを作成するために、環境構築と基本的な機能について紹介しています。</p>
+<p>『データサイエンス入門』と同様、Google Colabratoryでの実行を想定しています。   </p>
+<p>（JupyterLabでも大丈夫だとは思います）</p>
+<p>環境が整っていない方は<a href="https://bit.ly/3R1BXOT" target="_blank">こちら</a>を参考に環境を整備してください。</p>
+<p>Open in Colab をクリックするとGooglecolabに遷移できます。</p>
+<p>各章の遷移先で確認してください。</p>
+<p>プロメン最終成果物などの参考にしてください。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="LINE Bot（Message API）の準備" duration="0">
+        <p><a href="https://developers.line.me/ja/docs/messaging-api/getting-started/" target="_blank">公式ドキュメント</a> を参考に、準備を進めてください。</p>
+<p>以下、補足になります。</p>
+<h2 is-upgraded>LINE Developersコンソールにログインする</h2>
+<p>それぞれのLINEのアカウントでログインしてください。</p>
+<h2 is-upgraded>開発者として登録する（初回ログイン時のみ）</h2>
+<p>それぞれのニックネームやメールアドレスを入力してください。  </p>
+<p>学生の方は自身の大学のメールアドレスを推奨します。</p>
+<h2 is-upgraded>新規プロバイダーを作成する</h2>
+<p>任意の（好きな）名前を入力してください。</p>
+<h2 is-upgraded>チャネルを作成する</h2>
+<ul>
+<li>Channel Type（チャンネルの種類）が Messaging API になっていることを確認してください。</li>
+<li>任意 と書かれている項目は空欄にしてください。</li>
+<li>チャンネル名や説明は好きなものを入力してください（個人情報ではないもの）。</li>
+<li>大業種は個人、小業種は個人（学生）など自分の立場に合わせて選んでください。</li>
+<li>アイコン画像も自分の好きなものを利用してください。</li>
+</ul>
+<h2 is-upgraded>チャネルを作成する</h2>
+<ul>
+<li>Channel Type（チャンネルの種類）が Messaging API になっていることを確認してください。</li>
+<li>任意 と書かれている項目は空欄にしてください。</li>
+<li>チャンネル名や説明は好きなものを入力してください（個人情報ではないもの）。</li>
+<li>大業種は個人、小業種は個人（学生）など自分の立場に合わせて選んでください。</li>
+<li>アイコン画像も自分の好きなものを利用してください。</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Messaging APIの設定" duration="0">
+        <p><a href="https://developers.line.biz/console/" target="_blank">LINE Developersコンソール</a> のプロバイダーの欄から 、  </p>
+<p>あなたが作成したプロパイダー名 → あなたが作成したチャンネル名 の順に選択してください。</p>
+<p>チャンネルを開き、Messaging API設定 のタブを開いてください。</p>
+<p><strong>・ WebHookURL</strong> を、セルに表示されているhttps://xx-xx-xx-xx-xx..ngrok.io/callback に変更してください。</p>
+<p><strong>・ Webhookの利用</strong> を、選択状態（緑色）にスイッチしてください。</p>
+<p><strong>・ 応答メッセージ</strong>の 編集 を選ぶと、応答設定のウィンドウが開くはずです。</p>
+<ul>
+<li> 応答メッセージ を オフ にする</li>
+<li>あいさつメッセージ を オフ にする</li>
+<li>Webhook は、 <strong>オン のまま</strong> にする（間違えないように！）</li>
+<li>ここまで設定したら、<strong>応答設定</strong> のウィンドウを閉じる。</li>
+</ul>
+<p><strong>・ チャネルアクセストークン（長期）</strong> の 発行 ボタンを押してください。</p>
+<p><strong>WebHookURL</strong>はセルを実行するたび毎回変化します。  </p>
+<p>ブラウザのタブなどで開いたままにしておくと便利です。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="基本編" duration="0">
+        <p>基本編<a href="https://github.com/kiryu-3/Prmn2023/blob/main/Python/LINEBot/LINEBot_Basic.ipynb" target="_blank">はこちら</a></p>
+<p>ノートブックの内容は以下の通りです。</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>○ テキストのオウム返し</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>○ 画像データの取り扱い</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>○ 送信回数のカウント</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>○ ひとつ前のメッセージを返信</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>○ 電卓プログラム</p>
+</td></tr>
+</table>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="応用編" duration="0">
+        <p>応用編<a href="https://github.com/kiryu-3/Prmn2023/blob/main/Python/LINEBot/LINEBot_Advanced.ipynb" target="_blank">はこちら</a></p>
+<p>ノートブックの内容は以下の通りです。</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>○ OpenWeather APIの使用</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>○ クイックリプライ</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>○ Flexメッセージ</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>○ カルーセル</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>○ リッチメニュー</p>
+</td></tr>
+</table>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
