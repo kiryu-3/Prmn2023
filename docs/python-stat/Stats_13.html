@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Stats_13.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E5%B9%B3%E5%9D%87%E5%80%A4%E5%B7%AE%E3%81%AE%E6%A4%9C%E5%AE%9A%E5%AF%BE%E5%BF%9C%E3%81%82%E3%82%8A">平均値差の検定（対応あり）</h1>
+<ul>
+<li><a href="#%E5%B9%B3%E5%9D%87%E5%80%A4%E5%B7%AE%E3%81%AE%E6%A4%9C%E5%AE%9A%E5%AF%BE%E5%BF%9C%E3%81%82%E3%82%8A">平均値差の検定（対応あり）</a>
+<ul>
+<li><a href="#%E5%AF%BE%E5%BF%9C%E3%81%82%E3%82%8A%E3%81%AE%E5%B9%B3%E5%9D%87%E5%80%A4%E5%B7%AE%E3%81%AE%E6%A4%9C%E5%AE%9A">対応ありの平均値差の検定</a>
+<ul>
+<li><a href="#%E4%BB%AE%E8%AA%AC%E6%A4%9C%E5%AE%9A%E3%81%AE%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E5%86%8D%E6%8E%B2">仮説検定のステップ（再掲）</a>
+<ul>
+<li><a href="#%E5%B8%B0%E7%84%A1%E4%BB%AE%E8%AA%AC%E3%81%A8%E5%AF%BE%E7%AB%8B%E4%BB%AE%E8%AA%AC%E3%82%92%E7%AB%8B%E3%81%A6%E3%82%8B">帰無仮説と対立仮説を立てる</a></li>
+<li><a href="#%E5%B8%B0%E7%84%A1%E4%BB%AE%E8%AA%AC%E3%81%AE%E3%82%82%E3%81%A8%E3%81%A7%E6%A8%99%E6%9C%AC%E8%A6%B3%E5%AF%9F%E3%82%92%E8%A1%8C%E3%81%86">帰無仮説のもとで標本観察を行う</a></li>
+<li><a href="#%E5%B8%B0%E7%84%A1%E4%BB%AE%E8%AA%AC%E3%82%92%E6%A3%84%E5%8D%B4%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%8B%E3%81%A9%E3%81%86%E3%81%8B%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">帰無仮説を棄却できるかどうかを確認する</a></li>
+</ul>
+</li>
+<li><a href="#python%E3%81%AB%E3%82%88%E3%82%8B%E4%BB%AE%E8%AA%AC%E6%A4%9C%E5%AE%9A">Pythonによる仮説検定</a></li>
+<li><a href="#python%E3%81%AB%E3%82%88%E3%82%8B%E6%8F%8F%E7%94%BB">Pythonによる描画</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+!pip install japanize-matplotlib
+<span class="hljs-keyword">import</span> japanize_matplotlib
+<span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
+<span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats
+<span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> norm
+<span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> binom
+<span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> t
+<span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> f
+<span class="hljs-keyword">from</span> decimal <span class="hljs-keyword">import</span> Decimal, ROUND_HALF_UP, ROUND_HALF_EVEN
+<span class="hljs-keyword">from</span> statsmodels.stats.proportion <span class="hljs-keyword">import</span> proportions_ztest
+<span class="hljs-keyword">from</span> statsmodels.api <span class="hljs-keyword">import</span> qqplot
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="%E5%AF%BE%E5%BF%9C%E3%81%82%E3%82%8A%E3%81%AE%E5%B9%B3%E5%9D%87%E5%80%A4%E5%B7%AE%E3%81%AE%E6%A4%9C%E5%AE%9A">対応ありの平均値差の検定</h2>
+<p>今回からいよいよ<strong>対応あり</strong>の平均値差の検定を行っていきます。</p>
+<p><a href="https://bit.ly/3EcMGlH">こちら</a>の問題を解いていきます。</p>
+<h3 id="%E4%BB%AE%E8%AA%AC%E6%A4%9C%E5%AE%9A%E3%81%AE%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E5%86%8D%E6%8E%B2">仮説検定のステップ（再掲）</h3>
+<p>①帰無仮説と対立仮説を立てる<br>
+②帰無仮説のもとで標本観察を行う<br>
+③帰無仮説を棄却できるかどうかを確認する</p>
+<h4 id="%E5%B8%B0%E7%84%A1%E4%BB%AE%E8%AA%AC%E3%81%A8%E5%AF%BE%E7%AB%8B%E4%BB%AE%E8%AA%AC%E3%82%92%E7%AB%8B%E3%81%A6%E3%82%8B">帰無仮説と対立仮説を立てる</h4>
+<p>帰無仮説と対立仮説は以下のようになります。（<strong>片側検定</strong>（<strong>下側</strong>）になります）</p>
+<p>帰無仮説$H_0$：「投薬前後の血圧は等しい」<br>
+対立仮説$H_1$：「投薬によって血圧は下がった」</p>
+<h4 id="%E5%B8%B0%E7%84%A1%E4%BB%AE%E8%AA%AC%E3%81%AE%E3%82%82%E3%81%A8%E3%81%A7%E6%A8%99%E6%9C%AC%E8%A6%B3%E5%AF%9F%E3%82%92%E8%A1%8C%E3%81%86">帰無仮説のもとで標本観察を行う</h4>
+<p>今回は、<strong>各データの変化量</strong>$d$を一つの標本として、その平均$\bar{d}$を考えていきます。</p>
+<p>変化量の母集団の平均を$\mu_d$、分散を$\sigma_d^2$とします。
+また、変化量$d$の標本の平均を$\bar{d}$とします。</p>
+<p>平均$\bar{d}$が従う確率分布は、変化量の母集団が正規分布に従うと仮定したとき、<br>
+平均$\mu_d$、分散$\frac{\sigma_d^2}{n}$の正規分布となります。</p>
+<p>$\sigma_d^2$は母集団の分散なので不定値です。<br>
+そのため、代わりに<strong>不偏分散</strong> $s^{'2}_d$を使います。</p>
+<p>不偏分散を用いたため、標準化したときの値は$t$<strong>値</strong>になります。</p>
+<p>$$
+t = \frac{\bar{d}-\mu_d}{\frac{s^{'}_d}{\sqrt{n}}}
+$$</p>
+<p>帰無仮説が正しいと仮定するため、$\mu_d=0$となります。</p>
+<p>$$
+t = \frac{\bar{d}}{\frac{s^{'}_d}{\sqrt{n}}}
+$$</p>
+<p>上の式に従って$t$値を導出します。</p>
+<h4 id="%E5%B8%B0%E7%84%A1%E4%BB%AE%E8%AA%AC%E3%82%92%E6%A3%84%E5%8D%B4%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%8B%E3%81%A9%E3%81%86%E3%81%8B%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B">帰無仮説を棄却できるかどうかを確認する</h4>
+<p>有意水準を$5$%に設定します。</p>
+<p>②で導出した$t$値と、有意水準に基づく$t$値を比較し、<br>
+($p$<strong>値を求めて</strong>) 棄却が必要かどうか決めます。</p>
+<div style="page-break-before:always"></div>
+<h3 id="python%E3%81%AB%E3%82%88%E3%82%8B%E4%BB%AE%E8%AA%AC%E6%A4%9C%E5%AE%9A">Pythonによる仮説検定</h3>
+<p>では対応ありの平均値差の検定を行っていきましょう。</p>
+<pre class="hljs"><code><div>data = {
+    <span class="hljs-string">"投与前の血圧"</span>:[<span class="hljs-number">180</span>,<span class="hljs-number">130</span>,<span class="hljs-number">165</span>,<span class="hljs-number">155</span>,<span class="hljs-number">140</span>],
+    <span class="hljs-string">"投与後の血圧"</span> : [<span class="hljs-number">150</span>,<span class="hljs-number">135</span>,<span class="hljs-number">145</span>,<span class="hljs-number">150</span>,<span class="hljs-number">140</span>],
+}
+
+df = pd.DataFrame(data)
+df
+</div></code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>投与前の血圧</th>
+      <th>投与後の血圧</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>180</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>130</td>
+      <td>135</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>165</td>
+      <td>145</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>155</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>140</td>
+      <td>140</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"差（投与前-投与後）"</span>] = df[<span class="hljs-string">"投与前の血圧"</span>]-df[<span class="hljs-string">"投与後の血圧"</span>]
+df
+</div></code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>投与前の血圧</th>
+      <th>投与後の血圧</th>
+      <th>差（投与前-投与後）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>180</td>
+      <td>150</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>130</td>
+      <td>135</td>
+      <td>-5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>165</td>
+      <td>145</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>155</td>
+      <td>150</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>140</td>
+      <td>140</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"帰無仮説H_0：投薬前後の血圧は等しい"</span>)  
+print(<span class="hljs-string">"対立仮説H_1：投薬によって血圧は下がった"</span>)
+</div></code></pre>
+<pre><code>帰無仮説H_0：投薬前後の血圧は等しい
+対立仮説H_1：投薬によって血圧は下がった
+</code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div>tt , pp = tuple(stats.ttest_rel(df[<span class="hljs-string">"投与前の血圧"</span>],df[<span class="hljs-string">"投与後の血圧"</span>],alternative=<span class="hljs-string">"greater"</span>))
+
+tt = float(Decimal(str(tt)).quantize(Decimal(<span class="hljs-string">'0.001'</span>),rounding=ROUND_HALF_UP))
+print(<span class="hljs-string">f"検定統計量のt値:<span class="hljs-subst">{tt}</span>"</span>)
+pp = float(Decimal(str(pp*<span class="hljs-number">100</span>)).quantize(Decimal(<span class="hljs-string">'0.001'</span>),rounding=ROUND_HALF_UP))
+print(<span class="hljs-string">f"p値：<span class="hljs-subst">{pp}</span>%"</span>)
+</div></code></pre>
+<pre><code>検定統計量のt値:1.534
+p値：9.991%
+</code></pre>
+<p>自由度$4$の$t$分布における有意水準$5$%に対応する値は$2.132$です。</p>
+<pre class="hljs"><code><div>float(Decimal(str(t.ppf(<span class="hljs-number">0.95</span>, len(df)<span class="hljs-number">-1</span>))).quantize(Decimal(<span class="hljs-string">'0.001'</span>),rounding=ROUND_HALF_UP))
+</div></code></pre>
+<pre><code>2.132
+</code></pre>
+<ul>
+<li>$t$値が$2.132$より小さくなった</li>
+<li>$p$値が$5$%より大きくなった</li>
+</ul>
+<p>この二点から、帰無仮説$H_0$を棄却することができません。<br>
+よって、対立仮説$H_1$を採択しません。</p>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"したがって、投薬によって血圧は下がったとは言えない"</span>)
+</div></code></pre>
+<pre><code>したがって、投薬によって血圧は下がったとは言えない
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="python%E3%81%AB%E3%82%88%E3%82%8B%E6%8F%8F%E7%94%BB">Pythonによる描画</h3>
+<p>平均値差の検定をするときは、$t$検定を行うだけではなくて、<br>
+データの分布も一緒に確認するようにしましょう。</p>
+<pre class="hljs"><code><div>sns.boxplot(df[<span class="hljs-string">"差（投与前-投与後）"</span>])
+</div></code></pre>
+<p><img src="output13_28_2.png" alt="png"></p>
+<p>箱ひげ図的には投与前の方が血圧が高いといえそうですが、<br>
+仮説検定で確かめることはできませんでした。</p>
+
+</body>
+</html>
