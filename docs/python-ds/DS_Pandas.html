@@ -1,0 +1,4876 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DS_Pandas.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="pandas">Pandas</h1>
+<ul>
+<li><a href="#pandas">Pandas</a>
+<ul>
+<li><a href="#pandas%E3%81%A8%E3%81%AF">Pandasとは</a></li>
+<li><a href="#series">Series</a></li>
+<li><a href="#dataframe">DataFrame</a>
+<ul>
+<li><a href="#pddataframe">pd.DataFrame()</a></li>
+<li><a href="#pdread_csv">pd.read_csv()</a></li>
+</ul>
+</li>
+<li><a href="#dataframe%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">DataFrameの基本操作</a>
+<ul>
+<li><a href="#len">len()</a></li>
+<li><a href="#pdset_optiondisplaymax_columnsnone">pd.set_option(&quot;display.max_columns&quot;,None)</a></li>
+<li><a href="#head">.head()</a></li>
+<li><a href="#dtypes">.dtypes()</a></li>
+<li><a href="#describe">.describe()</a></li>
+<li><a href="#columns">.columns</a></li>
+<li><a href="#%E5%88%97%E3%81%AE%E5%8F%96%E5%BE%97">列の取得</a></li>
+<li><a href="#%E8%A1%8C%E3%81%AE%E5%8F%96%E5%BE%97">行の取得</a></li>
+<li><a href="#columns%E3%81%AE%E6%9B%B4%E6%96%B0%E8%BF%BD%E5%8A%A0">columnsの更新・追加</a></li>
+<li><a href="#%E8%A1%8C%E5%90%8D%E5%88%97%E5%90%8D%E3%81%AE%E5%A4%89%E6%9B%B4">行名・列名の変更</a></li>
+<li><a href="#drop">.drop()</a></li>
+</ul>
+</li>
+<li><a href="#dataframe%E3%81%AE%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF">DataFrameのフィルタ</a>
+<ul>
+<li><a href="#%E7%89%B9%E5%AE%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A7%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF">特定の条件でフィルタ</a></li>
+<li><a href="#index%E6%93%8D%E4%BD%9C">index操作</a></li>
+</ul>
+</li>
+<li><a href="#dataframe%E3%81%AEnan%E3%81%AE%E6%89%B1%E3%81%84">DataFrameのNaNの扱い</a>
+<ul>
+<li><a href="#isnull">.isnull()</a></li>
+<li><a href="#isnullsum">.isnull().sum()</a></li>
+<li><a href="#dropna">.dropna()</a></li>
+<li><a href="#fillna">.fillna()</a></li>
+<li><a href="#pdisna">pd.isna()</a></li>
+</ul>
+</li>
+<li><a href="#groupby">groupby</a></li>
+<li><a href="#%E8%A1%A8%E7%B5%90%E5%90%88">表結合</a>
+<ul>
+<li><a href="#pdconcat">pd.concat()</a></li>
+<li><a href="#merge">.merge()</a>
+<ul>
+<li><a href="#how">how</a></li>
+<li><a href="#on">on</a></li>
+<li><a href="#left_on-right_on">left_on, right_on</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#dataframe%E3%81%A8series%E3%81%AE%E4%BE%BF%E5%88%A9%E3%81%AA%E9%96%A2%E6%95%B0">DataFrameとSeriesの便利な関数</a>
+<ul>
+<li><a href="#unique%E3%81%A8nunique">.unique()と.nunique()</a></li>
+<li><a href="#valuecounts">value.counts()</a></li>
+<li><a href="#sort_values">.sort_values()</a></li>
+<li><a href="#apply">.apply()</a></li>
+<li><a href="#map">.map()</a></li>
+<li><a href="#iterrows">.iterrows()</a></li>
+</ul>
+</li>
+<li><a href="#dataframe%E3%82%92csv%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B">DataFrameをCSVで保存する</a></li>
+</ul>
+</li>
+</ul>
+<div style="page-break-before:always"></div>
+<h2 id="pandas%E3%81%A8%E3%81%AF">Pandasとは</h2>
+<p><strong>Pandas</strong>とは、データの操作・解析を目的として作られたライブラリです。<br>
+Numpyを中で使っており、またNumpyと並んで最重要なものになります。</p>
+<p><img src="https://imgur.com/8fxE9Bv.png" alt="リンクテキスト"></p>
+<p>データサイエンスの分野では、多くの場合データを表形式で扱います。<br>
+特に表形式でのデータ処理が得意なPandasは、データサイエンスには欠かせないものです。</p>
+<p>GoogleColabやJupyter Labといった環境下では、最初から入っているため改めて入れる必要はありません。<br>
+自分で入れる場合は<code>conda install pandas</code>や<code>pip install pandas</code>という記述をします。</p>
+<p>pandasをimportする際、<code>pd</code>とするのが一般的です。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+</div></code></pre>
+<p>Numpyも同時に使うことが多いので、importしてしまいましょう。</p>
+<p>また今回扱うデータの関係で、Seabornのimportも必要です。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<h2 id="series">Series</h2>
+<p><strong>Series</strong>とは、表形式のデータの各行やカラムを切り取ったデータを表すデータ形式です。</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Sex</th>
+<th>Age</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chitose</td>
+<td>female</td>
+<td>35</td>
+</tr>
+<tr>
+<td>Hokudai</td>
+<td>male</td>
+<td>105</td>
+</tr>
+<tr>
+<td>Muroran</td>
+<td>male</td>
+<td>74</td>
+</tr>
+</tbody>
+</table>
+<p>上の表を例とすると、表の一番上に並んでいるものを<strong>ヘッダー</strong>、<br>
+ヘッダーを構成している1つ1つの要素を<strong>カラム</strong>といいます。<br>
+また、表の1行1行を<strong>レコード</strong>といいます。</p>
+<p>この表から各行・各列を切り取ったものがSeriesです。</p>
+<div style="page-break-before:always"></div>
+<p>ますはSeriesのオブジェクトを作ってみましょう。<br>
+<strong><code>pd.Series()</code></strong> とすると作ることができます。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># dictionraryからSeriesを作る</span>
+
+data = {
+    <span class="hljs-string">"Name"</span> : <span class="hljs-string">"Chitose"</span>,
+    <span class="hljs-string">"Sex"</span> : <span class="hljs-string">"female"</span>,
+    <span class="hljs-string">"Age"</span> : <span class="hljs-string">"35"</span>
+}
+
+pd.Series(data)
+</div></code></pre>
+<pre><code>Name    Chitose
+Sex      female
+Age          35
+dtype: object
+</code></pre>
+<p>左に見える &quot;Name&quot;,&quot;Sex&quot;,&quot;Age&quot; は、Seriesのインデックスです。<br>
+表を横に切った場合にはカラムになります。</p>
+<pre class="hljs"><code><div><span class="hljs-comment">#ndarrayからSeriesを作る</span>
+
+array = np.array([<span class="hljs-number">35</span>,<span class="hljs-number">105</span>,<span class="hljs-number">74</span>])
+pd.Series(array)
+</div></code></pre>
+<pre><code>0     35
+1    105
+2     74
+dtype: int64
+</code></pre>
+<p>ndarrayからSeriesを作った場合には、Seriesのインデックスは連番の数値になります。<br>
+表を縦に切った場合と同じです。</p>
+<div style="page-break-before:always"></div>
+<p>引数<strong>index</strong>をつけることで、インデックスにラベルを指定することができます。</p>
+<pre class="hljs"><code><div>array = np.array([<span class="hljs-number">35</span>,<span class="hljs-number">105</span>,<span class="hljs-number">74</span>])
+pd.Series(array,index=[<span class="hljs-string">"Chitose"</span>,<span class="hljs-string">"Hokudai"</span>,<span class="hljs-string">"Muroran"</span>])
+</div></code></pre>
+<pre><code>Chitose     35
+Hokudai    105
+Muroran     74
+dtype: int64
+</code></pre>
+<p>特定のラベルを指定して値を取り出すことができます。</p>
+<pre class="hljs"><code><div>age = pd.Series(array,index=[<span class="hljs-string">"Chitose"</span>,<span class="hljs-string">"Hokudai"</span>,<span class="hljs-string">"Muroran"</span>])
+age[<span class="hljs-string">"Chitose"</span>]
+</div></code></pre>
+<pre><code>35
+</code></pre>
+<p><strong><code>.values</code></strong> とすることで、値をndarrayとして扱うことが可能になります。</p>
+<pre class="hljs"><code><div>age.values
+</div></code></pre>
+<pre><code>array([ 35, 105,  74])
+</code></pre>
+<p>また、numpyと同じように統計量を計算することもできます。</p>
+<pre class="hljs"><code><div>age.sum()
+</div></code></pre>
+<pre><code>214
+</code></pre>
+<p>（DataFrameで統計量を求める方法は<a href="https://3pysci.com/python-pandas-7/#index_id0">こちら</a>を参考にしてください。）</p>
+<p>Seriesに関しては<a href="https://3pysci.com/python-pandas-28/">こちら</a>にも詳しい話があります。</p>
+<div style="page-break-before:always"></div>
+<h2 id="dataframe">DataFrame</h2>
+<p>Seriesが集まったデータ構造が<strong>DataFrame</strong>です。<br>
+データサイエンスのほとんどの作業において使われます。最重要です。</p>
+<h3 id="pddataframe">pd.DataFrame()</h3>
+<p><strong><code>pd.DataFrame()</code></strong> とするとDataframeのオブジェクトを作ることができます。</p>
+<p>まずはndarrayからDaraFrameを作成してみましょう。<br>
+（<a href="https://3pysci.com/python-pandas-18/#index_id8">こちら</a>ではさらに詳しい解説がありますので、良ければ参考にしてください。）</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># ndarrayからDataFrameを作る</span>
+
+ndarray = np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">11</span>).reshape(<span class="hljs-number">2</span>,<span class="hljs-number">5</span>)
+pd.DataFrame(ndarray)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>この場合は、カラムが列の番号、インデックスが行の番号になっています。</p>
+<p>この状態であると不便であるので、引数  <strong><code>columns</code></strong> と <strong><code>index</code></strong> を指定することがあります。<br>
+<code>index</code>は指定しないことが多いですが、<code>columns</code>は何らかの <strong>文字列</strong> を指定することが多いです。</p>
+<pre class="hljs"><code><div>pd.DataFrame(ndarray, index=[<span class="hljs-string">"index1"</span>,<span class="hljs-string">"index2"</span>],  
+             columns=[<span class="hljs-string">'columns1'</span>,<span class="hljs-string">'columns2'</span>,<span class="hljs-string">'columns3'</span>,<span class="hljs-string">'columns4'</span>,<span class="hljs-string">'columns5'</span>])
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>columns1</th>
+      <th>columns2</th>
+      <th>columns3</th>
+      <th>columns4</th>
+      <th>columns5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>index1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>index2</th>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<p>dictionaryから作ることもできます。<br>
+（<a href="https://bit.ly/3dw8Rte">こちら</a>ではさらに詳しい解説がありますので、良ければ参考にしてください。）</p>
+<p>dictionaryのリストをいれると，それがそのままDataFrameになります。<br>
+それぞれのdictionaryが同じキーを持つ必要があります。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># dictionraryからDataFrameを作る</span>
+
+data1 = {
+    <span class="hljs-string">"Name"</span> : <span class="hljs-string">"Chitose"</span>,
+    <span class="hljs-string">"Sex"</span> : <span class="hljs-string">"female"</span>,
+    <span class="hljs-string">"Age"</span> : <span class="hljs-number">35</span>
+}
+
+data2 = {
+    <span class="hljs-string">"Name"</span> : <span class="hljs-string">"Hokudai"</span>,
+    <span class="hljs-string">"Sex"</span> : <span class="hljs-string">"male"</span>,
+    <span class="hljs-string">"Age"</span> : <span class="hljs-number">105</span>
+}
+
+data3 = {
+    <span class="hljs-string">"Name"</span> : <span class="hljs-string">"Muroran"</span>,
+    <span class="hljs-string">"Sex"</span> : <span class="hljs-string">"male"</span>,
+    <span class="hljs-string">"Age"</span> : <span class="hljs-number">74</span>
+}
+
+pd.DataFrame([data1,data2,data3])
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Chitose</td>
+      <td>female</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>105</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>74</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<p>同じキーを毎回書くことは、データ数が増えた場合を考えるととても面倒です。</p>
+<p>dictionaryの各Valueをリストにしてしまうことが一般的です。</p>
+<pre class="hljs"><code><div>data = {
+    <span class="hljs-string">"name"</span>:[<span class="hljs-string">"Chitose"</span>,<span class="hljs-string">"Hokudai"</span>,<span class="hljs-string">"Muroran"</span>],
+    <span class="hljs-string">"sex"</span>:[<span class="hljs-string">"female"</span>,<span class="hljs-string">"male"</span>,<span class="hljs-string">"male"</span>],
+    <span class="hljs-string">"Age"</span>:[<span class="hljs-number">35</span>,<span class="hljs-number">105</span>,<span class="hljs-number">74</span>]
+}
+
+pd.DataFrame(data)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>sex</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Chitose</td>
+      <td>female</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>105</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>74</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>DataFrameを変数に入れる際は、<strong><code>df</code></strong> という変数に入れることが一般的です。<br>
+メモリを節約するために、<code>df</code>という変数名を使う場面が多いです。</p>
+<div style="page-break-before:always"></div>
+<h3 id="pdreadcsv">pd.read_csv()</h3>
+<p>最も多いのがCSVファイルからDataFrameを読み込む方法です。<br>
+指定のCSVファイルをColabにアップロードして、<strong><code>pd.read_csv()</code></strong> を用いて読み込んでみましょう。</p>
+<pre class="hljs"><code><div>df = pd.read_csv(<span class="hljs-string">"train.csv"</span>)
+df.head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>引数<code>encoding</code>を指定しないと、日本語が文字化けしてしまう場合があります。</p>
+<p>エラーが出てしまう場合は文字コードの指定を試してみてください。</p>
+<pre class="hljs"><code><div>df = pd.read_csv(<span class="hljs-string">"train.csv"</span>, encoding=<span class="hljs-string">"SHIFT-JIS"</span>)
+df.head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>（<a href="https://bit.ly/3RZlICW">こちら</a>ではさらに詳しい解説がありますので、良ければ参考にしてください。）</p>
+<div style="page-break-before:always"></div>
+<h2 id="dataframe%E3%81%AE%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">DataFrameの基本操作</h2>
+<p>今回は先ほど読み込んだCSVファイルではなく、<br>
+モジュールSeabornのデータセットを利用します。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+df.head(<span class="hljs-number">3</span>)
+</div></code></pre>
+ <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>タイタニック号沈没事故の乗客の生存者/死亡者のデータセットです。<br>
+（<a href="https://www.kaggle.com/c/titanic/data">Kaggleのデータセット</a>と似ていますが、若干の違いがあります。）</p>
+<p>読み込んだ<code>df</code>を使って、基本操作について学んでいきましょう。</p>
+<div style="page-break-before:always"></div>
+<h3 id="len">len()</h3>
+<p>まずは<code>df</code>の行数を確認してみましょう。</p>
+<pre class="hljs"><code><div>len(df)
+</div></code></pre>
+<pre><code>891
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="pdsetoption%22displaymaxcolumns%22none">pd.set_option(&quot;display.max_columns&quot;,None)</h3>
+<p>カラムは数が多い場合は省略されてしまうことがあります。<br>
+columnsを省略したくない場合は  <strong><code>pd.set_option(&quot;display.max_columns&quot;,None)</code></strong> を使いましょう。</p>
+<p>※ちなみに行を省略したくない場合は  <strong><code>pd.set_option(&quot;display.max_rows&quot;,None)</code></strong> を使いますが、<br>
+結構時間がかかりあまり使う場面はありません。</p>
+<pre class="hljs"><code><div>pd.set_option(<span class="hljs-string">"display.max_columns"</span>,<span class="hljs-literal">None</span>)  <span class="hljs-comment"># 今回は元々省略されていない</span>
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="head">.head()</h3>
+<p><strong><code>.head()</code></strong> と記述し、最初の5レコードだけ表示することが多いです。<br>
+カッコの中に数字を入れると、その行数表示されます。</p>
+<pre class="hljs"><code><div>df.head()
+</div></code></pre>
+ <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>35.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p><a href="https://bit.ly/3f4vHs2">こちら</a>ではさらに詳しい解説がありますので、良ければ参考にしてください。</p>
+<div style="page-break-before:always"></div>
+<h3 id="dtypes">.dtypes()</h3>
+<p><strong><code>.dtypes()</code></strong> と記述すると、各項目のデータ型を確認できます。</p>
+<pre class="hljs"><code><div>df.dtypes
+</div></code></pre>
+<pre><code>survived          int64
+pclass            int64
+sex              object
+age             float64
+sibsp             int64
+parch             int64
+fare            float64
+embarked         object
+class          category
+who              object
+adult_male         bool
+deck           category
+embark_town      object
+alive            object
+alone              bool
+dtype: object
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>以下のコードでは全項目をオブジェクト型にしています。<br>
+CSVファイルを読み込むときも容量は同じです。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>,dtype=object)
+df.dtypes
+</div></code></pre>
+<pre><code>survived         object
+pclass           object
+sex              object
+age              object
+sibsp            object
+parch            object
+fare             object
+embarked         object
+class          category
+who              object
+adult_male       object
+deck           category
+embark_town      object
+alive            object
+alone            object
+dtype: object
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="describe">.describe()</h3>
+<p><strong><code>.describe()</code></strong> と記述すると、columnsの統計量がすぐに出力されます（数値項目のみ）。</p>
+<p>それぞれのデータの意味を掴みやすくなります。</p>
+<pre class="hljs"><code><div>df.describe()
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>891</td>
+      <td>891</td>
+      <td>891</td>
+      <td>714</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>2</td>
+      <td>3</td>
+      <td>2</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>549</td>
+      <td>491</td>
+      <td>577</td>
+      <td>30</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<ul>
+<li>count：要素の個数</li>
+<li>unique：ユニークな値の要素の個数</li>
+<li>top：最頻値</li>
+<li>freq：最頻値の出現回数</li>
+</ul>
+<p>ちなみにこの<code>.describe()</code>の戻り値もDataFrameなので、<br>
+これ自体をDataFrameとして扱うことが可能です。</p>
+<pre class="hljs"><code><div>type(df.describe())
+</div></code></pre>
+<pre><code>pandas.core.frame.DataFrame
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="columns">.columns</h3>
+<p>DataFrameが持つ全てのカラムのリストを取得することができます。<br>
+カラムが多いときに活躍します。</p>
+<pre class="hljs"><code><div>df.columns
+</div></code></pre>
+<pre><code>Index(['survived', 'pclass', 'sex', 'age', 'sibsp', 'parch', 'fare',
+       'embarked', 'class', 'who', 'adult_male', 'deck', 'embark_town',
+       'alive', 'alone'],
+      dtype='object')
+</code></pre>
+<p>各カラムの説明は<a href="https://bit.ly/3Sb53x9">こちら</a>を参照してください。</p>
+<p>また、<code>.columns</code>に関しては<a href="https://bit.ly/3YErIoj">こちら</a>により詳しい解説があります。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E5%88%97%E3%81%AE%E5%8F%96%E5%BE%97">列の取得</h3>
+<p><strong><code>df[&quot;カラム名&quot;]</code></strong> とすることで、特定のカラムのSeriesを取得することができます。</p>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"age"</span>]
+</div></code></pre>
+<pre><code>0      22.000000
+1      38.000000
+2      26.000000
+3      35.000000
+4      35.000000
+         ...    
+886    27.000000
+887    19.000000
+888    29.699118
+889    26.000000
+890    32.000000
+Name: age, Length: 891, dtype: float64
+</code></pre>
+<p>カラムのリストをブラケット[ ]に入れることで、複数のカラムを抽出できます。<br>
+戻り値はDataFrameになります。</p>
+<pre class="hljs"><code><div>df[[<span class="hljs-string">"survived"</span>,<span class="hljs-string">"sex"</span>,<span class="hljs-string">"age"</span>]].head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>male</td>
+      <td>22.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p><a href="https://3pysci.com/python-pandas-4/">こちら</a>ではさらに詳しい解説がありますので、良ければ参考にしてください。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E8%A1%8C%E3%81%AE%E5%8F%96%E5%BE%97">行の取得</h3>
+<p><strong><code>df.iloc[index]</code></strong> とすることで、特定の行のSeriesを取得することができます。</p>
+<pre class="hljs"><code><div>df.iloc[<span class="hljs-number">334</span>]
+</div></code></pre>
+<pre><code>survived                 1
+pclass                   1
+sex                 female
+age                    NaN
+sibsp                    1
+parch                    0
+fare                133.65
+embarked                 S
+class                First
+who                  woman
+adult_male           False
+deck                   NaN
+embark_town    Southampton
+alive                  yes
+alone                False
+Name: 334, dtype: object
+</code></pre>
+<pre class="hljs"><code><div>df.iloc[<span class="hljs-number">-1</span>]
+</div></code></pre>
+<pre><code>survived                0
+pclass                  3
+sex                  male
+age                  32.0
+sibsp                   0
+parch                   0
+fare                 7.75
+embarked                Q
+class               Third
+who                   man
+adult_male           True
+deck                  NaN
+embark_town    Queenstown
+alive                  no
+alone                True
+Name: 890, dtype: object
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>Numpyと同様、スライスを使うことで複数行取得することができます。</p>
+<pre class="hljs"><code><div>df.iloc[<span class="hljs-number">330</span>:<span class="hljs-number">335</span>]
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>330</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>331</th>
+      <td>0</td>
+      <td>1</td>
+      <td>male</td>
+      <td>45.5</td>
+    </tr>
+    <tr>
+      <th>332</th>
+      <td>0</td>
+      <td>1</td>
+      <td>male</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>333</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>16.0</td>
+    </tr>
+    <tr>
+      <th>334</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>今回のデータはcolumnsが文字列、indexが数値でした（この場合がほとんどです）。</p>
+<div style="page-break-before:always"></div>
+<p>次に行と列が逆である場合を考えてみましょう。</p>
+<pre class="hljs"><code><div>ndarray = np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">26</span>).reshape(<span class="hljs-number">5</span>,<span class="hljs-number">5</span>)
+index = [<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>,<span class="hljs-string">'d'</span>,<span class="hljs-string">'e'</span>]
+columns = [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]
+df = pd.DataFrame(ndarray,index=index,columns=columns)
+df
+</div></code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>11</td>
+      <td>12</td>
+      <td>13</td>
+      <td>14</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>16</td>
+      <td>17</td>
+      <td>18</td>
+      <td>19</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>e</th>
+      <td>21</td>
+      <td>22</td>
+      <td>23</td>
+      <td>24</td>
+      <td>25</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>indexが文字列である場合に行を取得する際は、<strong><code>df.loc[文字列]</code></strong> と記述します。</p>
+<pre class="hljs"><code><div>print(df[<span class="hljs-number">1</span>])  <span class="hljs-comment"># 列を取得</span>
+</div></code></pre>
+<pre><code>a     2
+b     7
+c    12
+d    17
+e    22
+</code></pre>
+<pre class="hljs"><code><div>print(df.loc[<span class="hljs-string">"c"</span>])  <span class="hljs-comment"># 行を取得</span>
+</div></code></pre>
+<pre><code>0    11
+1    12
+2    13
+3    14
+4    15
+Name: c, dtype: int64
+</code></pre>
+<p><a href="https://3pysci.com/python-pandas-3/#index_id5">こちら</a>や<a href="https://bit.ly/3DC3ymw">こちら</a>ではさらに詳しい解説がありますので、良ければ参考にしてください。</p>
+<div style="page-break-before:always"></div>
+<h3 id="columns%E3%81%AE%E6%9B%B4%E6%96%B0%E3%83%BB%E8%BF%BD%E5%8A%A0">columnsの更新・追加</h3>
+<p>同じインデックスを持った別の値のSeriesを代入することで、columnsの更新・追加が可能になります。</p>
+<pre class="hljs"><code><div>s = pd.Series([<span class="hljs-number">10</span>,<span class="hljs-number">60</span>,<span class="hljs-number">110</span>,<span class="hljs-number">160</span>,<span class="hljs-number">210</span>],index=[<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>,<span class="hljs-string">'d'</span>,<span class="hljs-string">'e'</span>])
+df[<span class="hljs-number">0</span>]
+</div></code></pre>
+<pre><code>a     1
+b     6
+c    11
+d    16
+e    21
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># columnsの更新</span>
+df[<span class="hljs-number">0</span>] = s
+df
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>10</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>60</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>110</td>
+      <td>12</td>
+      <td>13</td>
+      <td>14</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>160</td>
+      <td>17</td>
+      <td>18</td>
+      <td>19</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>e</th>
+      <td>210</td>
+      <td>22</td>
+      <td>23</td>
+      <td>24</td>
+      <td>25</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre class="hljs"><code><div><span class="hljs-comment"># columnsの追加</span>
+df[<span class="hljs-number">5</span>] = s
+df
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>10</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>60</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>110</td>
+      <td>12</td>
+      <td>13</td>
+      <td>14</td>
+      <td>15</td>
+      <td>110</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>160</td>
+      <td>17</td>
+      <td>18</td>
+      <td>19</td>
+      <td>20</td>
+      <td>160</td>
+    </tr>
+    <tr>
+      <th>e</th>
+      <td>210</td>
+      <td>22</td>
+      <td>23</td>
+      <td>24</td>
+      <td>25</td>
+      <td>210</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p><a href="https://3pysci.com/python-pandas-8/">こちら</a>ではさらにいろいろな方法について触れています。</p>
+<div style="page-break-before:always"></div>
+<h3 id="%E8%A1%8C%E5%90%8D%E3%83%BB%E5%88%97%E5%90%8D%E3%81%AE%E5%A4%89%E6%9B%B4">行名・列名の変更</h3>
+<p>行名や列名を変更することができます。</p>
+<pre class="hljs"><code><div>ndarray = np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">26</span>).reshape(<span class="hljs-number">5</span>,<span class="hljs-number">5</span>)
+index = [<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>,<span class="hljs-string">'d'</span>,<span class="hljs-string">'e'</span>]
+columns = [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]
+df = pd.DataFrame(ndarray,index=index,columns=columns)
+df
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>11</td>
+      <td>12</td>
+      <td>13</td>
+      <td>14</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>16</td>
+      <td>17</td>
+      <td>18</td>
+      <td>19</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>e</th>
+      <td>21</td>
+      <td>22</td>
+      <td>23</td>
+      <td>24</td>
+      <td>25</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>行名を全部変える場合は<code>.index</code>にリストを指定します。</p>
+<pre class="hljs"><code><div>df.index = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+df
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11</td>
+      <td>12</td>
+      <td>13</td>
+      <td>14</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>16</td>
+      <td>17</td>
+      <td>18</td>
+      <td>19</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>21</td>
+      <td>22</td>
+      <td>23</td>
+      <td>24</td>
+      <td>25</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<p>列名を全部変える場合は<code>.columns</code>にリストを指定します。</p>
+<pre class="hljs"><code><div>df.columns = [<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>, <span class="hljs-string">"d"</span>, <span class="hljs-string">"e"</span>]
+df
+</div></code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+      <th>d</th>
+      <th>e</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11</td>
+      <td>12</td>
+      <td>13</td>
+      <td>14</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>16</td>
+      <td>17</td>
+      <td>18</td>
+      <td>19</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>21</td>
+      <td>22</td>
+      <td>23</td>
+      <td>24</td>
+      <td>25</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>特定の行、列の名前を変更する場合は<code>.rename</code>を用います。</p>
+<pre class="hljs"><code><div>df = df.rename(index={<span class="hljs-number">1</span>: <span class="hljs-number">11</span>} , columns={<span class="hljs-string">"a"</span>: <span class="hljs-string">"A"</span>})
+df
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>b</th>
+      <th>c</th>
+      <th>d</th>
+      <th>e</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>11</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11</td>
+      <td>12</td>
+      <td>13</td>
+      <td>14</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>16</td>
+      <td>17</td>
+      <td>18</td>
+      <td>19</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>21</td>
+      <td>22</td>
+      <td>23</td>
+      <td>24</td>
+      <td>25</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<h3 id="drop">.drop()</h3>
+<p>指定したカラムや行を削除することができます。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+</div></code></pre>
+<p>引数axisで行を落とすか列を落とすか指定します。</p>
+<p><code>axis=0</code> : 行（デフォルト）<br>
+<code>axis=1</code> : 列</p>
+<pre class="hljs"><code><div>df.drop(<span class="hljs-number">0</span>).head(<span class="hljs-number">3</span>)  <span class="hljs-comment"># 0行目を落とす</span>
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre class="hljs"><code><div>df.drop(<span class="hljs-string">"survived"</span> , axis=<span class="hljs-number">1</span>).head(<span class="hljs-number">3</span>)  <span class="hljs-comment"># survivedカラムを落とす</span>
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<p>DataFrameの関数の多くは、<strong>元のDataFrameが変更されていないことが多い</strong>です。</p>
+<pre class="hljs"><code><div>df.head(<span class="hljs-number">3</span>)  <span class="hljs-comment"># 0行目やsurvivedカラムが落ちていない</span>
+</div></code></pre>
+ <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>元のdfを上書きしたい場合は、「<strong>再度同じオブジェクトに代入</strong>」することが多いです。<br>
+以下のような理由があります。</p>
+<p>・ぱっと見で分かる<br>
+・データサイエンスではよく使う<br>
+・同じメモリを使いまわすのが定石</p>
+<pre class="hljs"><code><div>df = df.drop(<span class="hljs-number">0</span>)
+df.head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<h2 id="dataframe%E3%81%AE%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF">DataFrameのフィルタ</h2>
+<p>DataFrameに対して、何か条件に合うレコードだけを抽出した<br>
+新しいDataFrameを取得する際にフィルタ操作を行います。</p>
+<pre class="hljs"><code><div>data = {
+    <span class="hljs-string">"name"</span>:[<span class="hljs-string">"Chitose"</span>,<span class="hljs-string">"Hokudai"</span>,<span class="hljs-string">"Muroran"</span>],
+    <span class="hljs-string">"sex"</span>:[<span class="hljs-string">"female"</span>,<span class="hljs-string">"male"</span>,<span class="hljs-string">"male"</span>],
+    <span class="hljs-string">"Age"</span>:[<span class="hljs-number">35</span>,<span class="hljs-number">105</span>,<span class="hljs-number">74</span>]
+}
+
+df = pd.DataFrame(data)
+df
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>sex</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Chitose</td>
+      <td>female</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>105</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>74</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<h3 id="%E7%89%B9%E5%AE%9A%E3%81%AE%E6%9D%A1%E4%BB%B6%E3%81%A7%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF">特定の条件でフィルタ</h3>
+<p>まずはdfにbool型のリストを入れてみましょう。</p>
+<pre class="hljs"><code><div>df[[<span class="hljs-literal">False</span>,<span class="hljs-literal">True</span>,<span class="hljs-literal">True</span>]]
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>sex</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>105</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>74</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>Seriesを入れることもできます。</p>
+<pre class="hljs"><code><div>filter_series = pd.Series([<span class="hljs-literal">False</span>,<span class="hljs-literal">True</span>,<span class="hljs-literal">True</span>])
+df[filter_series] 
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>sex</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>105</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>74</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>インデックスは新しく振られるのではなく、<br>
+元のdfのインデックスがそのまま引き継がれます。</p>
+<p>実際にはTrueやFalseのSeriesを比較演算子を使って自分で作ります。<br>
+<strong><code>df[filterの条件]</code></strong> とすると、ある条件に該当したレコードだけが返ってきます。</p>
+<pre class="hljs"><code><div>df[df[<span class="hljs-string">"Age"</span>] &lt; <span class="hljs-number">100</span>]
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>sex</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Chitose</td>
+      <td>female</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>74</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+df.head(<span class="hljs-number">3</span>)
+</div></code></pre>
+ <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>生存者だけフィルタして取り出してみましょう。<br>
+カラム<code>survived</code>の値が<code>1</code>であるという条件となります。</p>
+<pre class="hljs"><code><div>df[df[<span class="hljs-string">"survived"</span>] == <span class="hljs-number">1</span>].head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<p>生存したかの違いについてみることができるようになります。</p>
+<pre class="hljs"><code><div>df[df[<span class="hljs-string">"survived"</span>] == <span class="hljs-number">1</span>].describe()
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>age</th>
+      <th>sibsp</th>
+      <th>parch</th>
+      <th>fare</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>342.0</td>
+      <td>342.000000</td>
+      <td>290.000000</td>
+      <td>342.000000</td>
+      <td>342.000000</td>
+      <td>342.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1.0</td>
+      <td>1.950292</td>
+      <td>28.343690</td>
+      <td>0.473684</td>
+      <td>0.464912</td>
+      <td>48.395408</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.0</td>
+      <td>0.863321</td>
+      <td>14.950952</td>
+      <td>0.708688</td>
+      <td>0.771712</td>
+      <td>66.596998</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+      <td>0.420000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+      <td>19.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>12.475000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1.0</td>
+      <td>2.000000</td>
+      <td>28.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>26.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1.0</td>
+      <td>3.000000</td>
+      <td>36.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>57.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.0</td>
+      <td>3.000000</td>
+      <td>80.000000</td>
+      <td>4.000000</td>
+      <td>5.000000</td>
+      <td>512.329200</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre class="hljs"><code><div>df[df[<span class="hljs-string">"survived"</span>] == <span class="hljs-number">0</span>].describe()
+</div></code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>age</th>
+      <th>sibsp</th>
+      <th>parch</th>
+      <th>fare</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>549.0</td>
+      <td>549.000000</td>
+      <td>424.000000</td>
+      <td>549.000000</td>
+      <td>549.000000</td>
+      <td>549.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.0</td>
+      <td>2.531876</td>
+      <td>30.626179</td>
+      <td>0.553734</td>
+      <td>0.329690</td>
+      <td>22.117887</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.0</td>
+      <td>0.735805</td>
+      <td>14.172110</td>
+      <td>1.288399</td>
+      <td>0.823166</td>
+      <td>31.388207</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.0</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.0</td>
+      <td>2.000000</td>
+      <td>21.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>7.854200</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.0</td>
+      <td>3.000000</td>
+      <td>28.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>10.500000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.0</td>
+      <td>3.000000</td>
+      <td>39.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>26.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.0</td>
+      <td>3.000000</td>
+      <td>74.000000</td>
+      <td>8.000000</td>
+      <td>6.000000</td>
+      <td>263.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>生存したかによって、年齢の平均にそこまで差がないこと（28.3と30.6）が分かります。</p>
+<div style="page-break-before:always"></div>
+<p>複数条件でフィルタをすることも可能です。<br>
+各条件を <strong>()</strong> で囲んで、「 <strong>&amp;</strong> 」 (andと同意)や 「 <strong>|</strong> 」(orと同意)でつなぎます。</p>
+<pre class="hljs"><code><div>df[(df[<span class="hljs-string">"survived"</span>] == <span class="hljs-number">1</span>) &amp; (df[<span class="hljs-string">"sex"</span>] == <span class="hljs-string">"male"</span>)].head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>17</th>
+      <td>1</td>
+      <td>2</td>
+      <td>male</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>1</td>
+      <td>2</td>
+      <td>male</td>
+      <td>34.0</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>1</td>
+      <td>1</td>
+      <td>male</td>
+      <td>28.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>生き残った男性は109名いたようです。</p>
+<div style="page-break-before:always"></div>
+<p>「<strong>~</strong>」を使うと、NOT演算をすることができます。</p>
+<p>今回は、乗車する際に払う料金がゼロのレコードについて取得してみます。</p>
+<p>（このレコードの信頼性は微妙なところです）</p>
+<pre class="hljs"><code><div>df[(df[<span class="hljs-string">"fare"</span>] == <span class="hljs-number">0</span>)].head()
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>fare</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>179</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>36.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>263</th>
+      <td>0</td>
+      <td>1</td>
+      <td>male</td>
+      <td>40.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>271</th>
+      <td>1</td>
+      <td>3</td>
+      <td>male</td>
+      <td>25.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>277</th>
+      <td>0</td>
+      <td>2</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>302</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>19.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>このDataFrameの条件の前に「<strong>~</strong>」をつけると、<br>
+乗車する際に払う料金がゼロではないレコードのみ取得することができます。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 乗車する際に払う料金がゼロではない</span>
+
+df[~(df[<span class="hljs-string">"fare"</span>] == <span class="hljs-number">0</span>)].head(<span class="hljs-number">3</span>)  <span class="hljs-comment"># 今回は比較演算子「!=」でも同じ</span>
+</div></code></pre>
+ <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>これは特に「<strong>値がbool型のcolumnsでフィルタするとき</strong>」によく使います。</p>
+<div style="page-break-before:always"></div>
+<p>以下のDataFrameで考えてみましょう。</p>
+<pre class="hljs"><code><div>data = {
+    <span class="hljs-string">"name"</span>:[<span class="hljs-string">"Chitose"</span>,<span class="hljs-string">"Hokudai"</span>,<span class="hljs-string">"Muroran"</span>],
+    <span class="hljs-string">"sex"</span>:[<span class="hljs-string">"female"</span>,<span class="hljs-string">"male"</span>,<span class="hljs-string">"male"</span>],
+    <span class="hljs-string">"Age"</span>:[<span class="hljs-number">35</span>,<span class="hljs-number">105</span>,<span class="hljs-number">74</span>],
+    <span class="hljs-string">"Koritu"</span>:[<span class="hljs-literal">True</span>,<span class="hljs-literal">False</span>,<span class="hljs-literal">False</span>]
+}
+
+df = pd.DataFrame(data)
+df
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>sex</th>
+      <th>Age</th>
+      <th>Koritu</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Chitose</td>
+      <td>female</td>
+      <td>35</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>105</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>74</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<p>まずは公立化している大学だけフィルタしてみましょう。</p>
+<pre class="hljs"><code><div>df[df[<span class="hljs-string">"Koritu"</span>] == <span class="hljs-literal">True</span>]
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>sex</th>
+      <th>Age</th>
+      <th>Koritu</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Chitose</td>
+      <td>female</td>
+      <td>35</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>Korituカラム自体がすでにbool型なので、<strong>==は不要です</strong>。</p>
+<pre class="hljs"><code><div>df[df[<span class="hljs-string">"Koritu"</span>]]
+</div></code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>sex</th>
+      <th>Age</th>
+      <th>Koritu</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Chitose</td>
+      <td>female</td>
+      <td>35</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>逆にFalseに絞りたい場合は、<code>df[df[&quot;Koritu&quot;]==False]</code>とすることもなく、<br>
+以下のようにすることができます。</p>
+<pre class="hljs"><code><div>df[~df[<span class="hljs-string">"Koritu"</span>]]
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>sex</th>
+      <th>Age</th>
+      <th>Koritu</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>105</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>74</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<h3 id="index%E6%93%8D%E4%BD%9C">index操作</h3>
+<p>生存者だけフィルターしたDataFrameを基に説明します。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+df = df[df[<span class="hljs-string">"survived"</span>] == <span class="hljs-number">1</span>]
+df.head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p><strong><code>.reset_index()</code></strong> とすることで、再度インデックスを割り振ることができます。</p>
+<pre class="hljs"><code><div>df.reset_index().head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>元のインデックスは新しいcolumnsで追加されていきます。</p>
+<p>元のインデックスは使わないケースが多いです。</p>
+<p><strong>drop引数</strong>をTrueにすると元のインデックスは消えます。</p>
+<pre class="hljs"><code><div>df.reset_index(drop=<span class="hljs-literal">True</span>).head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p><strong><code>.set_index()</code></strong> とすると、指定したcolumnsの値をインデックスにすることができます。</p>
+<p><code>id</code>などが各データに割り振られているときなどに使うことがあります。</p>
+<div style="page-break-before:always"></div>
+<p>今回は新しく生成されたインデックスカラムをインデックスにします。</p>
+<pre class="hljs"><code><div>df = df.reset_index()
+df = df.set_index(<span class="hljs-string">"index"</span>)
+df.head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+    <tr>
+      <th>index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>カラムをインデックスにした場合は、<strong><code>.loc[]</code></strong> を使ってレコードを取得します。</p>
+<pre class="hljs"><code><div>df.loc[<span class="hljs-number">334</span>]
+</div></code></pre>
+<pre><code>survived                 1
+pclass                   1
+sex                 female
+age                    NaN
+sibsp                    1
+parch                    0
+fare                133.65
+embarked                 S
+class                First
+who                  woman
+adult_male           False
+deck                   NaN
+embark_town    Southampton
+alive                  yes
+alone                False
+Name: 334, dtype: object
+</code></pre>
+<p>インデックスはあまり意味を持たせず、数値の連番のままであることが多いです。</p>
+<p>インデックスの操作は<a href="https://bit.ly/3UoOZbV">こちら</a>にも詳しい解説があります。</p>
+<div style="page-break-before:always"></div>
+<h2 id="dataframe%E3%81%AEnan%E3%81%AE%E6%89%B1%E3%81%84">DataFrameのNaNの扱い</h2>
+<p>DataFrameのNaN（欠損値）についてみていきましょう。<br>
+実データには必ずといっていいほどNaNが存在しますので、適切な処理が必要です。</p>
+<p><a href="https://bit.ly/3f3wGsC">こちら</a>にはNaNの処理全般について紹介があるので、良ければ参考にしてください。</p>
+<p>また、「<strong>floatのエラーが出た時は欠損値が入っている可能性が高い</strong>」ということを<br>
+念頭に置いてください。<strong>とても重要です</strong>。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAU0AAAAhCAIAAADS024GAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOWSURBVHhe7ZOBbuNACET7K/e999E94iEcZgFvbKettvMUWTNjwPZGfHwSQlaHe07I+nDPCVkf7jkh68M9J2R9uOeErA/3nJD14Z4Tsj6/fc//bKj5cr736eT3kOz5348P/9P0Gu+YeQvpplWhqteperfnnBnbdJ0bCF7qvfKgeW5/yvtee3Ly9bITn1Cu3L3b+KN2OxBOrTrEE4dr3PufCbcPBC/1XnnQPLc/5X2vPTn5etmJT1hzz+UgJs9iLKsaJwem3D7zyss0vGnsFW5/pW//xskXaMpOfMLsnntrGkKuY3EIQ4GBPC0ew5AIsGMuB3HiLAQ0Ao2epAlQv6GRC9Wfeh+g/fuZuPoQpAlQv6HRfiZQf8RYiXZBfQEKxkokgvrpgUBL9+2qnIZ41O3HIhHUb2g0hLimuQG7Vf3PYQX1TzTdV+LqQ5AmQP3Abj086UYB037BRiGESvyQgDER0jJVgw6V16kOK+Temk5DIfS+RPUgryFAY9OWSh8SiufnyF0rGIVQ6Ya0pQq9DkLoQ0G0t0YIfZm/5TVI74rwGgI0NtwyyiUZ9wdJWDNVTh+GnjQfw3SmUI29QnVSrx7uYcEk6ZxmeGPTdk+VpzQP6vGVptNQmByblqVzDkMjDYXJ3NtKj9jdpqWx4ZZR7km1bIcrJ8L/LIQIpPkY+qTSd1Gd1OThijY0qmfOkM5pho/WYyFEoMpTxuLHAzbUF/gC02koHE4zpBKoL+Y0BUD9/q5nMq9Gpe0SGpZACF4Lo/Vouqfck5kNFGvJKDxpKEwW+6TSnuaDD6kaQ+6t6TQUQu9LvPQgobcgDYUqT2mK+zn+ruk0FPpRKf3Mw+FppWcyF2uJv+U1SO82Lb1NyfdEmNlAWLn6PNU+9KT5GKYzhWqsfPnMx6dUjSH31nQaCqH3JaoHeQ0BGpu2VPqQUDw/J62s2vtRRj9TRKWDEPpQ8NoTcli5prnHJ6YfbU5DgMaGW0a+J0K/bKBaM8nxU++SMVflqMLQK6SVF6lOaswlAeo3NNpCXIGFJ0CvoP45OYQgTYD6DY2KYjUtVa+gvsAXBA3UP0nDEZQJ6jcssdysJQCJoH5DoyFUtWeyTHhMrB8UrhCeNAHqB2b3pNo9VeQH0P/T5Iv5Uf8FF5WQ9eGeE7I+3HNC1od7Tsj6cM8JWR/uOSHrwz0nZH2454SsD/eckPXhnhOyPtxzQtaHe07I+nDPCVmdz89/6IGB1HudEGUAAAAASUVORK5CYII=" alt="floatnan.png"></p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+df.iloc[<span class="hljs-number">-1</span>][<span class="hljs-string">"deck"</span>]
+</div></code></pre>
+<pre><code>nan
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="isnull">.isnull()</h3>
+<p>それぞれのセルの値が欠損値NaNか確認します。</p>
+<pre class="hljs"><code><div>df.isnull().head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>TrueになっているところがNaNです。</p>
+<h3 id="isnullsum">.isnull().sum()</h3>
+<p>NaNの数をカウントします。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>df.isnull().sum()
+</div></code></pre>
+<pre><code>survived         0
+pclass           0
+sex              0
+age            177
+sibsp            0
+parch            0
+fare             0
+embarked         2
+class            0
+who              0
+adult_male       0
+deck           688
+embark_town      2
+alive            0
+alone            0
+dtype: int64
+</code></pre>
+<p>乗車していたデッキの欠損値が目に見えて多いですね。</p>
+<div style="page-break-before:always"></div>
+<h3 id="dropna">.dropna()</h3>
+<p>NaNがある行を全てdropします。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>drop_df = df.dropna()
+len(drop_df)
+</div></code></pre>
+<pre><code>182
+</code></pre>
+<p>半分以上のレコードがdropされたことが確認できました。</p>
+<div style="page-break-before:always"></div>
+<p>例えば、DataFrameの最終行はデッキカラムがNaNであったためにdropされています。</p>
+<pre class="hljs"><code><div>df.iloc[<span class="hljs-number">-1</span>]
+</div></code></pre>
+<pre><code>survived                0
+pclass                  3
+sex                  male
+age                  32.0
+sibsp                   0
+parch                   0
+fare                 7.75
+embarked                Q
+class               Third
+who                   man
+adult_male           True
+deck                  NaN
+embark_town    Queenstown
+alive                  no
+alone                True
+Name: 890, dtype: object
+</code></pre>
+<pre class="hljs"><code><div>drop_df.iloc[<span class="hljs-number">-1</span>]
+</div></code></pre>
+<pre><code>survived               1
+pclass                 1
+sex                 male
+age                 26.0
+sibsp                  0
+parch                  0
+fare                30.0
+embarked               C
+class              First
+who                  man
+adult_male          True
+deck                   C
+embark_town    Cherbourg
+alive                yes
+alone               True
+Name: 889, dtype: object
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>次は何かカラムを指定してdropしてみましょう。<br>
+※<strong><code>np.isnan()</code>を使えるのは数値項目のみ</strong></p>
+<pre class="hljs"><code><div>df[np.isnan(df[<span class="hljs-string">"age"</span>])].head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1</td>
+      <td>2</td>
+      <td>male</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p><strong>引数subset</strong>を指定すると、特定のカラムにNaNがあるレコードだけdropすることができます。</p>
+<pre class="hljs"><code><div>df[df[<span class="hljs-string">"embarked"</span>].isnull()]
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>61</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>829</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>62.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre class="hljs"><code><div>len(df.dropna(subset=[<span class="hljs-string">"embarked"</span>]))  <span class="hljs-comment"># 2件drop</span>
+</div></code></pre>
+<pre><code>889
+</code></pre>
+<p><a href="https://3pysci.com/python-pandas-17/">こちら</a>や<a href="https://bit.ly/3f4lTi3">こちら</a>では<code>.dropna</code>についてさらに詳しい紹介がされていますので、<br>
+興味のある方は是非。</p>
+<div style="page-break-before:always"></div>
+<h3 id="fillna">.fillna()</h3>
+<p>NaNに特定のValueを代入します。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"embarked"</span>] = df[<span class="hljs-string">"embarked"</span>].fillna(<span class="hljs-string">"S"</span>)
+df.isnull().sum()
+</div></code></pre>
+<pre><code>survived         0
+pclass           0
+sex              0
+age            177
+sibsp            0
+parch            0
+fare             0
+embarked         0
+class            0
+who              0
+adult_male       0
+deck           688
+embark_town      2
+alive            0
+alone            0
+dtype: int64
+</code></pre>
+<p>embarkedカラムに&quot;S&quot;(Southampton)が入り、<br>
+欠損値が置き換えられたことが確認できます。</p>
+<div style="page-break-before:always"></div>
+<p>しかし実際は、NaNに一律の値を入れることはほとんどなく、<br>
+何か代表値を入れることが多いです。</p>
+<p>今回はカラム<code>age</code>が欠損値であったレコードに対し、何か欠損値を入れてみましょう。<br>
+ここでは<strong>平均値</strong>を代入します。</p>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"age"</span>].mean()
+</div></code></pre>
+<pre><code>29.69911764705882
+</code></pre>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"age"</span>].fillna(df[<span class="hljs-string">"age"</span>].mean())  <span class="hljs-comment"># ageカラムのNaNにだけ代入</span>
+</div></code></pre>
+<pre><code>0      22.000000
+1      38.000000
+2      26.000000
+3      35.000000
+4      35.000000
+         ...    
+886    27.000000
+887    19.000000
+888    29.699118
+889    26.000000
+890    32.000000
+Name: age, Length: 891, dtype: float64
+</code></pre>
+<pre class="hljs"><code><div>print(df.iloc[<span class="hljs-number">334</span>][<span class="hljs-string">"age"</span>])
+df[<span class="hljs-string">"age"</span>] = df[<span class="hljs-string">"age"</span>].fillna(df[<span class="hljs-string">"age"</span>].mean())  <span class="hljs-comment"># 元のageカラムの値が上書きされる</span>
+print(df.iloc[<span class="hljs-number">334</span>][<span class="hljs-string">"age"</span>])
+</div></code></pre>
+<pre><code>nan
+29.69911764705882
+</code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="pdisna">pd.isna()</h3>
+<p>DataFrameの中の値のNaN判定には <strong><code>pd.isna()</code></strong> を使うことが一般的です。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"age"</span>].isna()[<span class="hljs-number">334</span>]  <span class="hljs-comment"># 欠損値があるのでTrue</span>
+</div></code></pre>
+<pre><code>True
+</code></pre>
+<p>NaN判定の結果を別カラムで持ちたい時などに使われます。</p>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"age_nan"</span>] = df[<span class="hljs-string">"age"</span>].isna()  <span class="hljs-comment"># カラムの追加</span>
+df.head(<span class="hljs-number">3</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>age_nan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre class="hljs"><code><div>df[df[<span class="hljs-string">"age_nan"</span>]].head(<span class="hljs-number">3</span>)  <span class="hljs-comment"># 年齢がNaNであるデータ</span>
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>age_nan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1</td>
+      <td>2</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<h2 id="groupby">groupby</h2>
+<p>groupbyは、何かのカラムに対して、グループ別に統計量を見たいときによく使います。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+</div></code></pre>
+<p>今回はまずは「年代」のカラムを作り、その後groupbyして統計量を見てみましょう。</p>
+<p>その際、欠損値は平均値で置き換えます。</p>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"age"</span>] = df[<span class="hljs-string">"age"</span>].fillna(df[<span class="hljs-string">"age"</span>].mean())
+df[<span class="hljs-string">"ages"</span>] = round(df[<span class="hljs-string">'age'</span>] / <span class="hljs-number">10</span>, <span class="hljs-number">0</span>) * <span class="hljs-number">10</span>
+df[<span class="hljs-string">"ages"</span>]
+</div></code></pre>
+<pre><code>0      20.0
+1      40.0
+2      30.0
+3      40.0
+4      40.0
+       ... 
+886    30.0
+887    20.0
+888    30.0
+889    30.0
+890    30.0
+Name: ages, Length: 891, dtype: float64
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>カラム<code>ages</code>に対してgroupbyしてみましょう。<br>
+groupbyした後の処理をgroupbyの後の関数で指定します。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># agesカラムごとにグループ分けして、そのグループの各カラムの平均値を取得</span>
+df.groupby(<span class="hljs-string">"ages"</span>).mean()
+</div></code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>age</th>
+      <th>sibsp</th>
+      <th>parch</th>
+      <th>fare</th>
+      <th>adult_male</th>
+      <th>alone</th>
+    </tr>
+    <tr>
+      <th>ages</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>0.704545</td>
+      <td>2.568182</td>
+      <td>2.503864</td>
+      <td>1.704545</td>
+      <td>1.363636</td>
+      <td>31.528030</td>
+      <td>0.000000</td>
+      <td>0.022727</td>
+    </tr>
+    <tr>
+      <th>10.0</th>
+      <td>0.411765</td>
+      <td>2.705882</td>
+      <td>10.102941</td>
+      <td>1.970588</td>
+      <td>1.264706</td>
+      <td>31.932724</td>
+      <td>0.000000</td>
+      <td>0.088235</td>
+    </tr>
+    <tr>
+      <th>20.0</th>
+      <td>0.354260</td>
+      <td>2.461883</td>
+      <td>20.706278</td>
+      <td>0.390135</td>
+      <td>0.313901</td>
+      <td>30.323057</td>
+      <td>0.623318</td>
+      <td>0.645740</td>
+    </tr>
+    <tr>
+      <th>30.0</th>
+      <td>0.349296</td>
+      <td>2.470423</td>
+      <td>29.764067</td>
+      <td>0.442254</td>
+      <td>0.183099</td>
+      <td>23.409963</td>
+      <td>0.687324</td>
+      <td>0.709859</td>
+    </tr>
+    <tr>
+      <th>40.0</th>
+      <td>0.424242</td>
+      <td>2.000000</td>
+      <td>39.306818</td>
+      <td>0.363636</td>
+      <td>0.560606</td>
+      <td>49.744948</td>
+      <td>0.613636</td>
+      <td>0.545455</td>
+    </tr>
+    <tr>
+      <th>50.0</th>
+      <td>0.409836</td>
+      <td>1.606557</td>
+      <td>49.704918</td>
+      <td>0.426230</td>
+      <td>0.262295</td>
+      <td>44.399390</td>
+      <td>0.672131</td>
+      <td>0.540984</td>
+    </tr>
+    <tr>
+      <th>60.0</th>
+      <td>0.352941</td>
+      <td>1.470588</td>
+      <td>59.750000</td>
+      <td>0.147059</td>
+      <td>0.323529</td>
+      <td>48.589579</td>
+      <td>0.705882</td>
+      <td>0.735294</td>
+    </tr>
+    <tr>
+      <th>70.0</th>
+      <td>0.000000</td>
+      <td>1.857143</td>
+      <td>70.357143</td>
+      <td>0.142857</td>
+      <td>0.142857</td>
+      <td>27.383343</td>
+      <td>1.000000</td>
+      <td>0.857143</td>
+    </tr>
+    <tr>
+      <th>80.0</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>80.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>30.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-comment"># agesカラムごとにグループ分けして、そのグループのサイズを取得</span>
+df.groupby(<span class="hljs-string">"ages"</span>).size()
+</div></code></pre>
+<pre><code>ages
+0.0      44
+10.0     34
+20.0    223
+30.0    355
+40.0    132
+50.0     61
+60.0     34
+70.0      7
+80.0      1
+dtype: int64
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># 10代のカラムのみ取得</span>
+df.groupby(<span class="hljs-string">"ages"</span>).mean().loc[<span class="hljs-number">10</span>]
+</div></code></pre>
+<pre><code>survived       0.411765
+pclass         2.705882
+age           10.102941
+sibsp          1.970588
+parch          1.264706
+fare          31.932724
+adult_male     0.000000
+alone          0.088235
+Name: 10.0, dtype: float64
+</code></pre>
+<div style="page-break-before:always"></div>
+<p><strong><code>.count()</code></strong> を使うと、数をカウントしてくれます。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 生存人数を年代ごとにカウント</span>
+df[df[<span class="hljs-string">"survived"</span>] == <span class="hljs-number">1</span>].groupby(<span class="hljs-string">"ages"</span>).count() [<span class="hljs-string">"survived"</span>]
+</div></code></pre>
+<pre><code>ages
+0.0      31
+10.0     14
+20.0     79
+30.0    124
+40.0     56
+50.0     25
+60.0     12
+80.0      1
+Name: survived, dtype: int64
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># 死亡人数を年代ごとにカウント</span>
+df[df[<span class="hljs-string">"survived"</span>] == <span class="hljs-number">0</span>].groupby(<span class="hljs-string">"ages"</span>).count() [<span class="hljs-string">"survived"</span>]
+</div></code></pre>
+<pre><code>ages
+0.0      13
+10.0     20
+20.0    144
+30.0    231
+40.0     76
+50.0     36
+60.0     22
+70.0      7
+Name: survived, dtype: int64
+</code></pre>
+<div style="page-break-before:always"></div>
+<p><strong><code>.groupby[].describe()</code></strong> とすると、グループ別の各カラムの統計量を一気に取得できます。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># fareカラムに関して、agesカラムでgroupby後の統計量を取得</span>
+df.groupby(<span class="hljs-string">"ages"</span>).describe()[<span class="hljs-string">"fare"</span>]
+</div></code></pre>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>ages</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>44.0</td>
+      <td>31.528030</td>
+      <td>29.434829</td>
+      <td>8.5167</td>
+      <td>18.237500</td>
+      <td>26.0000</td>
+      <td>31.38750</td>
+      <td>151.5500</td>
+    </tr>
+    <tr>
+      <th>10.0</th>
+      <td>34.0</td>
+      <td>31.932724</td>
+      <td>24.835287</td>
+      <td>7.2292</td>
+      <td>18.965625</td>
+      <td>28.5125</td>
+      <td>34.03125</td>
+      <td>120.0000</td>
+    </tr>
+    <tr>
+      <th>20.0</th>
+      <td>223.0</td>
+      <td>30.323057</td>
+      <td>50.638592</td>
+      <td>0.0000</td>
+      <td>7.795800</td>
+      <td>9.5000</td>
+      <td>26.00000</td>
+      <td>263.0000</td>
+    </tr>
+    <tr>
+      <th>30.0</th>
+      <td>355.0</td>
+      <td>23.409963</td>
+      <td>31.481249</td>
+      <td>0.0000</td>
+      <td>7.879200</td>
+      <td>12.3500</td>
+      <td>25.96250</td>
+      <td>227.5250</td>
+    </tr>
+    <tr>
+      <th>40.0</th>
+      <td>132.0</td>
+      <td>49.744948</td>
+      <td>84.420252</td>
+      <td>0.0000</td>
+      <td>9.271875</td>
+      <td>26.0000</td>
+      <td>52.13855</td>
+      <td>512.3292</td>
+    </tr>
+    <tr>
+      <th>50.0</th>
+      <td>61.0</td>
+      <td>44.399390</td>
+      <td>40.783592</td>
+      <td>0.0000</td>
+      <td>13.500000</td>
+      <td>28.7125</td>
+      <td>61.37920</td>
+      <td>247.5208</td>
+    </tr>
+    <tr>
+      <th>60.0</th>
+      <td>34.0</td>
+      <td>48.589579</td>
+      <td>53.835939</td>
+      <td>6.2375</td>
+      <td>14.125000</td>
+      <td>28.1250</td>
+      <td>71.93230</td>
+      <td>263.0000</td>
+    </tr>
+    <tr>
+      <th>70.0</th>
+      <td>7.0</td>
+      <td>27.383343</td>
+      <td>25.115268</td>
+      <td>7.7500</td>
+      <td>9.137500</td>
+      <td>10.5000</td>
+      <td>42.07920</td>
+      <td>71.0000</td>
+    </tr>
+    <tr>
+      <th>80.0</th>
+      <td>1.0</td>
+      <td>30.000000</td>
+      <td>NaN</td>
+      <td>30.0000</td>
+      <td>30.000000</td>
+      <td>30.0000</td>
+      <td>30.00000</td>
+      <td>30.0000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<p><strong>max</strong>と<strong>min</strong>を使用する際は、カラムを指定する必要があります。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># fareカラムに関して、agesカラムでgroupby後の最大値を取得</span>
+df.groupby(<span class="hljs-string">"ages"</span>)[<span class="hljs-string">"fare"</span>].max()
+</div></code></pre>
+<pre><code>ages
+0.0     151.5500
+10.0    120.0000
+20.0    263.0000
+30.0    227.5250
+40.0    512.3292
+50.0    247.5208
+60.0    263.0000
+70.0     71.0000
+80.0     30.0000
+Name: fare, dtype: float64
+</code></pre>
+<p><code>max</code>のところを <strong><code>idxmax()</code></strong> とすると、各カラムの最大値のレコードのインデックスを取得できます。</p>
+<pre class="hljs"><code><div>df.groupby(<span class="hljs-string">"ages"</span>)[<span class="hljs-string">"fare"</span>].idxmax()
+</div></code></pre>
+<pre><code>ages
+0.0     297
+10.0    435
+20.0     27
+30.0    557
+40.0    258
+50.0    299
+60.0    438
+70.0    745
+80.0    630
+Name: fare, dtype: int64
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>このインデックスのSeriesを使って、レコードを表示してみましょう。<br>
+非常に便利です。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 年代ごとに、料金が最大であるレコードを取得</span>
+df.iloc[df.groupby(<span class="hljs-string">"ages"</span>)[<span class="hljs-string">"fare"</span>].idxmax()]
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>ages</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>297</th>
+      <td>0</td>
+      <td>1</td>
+      <td>female</td>
+      <td>2.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>435</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>14.000000</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>0</td>
+      <td>1</td>
+      <td>male</td>
+      <td>19.000000</td>
+      <td>20.0</td>
+    </tr>
+    <tr>
+      <th>557</th>
+      <td>0</td>
+      <td>1</td>
+      <td>male</td>
+      <td>29.699118</td>
+      <td>30.0</td>
+    </tr>
+    <tr>
+      <th>258</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.000000</td>
+      <td>40.0</td>
+    </tr>
+    <tr>
+      <th>299</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>50.000000</td>
+      <td>50.0</td>
+    </tr>
+    <tr>
+      <th>438</th>
+      <td>0</td>
+      <td>1</td>
+      <td>male</td>
+      <td>64.000000</td>
+      <td>60.0</td>
+    </tr>
+    <tr>
+      <th>745</th>
+      <td>0</td>
+      <td>1</td>
+      <td>male</td>
+      <td>70.000000</td>
+      <td>70.0</td>
+    </tr>
+    <tr>
+      <th>630</th>
+      <td>1</td>
+      <td>1</td>
+      <td>male</td>
+      <td>80.000000</td>
+      <td>80.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>groupbyについては<a href="https://www.yutaka-note.com/entry/pandas_groupby">こちら</a>にも詳しい解説があります。</p>
+<div style="page-break-before:always"></div>
+<h2 id="%E8%A1%A8%E7%B5%90%E5%90%88">表結合</h2>
+<p>複数の表形式のDataFrameを結合させます。</p>
+<p>ここでは、以下の2つのDataFrameについて扱います。<br>
+どちらも同じ値を持つ<code>key</code>というカラムを持っています。</p>
+<pre class="hljs"><code><div>data1 = {
+    <span class="hljs-string">"key"</span>:[<span class="hljs-string">"b1998040"</span>,<span class="hljs-string">"b1918040"</span>,<span class="hljs-string">"b1949040"</span>],
+    <span class="hljs-string">"name"</span>:[<span class="hljs-string">"Chitose"</span>,<span class="hljs-string">"Hokudai"</span>,<span class="hljs-string">"Muroran"</span>],
+    <span class="hljs-string">"sex"</span>:[<span class="hljs-string">"female"</span>,<span class="hljs-string">"male"</span>,<span class="hljs-string">"male"</span>],
+}
+
+df1 = pd.DataFrame(data1)
+df1
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>name</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b1998040</td>
+      <td>Chitose</td>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>Hokudai</td>
+      <td>male</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>Muroran</td>
+      <td>male</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre class="hljs"><code><div>data2 = {
+    <span class="hljs-string">"key"</span>:[<span class="hljs-string">"b1998040"</span>,<span class="hljs-string">"b1918040"</span>,<span class="hljs-string">"b1949040"</span>],
+    <span class="hljs-string">"Age"</span>:[<span class="hljs-number">35</span>,<span class="hljs-number">105</span>,<span class="hljs-number">74</span>],
+    <span class="hljs-string">"gakka"</span>:[<span class="hljs-number">3</span>,<span class="hljs-number">36</span>,<span class="hljs-number">2</span>]
+}
+
+df2 = pd.DataFrame(data2)
+df2
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>Age</th>
+      <th>gakka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b1998040</td>
+      <td>35</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>105</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>74</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<h3 id="pdconcat">pd.concat()</h3>
+<p><strong><code>pd.concat([df1,df2,…],axis=0)</code></strong> は、DataFrameを縦に結合します。</p>
+<pre class="hljs"><code><div>pd.concat([df1,df2])
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>name</th>
+      <th>sex</th>
+      <th>Age</th>
+      <th>gakka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b1998040</td>
+      <td>Chitose</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>b1998040</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>35.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>105.0</td>
+      <td>36.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>74.0</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p><strong><code>axis=1</code></strong> とすると、横に結合します。<br>
+縦に繋げることの方が圧倒的に多いようです。</p>
+<pre class="hljs"><code><div>pd.concat([df1,df2],axis=<span class="hljs-number">1</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>name</th>
+      <th>sex</th>
+      <th>key</th>
+      <th>Age</th>
+      <th>gakka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b1998040</td>
+      <td>Chitose</td>
+      <td>female</td>
+      <td>b1998040</td>
+      <td>35</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>b1918040</td>
+      <td>105</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>b1949040</td>
+      <td>74</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>concatについては<a href="https://3pysci.com/python-pandas-10/#index_id5">こちら</a>にも説明があります。</p>
+<div style="page-break-before:always"></div>
+<h3 id="merge">.merge()</h3>
+<p>何かのcolumnsを<strong>キー</strong>にして結合する場合に使用します。</p>
+<pre class="hljs"><code><div>df1.merge(df2)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>name</th>
+      <th>sex</th>
+      <th>Age</th>
+      <th>gakka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b1998040</td>
+      <td>Chitose</td>
+      <td>female</td>
+      <td>35</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>105</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>74</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p><code>.merge()</code>が持つ引数について理解しましょう。</p>
+<div style="page-break-before:always"></div>
+<h4 id="how">how</h4>
+<p>どのようにして2つのDataFrameをmergeするかを指定します。</p>
+<p>結果を分かりやすくするために、df2を少し変更します。</p>
+<pre class="hljs"><code><div>data1 = {
+    <span class="hljs-string">"key"</span>:[<span class="hljs-string">"b1998040"</span>,<span class="hljs-string">"b1918040"</span>,<span class="hljs-string">"b1949040"</span>],
+    <span class="hljs-string">"name"</span>:[<span class="hljs-string">"Chitose"</span>,<span class="hljs-string">"Hokudai"</span>,<span class="hljs-string">"Muroran"</span>],
+    <span class="hljs-string">"sex"</span>:[<span class="hljs-string">"female"</span>,<span class="hljs-string">"male"</span>,<span class="hljs-string">"male"</span>],
+}
+
+df1 = pd.DataFrame(data1)
+df1
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>name</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b1998040</td>
+      <td>Chitose</td>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>Hokudai</td>
+      <td>male</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>Muroran</td>
+      <td>male</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre class="hljs"><code><div><span class="hljs-comment"># 最初のレコードのみキーがdf1と異なる</span>
+data2 = {
+    <span class="hljs-string">"key"</span>:[<span class="hljs-string">"b2019040"</span>,<span class="hljs-string">"b1918040"</span>,<span class="hljs-string">"b1949040"</span>],
+    <span class="hljs-string">"Age"</span>:[<span class="hljs-number">35</span>,<span class="hljs-number">105</span>,<span class="hljs-number">74</span>],
+    <span class="hljs-string">"gakka"</span>:[<span class="hljs-number">3</span>,<span class="hljs-number">36</span>,<span class="hljs-number">2</span>]
+}
+
+df2 = pd.DataFrame(data2)
+df2
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>Age</th>
+      <th>gakka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b2019040</td>
+      <td>35</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>105</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>74</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>デフォルトは <strong><code>inner</code></strong> です。2つのDataFrameでレコードが見つかった分だけを残してmergeします。</p>
+<div style="page-break-before:always"></div>
+<p>ここで<strong>引数on</strong>を指定します。結合するときにどのカラムをキーにするかを指定します。<br>
+どのカラムで結合するかを明らかにするために、基本は指定します。</p>
+<pre class="hljs"><code><div>df1.merge(df2 , how=<span class="hljs-string">"inner"</span> , on=<span class="hljs-string">"key"</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>name</th>
+      <th>sex</th>
+      <th>Age</th>
+      <th>Department</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b1918040</td>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>105</td>
+      <td>36</td>
+    </tr>  
+    <tr>
+      <th>1</th>
+      <td>b1949040</td>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>74</td>
+      <td>2</td>
+    </tr>      
+  </tbody>
+</table>
+</div>
+<p><strong><code>outer</code></strong> は、2つのレコードの値は失われず、紐づけできなかったレコードにはNaNが入ります。</p>
+<pre class="hljs"><code><div>df1.merge(df2 , how=<span class="hljs-string">"outer"</span> , on=<span class="hljs-string">"key"</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>name</th>
+      <th>sex</th>
+      <th>Age</th>
+      <th>Department</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b1998040</td>
+      <td>Chitose</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>105.0</td>
+      <td>36.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>74.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>b2220050</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>35.0</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p><strong><code>left</code></strong> と <strong><code>right</code></strong> は、どちらかのDataFrameをベースにして、紐づいたレコードだけmergeします。</p>
+<pre class="hljs"><code><div>df1.merge(df2 , how=<span class="hljs-string">"left"</span> , on=<span class="hljs-string">"key"</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>name</th>
+      <th>sex</th>
+      <th>Age</th>
+      <th>Department</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b1998040</td>
+      <td>Chitose</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>105.0</td>
+      <td>36.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>74.0</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>実際はベースのDataFrameに追加のDataFrameをmergeする場面がほとんどです。</p>
+<p>2つのDataFrameの紐づけが完璧な場合は<code>inner</code>、<br>
+追加のDataFrameがレコード不足である場合は<code>left</code>、と使い分けることが多いです。</p>
+<div style="page-break-before:always"></div>
+<h4 id="on">on</h4>
+<p>先ほども少し登場した <strong>引数<code>on</code></strong> について触れる前に、DataFrameについて変更を加えます。<br>
+カラム<code>key</code>の下にカラム<code>number</code>を加えましょう。</p>
+<pre class="hljs"><code><div>data1 = {
+    <span class="hljs-string">"key"</span>:[<span class="hljs-string">"b1998040"</span>,<span class="hljs-string">"b1918040"</span>,<span class="hljs-string">"b1949040"</span>],
+    <span class="hljs-string">"number"</span>:[<span class="hljs-number">301018</span>,<span class="hljs-number">101003</span>,<span class="hljs-number">101005</span>],
+    <span class="hljs-string">"name"</span>:[<span class="hljs-string">"Chitose"</span>,<span class="hljs-string">"Hokudai"</span>,<span class="hljs-string">"Muroran"</span>],
+    <span class="hljs-string">"sex"</span>:[<span class="hljs-string">"female"</span>,<span class="hljs-string">"male"</span>,<span class="hljs-string">"male"</span>],
+}
+
+df1 = pd.DataFrame(data1)
+df1
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>number</th>
+      <th>name</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b1998040</td>
+      <td>301018</td>
+      <td>Chitose</td>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>101003</td>
+      <td>Hokudai</td>
+      <td>male</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>101005</td>
+      <td>Muroran</td>
+      <td>male</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre class="hljs"><code><div><span class="hljs-comment"># 最初のレコードのみキーがdf1と異なる</span>
+data2 = {
+    <span class="hljs-string">"key"</span>:[<span class="hljs-string">"b2019040"</span>,<span class="hljs-string">"b1918040"</span>,<span class="hljs-string">"b1949040"</span>],
+    <span class="hljs-string">"number"</span>:[<span class="hljs-number">301018</span>,<span class="hljs-number">101003</span>,<span class="hljs-number">101005</span>],
+    <span class="hljs-string">"Age"</span>:[<span class="hljs-number">35</span>,<span class="hljs-number">105</span>,<span class="hljs-number">74</span>],
+    <span class="hljs-string">"gakka"</span>:[<span class="hljs-number">3</span>,<span class="hljs-number">36</span>,<span class="hljs-number">2</span>]
+}
+
+df2 = pd.DataFrame(data2)
+df2
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key</th>
+      <th>number</th>
+      <th>Age</th>
+      <th>gakka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b2019040</td>
+      <td>301018</td>
+      <td>35</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>101003</td>
+      <td>105</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>101005</td>
+      <td>74</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<p><code>number</code>カラムで結合すれば、全てのレコードを問題なく紐づけられます。</p>
+<pre class="hljs"><code><div>df1.merge(df2,how=<span class="hljs-string">"inner"</span> , on=<span class="hljs-string">"number"</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key_x</th>
+      <th>number</th>
+      <th>name</th>
+      <th>sex</th>
+      <th>key_y</th>
+      <th>Age</th>
+      <th>gakka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b1998040</td>
+      <td>301018</td>
+      <td>Chitose</td>
+      <td>female</td>
+      <td>b2019040</td>
+      <td>35</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>101003</td>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>b1918040</td>
+      <td>105</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>101005</td>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>b1949040</td>
+      <td>74</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>ここでカラム名が被ってしまったので、_xや_yという<strong>suffix</strong>がつきます。</p>
+<p>これを変更したい場合は、 <strong>引数<code>suffixes</code></strong> にタプルで入れてあげます。</p>
+<pre class="hljs"><code><div>df1.merge(df2,how=<span class="hljs-string">"inner"</span> , on=<span class="hljs-string">"number"</span>,suffixes=(<span class="hljs-string">"_old"</span>,<span class="hljs-string">"_new"</span>))
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key_old</th>
+      <th>number</th>
+      <th>name</th>
+      <th>sex</th>
+      <th>key_new</th>
+      <th>Age</th>
+      <th>gakka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b1998040</td>
+      <td>301018</td>
+      <td>Chitose</td>
+      <td>female</td>
+      <td>b2019040</td>
+      <td>35</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>101003</td>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>b1918040</td>
+      <td>105</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>101005</td>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>b1949040</td>
+      <td>74</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<h4 id="lefton-righton">left_on, right_on</h4>
+<p>キーにしたいカラム名が2つのDataFrame間で異なるときに使用します。</p>
+<p>DataFrameをまた少し変更します。</p>
+<pre class="hljs"><code><div>data1 = {
+    <span class="hljs-string">"key1"</span>:[<span class="hljs-string">"b1998040"</span>,<span class="hljs-string">"b1918040"</span>,<span class="hljs-string">"b1949040"</span>],
+    <span class="hljs-string">"name"</span>:[<span class="hljs-string">"Chitose"</span>,<span class="hljs-string">"Hokudai"</span>,<span class="hljs-string">"Muroran"</span>],
+    <span class="hljs-string">"sex"</span>:[<span class="hljs-string">"female"</span>,<span class="hljs-string">"male"</span>,<span class="hljs-string">"male"</span>],
+}
+
+df1 = pd.DataFrame(data1)
+df1
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key1</th>
+      <th>name</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b1998040</td>
+      <td>Chitose</td>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>Hokudai</td>
+      <td>male</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>Muroran</td>
+      <td>male</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<pre class="hljs"><code><div><span class="hljs-comment"># 最初のレコードのみキーがdf1と異なる</span>
+data2 = {
+    <span class="hljs-string">"key2"</span>:[<span class="hljs-string">"b2019040"</span>,<span class="hljs-string">"b1918040"</span>,<span class="hljs-string">"b1949040"</span>],
+    <span class="hljs-string">"Age"</span>:[<span class="hljs-number">35</span>,<span class="hljs-number">105</span>,<span class="hljs-number">74</span>],
+    <span class="hljs-string">"gakka"</span>:[<span class="hljs-number">3</span>,<span class="hljs-number">36</span>,<span class="hljs-number">2</span>]
+}
+
+df2 = pd.DataFrame(data2)
+df2
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key2</th>
+      <th>Age</th>
+      <th>gakka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b2019040</td>
+      <td>35</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1918040</td>
+      <td>105</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b1949040</td>
+      <td>74</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<p>ここで<code>key1</code>,<code>key2</code>をキーにしたいですが、それぞれカラム名が異なります。<br>
+この場合は  <strong>引数<code>on</code></strong> が指定できないので、<strong><code>left_on</code></strong> 及び <strong><code>right_on</code></strong> を指定します。</p>
+<pre class="hljs"><code><div>df1.merge(df2, left_on=<span class="hljs-string">"key1"</span>, right_on=<span class="hljs-string">"key2"</span>)
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key1</th>
+      <th>name</th>
+      <th>sex</th>
+      <th>key2</th>
+      <th>Age</th>
+      <th>gakka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b1918040</td>
+      <td>Hokudai</td>
+      <td>male</td>
+      <td>b1918040</td>
+      <td>105</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b1949040</td>
+      <td>Muroran</td>
+      <td>male</td>
+      <td>b1949040</td>
+      <td>74</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>カラムはできるだけ同じ名前にして管理するのが無難です。</p>
+<div style="page-break-before:always"></div>
+<h2 id="dataframe%E3%81%A8series%E3%81%AE%E4%BE%BF%E5%88%A9%E3%81%AA%E9%96%A2%E6%95%B0">DataFrameとSeriesの便利な関数</h2>
+<p>重要な関数について理解していきましょう。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<h3 id="unique%E3%81%A8nunique">.unique()と.nunique()</h3>
+<p>Seriesの関数です。<br>
+<strong><code>.unique()</code></strong> でユニークな値のみを、 <strong><code>.nunique()</code></strong> でユニークな値の数を取得します。<br>
+※ユニークな値：重複がない値</p>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"embark_town"</span>].unique()
+</div></code></pre>
+<pre><code>array(['Southampton', 'Cherbourg', 'Queenstown', nan], dtype=object)
+</code></pre>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"embark_town"</span>].nunique()
+</div></code></pre>
+<pre><code>3
+</code></pre>
+<p>指定したカラムがどんな値をもっているか把握することができます。</p>
+<p>実際にカラム<code>fare</code>がユニークになっているかを確認することができます。</p>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"fare"</span>].nunique()
+</div></code></pre>
+<pre><code>248
+</code></pre>
+<pre class="hljs"><code><div>len(df) 
+</div></code></pre>
+<pre><code>891
+</code></pre>
+<p>同じ支払い料金の下でタイタニックに乗る人が多いことが分かります。</p>
+<div style="page-break-before:always"></div>
+<h3 id="valuecounts">value.counts()</h3>
+<p>Seriesの関数です。<br>
+それぞれの値にいくつのレコードがあるかを取得します。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"embark_town"</span>].value_counts()
+</div></code></pre>
+<pre><code>Southampton    644
+Cherbourg      168
+Queenstown      77
+Name: embark_town, dtype: int64
+</code></pre>
+<p>サウサンプトンから出航した人が圧倒的に多いことが分かります。</p>
+<div style="page-break-before:always"></div>
+<h3 id="sortvalues">.sort_values()</h3>
+<p>指定したカラムでソートします。デフォルトは昇順です。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>df.sort_values(<span class="hljs-string">"age"</span>).head(<span class="hljs-number">8</span>)  <span class="hljs-comment"># 年齢順に並び替え</span>
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>803</th>
+      <td>1</td>
+      <td>3</td>
+      <td>male</td>
+      <td>0.42</td>
+    </tr>
+    <tr>
+      <th>755</th>
+      <td>1</td>
+      <td>2</td>
+      <td>male</td>
+      <td>0.67</td>
+    </tr>
+    <tr>
+      <th>644</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>469</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>1</td>
+      <td>2</td>
+      <td>male</td>
+      <td>0.83</td>
+    </tr>
+    <tr>
+      <th>831</th>
+      <td>1</td>
+      <td>2</td>
+      <td>male</td>
+      <td>0.83</td>
+    </tr>
+    <tr>
+      <th>305</th>
+      <td>1</td>
+      <td>1</td>
+      <td>male</td>
+      <td>0.92</td>
+    </tr>
+    <tr>
+      <th>827</th>
+      <td>1</td>
+      <td>2</td>
+      <td>male</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>まだ1歳にも満たない子が7人はいたようです。</p>
+<div style="page-break-before:always"></div>
+<p>引数で <strong><code>ascending=False</code></strong> と指定すると、降順に並び替えすることができます。</p>
+<pre class="hljs"><code><div>df.sort_values(<span class="hljs-string">"age"</span>,ascending=<span class="hljs-literal">False</span>).head(<span class="hljs-number">8</span>) 
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>630</th>
+      <td>1</td>
+      <td>1</td>
+      <td>male</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>851</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>74.0</td>
+    </tr>
+    <tr>
+      <th>493</th>
+      <td>0</td>
+      <td>1</td>
+      <td>male</td>
+      <td>71.0</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>0</td>
+      <td>1</td>
+      <td>male</td>
+      <td>71.0</td>
+    </tr>
+    <tr>
+      <th>116</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>70.5</td>
+    </tr>
+    <tr>
+      <th>672</th>
+      <td>0</td>
+      <td>2</td>
+      <td>male</td>
+      <td>70.0</td>
+    </tr>
+    <tr>
+      <th>745</th>
+      <td>0</td>
+      <td>1</td>
+      <td>male</td>
+      <td>70.0</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>0</td>
+      <td>2</td>
+      <td>male</td>
+      <td>66.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>70歳以上の人は7人はいたようです。</p>
+<p>ソートについては<a href="https://www.yutaka-note.com/entry/pandas_sort">こちら</a>にも詳しい解説がありますので、興味のある方は是非。</p>
+<div style="page-break-before:always"></div>
+<h3 id="apply">.apply()</h3>
+<p><strong><code>.apply()</code></strong> を使うと、DataFrameの全てのレコードに処理をして、<br>
+その結果を別のカラムに格納することができます。</p>
+<p>基本的にDataFrameの操作は<code>.apply()</code>で処理していくイメージです。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+</div></code></pre>
+<p><code>age</code>カラムを使う関係で、欠損値を平均値で埋めます。</p>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"age"</span>] = df[<span class="hljs-string">"age"</span>].fillna(df[<span class="hljs-string">"age"</span>].mean())
+df.isnull().sum()
+</div></code></pre>
+<pre><code>survived         0
+pclass           0
+sex              0
+age              0
+sibsp            0
+parch            0
+fare             0
+embarked         2
+class            0
+who              0
+adult_male       0
+deck           688
+embark_town      2
+alive            0
+alone            0
+dtype: int64
+</code></pre>
+<p>子供が優先的に救助されたであろうと仮定し、カテゴリー分けを行います。</p>
+<div style="page-break-before:always"></div>
+<p>18歳未満の人は子供とする新たなカラム<code>person</code>を追加します。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 年齢が18歳未満なら子供にする(def関数)</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adult_child</span><span class="hljs-params">(passenger)</span>:</span>
+
+  <span class="hljs-comment"># 年齢と性別のデータを取得</span>
+  age,sex = passenger
+
+  <span class="hljs-comment"># 18歳未満なら"child"を返す</span>
+  <span class="hljs-keyword">if</span> age &lt; <span class="hljs-number">18</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"child"</span>
+
+  <span class="hljs-comment"># それ以外は性別をそのまま返す</span>
+  <span class="hljs-keyword">else</span> :
+    <span class="hljs-keyword">return</span> sex
+</div></code></pre>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"インデックス7の年齢は{}歳、性別は{}"</span>.format(df.iloc[<span class="hljs-number">7</span>][<span class="hljs-string">"age"</span>] , df.iloc[<span class="hljs-number">7</span>][<span class="hljs-string">"sex"</span>]))
+print(adult_child(df.iloc[<span class="hljs-number">7</span>][[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>]]))  <span class="hljs-comment"># 2歳なので "child"</span>
+
+print(<span class="hljs-string">"\nインデックス8の年齢は{}歳、性別は{}"</span>.format(df.iloc[<span class="hljs-number">8</span>][<span class="hljs-string">"age"</span>] , df.iloc[<span class="hljs-number">8</span>][<span class="hljs-string">"sex"</span>]))
+print(adult_child(df.iloc[<span class="hljs-number">8</span>][[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>]]))  <span class="hljs-comment"># 27歳なので "female"</span>
+
+print(<span class="hljs-string">"\nインデックス9の年齢は{}歳、性別は{}"</span>.format(df.iloc[<span class="hljs-number">9</span>][<span class="hljs-string">"age"</span>] , df.iloc[<span class="hljs-number">9</span>][<span class="hljs-string">"sex"</span>]))
+print(adult_child(df.iloc[<span class="hljs-number">9</span>][[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>]]))  <span class="hljs-comment"># 14歳なので "child"</span>
+</div></code></pre>
+<pre><code>インデックス7の年齢は2.0歳、性別はmale
+child
+
+インデックス8の年齢は27.0歳、性別はfemale
+female
+
+インデックス9の年齢は14.0歳、性別はfemale
+child
+</code></pre>
+<div style="page-break-before:always"></div>
+<p>この関数を<code>.apply()</code>を使って全ての行に適用させていきます。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 新しく生成するpersonカラムに戻り値を入れる</span>
+df[<span class="hljs-string">"person"</span>] = df[[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>]].apply(adult_child , axis=<span class="hljs-number">1</span>)
+df[<span class="hljs-number">7</span>:<span class="hljs-number">10</span>]
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>person</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>2.0</td>
+      <td>child</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>27.0</td>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1</td>
+      <td>2</td>
+      <td>female</td>
+      <td>14.0</td>
+      <td>child</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>lambda関数くらいでしか使いませんが、<br>
+if文は<strong>三項演算子</strong>という書き方を使うと1行で記述できます。</p>
+<p><img src="https://imgur.com/DUoheM6.png" alt="リンクテキスト"></p>
+<p><img src="https://imgur.com/gdOFR6B.png" alt="リンクテキスト"></p>
+<p>さきほどの関数のif文の箇所を1行で記述しましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 年齢が18歳未満なら子供にする(if文1行バージョン)</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">adult_child</span><span class="hljs-params">(passenger)</span>:</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">"child"</span> <span class="hljs-keyword">if</span> passenger[<span class="hljs-number">0</span>] &lt; <span class="hljs-number">18</span> <span class="hljs-keyword">else</span> passenger[<span class="hljs-number">1</span>]
+</div></code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"インデックス7の年齢は{}歳、性別は{}"</span>.format(df.iloc[<span class="hljs-number">7</span>][<span class="hljs-string">"age"</span>] , df.iloc[<span class="hljs-number">7</span>][<span class="hljs-string">"sex"</span>]))
+print(adult_child(df.iloc[<span class="hljs-number">7</span>][[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>]]))  <span class="hljs-comment"># 2歳なので "child"</span>
+
+print(<span class="hljs-string">"\nインデックス8の年齢は{}歳、性別は{}"</span>.format(df.iloc[<span class="hljs-number">8</span>][<span class="hljs-string">"age"</span>] , df.iloc[<span class="hljs-number">8</span>][<span class="hljs-string">"sex"</span>]))
+print(adult_child(df.iloc[<span class="hljs-number">8</span>][[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>]]))  <span class="hljs-comment"># 27歳なので "female"</span>
+
+print(<span class="hljs-string">"\nインデックス9の年齢は{}歳、性別は{}"</span>.format(df.iloc[<span class="hljs-number">9</span>][<span class="hljs-string">"age"</span>] , df.iloc[<span class="hljs-number">9</span>][<span class="hljs-string">"sex"</span>]))
+print(adult_child(df.iloc[<span class="hljs-number">9</span>][[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>]]))  <span class="hljs-comment"># 14歳なので "child"</span>
+</div></code></pre>
+<pre><code>インデックス7の年齢は2.0歳、性別はmale
+child
+
+インデックス8の年齢は27.0歳、性別はfemale
+female
+
+インデックス9の年齢は14.0歳、性別はfemale
+child
+</code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># 新しく生成するpersonカラムに戻り値を入れる</span>
+df[<span class="hljs-string">"person"</span>] = df[[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>]].apply(adult_child , axis=<span class="hljs-number">1</span>)
+df[<span class="hljs-number">7</span>:<span class="hljs-number">10</span>]
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>person</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>2.0</td>
+      <td>child</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>27.0</td>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1</td>
+      <td>2</td>
+      <td>female</td>
+      <td>14.0</td>
+      <td>child</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before:always"></div>
+<p><code>.apply()</code>の中に入れる関数は、<strong>lambda関数</strong>を使うことが多いです。</p>
+<p><img src="https://imgur.com/J4HG9Tb.png" alt="リンクテキスト"></p>
+<p><strong>def、関数名、return、改行、カッコ</strong>の5つを取ればlambda関数の完成です。</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># 年齢が18歳未満なら子供にする(lambda関数バージョン)</span>
+<span class="hljs-comment"># chiという変数に入れます</span>
+
+chi = <span class="hljs-keyword">lambda</span> passenger :  <span class="hljs-string">"child"</span> <span class="hljs-keyword">if</span> passenger[<span class="hljs-number">0</span>] &lt; <span class="hljs-number">18</span> <span class="hljs-keyword">else</span> passenger[<span class="hljs-number">1</span>]
+</div></code></pre>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"インデックス7の年齢は{}歳、性別は{}"</span>.format(df.iloc[<span class="hljs-number">7</span>][<span class="hljs-string">"age"</span>] , df.iloc[<span class="hljs-number">7</span>][<span class="hljs-string">"sex"</span>]))
+print(chi(df.iloc[<span class="hljs-number">7</span>][[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>]]))  <span class="hljs-comment"># 2歳なので "child"</span>
+
+print(<span class="hljs-string">"\nインデックス8の年齢は{}歳、性別は{}"</span>.format(df.iloc[<span class="hljs-number">8</span>][<span class="hljs-string">"age"</span>] , df.iloc[<span class="hljs-number">8</span>][<span class="hljs-string">"sex"</span>]))
+print(chi(df.iloc[<span class="hljs-number">8</span>][[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>]]))  <span class="hljs-comment"># 27歳なので "female"</span>
+
+print(<span class="hljs-string">"\nインデックス9の年齢は{}歳、性別は{}"</span>.format(df.iloc[<span class="hljs-number">9</span>][<span class="hljs-string">"age"</span>] , df.iloc[<span class="hljs-number">9</span>][<span class="hljs-string">"sex"</span>]))
+print(chi(df.iloc[<span class="hljs-number">9</span>][[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>]]))  <span class="hljs-comment"># 14歳なので "child"</span>
+</div></code></pre>
+<pre><code>インデックス7の年齢は2.0歳、性別はmale
+child
+
+インデックス8の年齢は27.0歳、性別はfemale
+female
+
+インデックス9の年齢は14.0歳、性別はfemale
+child
+</code></pre>
+<div style="page-break-before:always"></div>
+<pre class="hljs"><code><div><span class="hljs-comment"># 新しく生成するpersonカラムに戻り値を入れる</span>
+df[<span class="hljs-string">"person"</span>] = df[[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>]].apply(chi , axis=<span class="hljs-number">1</span>)
+df[[<span class="hljs-string">"age"</span>,<span class="hljs-string">"sex"</span>,<span class="hljs-string">"person"</span>]][<span class="hljs-number">7</span>:<span class="hljs-number">10</span>]
+</div></code></pre>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>sex</th>
+      <th>person</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>2.0</td>
+      <td>male</td>
+      <td>child</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>27.0</td>
+      <td>female</td>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>14.0</td>
+      <td>female</td>
+      <td>child</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>簡単な関数であれば、applyの際にlambda関数を直接書くことが一般的です。</p>
+<p>男性、女性、子供の数を確認しましょう。</p>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"person"</span>].value_counts()
+</div></code></pre>
+<pre><code>male      519
+female    259
+child     113
+Name: person, dtype: int64
+</code></pre>
+<p>性別、大人子供における数を知ることができました。</p>
+<div style="page-break-before:always"></div>
+<h3 id="map">.map()</h3>
+<p><code>.map()</code>では<code>.apply()</code>と似たようなことができますが、<br>
+ディクショナリを指定できることが大きな特徴です。</p>
+<p><code>alone</code>カラムは一人だったかどうかbool値で管理していますが、<br>
+それを一人だった場合は &quot;alone&quot;,家族連れだった場合は &quot;with family&quot; に置き換えましょう。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>mapping = {<span class="hljs-literal">True</span>:<span class="hljs-string">"alone"</span>, <span class="hljs-literal">False</span>:<span class="hljs-string">"with family"</span>}
+df[<span class="hljs-string">"alone"</span>] = df[<span class="hljs-string">"alone"</span>].map(mapping)
+df[<span class="hljs-string">"alone"</span>]
+</div></code></pre>
+<pre><code>0      with family
+1      with family
+2            alone
+3      with family
+4            alone
+          ...     
+886          alone
+887          alone
+888    with family
+889          alone
+890          alone
+Name: alone, Length: 891, dtype: object
+</code></pre>
+<p>対応表などが決まっている場合は非常に便利です。</p>
+<div style="page-break-before:always"></div>
+<h3 id="iterrows">.iterrows()</h3>
+<p>DataFrameの行(row)をfor文で回します。戻り値は(<strong>idx,row</strong>)です。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+</div></code></pre>
+<p>カラム<code>embarked</code>（出航地）の値が欠損値であるレコードのインデックスを表示しましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> idx,row <span class="hljs-keyword">in</span> df.iterrows():  <span class="hljs-comment"># rowには各行のSeriesが入る</span>
+  <span class="hljs-keyword">if</span> row.isnull()[<span class="hljs-string">"embarked"</span>]:  
+    print(idx)
+</div></code></pre>
+<pre><code>61
+829
+</code></pre>
+<p>各レコードの処理をした結果を別のカラムに保存するときは <strong><code>.apply()</code></strong> を、<br>
+各行自体に何か処理だけをしたいときなどは <strong><code>.iterrows()</code></strong> を使うことが多いようです。</p>
+<p>変数をfor文内で利用しない場合は <strong><code>_</code></strong> とします。</p>
+<p>インデックスではなく年齢と料金を表示するようにしましょう。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> _,row <span class="hljs-keyword">in</span> df.iterrows():  <span class="hljs-comment"># インデックスidxは不要</span>
+  <span class="hljs-keyword">if</span> row.isnull()[<span class="hljs-string">"embarked"</span>]:  
+    print(<span class="hljs-string">"{}歳の人で、{}ドル支払いました"</span>.format(row[<span class="hljs-string">"age"</span>],row[<span class="hljs-string">"fare"</span>]))
+</div></code></pre>
+<pre><code>38.0歳の人で、80.0ドル支払いました
+62.0歳の人で、80.0ドル支払いました
+</code></pre>
+<p>中々慣れないですが、結構使う場面は多いようです。</p>
+<div style="page-break-before:always"></div>
+<h2 id="dataframe%E3%82%92csv%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B">DataFrameをCSVで保存する</h2>
+<p>DataFrameでデータ処理のデータは、<strong>CSV形式</strong>で取り扱うことが多いです<br>
+（ソフトに依存しないため）。</p>
+<p>例えば先ほどカラム<code>ages</code>を追加しましたが、このような変更を加えたDataFrameは<br>
+違うデータとして扱いたいものです。</p>
+<p>このデータを誰かに渡したり、自分でロードしたりする処理をする際に、<br>
+セーブする作業が必須になってきます。</p>
+<p>そのためCSV形式での保存はよく行われます。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+</div></code></pre>
+<p>先ほどカラム<code>ages</code>を追加したDataFrameを作成しました。<br>
+これを別のデータとして保存しましょう。</p>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"age"</span>] = df[<span class="hljs-string">"age"</span>].fillna(df[<span class="hljs-string">"age"</span>].mean())  <span class="hljs-comment"># 欠損値は平均値で処理する</span>
+df[<span class="hljs-string">"ages"</span>] = round(df[<span class="hljs-string">'age'</span>] / <span class="hljs-number">10</span>, <span class="hljs-number">0</span>) * <span class="hljs-number">10</span>  <span class="hljs-comment"># 年代を表すカラムの作成</span>
+</div></code></pre>
+<p>では <strong><code>.to_csv()</code></strong> を使ってこのDataFrameを保存します。<br>
+ファイル名を引数に渡します。</p>
+<pre class="hljs"><code><div>df.to_csv(<span class="hljs-string">"titanic_nendai.csv"</span>)
+</div></code></pre>
+<p>ではこのファイルを読み込んでみましょう。</p>
+<pre class="hljs"><code><div>df = pd.read_csv(<span class="hljs-string">"titanic_nendai.csv"</span>)
+df.columns
+</div></code></pre>
+<pre><code>Index(['Unnamed: 0', 'survived', 'pclass', 'sex', 'age', 'sibsp', 'parch',
+       'fare', 'embarked', 'class', 'who', 'adult_male', 'deck', 'embark_town',
+       'alive', 'alone', 'ages'],
+      dtype='object')
+</code></pre>
+<p><code>ages</code>カラムの存在が確認できました。</p>
+<div style="page-break-before:always"></div>
+<p>先頭に<code>unnamed</code>という余計なカラムが追加されています。<br>
+これは、保存したときのDataFrameのインデックスです。</p>
+<p>ほとんどのケースでこのカラムは使う場面はありません。<br>
+そのため、<code>.to_csv()</code>の際に <strong><code>index=False</code></strong> と引数を設定することが多いです。</p>
+<pre class="hljs"><code><div>df = sns.load_dataset(<span class="hljs-string">'titanic'</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>df[<span class="hljs-string">"age"</span>] = df[<span class="hljs-string">"age"</span>].fillna(df[<span class="hljs-string">"age"</span>].mean())  <span class="hljs-comment"># 欠損値は平均値で処理する</span>
+df[<span class="hljs-string">"ages"</span>] = round(df[<span class="hljs-string">'age'</span>] / <span class="hljs-number">10</span>, <span class="hljs-number">0</span>) * <span class="hljs-number">10</span>  <span class="hljs-comment"># 年代を表すカラムの作成</span>
+</div></code></pre>
+<pre class="hljs"><code><div>df.to_csv(<span class="hljs-string">"titanic_nendai.csv"</span> , index=<span class="hljs-literal">False</span>)
+</div></code></pre>
+<pre class="hljs"><code><div>df = pd.read_csv(<span class="hljs-string">"titanic_nendai.csv"</span>)
+df.columns
+</div></code></pre>
+<pre><code>Index(['survived', 'pclass', 'sex', 'age', 'sibsp', 'parch', 'fare',
+       'embarked', 'class', 'who', 'adult_male', 'deck', 'embark_town',
+       'alive', 'alone', 'ages'],
+      dtype='object')
+</code></pre>
+<p><code>unnamed</code>が消えることが確認できました。</p>
+
+</body>
+</html>
