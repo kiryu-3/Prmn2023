@@ -22,5 +22,5 @@
 
 ## 第5章
 
-1. [非線形回帰-知識編](https://github.com/kiryu-3/Prmn2023/blob/main/Python/Python_Machine/Machine_Learning_5_1.ipynb)
-2. [非線形回帰-実践編](https://github.com/kiryu-3/Prmn2023/blob/main/Python/Python_Machine/Machine_Learning_5_2.ipynb)
+1. [正則化項-知識編](https://github.com/kiryu-3/Prmn2023/blob/main/Python/Python_Machine/Machine_Learning_5_1.ipynb)
+2. [正則化項-実践編](https://github.com/kiryu-3/Prmn2023/blob/main/Python/Python_Machine/Machine_Learning_5_2.ipynb)
