@@ -14,3 +14,8 @@
 
 1. [機械学習モデルの精度の測り方-知識編](https://github.com/kiryu-3/Prmn2023/blob/main/Python/Python_Machine/Machine_Learning_3_1.ipynb)
 2. [機械学習モデルの精度の測り方-実践編](https://github.com/kiryu-3/Prmn2023/blob/main/Python/Python_Machine/Machine_Learning_3_2.ipynb)
+
+## 第4章
+
+1. [非線形回帰-知識編](https://github.com/kiryu-3/Prmn2023/blob/main/Python/Python_Machine/Machine_Learning_4_1.ipynb)
+2. [非線形回帰-実践編](https://github.com/kiryu-3/Prmn2023/blob/main/Python/Python_Machine/Machine_Learning_4_2.ipynb)
