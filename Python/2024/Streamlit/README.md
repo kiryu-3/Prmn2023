@@ -12,4 +12,4 @@ Streamlitで開発を行うことで、HTML・CSS・Javascriptなどの言語を
 - [Streamlit文法まとめ（Qiita版）](https://qiita.com/kiryu-3/private/08afa87a4517eeafd862)
 
 基本的な文法とアプリの公開方法を簡単に紹介していますが、Streamlitでできることはとてーも多いです。  
-日本語の参考情報もたくさんありますので、他の資料も適宜WEb検索して参照してください。
+日本語の参考情報もたくさんありますので、他の資料も適宜WEB検索して参照してください。
