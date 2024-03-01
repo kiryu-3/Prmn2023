@@ -2,14 +2,14 @@
 
 - [Python（基本文法）](https://kiryu-3.github.io/Prmn2023/python-basic/index.html#0)　　　　　※プロメン本資料
 - [Python（基本文法.ver.2）](Python/Python_Basic/README.md)　　　※プロメン本資料次年度想定
-- [Python（基本文法.ver.3）](https://github.com/kiryu-3/Prmn2023/tree/main/Python/2024/Systax)　　　※プロメン本資料次年度想定
+- [Python（基本文法.ver.3）](https://github.com/kiryu-3/Prmn2023/tree/main/Python/2024/Systax)　　　※プロメン本資料次年度想定(24/03/01更新)
 
 
 
 - [Python（WEB開発）](https://kiryu-3.github.io/Prmn2023/streamlit-prmn/index.html#0)　　　　　※最終成果物参考資料
-- [Python（WEB開発.ver.2）](https://github.com/kiryu-3/Prmn2023/tree/main/Python/2024/Streamlit)　　　※最終成果物参考資料
+- [Python（WEB開発.ver.2）](https://github.com/kiryu-3/Prmn2023/tree/main/Python/2024/Streamlit)　　　※最終成果物参考資料(24/03/01更新)
 - [Python（LINEBot）](https://kiryu-3.github.io/Prmn2023/linebot-prmn/index.html#0)　　　　　  ※最終成果物参考資料
-- [Python（LINEBot.ver.2）](https://github.com/kiryu-3/Prmn2023/tree/main/Python/2024/linebot)　　　※最終成果物参考資料
+- [Python（LINEBot.ver.2）](https://github.com/kiryu-3/Prmn2023/tree/main/Python/2024/linebot)　　　※最終成果物参考資料(24/03/01更新)
 
 
 
