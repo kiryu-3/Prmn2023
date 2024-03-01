@@ -11,8 +11,8 @@
 
 この資料の演習を通してPythonプログラミングの力を向上させ、本プロジェクトの最終成果物を作る際の参考にしてください。
 
-- [文法まとめ（Colab版）](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/PythonBasic.ipynb)
-- [文法まとめ（Qiita版）](https://qiita.com/kiryu-3/items/888319c76fd82440f601)
+- [Python文法まとめ（Colab版）](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/PythonBasic.ipynb)
+- [Python文法まとめ（Qiita版）](https://qiita.com/kiryu-3/items/888319c76fd82440f601)
 
 なお、今回の演習で問われるような問題は、就活の際などプログラミングテストとして出題されることがあります。
 就活対策として（Pythonに限らず）演習を積みたい場合は[paizaラーニング](https://paiza.jp/works/mondai)というサービスがおすすめです。
