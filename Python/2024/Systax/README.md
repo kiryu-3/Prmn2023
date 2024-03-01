@@ -28,51 +28,34 @@ Gitの環境構築パートです。
 『データサイエンス入門』で学習したPythonの基本文法を改めて確認します。
 
 - 問題は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/question/PythonBasic_BasicSyntax_Question.ipynb)
-- 解答は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/question/PythonBasic_BasicSyntax_Answer.ipynb)（公開前）
+- 解答は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/answer/PythonBasic_BasicSyntax_Answer.ipynb)（公開前）
 
 ## 第2章
 
 「**オブジェクト指向**」への第一歩を踏み出すため、**クラス**の基礎について確認していきます。 
 
 - 問題は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/question/PythonBasic_BasicClasses_Question.ipynb)
-- 解答は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/question/PythonBasic_BasicClasses_Answer.ipynb)（公開前）
+- 解答は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/answer/PythonBasic_BasicClasses_Answer.ipynb)（公開前）
 
 ## 第3章
 
 クラスの学習において最大の壁ともいわれる**継承**について確認していきます。 
 
 - 問題は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/question/PythonBasic_AdvancedClasses_Question.ipynb)
-- 解答は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/question/PythonBasic_AdvancedClasses_Answer.ipynb)（公開前）
-
-## 第4章
-
-クラスの学習において最大の壁ともいわれる**継承**について確認していきます。  
-
-- 問題は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/Python_Basic/question/PythonBasic24_4_Question.ipynb)
-- 解答は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/Python_Basic/question/PythonBasic24_4_Answer.ipynb)（公開前）
-
-＜参考＞
-1. [クラスの応用](https://github.com/kiryu-3/Prmn2023/blob/main/Python/Python_Basic/text/PythonBasic_9.ipynb)
-   - 電子光工学科では、2年秋学期の授業でサラっと登場するかもです。
-   - 情報システム工学科では、**Java**という別の言語でここら辺は深く学習します。
-2. [例外処理](https://github.com/kiryu-3/Prmn2023/blob/main/Python/Python_Basic/text/PythonBasic_10.ipynb)
-   - 今回の演習問題にはあまり関係がありません。
-   - 電子光工学科では、2年秋学期の授業でサラっと登場するかもです。
-   - 情報システム工学科では、**Java**の授業で学習する機会があります。
-   - 授業ではあまり使わなくても、システムを作っているときは意外と使う機会があります。
+- 解答は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/answer/PythonBasic_AdvancedClasses_Answer.ipynb)（公開前）
   
-## 第5章
+## 第4章
 
 テキストファイルの読み込みをPythonで行う練習です。  
 
 - 問題は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/question/PythonBasic_TextFiles_Question.ipynb)
-- 解答は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/question/PythonBasic_TextFiles_Answer.ipynb)（公開前）
+- 解答は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/answer/PythonBasic_TextFiles_Answer.ipynb)（公開前）
 
 
-## 第6章
+## 第5章
 
 APIなどを利用する際によく登場する、JSONデータの扱いについて学びます。  
 
 - 問題は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/question/PythonBasic_JSONProcessing_Question.ipynb)
-- 解答は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/question/PythonBasic_JSONProcessing_Answer.ipynb)（公開前）
+- 解答は[こちら](https://github.com/kiryu-3/Prmn2023/blob/main/Python/2024/Systax/answer/PythonBasic_JSONProcessing_Answer.ipynb)（公開前）
 
