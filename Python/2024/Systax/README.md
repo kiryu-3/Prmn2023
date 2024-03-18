@@ -80,8 +80,8 @@ Gitの環境構築パートです。
   
 <hr>
 
-- 問題は[こちら](../../Python/2024/Systax/question/PythonBasic_BasicSyntax_Question.ipynb)
-- 解答は[こちら](../../Python/2024/Systax/answer/PythonBasic_BasicSyntax_Answer.ipynb)（公開前）
+- 問題は[こちら](../../2024/Systax/question/PythonBasic_BasicSyntax_Question.ipynb)
+- 解答は[こちら](../../2024/Systax/answer/PythonBasic_BasicSyntax_Answer.ipynb)（公開前）
 
 ## 第2章＜クラス基礎＞
 
@@ -93,8 +93,8 @@ Gitの環境構築パートです。
   
 <hr>
 
-- 問題は[こちら](../../Python/2024/Systax/question/PythonBasic_BasicClasses_Question.ipynb)
-- 解答は[こちら](../../Python/2024/Systax/answer/PythonBasic_BasicClasses_Answer.ipynb)（公開前）
+- 問題は[こちら](../../2024/Systax/question/PythonBasic_BasicClasses_Question.ipynb)
+- 解答は[こちら](../../2024/Systax/answer/PythonBasic_BasicClasses_Answer.ipynb)（公開前）
 
 ## 第3章＜クラス応用＞
 
@@ -106,8 +106,8 @@ Gitの環境構築パートです。
   
 <hr>
 
-- 問題は[こちら](../../Python/2024/Systax/question/PythonBasic_AdvancedClasses_Question.ipynb)
-- 解答は[こちら](../../Python/2024/Systax/answer/PythonBasic_AdvancedClasses_Answer.ipynb)（公開前）
+- 問題は[こちら](../../2024/Systax/question/PythonBasic_AdvancedClasses_Question.ipynb)
+- 解答は[こちら](../../2024/Systax/answer/PythonBasic_AdvancedClasses_Answer.ipynb)（公開前）
 
 ## 第4章＜テキストファイル処理＞
 
@@ -119,8 +119,8 @@ Gitの環境構築パートです。
   
 <hr>
 
-- 問題は[こちら](../../Python/2024/Systax/question/PythonBasic_TextFiles_Question.ipynb)
-- 解答は[こちら](../../Python/2024/Systax/answer/PythonBasic_TextFiles_Answer.ipynb)（公開前）
+- 問題は[こちら](../../2024/Systax/question/PythonBasic_TextFiles_Question.ipynb)
+- 解答は[こちら](../../2024/Systax/answer/PythonBasic_TextFiles_Answer.ipynb)（公開前）
 
 
 ## 第5章＜API利用・JSON処理＞
@@ -133,6 +133,6 @@ APIなどを利用する際によく登場する、JSONデータの扱いにつ�
   
 <hr>
 
-- 問題は[こちら](../../Python/2024/Systax/question/PythonBasic_JSONProcessing_Question.ipynb)
-- 解答は[こちら](../../Python/2024/Systax/answer/PythonBasic_JSONProcessing_Answer.ipynb)（公開前）
+- 問題は[こちら](../../2024/Systax/question/PythonBasic_JSONProcessing_Question.ipynb)
+- 解答は[こちら](../../2024/Systax/answer/PythonBasic_JSONProcessing_Answer.ipynb)（公開前）
 
