@@ -1,6 +1,6 @@
 # Python 基本文法編
 
-- [Python文法まとめ（Colab版）](../../Python/2024/Systax/PythonBasic.ipynb)
+- [Python文法まとめ（Colab版）](../../2024/Systax/PythonBasic.ipynb)
 - [Python文法まとめ（Qiita版）](https://qiita.com/kiryu-3/items/888319c76fd82440f601)
 
 ## 初めに
