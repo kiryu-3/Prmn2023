@@ -7,7 +7,7 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageMessage, ImageSendMessage
 import dotenv
-from pyngrok import ngrok
+
 
 app = Flask(__name__)
 # LineBotApiオブジェクトを作成
@@ -34,8 +34,6 @@ def handle_message(event):
         TextSendMessage(text=reply_text)  # 受信したテキストメッセージをそのまま返信
     )
     print("返信完了!!\ntext:", event.message.text)  # 返信が完了したことを表示
-
-ngrok.connect(5003, hostname=NGROK_DOMAIN)
 
 if __name__ == "__main__":
     app.run()  # アプリケーションを実行
