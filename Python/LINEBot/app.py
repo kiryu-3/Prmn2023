@@ -14,6 +14,7 @@ app = Flask(__name__)
 dotenv.load_dotenv("content/info/.env")
 line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
 handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
+NGROK_DOMAIN = os.environ.get("NGROK_DOMAIN", "aaaa-bbbb-cccc.ngrok-free.app")
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -34,8 +35,7 @@ def handle_message(event):
     )
     print("返信完了!!\ntext:", event.message.text)  # 返信が完了したことを表示
 
-ngrok_tunnel = ngrok.connect(5000)  # ポート5000でngrokのトンネルを作成
-print('Public URL:', ngrok_tunnel.public_url)  # 公開されたURLを表示
+ngrok.connect(5003, hostname=NGROK_DOMAIN)
 
 if __name__ == "__main__":
     app.run()  # アプリケーションを実行
