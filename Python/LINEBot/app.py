@@ -14,8 +14,10 @@ app = Flask(__name__)
 line_bot_api = LineBotApi(os.environ["CHANNEL_ACCESS_TOKEN"])
 handler = WebhookHandler(os.environ["CHANNEL_SECRET"])
 
-print(os.environ["CHANNEL_ACCESS_TOKEN"])
-print(os.environ["CHANNEL_SECRET"])
+## 起動確認用ウェブサイトのトップページ
+@app.route('/', methods=['GET'])
+def toppage():
+	return 'Hello world!'
 
 @app.route("/callback", methods=['POST'])
 def callback():
