@@ -11,10 +11,8 @@ import dotenv
 
 app = Flask(__name__)
 # LineBotApiオブジェクトを作成
-dotenv.load_dotenv("content/info/.env")
-line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
-handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
-NGROK_DOMAIN = os.environ.get("NGROK_DOMAIN", "aaaa-bbbb-cccc.ngrok-free.app")
+line_bot_api = LineBotApi(os.environ["CHANNEL_ACCESS_TOKEN"])
+handler = WebhookHandler(os.environ["CHANNEL_SECRET"])
 
 @app.route("/callback", methods=['POST'])
 def callback():
