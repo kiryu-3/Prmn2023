@@ -7,7 +7,8 @@ PythonでのLINEBot開発を、GoogleColab上で行うことができる参考�
 LINEBotを自身の力で作ってみたいという方、  
 以下資料をアレンジしてもらえれば開発ができると思いますので、最終成果物の参考にしてください。
 
-- [環境構築](../../2024/linebot/env.md)
+- [環境構築（LineBot）](../../2024/linebot/env.md)
+- [環境構築2（ngrok）](../../2024/linebot/env2.md)
 - [基本編](../../2024/linebot/LINEBot_Basic.ipynb)
     - テキストのオウム返し
     - 画像データの取り扱い
